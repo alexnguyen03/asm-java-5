@@ -11,4 +11,9 @@ public class ShopController {
     public String index() {
         return "/client/shop";
     }
+
+    @GetMapping("cart-detail")
+    public String getCartDetail() {
+        return "/client/cart-detail";
+    }
 }
