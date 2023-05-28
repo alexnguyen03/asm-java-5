@@ -20,7 +20,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
     <style>
       body {
-        background: url(img/login/6764552_3433839.jpg) center / cover
+        background: url(img/chang-password/11852427_4858794.jpg) center / cover
           no-repeat fixed;
         width: 100wh;
         height: 100vh;
@@ -64,7 +64,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0 text-dark">      
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0 text-dark">
             <a href="#" class="btn site-btn ml-3">Tiếp tục lướt web</a>
           </ul>
         </div>
@@ -74,9 +74,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <div class="container glassmorphism">
       <div class="card text-center bg-transparent border-0">
         <div class="card-body">
-          <h3 class="card-title my-3 font-weight-bold">Đăng nhập</h3>
+          <h3 class="card-title my-3 font-weight-bold">Đổi mật khẩu</h3>
           <h6 class="card-text font-italic">
-            Nhập thông tin của bạn để đăng nhập vào tài khoản thành viên
+            Thay đổi mật khẩu của bạn một cách dễ dàng.
           </h6>
           <form action="#" class="mt-5">
             <div class="form-group">
@@ -86,7 +86,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 name="username"
                 id="username"
                 aria-describedby="helpId"
-                placeholder="Tên đăng nhập..."
+                placeholder="Tên đăng nhập"
               />
               <small id="helpId" class="form-text text-muted"></small>
             </div>
@@ -101,8 +101,30 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               />
               <small id="helpId" class="form-text text-muted"></small>
             </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                name="newpass"
+                id="newpass"
+                aria-describedby="helpId"
+                placeholder="Mật khẩu mới"
+              />
+              <small id="helpId" class="form-text text-muted"></small>
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                name="confirm"
+                id="confirm"
+                aria-describedby="helpId"
+                placeholder="Xác nhận mật khẩu"
+              />
+              <small id="helpId" class="form-text text-muted"></small>
+            </div>
             <p class="text-left">
-              Không thể đăng nhập được?
+              Không thể đổi mật khẩu?
               <a href="#" class="font-weight-bold" style="color: #0c2b4b"
                 >Lấy lại mật khẩu</a
               >
@@ -111,16 +133,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               class="btn site-btn my-4 w-100 text-white font-weight-bold p-3"
               type="submit"
             >
-              Đăng nhập
+              Đổi mật khẩu
             </button>
           </form>
-
-          <p>
-            Không có tài khoản?
-            <a href="#" class="font-weight-bold" style="color: #0c2b4b"
-              >Yêu cầu ngay!</a
-            >
-          </p>
         </div>
       </div>
     </div>
