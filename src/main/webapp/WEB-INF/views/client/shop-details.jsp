@@ -157,8 +157,7 @@
 				<div class="row">
 					<div class="col-lg-12 d-flex justify-content-start">
 						<div class="product__details__breadcrumb mt-4">
-							<a href="./index.html">Home</a> <a href="./shop.html">Shop</a> <span>Product
-								Details</span>
+							<a href="./index.html">Trang chủ</a> <a href="./shop.html">Sản phẩm</a> <span>Sản phẩm chi tiết</span>
 						</div>
 					</div>
 				</div>
@@ -171,18 +170,18 @@
 					<img src="/img/shop-details/tainghe.png" class="card-img-top">
 				</div>
 				<div class="col-lg-7">
-					<h4 class="name-product d-flex justify-content-start mb-3">Tai
-						nghe Bluetooth Jabra Elite 85h</h4>
+					<h2 class="name-product d-flex justify-content-start mb-3">Tai
+						nghe Bluetooth Jabra Elite 85h</h2>
 					<div class="rating d-flex justify-content-start mb-2">
 						<i class="fa fa-star text-warning"></i> <i
 							class="fa fa-star text-warning"></i> <i class="fa fa-star"></i> <i
 							class="fa fa-star"></i> <i class="fa fa-star"></i>
 						<h5>&nbsp;&nbsp; - &nbsp;4 Đánh giá</h5>
 					</div>
-					<p class="mt-2 mb-2 d-flex justify-content-start">
+					<h5 class="mt-2 mb-2 d-flex justify-content-start">
 						<strong>SỐ LƯỢNG:</strong>&nbsp; 12 &nbsp;&nbsp;&nbsp;&nbsp; <strong>THỂ
 							LOẠI:</strong>&nbsp; TAI NGHE
-					</p>
+					</h5>
 					<strong class="d-flex justify-content-start">MÔ TẢ:</strong>
 					<p class="details text-justify">Jabra Elite 85h là chiếc tai
 						nghe chống ồn mới nhất trên thị trường của hãng âm thanh Đan Mạch.
@@ -190,19 +189,20 @@
 						chiếc tai nghe có được một khả năng chơi nhạc và chống ồn vô cùng
 						ấn tượng, hứa hẹn sẽ là đối thủ nặng ký của những chiếc tai nghe
 						chống ồn đầu bảng hiện tại.</p>
-					<h3 class="float-left">
-						Giá: <strong class="text-danger">5.590.000 ₫</strong>
-					</h3>
+					<h5 class="float-left mr-4 mt-2">
+						Giá:
+					</h5>
+					<h3 class="text-danger">5.590.000 ₫</h3>
 					<div class="container p-0 mb-3 float-left">
 						<div class="row mt-3">
-							<div class="col-lg-3 mt-2">
-								<h3>Số lượng:</h3>
+							<div class="col-lg-2 mt-2">
+								<h5>Số lượng:</h5>
 							</div>
-							<div class="col-lg-3 mt-2">
+							<div class="col-lg-3">
 								<div class="input-group mb-3">
-									<i class="fa-solid fa-minus text-danger border p-2"></i> <input
-										type="text" class="form-control text-center fs-5" value="1">
-									<i class="fa-solid fa-plus text-success border p-2"></i>
+									<i class="fa fa-minus border p-2 text-dark" aria-hidden="true"></i>
+									<input type="text" class="form-control text-center" value="1">
+									<i class="fa fa-plus text-dark border p-2" aria-hidden="true"></i>
 								</div>
 							</div>
 						</div>
@@ -228,11 +228,11 @@
 						<div class="row">
 							<div class="col-lg-12 bg-light p-3 mb-3">
 								<p class="fw-bold">Đánh giá số sao của bạn tại đây???</p>
-								<i class="fa-solid fa-star text-warning"></i> <i
-									class="fa-solid fa-star text-warning"></i> <i
-									class="fa-solid fa-star text-warning"></i> <i
-									class="fa-solid fa-star text-warning"></i> <i
-									class="fa-solid fa-star text-warning"></i>
+								<i class="fa fa-star text-warning" aria-hidden="true"></i>
+								<i class="fa fa-star text-warning" aria-hidden="true"></i>
+								<i class="fa fa-star text-warning" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
 								<form action="">
 									<div class="mb-3 mt-3">
 										<label for="evaluate" class="form-label fw-bold">Viết
@@ -251,10 +251,10 @@
 									class="rounded-circle border" width="80px" height="70px">
 							</div>
 							<div class="col-lg-11 mb-3">
-								<strong>Minh Dương</strong> <span>| 27-11-2023</span><br> <i
-									class="fa-solid fa-star text-warning"></i> <i
-									class="fa-solid fa-star text-warning"></i> <i
-									class="fa-solid fa-star text-warning"></i>
+								<strong>Minh Dương</strong> <span>| 27-11-2023</span><br> 
+								<i class="fa fa-star text-warning" aria-hidden="true"></i>
+								<i class="fa fa-star text-warning" aria-hidden="true"></i>
+								<i class="fa fa-star text-warning" aria-hidden="true"></i>
 								<p class="fw-light">Sản phẩm chất lượng!!</p>
 							</div>
 							<div class="col-lg-1 d-flex justify-content-center">
@@ -262,10 +262,10 @@
 									class="rounded-circle border" width="80px" height="70px">
 							</div>
 							<div class="col-lg-9 mb-3">
-								<strong>Minh Dương</strong> <span>| 27-11-2023</span><br> <i
-									class="fa-solid fa-star text-warning"></i> <i
-									class="fa-solid fa-star text-warning"></i> <i
-									class="fa-solid fa-star text-warning"></i>
+								<strong>Minh Dương</strong> <span>| 27-11-2023</span><br> 
+								<i class="fa fa-star text-warning" aria-hidden="true"></i>
+								<i class="fa fa-star text-warning" aria-hidden="true"></i>
+								<i class="fa fa-star text-warning" aria-hidden="true"></i>
 								<p class="fw-light">Sài rất bền gần 10 năm mới hư!!</p>
 							</div>
 						</div>
@@ -280,40 +280,24 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h3 class="related-title">Related Product</h3>
+					<h3 class="related-title">Sản Phẩm Cùng Loại</h3>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="product__item">
-						<div class="product__item__pic set-bg" 
+						<div class="product__item__pic set-bg"
 							data-setbg="img/shop-details/tainghe.jpg">
-							<ul class="product__hover">
-								<li><a href="#"><img src="img/icon/heart.png" alt="" /></a>
-								</li>
-								<li><a href="#"><img
-										src="img/icon/compare.png" alt="" /> <span>So sánh</span></a></li>
-								<li><a href="#"><img src="img/icon/search.png" alt="" /></a>
-								</li>
-							</ul>
 						</div>
 						<div class="product__item__text">
-							<h6>Piqué Biker Jacket</h6>
+							<h6>Tai nghe Bluetooth Sony WF-1000XM3</h6>
 							<a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
 							<div class="rating">
 								<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
 									class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
 									class="fa fa-star-o"></i>
 							</div>
-							<h5>$67.24</h5>
-							<div class="product__color__select">
-								<label for="pc-4"> <input type="radio" id="pc-4" />
-								</label> <label class="active black" for="pc-5"> <input
-									type="radio" id="pc-5" />
-								</label> <label class="grey" for="pc-6"> <input type="radio"
-									id="pc-6" />
-								</label>
-							</div>
+							<h5>2.300.000đ</h5>
 						</div>
 					</div>
 				</div>
@@ -321,33 +305,16 @@
 					<div class="product__item sale">
 						<div class="product__item__pic set-bg"
 							data-setbg="img/shop-details/tainghe1.jpeg">
-							<span class="label">Sale</span>
-							<ul class="product__hover">
-								<li><a href="#"><img src="img/icon/heart.png" alt="" /></a>
-								</li>
-								<li><a href="#"><img
-										src="img/icon/compare.png" alt="" /> <span>So sánh</span></a></li>
-								<li><a href="#"><img src="img/icon/search.png" alt="" /></a>
-								</li>
-							</ul>
 						</div>
 						<div class="product__item__text">
-							<h6>Multi-pocket Chest Bag</h6>
+							<h6>Tai nghe Bluetooth Monster Clarity 101 Airlinks</h6>
 							<a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
 							<div class="rating">
 								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 									class="fa fa-star-o"></i>
 							</div>
-							<h5>$43.48</h5>
-							<div class="product__color__select">
-								<label for="pc-7"> <input type="radio" id="pc-7" />
-								</label> <label class="active black" for="pc-8"> <input
-									type="radio" id="pc-8" />
-								</label> <label class="grey" for="pc-9"> <input type="radio"
-									id="pc-9" />
-								</label>
-							</div>
+							<h5>2.800.000đ</h5>
 						</div>
 					</div>
 				</div>
@@ -355,65 +322,33 @@
 					<div class="product__item">
 						<div class="product__item__pic set-bg"
 							data-setbg="img/shop-details/tainghe2.webp">
-							<ul class="product__hover">
-								<li><a href="#"><img src="img/icon/heart.png" alt="" /></a>
-								</li>
-								<li><a href="#"><img
-										src="img/icon/compare.png" alt="" /> <span>So sánh</span></a></li>
-								<li><a href="#"><img src="img/icon/search.png" alt="" /></a>
-								</li>
-							</ul>
 						</div>
 						<div class="product__item__text">
-							<h6>Diagonal Textured Cap</h6>
+							<h6>Tai nghe Bluetooth True Wireless Lypertek Tevi</h6>
 							<a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
 							<div class="rating">
 								<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
 									class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
 									class="fa fa-star-o"></i>
 							</div>
-							<h5>$60.9</h5>
-							<div class="product__color__select">
-								<label for="pc-10"> <input type="radio" id="pc-10" />
-								</label> <label class="active black" for="pc-11"> <input
-									type="radio" id="pc-11" />
-								</label> <label class="grey" for="pc-12"> <input type="radio"
-									id="pc-12" />
-								</label>
-							</div>
+							<h5>2.000.000đ</h5>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="product__item">
-						<div class="product__item__pic set-bg" 
+						<div class="product__item__pic set-bg"
 							data-setbg="img/shop-details/tainghe.jpg">
-							<ul class="product__hover">
-								<li><a href="#"><img src="img/icon/heart.png" alt="" /></a>
-								</li>
-								<li><a href="#"><img
-										src="img/icon/compare.png" alt="" /> <span>So sánh</span></a></li>
-								<li><a href="#"><img src="img/icon/search.png" alt="" /></a>
-								</li>
-							</ul>
 						</div>
 						<div class="product__item__text">
-							<h6>Piqué Biker Jacket</h6>
+							<h6>Tai nghe Bluetooth Sony WF-1000XM3</h6>
 							<a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
 							<div class="rating">
 								<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
 									class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
 									class="fa fa-star-o"></i>
 							</div>
-							<h5>$67.24</h5>
-							<div class="product__color__select">
-								<label for="pc-4"> <input type="radio" id="pc-4" />
-								</label> <label class="active black" for="pc-5"> <input
-									type="radio" id="pc-5" />
-								</label> <label class="grey" for="pc-6"> <input type="radio"
-									id="pc-6" />
-								</label>
-							</div>
+							<h5>2.300.000đ</h5>
 						</div>
 					</div>
 				</div>
@@ -421,33 +356,16 @@
 					<div class="product__item sale">
 						<div class="product__item__pic set-bg"
 							data-setbg="img/shop-details/tainghe1.jpeg">
-							<span class="label">Sale</span>
-							<ul class="product__hover">
-								<li><a href="#"><img src="img/icon/heart.png" alt="" /></a>
-								</li>
-								<li><a href="#"><img
-										src="img/icon/compare.png" alt="" /> <span>So sánh</span></a></li>
-								<li><a href="#"><img src="img/icon/search.png" alt="" /></a>
-								</li>
-							</ul>
 						</div>
 						<div class="product__item__text">
-							<h6>Multi-pocket Chest Bag</h6>
+							<h6>Tai nghe Bluetooth Monster Clarity 101 Airlinks</h6>
 							<a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
 							<div class="rating">
 								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 									class="fa fa-star-o"></i>
 							</div>
-							<h5>$43.48</h5>
-							<div class="product__color__select">
-								<label for="pc-7"> <input type="radio" id="pc-7" />
-								</label> <label class="active black" for="pc-8"> <input
-									type="radio" id="pc-8" />
-								</label> <label class="grey" for="pc-9"> <input type="radio"
-									id="pc-9" />
-								</label>
-							</div>
+							<h5>2.800.000đ</h5>
 						</div>
 					</div>
 				</div>
@@ -455,32 +373,16 @@
 					<div class="product__item">
 						<div class="product__item__pic set-bg"
 							data-setbg="img/shop-details/tainghe2.webp">
-							<ul class="product__hover">
-								<li><a href="#"><img src="img/icon/heart.png" alt="" /></a>
-								</li>
-								<li><a href="#"><img
-										src="img/icon/compare.png" alt="" /> <span>So sánh</span></a></li>
-								<li><a href="#"><img src="img/icon/search.png" alt="" /></a>
-								</li>
-							</ul>
 						</div>
 						<div class="product__item__text">
-							<h6>Diagonal Textured Cap</h6>
+							<h6>Tai nghe Bluetooth True Wireless Lypertek Tevi</h6>
 							<a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
 							<div class="rating">
 								<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
 									class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
 									class="fa fa-star-o"></i>
 							</div>
-							<h5>$60.9</h5>
-							<div class="product__color__select">
-								<label for="pc-10"> <input type="radio" id="pc-10" />
-								</label> <label class="active black" for="pc-11"> <input
-									type="radio" id="pc-11" />
-								</label> <label class="grey" for="pc-12"> <input type="radio"
-									id="pc-12" />
-								</label>
-							</div>
+							<h5>2.000.000đ</h5>
 						</div>
 					</div>
 				</div>
