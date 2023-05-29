@@ -13,4 +13,10 @@ public class AdminController {
     public String dashboard(Model m) {
         return "/admin/index";
     }
+
+    @GetMapping("user")
+    public String userManagementView(Model m) {
+        return "/admin/user";
+    }
+
 }
