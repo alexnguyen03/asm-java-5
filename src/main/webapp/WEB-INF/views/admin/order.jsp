@@ -177,11 +177,9 @@
               <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
             </svg>
           </button>
-
         </div>
         <div class="app-content-actions">
           <form action="">
-
             <div class=" input-group input-group-sm">
               <div class="input-group-prepend"> <button type="button"
                         class="btn btn-outline-secondary">Tìm theo ngày</button> <button type="button"
@@ -192,19 +190,16 @@
                 <div class="dropdown-menu"> <a class="dropdown-item"
                      href="#">Tìm theo ngày</a> <a class="dropdown-item"
                      href="#">Tìm theo tháng</a>
-
                 </div>
               </div> <input type="month"
                      class="form-control"
                      aria-label="Text input with segmented dropdown button">
             </div>
           </form>
-
           <div class="w-50 d-flex justify-content-center">
             <div class="product-cell status-cell d-flex flex-column justify-content-center">
               <span class="status active py-2">Hiển thị hihi<strong class="mx-2">15 / 20</strong> người dùng</span>
             </div>
-
             <nav aria-label="Page navigation example"
                  class="mt-3 ml-4">
               <ul class="pagination justify-content-center pagination-sm align-self-center">
@@ -225,14 +220,12 @@
                 </li>
               </ul>
             </nav>
-
           </div>
           <div class="app-content-actions-wrapper">
             <a href="/admin/order"
                class="btn btn${isCancel == true ? '-outline': ''}-primary btn-sm mx-2 ml-4">Đơn đã đặt</a>
             <a href="/admin/order/cancel"
                class="btn btn${isCancel == true ? '': '-outline'}-warning btn-sm mx-2">Đơn đã hủy</a>
-
           </div>
         </div>
         <div class="products-area-wrapper tableView">
@@ -287,7 +280,6 @@
                 </svg>
               </button></div>
             <div class="product-cell price">Thao tác
-
             </div>
           </div>
           <div class="products-row">
@@ -340,7 +332,6 @@
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -355,7 +346,7 @@
            role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title ">Thông tin chi tiết </h5>
+            <h5 class="modal-title ">CHI TIẾT ĐƠN HÀNG</h5>
             <button type="button"
                     class="close"
                     data-dismiss="modal"
@@ -364,114 +355,104 @@
             </button>
           </div>
           <div class="modal-body">
-            <form action="#">
-              <div class="row bg rounded ">
-
-                <div class="col-12">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>
-
-                          Sản phẩm
-                        </th>
-                        <th>Số lượng</th>
-                        <th>Tổng cộng</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="product__cart__item d-flex justify-content-space-bewteen">
-                          <div class="form-check d-flex flex-column  justify-content-center">
-                            <input class="form-check-input item"
-                                   type="checkbox"
-                                   value=""
-                                   id="defaultCheck1">
+            <div class="row rounded ">
+              <div class="col-7">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>
+                        Ảnh SP
+                      </th>
+                      <th>Tên SP</th>
+                      <th>Số lượng</th>
+                      <th class=" mx-3">Tổng cộng</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="">
+                      <td>1</td>
+                      <td class="product__cart__item">
+                        <img src="${pageContext.request.contextPath}/img/shopping-cart/64 Audio A12t.jpg"
+                             alt=""
+                             width="35px"
+                             height="35px"
+                             class="">
+                      </td>
+                      <td class="product__cart__item">
+                        <h6 class="">64 Audio A12t</h6>
+                      </td>
+                      <td class="quantity__item">
+                        <div class="quantity">
+                          <div class="pro-qty-2 text-center">
+                            <span>1</span>
                           </div>
-                          <div class="product__cart__item__pic">
-                            <img src="${pageContext.request.contextPath}/img/shopping-cart/HiFiMan HE-R9.jpg"
-                                 alt=""
-                                 width="90px"
-                                 height="90px"
-                                 class="">
+                        </div>
+                      </td>
+                      <td class="cart__price">200.000 <sup>đ</sup></td>
+                    </tr>
+                    <tr class="">
+                      <td>2</td>
+                      <td class="product__cart__item">
+                        <img src="${pageContext.request.contextPath}/img/shopping-cart/64 Audio A12t.jpg"
+                             alt=""
+                             width="35px"
+                             height="35px"
+                             class="">
+                      </td>
+                      <td class="product__cart__item">
+                        <h6 class="">64 Audio A12t</h6>
+                      </td>
+                      <td class="quantity__item">
+                        <div class="quantity">
+                          <div class="pro-qty-2 text-center">
+                            <span>1</span>
                           </div>
-                          <div class="product__cart__item__text">
-                            <h6>64 Audio A12t</h6>
-                            <h5>200.000 <sup>đ</sup></h5>
-                          </div>
-                        </td>
-                        <td class="quantity__item">
-                          <div class="quantity">
-                            <div class="pro-qty-2">
-                              <input type="text"
-                                     value="1"
-                                     class="input__quantity">
-                            </div>
-                          </div>
-                        </td>
-                        <td class="cart__price">200.000 <sup>đ</sup></td>
-                        <td class="cart__close"><i class="fa fa-close  text-danger"></i></td>
-                      </tr>
-                      <tr>
-                        <td class="product__cart__item d-flex justify-content-space-bewteen">
-                          <div class="form-check d-flex flex-column  justify-content-center">
-                            <input class="form-check-input item"
-                                   type="checkbox"
-                                   value=""
-                                   id="defaultCheck1">
-                          </div>
-                          <div class="product__cart__item__pic">
-                            <img src="${pageContext.request.contextPath}/img/shopping-cart/64 Audio A12t.jpg"
-                                 alt=""
-                                 width="90px"
-                                 height="90px"
-                                 class="">
-                          </div>
-                          <div class="product__cart__item__text">
-                            <h6>64 Audio A12t</h6>
-                            <h5>200.000 <sup>đ</sup></h5>
-                          </div>
-                        </td>
-                        <td class="quantity__item">
-                          <div class="quantity">
-                            <div class="pro-qty-2">
-                              <input type="text"
-                                     value="1"
-                                     class="input__quantity">
-                            </div>
-                          </div>
-                        </td>
-                        <td class="cart__price">200.000 <sup>đ</sup></td>
-                        <td class="cart__close "><i class="fa fa-close text-danger"></i></td>
-                      </tr>
-
-
-                    </tbody>
-                  </table>
-
-                </div>
-
-                <!-- Submit Button -->
-                <div class="form-group col-lg-12 mx-auto mb-4 ">
-                  <hr>
-                  <button type="button"
-                          class="btn btn-secondary mr-5"
-                          data-dismiss="modal">Hủy</button>
-                  <a href="#"
-                     class="btn btn-danger float-right w-50">
-                    <span class="font-weight-bold">Xóa luôn</span>
-                  </a>
-                </div>
-
+                        </div>
+                      </td>
+                      <td class="cart__price">200.000 <sup>đ</sup></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-            </form>
+              <div class="col-5">
+                <div class="card">
+                  <div class="card-body">
+                    <b class=" mb-3">THÔNG TIN NGƯỜI DÙNG</b>
+                    <div class="mb-2">
+                      <span>Họ tên:</span> <strong class="text-danger">Nguyễn Hoài Nam</strong>
+                    </div>
+                    <div class="mb-2">
+                      <span>Địa chỉ</span> <strong class="text-danger">Vĩnh Long</strong>
+                    </div>
+                    <div class="mb-2">
+                      <span>Số điện thoại</span> <strong class="text-danger">0326265147</strong>
+                    </div>
+                    <div class="mb-2">
+                      <span>Ngày đặt hàng</span> <strong class="text-danger">26/05/2023</strong>
+                    </div>
+                    <div class="mb-2">
+                      <span>Email</span> <strong class="text-danger">namnhpc03517@fpt.edu.vn</strong>
+                    </div>
+                    <hr>
+                    <b class=" mb-3">THÔNG TIN ĐƠN HÀNG</b>
+                    <div class="mb-2">
+                      <span>Tạm tính:</span> <strong class="text-danger">400.00 <sup>đ</sup></strong>
+                    </div>
+                    <div class="mb-2">
+                      <span>Giảm giá:</span> <strong class="text-danger">0 <sup>đ</sup></strong>
+                    </div>
+                    <div class="mb-2">
+                      <span>Thành tiền:</span> <strong class="text-danger">400.000 <sup>đ</sup></strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
         </div>
       </div>
     </div>
-
     <!-- update modal -->
     <div class="modal fade"
          id="updateModal"
@@ -536,12 +517,9 @@
                           <option value="3"
                                   class="text-success">Đã giao</option>
                         </select>
-
                       </div>
                     </div>
                   </div>
-
-
                   <!-- Submit Button -->
                   <div class="form-group col-lg-12 mx-auto mb-4 ">
                     <hr>
@@ -553,27 +531,19 @@
                       <span class="font-weight-bold">Cập nhật</span>
                     </a>
                   </div>
-
                 </div>
             </form>
           </div>
-
         </div>
       </div>
     </div>
-
-
-
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
             crossorigin="anonymous"></script>
-
-
     <!-- Js Plugins -->
-
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/script.js"></script>
     <script>
