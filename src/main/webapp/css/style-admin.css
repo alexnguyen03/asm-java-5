@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
 * {
 	box-sizing: border-box;
 }
@@ -42,7 +43,7 @@ html {
 
 body {
 	overflow: hidden;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Nunito Sans', sans-serif;
 	background-color: var(--app-bg);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;

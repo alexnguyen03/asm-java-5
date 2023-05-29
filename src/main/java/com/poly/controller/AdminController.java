@@ -29,5 +29,10 @@ public class AdminController {
         m.addAttribute("isCancel", true);
         return "/admin/order";
     }
+    // @GetMapping("/order/cancel")
+    // public String orderCancelView(Model m) {
+    // m.addAttribute("isCancel", true);
+    // return "/admin/order";
+    // }
 
 }
