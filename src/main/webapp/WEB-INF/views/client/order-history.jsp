@@ -17,10 +17,6 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
 	rel="stylesheet">
-	
-	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- Css Styles -->
 <link rel="stylesheet"
@@ -168,134 +164,149 @@
 			</div>
 		</div>
 	</section>
-	
-	 <div class="order-history-wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10  m-auto">
-                    <h4>Lịch Sử Đặt Hàng</h4>
-                    <hr>
-                    <div class="table-responsive">
-                        <table class="table text-center">
-                            <thead class="bg-dark text-white">
-                                <tr>
-                                    <th scope="col">Mã Order</th>
-                                    <th scope="col">Ngày Đặt</th>
-                                    <th scope="col">Tổng Tiền</th>
-                                    <th scope="col">Địa Chỉ</th>
-                                    <th scope="col">Số Điện Thoại</th>
-                                    <th scope="col">Trạng Thái</th>
-                                    <th scope="col">Hành Động</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th class="pt-4">1</th>
-                                    <td class="pt-4">2023-11-04</td>
-                                    <td class="pt-4">30.000đ</td>
-                                    <td class="pt-4">Hậu Giang</td>
-                                    <td class="pt-4">0776856483</td>
-                                    <td class="pt-4">Chờ thanh toán</td>
-                                    <td class="pt-3">
-                                        <h5> <!-- Button to Open the Modal -->
-                                            <button type="button" class="btn btn-light bg-white border-0"
-                                                data-toggle="modal" data-target="#myModal">
-                                                <h5><i class="fa-solid fa-eye text-info mr-2"></i></h5>
-                                            </button>
-                                            <i class="fa-solid fa-trash" style="color: #e0591f;"></i>
-                                        </h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="pt-4">2</th>
-                                    <td class="pt-4">2023-11-04</td>
-                                    <td class="pt-4">30.000đ</td>
-                                    <td class="pt-4">Hậu Giang</td>
-                                    <td class="pt-4">0776856483</td>
-                                    <td class="pt-4">Chờ thanh toán</td>
-                                    <td class="pt-3">
-                                        <h5> <!-- Button to Open the Modal -->
-                                            <button type="button" class="btn btn-light bg-white border-0"
-                                                data-toggle="modal" data-target="#myModal">
-                                                <h5><i class="fa-solid fa-eye text-info mr-2"></i></h5>
-                                            </button>
-                                            <i class="fa-solid fa-trash" style="color: #e0591f;"></i>
-                                        </h5>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- The Modal -->
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Chi Tiết Đơn Hàng</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <table class="table font-weight-bold">
-                        <thead class="bg-dark text-white text-center">
-                            <tr>
-                                <th scope="col" class="p-0">STT</th>
-                                <th scope="col" class="p-0">Ảnh</th>
-                                <th scope="col" class="p-0">Tên Sản Phẩm</th>
-                                <th scope="col" class="p-0">Đơn Giá</th>
-                                <th scope="col" class="p-0">Số Lượng</th>
-                                <th scope="col" class="p-0">Tổng Tiền</th>
-                            </tr>
-                        </thead>
-                        <tbody style="font-size: 15px;" class="text-center">
-                            <tr class="align-middle">
-                                <th>1</th>
-                                <td><img src="/img/order-history/tainghe.png" class="card-img-top" height="50px"></td>
-                                <td>
-                                    <p>Tai nghe Bluetooth Jabra Elite 85h</p>
-                                </td>
-                                <td>5.400.000đ</td>
-                                <td>6</td>
-                                <td>30.000.000đ</td>
-                            </tr>
-                            <tr class="align-middle">
-                                <th>2</th>
-                                <td><img src="/img/order-history/tainghe.png" class="card-img-top" height="50px"></td>
-                                <td>
-                                    <p>Tai nghe Bluetooth Jabra Elite 85h</p>
-                                </td>
-                                <td>5.400.000đ</td>
-                                <td>6</td>
-                                <td>30.000.000đ</td>
-                            </tr>
-                            <tr class="align-middle">
-                                <th>3</th>
-                                <td><img src="/img/order-history/tainghe.png" class="card-img-top" height="50px"></td>
-                                <td>
-                                    <p>Tai nghe Bluetooth Jabra Elite 85h</p>
-                                </td>
-                                <td>5.400.000đ</td>
-                                <td>6</td>
-                                <td>30.000.000đ</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+	<div class="order-history-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10  m-auto">
+					<h4>Lịch Sử Đặt Hàng</h4>
+					<hr>
+					<div class="d-flex flex-row-reverse mb-3">
+						<button type="button" class="btn btn-warning ml-2">Đơn đã hủy</button>
+						<button type="button" class="btn btn-primary">Đơn đã thanh toán</button>
+					</div>
+					<div class="table-responsive">
+						<table class="table text-center">
+							<thead class="bg-dark text-white">
+								<tr>
+									<th scope="col">STT</th>
+									<th scope="col">Ngày Đặt</th>
+									<th scope="col">Tổng Tiền</th>
+									<th scope="col">Giảm Giá</th>
+									<th scope="col">Địa Chỉ</th>
+									<th scope="col">Số Điện Thoại</th>
+									<th scope="col">Trạng Thái</th>
+									<th scope="col">Hành Động</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th class="pt-4">1</th>
+									<td class="pt-4">2023-11-04</td>
+									<td class="pt-4">90.000.000đ</td>
+									<td class="pt-4">100.000đ</td>
+									<td class="pt-4">Hậu Giang</td>
+									<td class="pt-4">0776856483</td>
+									<td class="pt-4">Đã thanh toán</td>
+									<td class="pt-3">
+										<h5>
+											<!-- Button to Open the Modal -->
+											<button type="button" class="btn btn-light bg-white border-0"
+												data-toggle="modal" data-target="#myModal">
+												<h4>
+													<i class="fa fa-eye text-info mr-2" aria-hidden="true"></i>
+												</h4>
+											</button>
+										</h5>
+									</td>
+								</tr>
+								<tr>
+									<th class="pt-4">2</th>
+									<td class="pt-4">2023-11-04</td>
+									<td class="pt-4">90.000.000đ</td>
+									<td class="pt-4">30.000đ</td>
+									<td class="pt-4">Hậu Giang</td>
+									<td class="pt-4">0776856483</td>
+									<td class="pt-4">Đã hủy</td>
+									<td class="pt-3">
+										<h5>
+											<!-- Button to Open the Modal -->
+											<button type="button" class="btn btn-light bg-white border-0"
+												data-toggle="modal" data-target="#myModal">
+												<h4>
+													<i class="fa fa-eye text-info mr-2" aria-hidden="true"></i>
+												</h4>
+											</button>
+										</h5>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+	<!-- The Modal -->
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Chi Tiết Đơn Hàng</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<table class="table font-weight-bold">
+						<thead class="bg-dark text-white text-center">
+							<tr>
+								<th scope="col" class="p-0">STT</th>
+								<th scope="col" class="p-0">Ảnh</th>
+								<th scope="col" class="p-0">Tên Sản Phẩm</th>
+								<th scope="col" class="p-0">Đơn Giá</th>
+								<th scope="col" class="p-0">Số Lượng</th>
+								<th scope="col" class="p-0">Tổng Tiền</th>
+							</tr>
+						</thead>
+						<tbody style="font-size: 15px;" class="text-center">
+							<tr class="align-middle">
+								<th class="pt-4">1</th>
+								<td><img src="/img/order-history/tainghe.png"
+									class="card-img-top" height="50px"></td>
+								<td class="pt-4">
+									<p>Tai nghe Bluetooth Jabra Elite 85h</p>
+								</td>
+								<td class="pt-4">5.000.000đ</td>
+								<td class="pt-4">6</td>
+								<td class="pt-4">30.000.000đ</td>
+							</tr>
+							<tr class="align-middle">
+								<th class="pt-4">2</th>
+								<td><img src="/img/order-history/tainghe.png"
+									class="card-img-top" height="50px"></td>
+								<td class="pt-4">
+									<p>Tai nghe Bluetooth Jabra Elite 85h</p>
+								</td>
+								<td class="pt-4">5.000.000đ</td>
+								<td class="pt-4">6</td>
+								<td class="pt-4">30.000.000đ</td>
+							</tr>
+							<tr class="align-middle">
+								<th class="pt-4">3</th>
+								<td><img src="/img/order-history/tainghe.png"
+									class="card-img-top" height="50px"></td>
+								<td class="pt-4">
+									<p>Tai nghe Bluetooth Jabra Elite 85h</p>
+								</td>
+								<td class="pt-4">5.000.000đ</td>
+								<td class="pt-4">6</td>
+								<td class="pt-4">30.000.000đ</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-            </div>
-        </div>
-    </div>
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
 
 	<!-- Footer Section Begin -->
 	<footer class="footer">

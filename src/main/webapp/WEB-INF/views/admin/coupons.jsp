@@ -112,12 +112,12 @@
               <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
             </svg>
 				</button>
-				<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target="#myModal">THÊM KHUYẾN MÃI</button>
 			</div>
 			<div class="app-content-actions">
 				<input class="search-bar" placeholder="Search..." type="text">
 				<div class="app-content-actions-wrapper">
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#myModal">THÊM KHUYẾN MÃI</button>
 					<div class="filter-button-wrapper">
 						<button class="action-button filter jsFilter">
 							<span>Filter</span>
@@ -264,7 +264,8 @@
 					</div>
 					<div class="product-cell price">
 						<span class="cell-label">Price:</span>
-						<button type="button" class="btn btn-primary">Sửa</button>
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#myModal">Sửa</button>
 					</div>
 				</div>
 				<div class="products-row">
@@ -295,7 +296,8 @@
 					</div>
 					<div class="product-cell price">
 						<span class="cell-label">Price:</span>
-						<button type="button" class="btn btn-primary">Sửa</button>
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#myModal">Sửa</button>
 					</div>
 				</div>
 				<div class="products-row">
@@ -326,7 +328,8 @@
 					</div>
 					<div class="product-cell price">
 						<span class="cell-label">Price:</span>
-						<button type="button" class="btn btn-primary">Sửa</button>
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#myModal">Sửa</button>
 					</div>
 				</div>
 			</div>
@@ -351,7 +354,7 @@
 									<div class="form-group">
 										<label for="username" class="form-label fw-bold">Mã
 											giảm giá</label> <input type="text" class="form-control bg-light"
-											id="username" disabled>
+											id="username">
 									</div>
 								</div>
 								<div class="col-lg-6">
@@ -391,7 +394,8 @@
 
 							</div>
 							<button type="submit"
-								class="btn btn-primary w-100 mt-2 font-weight-bold">Thêm khuyến mãi</button>
+								class="btn btn-primary w-100 mt-2 font-weight-bold">Thêm
+								khuyến mãi</button>
 						</div>
 					</form>
 				</div>
@@ -406,7 +410,7 @@
 		</div>
 	</div>
 
-	<script src="${pageContext.request.contextPath}js/script.js"></script>
+	<script src="${pageContext.request.contextPath}/js/script.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/js/jquery-3.3.1.min.js"></script>
 	<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>

@@ -16,14 +16,14 @@
 	rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-<link rel="stylesheet" href="css/nice-select.css" type="text/css">
-<link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -49,9 +49,9 @@
 			</div>
 		</div>
 		<div class="offcanvas__nav__option">
-			<a href="#" class="search-switch"><img src="img/icon/search.png"
-				alt=""></a> <a href="#"><img src="img/icon/heart.png" alt=""></a>
-			<a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+			<a href="#" class="search-switch"><img src="${pageContext.request.contextPath}/img/icon/search.png"
+				alt=""></a> <a href="#"><img src="${pageContext.request.contextPath}/img/icon/heart.png" alt=""></a>
+			<a href="#"><img src="${pageContext.request.contextPath}/img/icon/cart.png" alt=""> <span>0</span></a>
 			<div class="price">$0.00</div>
 		</div>
 		<div id="mobile-menu-wrap"></div>
@@ -93,7 +93,7 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="img/logo.png" alt=""></a>
+						<a href="./index.html"><img src="${pageContext.request.contextPath}/img/logo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6">
@@ -117,9 +117,9 @@
 				<div class="col-lg-3 col-md-3">
 					<div class="header__nav__option">
 						<a href="#" class="search-switch"><img
-							src="img/icon/search.png" alt=""></a> <a href="#"><img
-							src="img/icon/heart.png" alt=""></a> <a href="#"><img
-							src="img/icon/cart.png" alt=""> <span>0</span></a>
+							src="${pageContext.request.contextPath}/img/icon/search.png" alt=""></a> <a href="#"><img
+							src="${pageContext.request.contextPath}/img/icon/heart.png" alt=""></a> <a href="#"><img
+							src="${pageContext.request.contextPath}/img/icon/cart.png" alt=""> <span>0</span></a>
 						<div class="price">$0.00</div>
 					</div>
 				</div>
@@ -186,15 +186,15 @@
 							<input class="form-check-input" type="radio"
 								name="flexRadioDefault" id="vnpay"> <label
 								class="form-check-label" for="vnpay"> Thanh toán PayPal
-							</label> <i
-								class="fa-brands fa-cc-paypal fa-bounce fa-2xl ms-2 text-success"></i>
+							</label> 
+							<i class="fa fa-paypal text-info ml-2" aria-hidden="true"></i>
 						</div>
 						<div class="form-check mb-3">
 							<input class="form-check-input" type="radio"
 								name="flexRadioDefault" id="khinhanhang" checked> <label
 								class="form-check-label" for="khinhanhang"> Thanh toán
-								khi nhận hàng </label> <i
-								class="fa-solid fa-comments-dollar fa-bounce fa-2xl ms-2 text-info"></i>
+								khi nhận hàng </label> 
+								<i class="fa fa-exchange text-success ml-2" aria-hidden="true"></i>
 						</div>
 						<a href="" class="btn btn-secondary w-50 float-right mt-5">Quay
 							lại giỏ hàng</a>
@@ -206,28 +206,28 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-3 mb-3">
-								<img src="/img/checkout/tainghe.png" class="card-img-top"
+								<img src="${pageContext.request.contextPath}/img/checkout/tainghe.png" class="card-img-top"
 									height="80">
 							</div>
 							<div class="col-lg-6">
-								<span class="text-danger font-weight-bold">Tai nghe
+								<span class="font-weight-bold">Tai nghe
 									Bluetooth Jabra Elite 85h | 540.000.000 ₫</span><br> <span
 									class="text-dark">Số Lượng: 2</span>
 							</div>
 							<div class="col-lg-3">
-								<p class="mt-3">18,000 ₫</p>
+								<h4 class="mt-3 text-danger font-weight-bold">18,000 ₫</h4>
 							</div>
 							<div class="col-lg-3 mb-3">
-								<img src="/img/checkout/tainghe.png" class="card-img-top"
+								<img src="${pageContext.request.contextPath}/img/checkout/tainghe.png" class="card-img-top"
 									height="80">
 							</div>
 							<div class="col-lg-6">
-								<span class="text-danger font-weight-bold">Tai nghe
+								<span class="font-weight-bold">Tai nghe
 									Bluetooth Jabra Elite 85h | 540.000.000 ₫</span><br> <span
 									class="text-dark">Số Lượng: 2</span>
 							</div>
 							<div class="col-lg-3">
-								<p class="mt-3">18,000 ₫</p>
+								<h4 class="mt-3 text-danger font-weight-bold">18,000 ₫</h4>
 							</div>
 							<div class="col-lg-12">
 								<hr>
@@ -282,11 +282,11 @@
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="footer__about">
 						<div class="footer__logo">
-							<a href="#"><img src="img/footer-logo.png" alt=""></a>
+							<a href="#"><img src="${pageContext.request.contextPath}/img/footer-logo.png" alt=""></a>
 						</div>
 						<p>The customer is at the heart of our unique business model,
 							which includes design.</p>
-						<a href="#"><img src="img/payment.png" alt=""></a>
+						<a href="#"><img src="${pageContext.request.contextPath}/img/payment.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
@@ -360,16 +360,16 @@
 	<!-- Search End -->
 
 	<!-- Js Plugins -->
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/jquery.nicescroll.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/jquery.countdown.min.js"></script>
-	<script src="js/jquery.slicknav.js"></script>
-	<script src="js/mixitup.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.nicescroll.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.countdown.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 
 </html>

@@ -68,9 +68,9 @@
 			</div>
 		</div>
 		<div class="offcanvas__nav__option">
-			<a href="#" class="search-switch"><img src="img/icon/search.png"
-				alt=""></a> <a href="#"><img src="img/icon/heart.png" alt=""></a>
-			<a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+			<a href="#" class="search-switch"><img src="${pageContext.request.contextPath }/img/icon/search.png"
+				alt=""></a> <a href="#"><img src="${pageContext.request.contextPath }/img/icon/heart.png" alt=""></a>
+			<a href="#"><img src="${pageContext.request.contextPath }/img/icon/cart.png" alt=""> <span>0</span></a>
 			<div class="price">$0.00</div>
 		</div>
 		<div id="mobile-menu-wrap"></div>
@@ -112,7 +112,7 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./inex.html"><img src="img/logo.png" alt=""></a>
+						<a href="./inex.html"><img src="${pageContext.request.contextPath }/img/logo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6">
@@ -136,9 +136,9 @@
 				<div class="col-lg-3 col-md-3">
 					<div class="header__nav__option">
 						<a href="#" class="search-switch"><img
-							src="img/icon/search.png" alt=""></a> <a href="#"><img
-							src="img/icon/heart.png" alt=""></a> <a href="#"><img
-							src="img/icon/cart.png" alt=""> <span>0</span></a>
+							src="${pageContext.request.contextPath }/img/icon/search.png" alt=""></a> <a href="#"><img
+							src="${pageContext.request.contextPath }/img/icon/heart.png" alt=""></a> <a href="#"><img
+							src="${pageContext.request.contextPath }/img/icon/cart.png" alt=""> <span>0</span></a>
 						<div class="price">$0.00</div>
 					</div>
 				</div>
@@ -167,7 +167,7 @@
 			<div class="row">
 				<div class="col-lg-4"
 					style="background-color: #ebebeb; border-radius: 15px; height: 350px;">
-					<img src="/img/shop-details/tainghe.png" class="card-img-top">
+					<img src="${pageContext.request.contextPath }/img/shop-details/tainghe.png" class="card-img-top">
 				</div>
 				<div class="col-lg-7">
 					<h2 class="name-product d-flex justify-content-start mb-3">Tai
@@ -287,7 +287,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="product__item">
 						<div class="product__item__pic set-bg"
-							data-setbg="img/shop-details/tainghe.jpg">
+							data-setbg="${pageContext.request.contextPath }/img/shop-details/tainghe.jpg">
 						</div>
 						<div class="product__item__text">
 							<h6>Tai nghe Bluetooth Sony WF-1000XM3</h6>
@@ -304,7 +304,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="product__item sale">
 						<div class="product__item__pic set-bg"
-							data-setbg="img/shop-details/tainghe1.jpeg">
+							data-setbg="${pageContext.request.contextPath }/img/shop-details/tainghe1.jpeg">
 						</div>
 						<div class="product__item__text">
 							<h6>Tai nghe Bluetooth Monster Clarity 101 Airlinks</h6>
@@ -321,7 +321,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="product__item">
 						<div class="product__item__pic set-bg"
-							data-setbg="img/shop-details/tainghe2.webp">
+							data-setbg="${pageContext.request.contextPath }/img/shop-details/tainghe2.webp">
 						</div>
 						<div class="product__item__text">
 							<h6>Tai nghe Bluetooth True Wireless Lypertek Tevi</h6>
@@ -338,7 +338,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="product__item">
 						<div class="product__item__pic set-bg"
-							data-setbg="img/shop-details/tainghe.jpg">
+							data-setbg="${pageContext.request.contextPath }/img/shop-details/tainghe.jpg">
 						</div>
 						<div class="product__item__text">
 							<h6>Tai nghe Bluetooth Sony WF-1000XM3</h6>
@@ -355,7 +355,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="product__item sale">
 						<div class="product__item__pic set-bg"
-							data-setbg="img/shop-details/tainghe1.jpeg">
+							data-setbg="${pageContext.request.contextPath }/img/shop-details/tainghe1.jpeg">
 						</div>
 						<div class="product__item__text">
 							<h6>Tai nghe Bluetooth Monster Clarity 101 Airlinks</h6>
@@ -372,7 +372,7 @@
 				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="product__item">
 						<div class="product__item__pic set-bg"
-							data-setbg="img/shop-details/tainghe2.webp">
+							data-setbg="${pageContext.request.contextPath }/img/shop-details/tainghe2.webp">
 						</div>
 						<div class="product__item__text">
 							<h6>Tai nghe Bluetooth True Wireless Lypertek Tevi</h6>
@@ -398,11 +398,11 @@
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="footer__about">
 						<div class="footer__logo">
-							<a href="#"><img src="img/footer-logo.png" alt=""></a>
+							<a href="#"><img src="${pageContext.request.contextPath }/img/footer-logo.png" alt=""></a>
 						</div>
 						<p>The customer is at the heart of our unique business model,
 							which includes design.</p>
-						<a href="#"><img src="img/payment.png" alt=""></a>
+						<a href="#"><img src="${pageContext.request.contextPath }/img/payment.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">

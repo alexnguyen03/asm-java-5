@@ -10,14 +10,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style-admin.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style-admin.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	type="text/css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	href="${pageContext.request.contextPath }/css/font-awesome.min.css"
+	type="text/css">
+
 </head>
 
 <body>
@@ -113,7 +114,6 @@
 				</button>
 			</div>
 			<div class="app-content-actions">
-				<input class="search-bar" placeholder="Search..." type="text">
 				<div class="app-content-actions-wrapper">
 					<div class="filter-button-wrapper">
 						<button class="action-button filter jsFilter">
@@ -169,21 +169,12 @@
               </svg>
 					</button>
 				</div>
+
 			</div>
 			<div class="products-area-wrapper tableView">
 				<div class="products-header">
 					<div class="product-cell image">
 						STT
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-                  <path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-						</button>
-					</div>
-					<div class="product-cell category">
-						Khách hàng
 						<button class="sort-button">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								viewBox="0 0 512 512">
@@ -202,40 +193,7 @@
                 </svg>
 						</button>
 					</div>
-					<div class="product-cell sales">
-						Đánh Giá
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-                  <path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-						</button>
-					</div>
-					<div class="product-cell stock">
-						Bình luận
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-                  <path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-						</button>
-					</div>
-					<div class="product-cell price">
-						Thời gian
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-                  <path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-						</button>
-					</div>
-					<div class="product-cell delete">
-						Xóa
-						<button class="sort-button"></button>
-					</div>
+					<div class="product-cell delete">Thao tác</div>
 				</div>
 				<div class="products-row">
 					<button class="cell-more-button">
@@ -251,26 +209,13 @@
 					<div class="product-cell image">
 						<span>1</span>
 					</div>
-					<div class="product-cell category">
-						<span class="cell-label">Category:</span>Nguyễn Văn A
-					</div>
 					<div class="product-cell status-cell">
 						<span>Tai nghe Bluetooth Elite 85h</span>
 					</div>
-					<div class="product-cell sales">
-						<span class="cell-label">Sales:</span> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i>
-					</div>
-					<div class="product-cell stock">
-						<span class="cell-label">Stock:</span> Sản phẩm chất lượng!!
-					</div>
-					<div class="product-cell price">
-						<span class="cell-label">Price:</span>$560
-					</div>
-					<div class="product-cell delete">
-						<span class="cell-label">Xóa:</span> <i class="fa-solid fa-trash"></i>
+					<div class="product-cell view">
+						<span class="cell-label">Xem:</span>
+						<button type="button" class="btn btn-primary border-0"
+							data-toggle="modal" data-target="#myModal" style="width: 80px;">Xem</button>
 					</div>
 				</div>
 				<div class="products-row">
@@ -287,107 +232,86 @@
 					<div class="product-cell image">
 						<span>2</span>
 					</div>
-					<div class="product-cell category">
-						<span class="cell-label">Category:</span>Nguyễn Văn A
-					</div>
 					<div class="product-cell status-cell">
-						<span>Tai nghe Bluetooth Elite 85h</span>
+						<span>Tai nghe Bluetooth Sony WF-1000XM3</span>
 					</div>
-					<div class="product-cell sales">
-						<span class="cell-label">Sales:</span> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i>
-					</div>
-					<div class="product-cell stock">
-						<span class="cell-label">Stock:</span> Sài rất bền nhe moi người!!
-					</div>
-					<div class="product-cell price">
-						<span class="cell-label">Price:</span>$560
-					</div>
-					<div class="product-cell delete">
-						<span class="cell-label">Xóa:</span> <i class="fa-solid fa-trash"></i>
-					</div>
-				</div>
-				<div class="products-row">
-					<button class="cell-more-button">
-						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-							viewBox="0 0 24 24" fill="none" stroke="currentColor"
-							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="feather feather-more-vertical">
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="12" cy="5" r="1" />
-                <circle cx="12" cy="19" r="1" />
-              </svg>
-					</button>
-					<div class="product-cell image">
-						<span>3</span>
-					</div>
-					<div class="product-cell category">
-						<span class="cell-label">Category:</span>Nguyễn Văn A
-					</div>
-					<div class="product-cell status-cell">
-						<span>Tai nghe Bluetooth Elite 85h</span>
-					</div>
-					<div class="product-cell sales">
-						<span class="cell-label">Sales:</span> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i>
-					</div>
-					<div class="product-cell stock">
-						<span class="cell-label">Stock:</span> Sản phâmt rẻ và đẹp!!
-					</div>
-					<div class="product-cell price">
-						<span class="cell-label">Price:</span>$560
-					</div>
-					<div class="product-cell delete">
-						<span class="cell-label">Xóa:</span> <i class="fa-solid fa-trash"></i>
-					</div>
-				</div>
-				<div class="products-row">
-					<button class="cell-more-button">
-						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-							viewBox="0 0 24 24" fill="none" stroke="currentColor"
-							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="feather feather-more-vertical">
-                <circle cx="12" cy="12" r="1" />
-                <circle cx="12" cy="5" r="1" />
-                <circle cx="12" cy="19" r="1" />
-              </svg>
-					</button>
-					<div class="product-cell image">
-						<span>4</span>
-					</div>
-					<div class="product-cell category">
-						<span class="cell-label">Category:</span>Nguyễn Văn A
-					</div>
-					<div class="product-cell status-cell">
-						<span>Tai nghe Bluetooth Elite 85h</span>
-					</div>
-					<div class="product-cell sales">
-						<span class="cell-label">Sales:</span> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i> <i class="fa-solid fa-star"
-							style="color: #e1c32d;"></i>
-					</div>
-					<div class="product-cell stock">
-						<span class="cell-label">Stock:</span>Nên mua để sài nhe mọi
-						người!!
-					</div>
-					<div class="product-cell price">
-						<span class="cell-label">Price:</span>$560
-					</div>
-					<div class="product-cell delete">
-						<span class="cell-label">Xóa:</span> <i class="fa-solid fa-trash"></i>
+					<div class="product-cell view">
+						<span class="cell-label">Xem:</span>
+						<button type="button" class="btn btn-primary border-0"
+							data-toggle="modal" data-target="#myModal" style="width: 80px;">Xem</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
+	<!-- The Modal -->
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Chi Tiết Đánh Giá</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<table class="table font-weight-bold">
+						<thead class="bg-dark text-white text-center">
+							<tr>
+								<th scope="col" class="p-0">STT</th>
+								<th scope="col" class="p-0">Tên Khách Hàng</th>
+								<th scope="col" class="p-0">Đánh Giá</th>
+								<th scope="col" class="p-0">Bình Luận</th>
+								<th scope="col" class="p-0">Thời Gian</th>
+								<th scope="col" class="p-0">Thao Tác</th>
+							</tr>
+						</thead>
+						<tbody style="font-size: 15px;" class="text-center">
+							<tr class="align-middle">
+								<th class="pt-4">1</th>
+								<td class="pt-4">
+									<p>Lê Minh Dương</p>
+								</td>
+								<td class="pt-4"><i class="fa fa-star" aria-hidden="true"
+									style="color: #e1c32d;"></i> <i class="fa fa-star"
+									aria-hidden="true" style="color: #e1c32d;"></i> <i
+									class="fa fa-star" aria-hidden="true" style="color: #e1c32d;"></i>
+								</td>
+								<td class="pt-4">Sản phẩm chât lượng!!!</td>
+								<td class="pt-4">27/02/2023</td>
+								<td class="pt-4"><h4>
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</h4></td>
+							</tr>
+							<tr class="align-middle">
+								<th class="pt-4">2</th>
+								<td class="pt-4">
+									<p>Nguyễn Thị Tiên</p>
+								</td>
+								<td class="pt-4"><i class="fa fa-star" aria-hidden="true"
+									style="color: #e1c32d;"></i> <i class="fa fa-star"
+									aria-hidden="true" style="color: #e1c32d;"></i> <i
+									class="fa fa-star" aria-hidden="true" style="color: #e1c32d;"></i>
+								</td>
+								<td class="pt-4">Rẻ và bền mọi người nên mua!!!</td>
+								<td class="pt-4">10/09/2023</td>
+								<td class="pt-4"><h4>
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</h4></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script src="${pageContext.request.contextPath}/js/script.js"></script>
 	<script
