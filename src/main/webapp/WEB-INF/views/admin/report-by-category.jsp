@@ -177,8 +177,8 @@
              class="btn btn-warning">Doanh thu theo loại</a>
           <a href="/admin/report"
              class="btn btn-outline-secondary">Doanh thu theo sản phẩm</a>
-          <a href="/admin/report"
-             class="btn btn-outline-info">Người dùng</a>
+          <a href="/admin/report/report-by-user"
+             class="btn btn-info">Người dùng</a>
         </div>
         <div class=" px-3 mt-4">
           <div class="">
