@@ -16,7 +16,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     />
 
     <!-- Bootstrap 4.4.1 -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="${pageContext.request.contextPath}/css/bootstrap.min.css"
+    />
 
     <script
       src="https://kit.fontawesome.com/c0f581682c.js"
@@ -164,6 +167,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <!-- -------------------------------------------------------- -->
         <!-- Modal -->
+        <!-- Add Product -->
         <div
           class="modal fade"
           id="addProductModal"
@@ -375,6 +379,266 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
           </div>
         </div>
+
+        <!-- Update Product -->
+        <div
+          class="modal fade"
+          id="updateProductModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="updateProductModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5-
+                  class="modal-title container-fluid font-weight-bold"
+                  id="updateProductModalLabel"
+                >
+                  <i class="fa fa-plus-circle mr-3" aria-hidden="true"></i> Sửa 
+                  sản phẩm
+                </h5->
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="#" class="container-fluid row">
+                  <!-- Left form -->
+                  <div class="col-4">
+                    <!-- Img-priview -->
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label for="" class="font-weight-bold"
+                          >Hình ảnh sản phẩm</label
+                        >
+                        <label
+                          for="Video-edit-myPicture"
+                          class="video-edit-preview"
+                        >
+                          <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </label>
+                        <input
+                          type="file"
+                          value=""
+                          name="poster"
+                          hidden
+                          id="Video-edit-myPicture"
+                          accept="/img/*"
+                        />
+                        <span class="error"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Right form -->
+                  <div class="col-8">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="id" class="font-weight-bold"
+                            >Mã sản phẩm</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="id"
+                            aria-describedby="idHelp"
+                            placeholder="ID"
+                            disabled
+                          />
+                          <small
+                            id="idHelp"
+                            class="form-text text-muted"
+                          ></small>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="name" class="font-weight-bold"
+                            >Tên sản phẩm</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            aria-describedby="nameHelp"
+                            placeholder="Name"
+                          />
+                          <small
+                            id="nameHelp"
+                            class="form-text text-muted"
+                          ></small>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="price" class="font-weight-bold"
+                            >Giá sản phẩm</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="priceHelp"
+                            placeholder="Price"
+                          />
+                          <small
+                            id="priceHelp"
+                            class="form-text text-muted"
+                          ></small>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="create_date" class="font-weight-bold"
+                            >Ngày tạo sản phẩm</label
+                          >
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="create_date"
+                            aria-describedby="create_dateHelp"
+                            placeholder="create_date"
+                          />
+                          <small
+                            id="create_dateHelp"
+                            class="form-text text-muted"
+                          ></small>
+                        </div>
+                      </div>
+                      <div class="col-12 d-flex">
+                        <label for="avaiable" class="mr-5 font-weight-bold"
+                          >Trạng thái</label
+                        >
+                        <div class="form-check mr-3">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="avaiable"
+                            id="active"
+                            value="active"
+                            checked
+                          />
+                          <label class="form-check-label" for="active">
+                            Hoạt động
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="avaiable"
+                            id="inactive"
+                            value="inactive"
+                          />
+                          <label class="form-check-label" for="inactive">
+                            Vô hiệu
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="category_id" class="font-weight-bold"
+                            >Mã danh mục</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="category_id"
+                            aria-describedby="categoryHelp"
+                            placeholder="category_id"
+                          />
+                          <small
+                            id="categoryHelp"
+                            class="form-text text-muted"
+                          ></small>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="quantity" class="font-weight-bold"
+                            >Số lượng</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="quantity"
+                            aria-describedby="quantityHelp"
+                            placeholder="quantity"
+                          />
+                          <small
+                            id="quantityHelp"
+                            class="form-text text-muted"
+                          ></small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Button form -->
+                  <div class="col-12 d-flex justify-content-end">
+                    <button class="btn btn-dark font-weight-bold">
+                      Sửa sản phẩm
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delete Product -->
+        <div
+          class="modal fade"
+          id="DeleteProductModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="DeleteProductModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5-
+                  class="modal-title container-fluid font-weight-bold"
+                  id="DeleteProductModalLabel"
+                >
+                  <i class="fa fa-plus-circle mr-3" aria-hidden="true"></i> Bạn
+                  có chắc muốn xóa sản phẩm?
+                </h5->
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  <img
+                    src="https://inkythuatso.com/uploads/thumbnails/800/2023/01/8-anh-meme-meo-gio-tay-inkythuatso-17-15-30-30.jpg"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-end">
+                <button class="btn btn-dark">Trở lại</button>
+                <button class="btn btn-danger ml-3">Xóa</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- -------------------------------------------------------- -->
 
         <div class="app-content-actions">
@@ -659,10 +923,22 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="product-cell price">
               <div class="row">
                 <div class="col-6">
-                  <button class="btn btn-primary font-weight-bold">Sửa</button>
+                  <button
+                    class="btn btn-primary font-weight-bold"
+                    data-toggle="modal"
+                    data-target="#updateProductModal"
+                  >
+                    Sửa
+                  </button>
                 </div>
                 <div class="col-6">
-                  <button class="btn btn-danger font-weight-bold">Xóa</button>
+                  <button
+                    class="btn btn-danger font-weight-bold"
+                    data-toggle="modal"
+                    data-target="#DeleteProductModal"
+                  >
+                    Xóa
+                  </button>
                 </div>
               </div>
             </div>
