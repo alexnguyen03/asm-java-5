@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("shop")
 public class ShopDetailController {
-    @GetMapping("shop-details")
+    @GetMapping("product-detail")
     public String index() {
         return "/client/shop-details";
     }

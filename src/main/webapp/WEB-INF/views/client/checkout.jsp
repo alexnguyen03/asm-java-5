@@ -14,35 +14,33 @@
 		<meta http-equiv="X-UA-Compatible"
 			  content="ie=edge">
 		<title>Male-Fashion | Template</title>
-
 		<!-- Google Font -->
 		<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
 			  rel="stylesheet">
-
 		<!-- Css Styles -->
 		<link rel="stylesheet"
-			  href="css/bootstrap.min.css"
+			  href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 			  type="text/css">
 		<link rel="stylesheet"
-			  href="css/font-awesome.min.css"
+			  href="${pageContext.request.contextPath}/css/font-awesome.min.css"
 			  type="text/css">
 		<link rel="stylesheet"
-			  href="css/elegant-icons.css"
+			  href="${pageContext.request.contextPath}/css/elegant-icons.css"
 			  type="text/css">
 		<link rel="stylesheet"
-			  href="css/magnific-popup.css"
+			  href="${pageContext.request.contextPath}/css/magnific-popup.css"
 			  type="text/css">
 		<link rel="stylesheet"
-			  href="css/nice-select.css"
+			  href="${pageContext.request.contextPath}/css/nice-select.css"
 			  type="text/css">
 		<link rel="stylesheet"
-			  href="css/owl.carousel.min.css"
+			  href="${pageContext.request.contextPath}/css/owl.carousel.min.css"
 			  type="text/css">
 		<link rel="stylesheet"
-			  href="css/slicknav.min.css"
+			  href="${pageContext.request.contextPath}/css/slicknav.min.css"
 			  type="text/css">
 		<link rel="stylesheet"
-			  href="css/style.css"
+			  href="${pageContext.request.contextPath}/css/style.css"
 			  type="text/css">
 	</head>
 
@@ -51,7 +49,6 @@
 		<div id="preloder">
 			<div class="loader"></div>
 		</div>
-
 		<!-- Offcanvas Menu Begin -->
 		<div class="offcanvas-menu-overlay"></div>
 		<div class="offcanvas-menu-wrapper">
@@ -70,10 +67,10 @@
 			</div>
 			<div class="offcanvas__nav__option">
 				<a href="#"
-				   class="search-switch"><img src="img/icon/search.png"
-						 alt=""></a> <a href="#"><img src="img/icon/heart.png"
+				   class="search-switch"><img src="${pageContext.request.contextPath}/img/icon/search.png"
+						 alt=""></a> <a href="#"><img src="${pageContext.request.contextPath}/img/icon/heart.png"
 						 alt=""></a>
-				<a href="#"><img src="img/icon/cart.png"
+				<a href="#"><img src="${pageContext.request.contextPath}/img/icon/cart.png"
 						 alt=""> <span>0</span></a>
 				<div class="price">$0.00</div>
 			</div>
@@ -83,7 +80,6 @@
 			</div>
 		</div>
 		<!-- Offcanvas Menu End -->
-
 		<!-- Header Section Begin -->
 		<header class="header">
 			<div class="header__top">
@@ -116,14 +112,14 @@
 				<div class="row">
 					<div class="col-lg-3 col-md-3">
 						<div class="header__logo">
-							<a href="./index.html"><img src="img/logo.png"
+							<a href="./index.html"><img src="${pageContext.request.contextPath}/img/logo.png"
 									 alt=""></a>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6">
 						<nav class="header__menu mobile-menu">
 							<ul>
-								<li><a href="./index.html">Home</a></li>
+								<li><a href="./index.html">Trang chu</a></li>
 								<li class="active"><a href="./shop.html">Shop</a></li>
 								<li><a href="#">Pages</a>
 									<ul class="dropdown">
@@ -142,9 +138,11 @@
 					<div class="col-lg-3 col-md-3">
 						<div class="header__nav__option">
 							<a href="#"
-							   class="search-switch"><img src="img/icon/search.png"
-									 alt=""></a> <a href="#"><img src="img/icon/heart.png"
-									 alt=""></a> <a href="#"><img src="img/icon/cart.png"
+							   class="search-switch"><img src="${pageContext.request.contextPath}/img/icon/search.png"
+									 alt=""></a> <a href="#"><img
+									 src="${pageContext.request.contextPath}/img/icon/heart.png"
+									 alt=""></a> <a href="#"><img
+									 src="${pageContext.request.contextPath}/img/icon/cart.png"
 									 alt=""> <span>0</span></a>
 							<div class="price">$0.00</div>
 						</div>
@@ -156,7 +154,6 @@
 			</div>
 		</header>
 		<!-- Header Section End -->
-
 		<!-- Breadcrumb Section Begin -->
 		<section class="breadcrumb-option">
 			<div class="container">
@@ -164,7 +161,7 @@
 					<div class="col-lg-12">
 						<div class="breadcrumb__text">
 							<div class="breadcrumb__links">
-								<a href="./index.html">Home</a> <a href="./shop.html">Shop</a> <span>Check
+								<a href="/">Trang chủ</a> <a href="/shop">Shop</a> <span>Check
 									Out</span>
 							</div>
 						</div>
@@ -173,7 +170,6 @@
 			</div>
 		</section>
 		<!-- Breadcrumb Section End -->
-
 		<!-- Checkout Section Begin -->
 		<div class="checkout">
 			<div class="container mt-5 mb-5">
@@ -213,62 +209,40 @@
 									   class="form-control"
 									   id="address">
 							</div>
-							<div class="mb-3">
-								<label>Phương thức thanh toán</label>
-							</div>
-							<div class="form-check mb-3">
-								<input class="form-check-input"
-									   type="radio"
-									   name="flexRadioDefault"
-									   id="vnpay"> <label class="form-check-label"
-									   for="vnpay"> Thanh toán PayPal
-								</label> <i class="fa-brands fa-cc-paypal fa-bounce fa-2xl ms-2 text-success"></i>
-							</div>
-							<div class="form-check mb-3">
-								<input class="form-check-input"
-									   type="radio"
-									   name="flexRadioDefault"
-									   id="khinhanhang"
-									   checked> <label class="form-check-label"
-									   for="khinhanhang"> Thanh toán
-									khi nhận hàng </label> <i
-								   class="fa-solid fa-comments-dollar fa-bounce fa-2xl ms-2 text-info"></i>
-							</div>
 							<a href=""
 							   class="btn btn-secondary w-50 float-right mt-5">Quay
 								lại giỏ hàng</a>
 						</form>
-
 					</div>
 					<div class="col-lg-6">
 						<h4 class="mb-4 text-center font-weight-bold">ĐƠN HÀNG CỦA BẠN</h4>
 						<div class="container">
 							<div class="row">
 								<div class="col-lg-3 mb-3">
-									<img src="/img/checkout/tainghe.png"
+									<img src="${pageContext.request.contextPath}/img/checkout/tainghe.png"
 										 class="card-img-top"
 										 height="80">
 								</div>
 								<div class="col-lg-6">
-									<span class="">Tai nghe
+									<span class="font-weight-bold">Tai nghe
 										Bluetooth Jabra Elite 85h | 540.000.000 ₫</span><br> <span class="text-dark">Số
 										Lượng: 2</span>
 								</div>
 								<div class="col-lg-3">
-									<p class="mt-3  font-weight-bold text-danger">18,000 ₫</p>
+									<h4 class="mt-3 text-danger font-weight-bold">18,000 ₫</h4>
 								</div>
 								<div class="col-lg-3 mb-3">
-									<img src="/img/checkout/tainghe.png"
+									<img src="${pageContext.request.contextPath}/img/checkout/tainghe.png"
 										 class="card-img-top"
 										 height="80">
 								</div>
 								<div class="col-lg-6">
-									<span class="">Tai nghe
+									<span class="font-weight-bold">Tai nghe
 										Bluetooth Jabra Elite 85h | 540.000.000 ₫</span><br> <span class="text-dark">Số
 										Lượng: 2</span>
 								</div>
 								<div class="col-lg-3">
-									<p class="mt-3  font-weight-bold text-danger">18,000 ₫</p>
+									<h4 class="mt-3 text-danger font-weight-bold">18,000 ₫</h4>
 								</div>
 								<div class="col-lg-12">
 									<hr>
@@ -318,7 +292,6 @@
 			</div>
 		</div>
 		<!-- Checkout Section End -->
-
 		<!-- Footer Section Begin -->
 		<footer class="footer">
 			<div class="container">
@@ -326,12 +299,12 @@
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="footer__about">
 							<div class="footer__logo">
-								<a href="#"><img src="img/footer-logo.png"
+								<a href="#"><img src="${pageContext.request.contextPath}/img/footer-logo.png"
 										 alt=""></a>
 							</div>
 							<p>The customer is at the heart of our unique business model,
 								which includes design.</p>
-							<a href="#"><img src="img/payment.png"
+							<a href="#"><img src="${pageContext.request.contextPath}/img/payment.png"
 									 alt=""></a>
 						</div>
 					</div>
@@ -394,7 +367,6 @@
 			</div>
 		</footer>
 		<!-- Footer Section End -->
-
 		<!-- Search Begin -->
 		<div class="search-model">
 			<div class="h-100 d-flex align-items-center justify-content-center">
@@ -407,18 +379,17 @@
 			</div>
 		</div>
 		<!-- Search End -->
-
 		<!-- Js Plugins -->
-		<script src="js/jquery-3.3.1.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.nice-select.min.js"></script>
-		<script src="js/jquery.nicescroll.min.js"></script>
-		<script src="js/jquery.magnific-popup.min.js"></script>
-		<script src="js/jquery.countdown.min.js"></script>
-		<script src="js/jquery.slicknav.js"></script>
-		<script src="js/mixitup.min.js"></script>
-		<script src="js/owl.carousel.min.js"></script>
-		<script src="js/main.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery.nicescroll.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery.countdown.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+		<script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/main.js"></script>
 	</body>
 
 </html>

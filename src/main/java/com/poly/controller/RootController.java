@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RootController {
 	@GetMapping("")
 	public String index(Model m) {
-		// m.addAttribute("msg", "Hoài Nam");
 		return "/client/index";
 	}
 
