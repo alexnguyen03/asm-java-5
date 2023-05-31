@@ -170,6 +170,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
         <!-- -------------------------------------------------------- -->
         <!-- Modal -->
+        <!-- Add category -->
         <div
           class="modal fade"
           id="addCategoryModal"
@@ -241,8 +242,129 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
           </div>
         </div>
+
+        <!-- Update category -->
+        <div
+          class="modal fade"
+          id="updateCategoryModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="updateCategoryModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5-
+                  class="modal-title container-fluid font-weight-bold"
+                  id="addProductModalLabel"
+                >
+                  <i class="fa fa-bars mr-3" aria-hidden="true"></i> Sửa Danh
+                  mục
+                </h5->
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="#" class="container-fluid row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="id" class="font-weight-bold"
+                        >Mã Danh mục</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="id"
+                        aria-describedby="idHelp"
+                        placeholder="ID"
+                        disabled
+                      />
+                      <small id="idHelp" class="form-text text-muted"></small>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="id" class="font-weight-bold"
+                        >Tên danh mục</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="categoryName"
+                        aria-describedby="idHelp"
+                        placeholder="Tên danh mục"
+                      />
+                      <small id="idHelp" class="form-text text-muted"></small>
+                    </div>
+                  </div>
+
+                  <!-- Button form -->
+                  <div class="col-12 d-flex justify-content-end">
+                    <button class="btn btn-dark font-weight-bold">
+                      Sửa Danh mục
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- delete category -->
+        <div
+          class="modal fade"
+          id="deleteCategoryModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="deleteCategoryModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5-
+                  class="modal-title container-fluid font-weight-bold"
+                  id="addProductModalLabel"
+                >
+                  <i class="fa fa-bars mr-3" aria-hidden="true"></i> Bạn có chắc
+                  muốn xóa danh mục ?
+                </h5->
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="container">
+                  <img
+                    src="https://inkythuatso.com/uploads/thumbnails/800/2023/01/8-anh-meme-meo-gio-tay-inkythuatso-17-15-30-30.jpg"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-end">
+                <button class="btn btn-dark">Trở lại</button>
+                <button class="btn btn-danger ml-3">Xóa</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- -------------------------------------------------------- -->
 
+        <!-- App actions -->
         <div class="app-content-actions">
           <input class="search-bar" placeholder="Tìm kiếm..." type="text" />
           <div class="app-content-actions-wrapper">
@@ -416,10 +538,22 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="product-cell price">
               <div class="row">
                 <div class="col-6">
-                  <button class="btn btn-primary font-weight-bold">Sửa</button>
+                  <button
+                    class="btn btn-primary font-weight-bold"
+                    data-toggle="modal"
+                    data-target="#updateCategoryModal"
+                  >
+                    Sửa
+                  </button>
                 </div>
                 <div class="col-6">
-                  <button class="btn btn-danger font-weight-bold">Xóa</button>
+                  <button
+                    class="btn btn-danger font-weight-bold"
+                    data-toggle="modal"
+                    data-target="#deleteCategoryModal"
+                  >
+                    Xóa
+                  </button>
                 </div>
               </div>
             </div>
@@ -517,37 +651,5 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       crossorigin="anonymous"
     ></script>
     <script src="${pageContext.request.contextPath}/js/script.js"></script>
-
-    <script>
-      //Upload review
-      const upload = document.querySelector("#Video-edit-myPicture");
-      const preview = document.querySelector(".video-edit-preview");
-      const error = document.querySelector(".error");
-
-      upload.addEventListener("change", function (e) {
-        const file = upload.files[0];
-        if (!file) {
-          return;
-        }
-
-        // if (!file.name.endsWith(".jpg")) {
-        //   error.innerText = "Png is not allow here";
-        //   return;
-        // } else {
-        //   error.innerText = "";
-        // }
-
-        if (file.size / (1024 * 1024) > 5) {
-          error.innerText = "Image must lower than 5mb";
-          return;
-        } else {
-          error.innerText = "";
-        }
-
-        const img = document.createElement("img");
-        img.src = URL.createObjectURL(file);
-        preview.appendChild(img);
-      });
-    </script>
   </body>
 </html>
