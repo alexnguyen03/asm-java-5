@@ -396,8 +396,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   class="modal-title container-fluid font-weight-bold"
                   id="updateProductModalLabel"
                 >
-                  <i class="fa fa-plus-circle mr-3" aria-hidden="true"></i> Sửa 
-                  sản phẩm
+                  <i class="fa-regular fa-pen-to-square mr-3"></i> Sửa sản phẩm
                 </h5->
                 <button
                   type="button"
@@ -606,13 +605,17 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5-
-                  class="modal-title container-fluid font-weight-bold"
+                <h5
+                  class="modal-title container-fluid"
                   id="DeleteProductModalLabel"
                 >
-                  <i class="fa fa-plus-circle mr-3" aria-hidden="true"></i> Bạn
-                  có chắc muốn xóa sản phẩm?
-                </h5->
+                  <i class="fa-regular fa-trash-can mr-3"></i>
+                  <span class="font-weight-bold">
+                    Bạn có chắc muốn xóa sản phẩm này?
+                  </span>
+                  <br />
+                  1 - <span class="text-danger">Samsung Galaxy Buds 2</span>
+                </h5>
                 <button
                   type="button"
                   class="close"
@@ -625,7 +628,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <div class="modal-body">
                 <div class="container">
                   <img
-                    src="https://inkythuatso.com/uploads/thumbnails/800/2023/01/8-anh-meme-meo-gio-tay-inkythuatso-17-15-30-30.jpg"
+                    src="${pageContext.request.contextPath}/img/cat-delete.jpg"
                     class="img-fluid"
                     alt=""
                   />
@@ -896,10 +899,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               </svg>
             </button>
             <div class="product-cell id">
-              <span>1</span>
+              <span class="cell-label">Mã: </span> 1
             </div>
             <div class="product-cell name">
-              <span>DEFICATI CASIO</span>
+              <span class="cell-label">Tên:</span>DEFICATI CASIO
             </div>
             <div class="product-cell image">
               <img
@@ -908,9 +911,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               />
             </div>
             <div class="product-cell price">
-              <span>1.070.000 đ</span>
+              <span class="cell-label">Giá thành: </span> 1.070.000 đ
             </div>
-            <div class="product-cell create-date"><span>28/05/2023</span></div>
+            <div class="product-cell create-date">
+              <span class="cell-label">Ngày tạo:</span>28/05/2023
+            </div>
             <div class="product-cell status-cell">
               <span class="status active">Hoạt động</span>
             </div>
@@ -964,21 +969,24 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               </svg>
             </button>
             <div class="product-cell id">
-              <span>2</span>
+              <span class="cell-label">Mã: </span> 2
             </div>
             <div class="product-cell name">
-              <span>G-Clock CASIO</span>
+              <span class="cell-label">Tên: </span> G-Clock CASIO
             </div>
             <div class="product-cell image">
               <img
                 src="${pageContext.request.contextPath}/img/product/product-2.jpg"
                 alt="product"
+                class="img-fluid"
               />
             </div>
             <div class="product-cell price">
-              <span>600.000đ</span>
+              <span class="cell-label">Giá thành: </span>600.000đ
             </div>
-            <div class="product-cell create-date"><span>28/05/2023</span></div>
+            <div class="product-cell create-date">
+              <span class="cell-label">Ngày tạo:</span>28/05/2023
+            </div>
             <div class="product-cell status-cell">
               <span class="status active">Hoạt động</span>
             </div>
@@ -1020,10 +1028,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               </svg>
             </button>
             <div class="product-cell id">
-              <span>3</span>
+              <span class="cell-label">Mã: </span>3
             </div>
             <div class="product-cell name">
-              <span>Samsung Galaxy Buds2</span>
+              <span class="cell-label">Tên:</span> Samsung Galaxy Buds 2
             </div>
             <div class="product-cell image">
               <img
@@ -1032,9 +1040,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               />
             </div>
             <div class="product-cell price">
-              <span>1.400.000đ</span>
+              <span class="cell-label">Giá thành:</span>1.400.000đ
             </div>
-            <div class="product-cell create-date"><span>28/05/2023</span></div>
+            <div class="product-cell create-date">
+              <span class="cell-label">Ngày tạo:</span>28/05/2023
+            </div>
             <div class="product-cell status-cell">
               <span class="status active">Hoạt động</span>
             </div>

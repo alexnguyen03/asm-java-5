@@ -259,7 +259,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   class="modal-title container-fluid font-weight-bold"
                   id="addProductModalLabel"
                 >
-                  <i class="fa fa-bars mr-3" aria-hidden="true"></i> Sửa Danh
+                <i class="fa-regular fa-pen-to-square mr-3"></i> Sửa Danh
                   mục
                 </h5->
                 <button
@@ -333,8 +333,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   class="modal-title container-fluid font-weight-bold"
                   id="addProductModalLabel"
                 >
-                  <i class="fa fa-bars mr-3" aria-hidden="true"></i> Bạn có chắc
-                  muốn xóa danh mục ?
+                  <i class="fa-regular fa-trash-can mr-3"></i> Bạn có chắc muốn
+                  xóa danh mục ? <br />
+                  1 - <span class="text-danger">Tai nghe không dây</span>
                 </h5->
                 <button
                   type="button"
