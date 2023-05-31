@@ -76,7 +76,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <li class="active"><a href="/">Trang chủ</a></li>
                 <li><a href="/shop">Shop</a></li>
                 <li>
-                  <a href="#">Pages</a>
+                  <a href="#">Các trang</a>
                   <ul class="dropdown">
                     <li><a href="./about.html">Về chúng tôi</a></li>
                     <li><a href="./shop-details.html">Thông tin shop</a></li>
@@ -106,6 +106,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="canvas__open"><i class="fa fa-bars"></i></div>
       </div>
     </header>
+
     <!-- Header Section End -->
     <!-- Hero Section Begin -->
     <section class="hero">
@@ -124,8 +125,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                     Nhãn hiệu chuyên tạo ra các mặt hàng xa xỉ thiết yếu. Được
                     tạo ra dựa trên lòng tin, đạo đức, chất lượng vượt trội.
                   </p>
-                  <a href="#" class="primary-btn"
-                    >Shop now<span class="arrow_right"></span
+                  <a href="/shop" class="primary-btn"
+                    >Mua ngay<span class="arrow_right"></span
                   ></a>
                   <div class="hero__social">
                     <a href="#"><i class="fa fa-facebook"></i></a>
@@ -152,8 +153,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                     Nhãn hiệu chuyên tạo ra các mặt hàng xa xỉ thiết yếu. Được
                     tạo ra dựa trên lòng tin, đạo đức, chất lượng vượt trội.
                   </p>
-                  <a href="#" class="primary-btn"
-                    >Shop now <span class="arrow_right"></span
+                  <a href="/shop" class="primary-btn"
+                    >Mua ngay<span class="arrow_right"></span
                   ></a>
                   <div class="hero__social">
                     <a href="#"><i class="fa fa-facebook"></i></a>
@@ -168,6 +169,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
       </div>
     </section>
+
     <!-- Hero Section End -->
     <!-- Banner Section Begin -->
     <section class="banner spad">
@@ -176,33 +178,33 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="col-lg-7 offset-lg-4">
             <div class="banner__item">
               <div class="banner__item__pic">
-                <img src="img/banner/banner-1.jpg" alt="" />
+                <img src="img/banner/img-banner-1.png" alt="" style="background: #ebecf1"/>
               </div>
               <div class="banner__item__text">
-                <h2>Bộ sưu tập quần áo 2030</h2>
-                <a href="#">Shop now</a>
+                <h2>Bộ sưu tập Smart Watch 2030</h2>
+                <a href="/shop">Mua ngay</a>
               </div>
             </div>
           </div>
           <div class="col-lg-5">
             <div class="banner__item banner__item--middle">
               <div class="banner__item__pic">
-                <img src="img/banner/banner-2.jpg" alt="" />
+                <img src="img/banner/img-banner-2.png" alt="" style="background: #ebecf1"/>
               </div>
               <div class="banner__item__text">
-                <h2>Phụ kiện</h2>
-                <a href="#">Shop now</a>
+                <h2>Tai nghe</h2>
+                <a href="/shop">Mua ngay</a>
               </div>
             </div>
           </div>
           <div class="col-lg-7">
             <div class="banner__item banner__item--last">
               <div class="banner__item__pic">
-                <img src="img/banner/banner-3.jpg" alt="" />
+                <img src="img/banner/img-banner-3.png" alt="" style="background: #ebecf1"/>
               </div>
               <div class="banner__item__text">
-                <h2>Giày dép 2030</h2>
-                <a href="#">Shop now</a>
+                <h2>Túi xách 2023</h2>
+                <a href="/shop">Mua ngay</a>
               </div>
             </div>
           </div>
@@ -232,24 +234,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="product__item__pic set-bg"
                 data-setbg="img/product/product-1.jpg"
               >
-                <span class="label">New</span>
-                <ul class="product__hover">
-                  <li>
-                    <a href="#"><img src="img/icon/heart.png" alt="" /></a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><img src="img/icon/compare.png" alt="" />
-                      <span>So sánh</span></a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/icon/search.png" alt="" /></a>
-                  </li>
-                </ul>
+                <span class="label">Mới</span>
               </div>
               <div class="product__item__text">
-                <h6>Piqué Biker Jacket</h6>
+                <h6>G-Sock Casio</h6>
                 <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
                 <div class="rating">
                   <i class="fa fa-star-o"></i>
@@ -259,17 +247,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star-o"></i>
                 </div>
                 <h5>$67.24</h5>
-                <div class="product__color__select">
-                  <label for="pc-1">
-                    <input type="radio" id="pc-1" />
-                  </label>
-                  <label class="active black" for="pc-2">
-                    <input type="radio" id="pc-2" />
-                  </label>
-                  <label class="grey" for="pc-3">
-                    <input type="radio" id="pc-3" />
-                  </label>
-                </div>
               </div>
             </div>
           </div>
@@ -281,23 +258,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="product__item__pic set-bg"
                 data-setbg="img/product/product-2.jpg"
               >
-                <ul class="product__hover">
-                  <li>
-                    <a href="#"><img src="img/icon/heart.png" alt="" /></a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><img src="img/icon/compare.png" alt="" />
-                      <span>So sánh</span></a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/icon/search.png" alt="" /></a>
-                  </li>
-                </ul>
               </div>
               <div class="product__item__text">
-                <h6>Piqué Biker Jacket</h6>
+                <h6>EDIFICE CASIO</h6>
                 <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
                 <div class="rating">
                   <i class="fa fa-star-o"></i>
@@ -306,18 +269,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star-o"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>$67.24</h5>
-                <div class="product__color__select">
-                  <label for="pc-4">
-                    <input type="radio" id="pc-4" />
-                  </label>
-                  <label class="active black" for="pc-5">
-                    <input type="radio" id="pc-5" />
-                  </label>
-                  <label class="grey" for="pc-6">
-                    <input type="radio" id="pc-6" />
-                  </label>
-                </div>
+                <h5>3.510.000 <span class="text-danger">đ</span> </h5>
               </div>
             </div>
           </div>
@@ -329,24 +281,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="product__item__pic set-bg"
                 data-setbg="img/product/product-3.jpg"
               >
-                <span class="label">Sale</span>
-                <ul class="product__hover">
-                  <li>
-                    <a href="#"><img src="img/icon/heart.png" alt="" /></a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><img src="img/icon/compare.png" alt="" />
-                      <span>So sánh</span></a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/icon/search.png" alt="" /></a>
-                  </li>
-                </ul>
+                <span class="label">Giảm giá</span>
               </div>
               <div class="product__item__text">
-                <h6>Multi-pocket Chest Bag</h6>
+                <h6>Samsung Galaxy Buds 2 Pro</h6>
                 <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
                 <div class="rating">
                   <i class="fa fa-star"></i>
@@ -355,18 +293,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>$43.48</h5>
-                <div class="product__color__select">
-                  <label for="pc-7">
-                    <input type="radio" id="pc-7" />
-                  </label>
-                  <label class="active black" for="pc-8">
-                    <input type="radio" id="pc-8" />
-                  </label>
-                  <label class="grey" for="pc-9">
-                    <input type="radio" id="pc-9" />
-                  </label>
-                </div>
+                <h5>3.900.000đ</h5> 
               </div>
             </div>
           </div>
@@ -378,23 +305,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="product__item__pic set-bg"
                 data-setbg="img/product/product-4.jpg"
               >
-                <ul class="product__hover">
-                  <li>
-                    <a href="#"><img src="img/icon/heart.png" alt="" /></a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><img src="img/icon/compare.png" alt="" />
-                      <span>So sánh</span></a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/icon/search.png" alt="" /></a>
-                  </li>
-                </ul>
               </div>
               <div class="product__item__text">
-                <h6>Diagonal Textured Cap</h6>
+                <h6>AirPods 2 Apple</h6>
                 <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
                 <div class="rating">
                   <i class="fa fa-star-o"></i>
@@ -403,18 +316,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star-o"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>$60.9</h5>
-                <div class="product__color__select">
-                  <label for="pc-10">
-                    <input type="radio" id="pc-10" />
-                  </label>
-                  <label class="active black" for="pc-11">
-                    <input type="radio" id="pc-11" />
-                  </label>
-                  <label class="grey" for="pc-12">
-                    <input type="radio" id="pc-12" />
-                  </label>
-                </div>
+                <h5>3.900.000 <span class="text-danger">đ</span> </h5>
               </div>
             </div>
           </div>
@@ -424,25 +326,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="product__item">
               <div
                 class="product__item__pic set-bg"
-                data-setbg="img/product/product-5.jpg"
+                data-setbg="img/product/product-5.jpeg"
               >
-                <ul class="product__hover">
-                  <li>
-                    <a href="#"><img src="img/icon/heart.png" alt="" /></a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><img src="img/icon/compare.png" alt="" />
-                      <span>So sánh</span></a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/icon/search.png" alt="" /></a>
-                  </li>
-                </ul>
               </div>
               <div class="product__item__text">
-                <h6>Lether Backpack</h6>
+                <h6>AirPods 3 Apple MV7N3</h6>
                 <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
                 <div class="rating">
                   <i class="fa fa-star-o"></i>
@@ -451,18 +339,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star-o"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>$31.37</h5>
-                <div class="product__color__select">
-                  <label for="pc-13">
-                    <input type="radio" id="pc-13" />
-                  </label>
-                  <label class="active black" for="pc-14">
-                    <input type="radio" id="pc-14" />
-                  </label>
-                  <label class="grey" for="pc-15">
-                    <input type="radio" id="pc-15" />
-                  </label>
-                </div>
+                <h5>4.320.000 <span class="text-danger">đ</span> </h5>
               </div>
             </div>
           </div>
@@ -472,26 +349,12 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="product__item sale">
               <div
                 class="product__item__pic set-bg"
-                data-setbg="img/product/product-6.jpg"
+                data-setbg="img/product/product-8.jpeg"
               >
                 <span class="label">Sale</span>
-                <ul class="product__hover">
-                  <li>
-                    <a href="#"><img src="img/icon/heart.png" alt="" /></a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><img src="img/icon/compare.png" alt="" />
-                      <span>So sánh</span></a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/icon/search.png" alt="" /></a>
-                  </li>
-                </ul>
               </div>
               <div class="product__item__text">
-                <h6>Ankle Boots</h6>
+                <h6>Loa Mozart BT 100</h6>
                 <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
                 <div class="rating">
                   <i class="fa fa-star"></i>
@@ -500,18 +363,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>$98.49</h5>
-                <div class="product__color__select">
-                  <label for="pc-16">
-                    <input type="radio" id="pc-16" />
-                  </label>
-                  <label class="active black" for="pc-17">
-                    <input type="radio" id="pc-17" />
-                  </label>
-                  <label class="grey" for="pc-18">
-                    <input type="radio" id="pc-18" />
-                  </label>
-                </div>
+                <h5>1.070.000 <span class="text-danger">đ</span> </h5>
+                
               </div>
             </div>
           </div>
@@ -523,23 +376,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="product__item__pic set-bg"
                 data-setbg="img/product/product-7.jpg"
               >
-                <ul class="product__hover">
-                  <li>
-                    <a href="#"><img src="img/icon/heart.png" alt="" /></a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><img src="img/icon/compare.png" alt="" />
-                      <span>So sánh</span></a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/icon/search.png" alt="" /></a>
-                  </li>
-                </ul>
               </div>
               <div class="product__item__text">
-                <h6>T-shirt Contrast Pocket</h6>
+                <h6>Loa bluetooth FENDA F5 Plus</h6>
                 <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
                 <div class="rating">
                   <i class="fa fa-star-o"></i>
@@ -548,18 +387,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star-o"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>$49.66</h5>
-                <div class="product__color__select">
-                  <label for="pc-19">
-                    <input type="radio" id="pc-19" />
-                  </label>
-                  <label class="active black" for="pc-20">
-                    <input type="radio" id="pc-20" />
-                  </label>
-                  <label class="grey" for="pc-21">
-                    <input type="radio" id="pc-21" />
-                  </label>
-                </div>
+                <h5>225.000 <span class="text-danger">đ</span> </h5>
+                
               </div>
             </div>
           </div>
@@ -569,25 +398,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="product__item">
               <div
                 class="product__item__pic set-bg"
-                data-setbg="img/product/product-8.jpg"
+                data-setbg="img/product/product-10.jpg"
               >
-                <ul class="product__hover">
-                  <li>
-                    <a href="#"><img src="img/icon/heart.png" alt="" /></a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><img src="img/icon/compare.png" alt="" />
-                      <span>So sánh</span></a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/icon/search.png" alt="" /></a>
-                  </li>
-                </ul>
               </div>
               <div class="product__item__text">
-                <h6>Basic Flowing Scarf</h6>
+                <h6>Túi đựng nhiều ngăn</h6>
                 <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
                 <div class="rating">
                   <i class="fa fa-star-o"></i>
@@ -596,18 +411,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star-o"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>$26.28</h5>
-                <div class="product__color__select">
-                  <label for="pc-22">
-                    <input type="radio" id="pc-22" />
-                  </label>
-                  <label class="active black" for="pc-23">
-                    <input type="radio" id="pc-23" />
-                  </label>
-                  <label class="grey" for="pc-24">
-                    <input type="radio" id="pc-24" />
-                  </label>
-                </div>
+                <h5>150.000 <span class="text-danger">đ</span> </h5>
               </div>
             </div>
           </div>
@@ -623,9 +427,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="col-lg-3">
             <div class="categories__text">
               <h2>
-                Quần áo Hot <br />
-                <span>Bộ sưu tập giày</span> <br />
-                Phụ kiện
+                Phụ kiện Hot <br />
+                <span>Bộ sưu tập Túi</span> <br />
+                SmartWatch
               </h2>
             </div>
           </div>
@@ -641,8 +445,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="col-lg-4 offset-lg-1">
             <div class="categories__deal__countdown">
               <span>Giao dịch trong tuấn</span>
-              <h2>Multi-pocket Chest Bag Black</h2>
-              <div class="categories__deal__countdown__timer" id="countdown">
+              <h2>Túi sách nhiều ngăn cá tính</h2>
+              <d class="categories__deal__countdown__timer" id="countdown">
                 <div class="cd-item">
                   <span>3</span>
                   <p>Ngày</p>
@@ -659,8 +463,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <span>18</span>
                   <p>Giây</p>
                 </div>
-              </div>
-              <a href="#" class="primary-btn">Shop now</a>
+              </d/shopv>
+              <a href="#" class="primary-btn">Mua ngay</a>
             </div>
           </div>
         </div>
@@ -735,8 +539,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               ></div>
               <div class="blog__item__text">
                 <span
-                  ><img src="img/icon/calendar.png" alt="" /> 16 February
-                  2020</span
+                  ><img src="img/icon/calendar.png" alt="" /> 16 Tháng 2
+                  2023</span
                 >
                 <h5>Máy uốn tóc nào tốt nhất</h5>
                 <a href="#">Đọc thêm</a>
@@ -751,8 +555,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               ></div>
               <div class="blog__item__text">
                 <span
-                  ><img src="img/icon/calendar.png" alt="" /> 21 February
-                  2020</span
+                  ><img src="img/icon/calendar.png" alt="" /> 21 Tháng 2
+                  2023</span
                 >
                 <h5>Ban nhạc vĩnh cửu tồn tại mãi mãi</h5>
                 <a href="#">Đọc thêm</a>
@@ -767,8 +571,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               ></div>
               <div class="blog__item__text">
                 <span
-                  ><img src="img/icon/calendar.png" alt="" /> 28 February
-                  2020</span
+                  ><img src="img/icon/calendar.png" alt="" /> 28 Tháng 2
+                  2023</span
                 >
                 <h5>Những lợi ích cho sức khỏe khi đeo kính</h5>
                 <a href="#">Đọc thêm</a>
@@ -862,7 +666,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-switch">+</div>
         <form class="search-model-form">
-          <input type="text" id="search-input" placeholder="Search here....." />
+          <input type="text" id="search-input" placeholder="Tìm kiếm....." />
         </form>
       </div>
     </div>
