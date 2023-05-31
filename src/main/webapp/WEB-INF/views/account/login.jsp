@@ -11,7 +11,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           content="IE=edge" />
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Login</title>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
           rel="stylesheet" />
@@ -34,13 +34,13 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       }
 
       .glassmorphism {
-        max-width: 25rem;
+        max-width: 23rem;
         background: linear-gradient(135deg,
             rgba(255, 255, 255, 0.1),
             rgba(255, 255, 255, 0));
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 10px;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border-radius: 5px;
         border: 1px solid rgba(255, 255, 255, 0.18);
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
       }
@@ -58,7 +58,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <header class="container login__header__fixed">
       <nav class="navbar navbar-expand-sm container">
         <a class="navbar-brand text-dark font-weight-bold"
-           href="#">3MEMS</a>
+           href="/">3MEMS</a>
         <button class="navbar-toggler d-lg-none"
                 type="button"
                 data-toggle="collapse"
@@ -71,8 +71,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="collapse navbar-collapse"
              id="collapsibleNavId">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0 text-dark">
-            <a href="#"
-               class="btn site-btn ml-3">Tiếp tục lướt web</a>
+            <a href="/"
+               class="btn btn-dark ml-3">Tiếp tục lướt web</a>
           </ul>
         </div>
       </nav>
@@ -108,8 +108,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                      class="form-text text-muted"></small>
             </div>
             <p class="text-left">
-              Không thể đăng nhập được?
-              <a href="#"
+              Không thể đăng nhập?
+              <a href="/change-password"
                  class="font-weight-bold"
                  style="color: #0c2b4b">Lấy lại mật khẩu</a>
             </p>
@@ -123,7 +123,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             Không có tài khoản?
             <a href="#"
                class="font-weight-bold"
-               style="color: #0c2b4b">Yêu cầu ngay!</a>
+               style="color: #0c2b4b">Tạo tài khoản ngay!</a>
           </p>
         </div>
       </div>

@@ -18,17 +18,15 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
     <!-- Bootstrap 4.4.1 -->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-          crossorigin="anonymous" />
+          href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
 
     <script src="https://kit.fontawesome.com/c0f581682c.js"
             crossorigin="anonymous"></script>
 
     <style>
       .video-edit-preview {
-        width: 250px;
-        height: 250px;
+        width: 100%;
+        min-height: 300px;
         border: 1px dashed #000;
         display: flex;
         justify-content: center;
@@ -69,6 +67,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
   <body>
     <div class="app-container">
+      <!-- Left sidebar -->
       <div class="sidebar">
         <div class="sidebar-header">
           <div class="app-icon">
@@ -79,7 +78,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
-            <a href="/">
+            <a href="/admin">
               <i class="fa fa-home mr-2"
                  aria-hidden="true"></i>
               <span>Trang chủ</span>
@@ -157,6 +156,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           </button>
         </div>
       </div>
+
+      <!-- Right content -->
       <div class="app-content">
         <div class="app-content-header">
           <h1 class="app-content-headerText font-weight-bold">SẢN PHẨM</h1>
@@ -175,15 +176,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
             </svg>
           </button>
-          <button type="button"
-                  class="app-content-headerButton"
-                  data-toggle="modal"
-                  data-target="#addProductModal">
-            Thêm sản phẩm
-          </button>
         </div>
         <!-- -------------------------------------------------------- -->
         <!-- Modal -->
+        <!-- Add Product -->
         <div class="modal fade"
              id="addProductModal"
              tabindex="-1"
@@ -214,8 +210,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <div class="col-4">
                     <!-- Img-priview -->
                     <div class="col-12">
-                      <div class="mb-3 w-100 h-100">
-                        <span class="error"></span>
+                      <div class="mb-3">
                         <label for=""
                                class="font-weight-bold">Hình ảnh sản phẩm</label>
                         <label for="Video-edit-myPicture"
@@ -228,6 +223,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                hidden
                                id="Video-edit-myPicture"
                                accept="/img/*" />
+                        <span class="error"></span>
                       </div>
                     </div>
                   </div>
@@ -346,7 +342,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <!-- Button form -->
                   <div class="col-12 d-flex justify-content-end">
                     <button class="btn btn-dark font-weight-bold">
-                      Tạo sản phẩm
+                      Sửa sản phẩm
                     </button>
                   </div>
                 </form>
@@ -361,8 +357,15 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                  placeholder="Tìm kiếm..."
                  type="text" />
           <div class="app-content-actions-wrapper">
-            <div class="filter-button-wrapper">
-              <button class="action-button filter jsFilter">
+            <div class="filter-button-wrapper d-flex justify-content-betwwen">
+              <button type="button"
+                      class="app-content-headerButton"
+                      data-toggle="modal"
+                      data-target="#addProductModal">
+                Thêm sản phẩm
+              </button>
+
+              <button class="action-button filter jsFilter mx-3">
                 <span>Lọc</span><svg xmlns="http://www.w3.org/2000/svg"
                      width="16"
                      height="16"
@@ -570,6 +573,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               </button>
             </div>
           </div>
+
           <div class="products-row">
             <button class="cell-more-button">
               <svg xmlns="http://www.w3.org/2000/svg"
@@ -597,36 +601,45 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <span>1</span>
             </div>
             <div class="product-cell name">
-              <span>P9 pro</span>
+              <span>DEFICATI CASIO</span>
             </div>
             <div class="product-cell image">
-              <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+              <img src="${pageContext.request.contextPath}/img/product/product-1.jpg"
                    alt="product" />
             </div>
             <div class="product-cell price">
-              <span>200.000đ</span>
+              <span>1.070.000 đ</span>
             </div>
             <div class="product-cell create-date"><span>28/05/2023</span></div>
             <div class="product-cell status-cell">
               <span class="status active">Hoạt động</span>
             </div>
             <div class="product-cell sales">
-              <span class="cell-label">Tai nghe không dây</span> 5
+              <span class="cell-label">Mã danh mục:</span> 5
             </div>
             <div class="product-cell stock">
-              <span class="cell-label">Stock:</span>25
+              <span class="cell-label">Số lượng:</span>25
             </div>
             <div class="product-cell price">
               <div class="row">
                 <div class="col-6">
-                  <button class="btn btn-primary font-weight-bold">Sửa</button>
+                  <button class="btn btn-primary font-weight-bold"
+                          data-toggle="modal"
+                          data-target="#updateProductModal">
+                    Sửa
+                  </button>
                 </div>
                 <div class="col-6">
-                  <button class="btn btn-danger font-weight-bold">Xóa</button>
+                  <button class="btn btn-danger font-weight-bold"
+                          data-toggle="modal"
+                          data-target="#DeleteProductModal">
+                    Xóa
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="products-row">
             <button class="cell-more-button">
               <svg xmlns="http://www.w3.org/2000/svg"
@@ -654,10 +667,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <span>2</span>
             </div>
             <div class="product-cell name">
-              <span>Sony Express</span>
+              <span>G-Clock CASIO</span>
             </div>
             <div class="product-cell image">
-              <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aW50ZXJpb3J8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
+              <img src="${pageContext.request.contextPath}/img/product/product-2.jpg"
                    alt="product" />
             </div>
             <div class="product-cell price">
@@ -668,10 +681,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <span class="status active">Hoạt động</span>
             </div>
             <div class="product-cell sales">
-              <span class="cell-label">Tai nghe có dây</span> 15
+              <span class="cell-label">Mã danh mục</span> 15
             </div>
             <div class="product-cell stock">
-              <span class="cell-label">Stock:</span>15
+              <span class="cell-label">Số lượng:</span>15
             </div>
             <div class="product-cell price">
               <div class="row">
@@ -684,6 +697,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               </div>
             </div>
           </div>
+
           <div class="products-row">
             <button class="cell-more-button">
               <svg xmlns="http://www.w3.org/2000/svg"
@@ -708,13 +722,13 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               </svg>
             </button>
             <div class="product-cell id">
-              <span>1</span>
+              <span>3</span>
             </div>
             <div class="product-cell name">
               <span>Samsung Galaxy Buds2</span>
             </div>
             <div class="product-cell image">
-              <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60"
+              <img src="${pageContext.request.contextPath}/img/product/product-3.jpg"
                    alt="product" />
             </div>
             <div class="product-cell price">
@@ -725,10 +739,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <span class="status active">Hoạt động</span>
             </div>
             <div class="product-cell sales">
-              <span class="cell-label">Tai nghe không dây</span> 35
+              <span class="cell-label">Mã danh mục</span> 35
             </div>
             <div class="product-cell stock">
-              <span class="cell-label">Stock:</span>55
+              <span class="cell-label">Số lượng:</span>55
             </div>
             <div class="product-cell price">
               <div class="row">
@@ -746,48 +760,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     </div>
 
     <!-- Bootstrap 4.4.1 -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/script.js"></script>
-
-    <script>
-      //Upload review
-      const upload = document.querySelector("#Video-edit-myPicture");
-      const preview = document.querySelector(".video-edit-preview");
-      const error = document.querySelector(".error");
-
-      upload.addEventListener("change", function (e) {
-        const file = upload.files[0];
-        if (!file) {
-          return;
-        }
-
-        // if (!file.name.endsWith(".jpg")) {
-        //   error.innerText = "Png is not allow here";
-        //   return;
-        // } else {
-        //   error.innerText = "";
-        // }
-
-        if (file.size / (1024 * 1024) > 5) {
-          error.innerText = "Image must lower than 5mb";
-          return;
-        } else {
-          error.innerText = "";
-        }
-
-        const img = document.createElement("img");
-        img.src = URL.createObjectURL(file);
-        preview.appendChild(img);
-      });
-    </script>
   </body>
 
 </html>
