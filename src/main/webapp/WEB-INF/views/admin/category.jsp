@@ -15,16 +15,13 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}
     /css/style-admin.css" />
-
     <!-- Bootstrap 4.4.1 -->
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous" />
-
     <script src="https://kit.fontawesome.com/c0f581682c.js"
             crossorigin="anonymous"></script>
-
     <style>
       .video-edit-preview {
         width: 250px;
@@ -86,11 +83,18 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <span>Trang chủ</span>
             </a>
           </li>
-          <li class="sidebar-list-item">
+          <li class="sidebar-list-item ">
             <a href="/admin/user">
               <i class="fa fa-user mr-2"
                  aria-hidden="true"></i>
               <span>Người dùng</span>
+            </a>
+          </li>
+          <li class="sidebar-list-item ">
+            <a href="/admin/coupon">
+              <i class="fa fa-product-hunt mr-2"
+                 aria-hidden="true"></i>
+              <span>Khuyến mãi</span>
             </a>
           </li>
           <li class="sidebar-list-item ">
@@ -179,7 +183,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </svg>
           </button>
         </div>
-
         <!-- -------------------------------------------------------- -->
         <!-- Modal -->
         <!-- Add category -->
@@ -235,7 +238,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                              class="form-text text-muted"></small>
                     </div>
                   </div>
-
                   <!-- Button form -->
                   <div class="col-12 d-flex justify-content-end">
                     <button class="btn btn-dark font-weight-bold">
@@ -247,7 +249,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
           </div>
         </div>
-
         <!-- Update category -->
         <div class="modal fade"
              id="updateCategoryModal"
@@ -302,7 +303,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                              class="form-text text-muted"></small>
                     </div>
                   </div>
-
                   <!-- Button form -->
                   <div class="col-12 d-flex justify-content-end">
                     <button class="btn btn-dark font-weight-bold">
@@ -314,7 +314,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
           </div>
         </div>
-
         <!-- delete category -->
         <div class="modal fade"
              id="deleteCategoryModal"
@@ -353,9 +352,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
           </div>
         </div>
-
         <!-- -------------------------------------------------------- -->
-
         <!-- App actions -->
         <div class="app-content-actions">
           <input class="search-bar"
@@ -363,7 +360,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                  type="text" />
           <div class="app-content-actions-wrapper">
             <div class="filter-button-wrapper d-flex justify-content-betwwen">
-
               <button class="action-button filter jsFilter mx-3">
                 <span>Lọc</span><svg xmlns="http://www.w3.org/2000/svg"
                      width="16"
@@ -474,7 +470,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </button>
           </div>
         </div>
-
         <!-- Table list -->
         <div class="products-area-wrapper tableView overflow-auto">
           <div class="products-header">
@@ -644,7 +639,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
       </div>
     </div>
-
     <!-- Bootstrap 4.4.1 -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

@@ -82,75 +82,64 @@
 		<!-- Offcanvas Menu End -->
 		<!-- Header Section Begin -->
 		<header class="header">
-			<div class="header__top">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6 col-md-7">
-							<div class="header__top__left">
-								<p>Free shipping, 30-day return or refund guarantee.</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-5">
-							<div class="header__top__right">
-								<div class="header__top__links">
-									<a href="#">Sign in</a> <a href="#">FAQs</a>
-								</div>
-								<div class="header__top__hover">
-									<span>Usd <i class="arrow_carrot-down"></i></span>
-									<ul>
-										<li>USD</li>
-										<li>EUR</li>
-										<li>USD</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="container">
+			<div class="container ">
 				<div class="row">
 					<div class="col-lg-3 col-md-3">
 						<div class="header__logo">
-							<a href="./index.html"><img src="${pageContext.request.contextPath}/img/logo.png"
-									 alt=""></a>
+							<a href="/"><img src="${pageContext.request.contextPath}/img/main-logo.png"
+									 alt=""
+									 height="33px" /></a>
 						</div>
 					</div>
-					<div class="col-lg-6 col-md-6">
+					<div class="col-lg-5 col-md-5">
 						<nav class="header__menu mobile-menu">
 							<ul>
-								<li><a href="./index.html">Trang chu</a></li>
-								<li class="active"><a href="./shop.html">Shop</a></li>
-								<li><a href="#">Pages</a>
-									<ul class="dropdown">
-										<li><a href="./about.html">About Us</a></li>
-										<li><a href="./shop-details.html">Shop Details</a></li>
-										<li><a href="./shopping-cart.html">Shopping Cart</a></li>
-										<li><a href="./checkout.html">Check Out</a></li>
-										<li><a href="./blog-details.html">Blog Details</a></li>
-									</ul>
-								</li>
-								<li><a href="./blog.html">Blog</a></li>
-								<li><a href="./contact.html">Contacts</a></li>
+								<li><a href="/">Trang chủ</a></li>
+								<li><a href="/shop">Sản phẩm</a></li>
+								<li class="active"><a href="/shop/order-history">Đơn hàng</a></li>
 							</ul>
 						</nav>
 					</div>
-					<div class="col-lg-3 col-md-3">
+					<div class="col-lg-4 col-md-4">
 						<div class="header__nav__option">
 							<a href="#"
 							   class="search-switch"><img src="${pageContext.request.contextPath}/img/icon/search.png"
-									 alt=""></a> <a href="#"><img
-									 src="${pageContext.request.contextPath}/img/icon/heart.png"
-									 alt=""></a> <a href="#"><img
+									 alt="" /></a>
+							<a href="/shop/cart-detail"
+							   title="Giỏ hàng"
+							   class="position-relative pr-3"><img
 									 src="${pageContext.request.contextPath}/img/icon/cart.png"
-									 alt=""> <span>0</span></a>
-							<div class="price">$0.00</div>
+									 alt=""
+									 width="20px" /> <span class="badge badge-danger position-absolute "
+									  style="top: -2px;">2</span></a>
+							<div class="dropdown d-inline">
+								<div class="btn btn-white dropdown-toggle  btn-sm"
+									 type="button"
+									 data-toggle="dropdown"
+									 aria-expanded="false">
+									AlexNguyeen
+									<i class="fa fa-user-circle-o"
+									   aria-hidden="true"></i>
+								</div>
+								<div class="dropdown-menu">
+									<a class="dropdown-item"
+									   href="/account/login"><i class="fa fa-sign-in"
+										   aria-hidden="true"></i> Đăng nhập</a>
+									<a class="dropdown-item"
+									   href="/account/change-password"> <i class="fa fa-sign-out"
+										   aria-hidden="true"></i> Đổi mật khẩu</a>
+									<a class="dropdown-item"
+									   href="/account/update-account"><i class="fa fa-pencil-square-o"
+										   aria-hidden="true"></i> Chỉnh sửa tài khoản</a>
+									<a class="dropdown-item"
+									   href="/"><i class="fa fa-sign-out"
+										   aria-hidden="true"></i> Đăng xuất</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="canvas__open">
-					<i class="fa fa-bars"></i>
-				</div>
+				<div class="canvas__open"><i class="fa fa-bars"></i></div>
 			</div>
 		</header>
 		<!-- Header Section End -->
@@ -160,9 +149,9 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="breadcrumb__text">
+							<h4>Thanh toán đơn hàng</h4>
 							<div class="breadcrumb__links">
-								<a href="/">Trang chủ</a> <a href="/shop">Shop</a> <span>Check
-									Out</span>
+								<a href="/">Trang chủ</a> <a href="/shop">Sản phẩm</a> <span>Thanh toán đơn hàng</span>
 							</div>
 						</div>
 					</div>
@@ -209,7 +198,7 @@
 									   class="form-control"
 									   id="address">
 							</div>
-							<a href=""
+							<a href="/shop/cart-detail"
 							   class="btn btn-secondary w-50 float-right mt-5">Quay
 								lại giỏ hàng</a>
 						</form>
@@ -299,46 +288,49 @@
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="footer__about">
 							<div class="footer__logo">
-								<a href="#"><img src="${pageContext.request.contextPath}/img/footer-logo.png"
-										 alt=""></a>
+								<a href="/"><img src="${pageContext.request.contextPath}/img/main-logo.png"
+										 alt="" /></a>
 							</div>
-							<p>The customer is at the heart of our unique business model,
-								which includes design.</p>
+							<p>
+								Khách hàng luôn ở trung tâm trong những giao dịch độc nhất của
+								chúng tôi, bao gốm cả thiết kế.
+							</p>
 							<a href="#"><img src="${pageContext.request.contextPath}/img/payment.png"
-									 alt=""></a>
+									 alt="" /></a>
 						</div>
 					</div>
-					<div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+					<div class="col-lg-2 offset-lg-1 col-md-2 col-sm-6">
 						<div class="footer__widget">
-							<h6>Shopping</h6>
+							<h6>Sản phẩm</h6>
 							<ul>
-								<li><a href="#">Clothing Store</a></li>
-								<li><a href="#">Trending Shoes</a></li>
-								<li><a href="#">Accessories</a></li>
-								<li><a href="#">Sale</a></li>
+								<li><a href="#">Tai nghe</a></li>
+								<li><a href="#">Đồng hồ</a></li>
+								<li><a href="#">Phụ kiện</a></li>
+								<li><a href="#">Túi xách</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-3 col-sm-6">
 						<div class="footer__widget">
-							<h6>Shopping</h6>
+							<h6>Thông tin</h6>
 							<ul>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Payment Methods</a></li>
-								<li><a href="#">Delivary</a></li>
-								<li><a href="#">Return & Exchanges</a></li>
+								<li><a href="#">Liên hệ chúng tôi</a></li>
+								<li><a href="#">Hình thức thanh toán</a></li>
+								<li><a href="#">Vận chuyển</a></li>
+								<li><a href="#">Trả lại và trao đổi</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
 						<div class="footer__widget">
-							<h6>NewLetter</h6>
+							<h6>Phản hồi</h6>
 							<div class="footer__newslatter">
-								<p>Be the first to know about new arrivals, look books, sales
-									& promos!</p>
+								<p>
+									Mọi thắc mắc về các dịch vụ trên trang web vui lòng gửi qua Email
+								</p>
 								<form action="#">
 									<input type="text"
-										   placeholder="Your email">
+										   placeholder="Email của bạn" />
 									<button type="submit">
 										<span class="icon_mail_alt"></span>
 									</button>
@@ -351,22 +343,22 @@
 					<div class="col-lg-12 text-center">
 						<div class="footer__copyright__text">
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							<p>Copyright &copy; & Edited by 3MEMS Team</p>
 							<p>
-								Copyright ©
 								<script>
 									document.write(new Date().getFullYear());
 								</script>
-								2020 All rights reserved | This template is made with <i class="fa fa-heart-o"
-								   aria-hidden="true"></i> by <a href="https://colorlib.com"
-								   target="_blank">Colorlib</a>
+								2022 All rights reserved
+
 							</p>
+
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</footer>
-		<!-- Footer Section End -->
+		<!-- Footer end -->
 		<!-- Search Begin -->
 		<div class="search-model">
 			<div class="h-100 d-flex align-items-center justify-content-center">

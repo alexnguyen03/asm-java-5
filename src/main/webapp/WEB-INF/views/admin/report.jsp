@@ -40,11 +40,18 @@
               <span>Trang chủ</span>
             </a>
           </li>
-          <li class="sidebar-list-item active">
+          <li class="sidebar-list-item ">
             <a href="/admin/user">
               <i class="fa fa-user mr-2"
                  aria-hidden="true"></i>
               <span>Người dùng</span>
+            </a>
+          </li>
+          <li class="sidebar-list-item ">
+            <a href="/admin/coupon">
+              <i class="fa fa-product-hunt mr-2"
+                 aria-hidden="true"></i>
+              <span>Khuyến mãi</span>
             </a>
           </li>
           <li class="sidebar-list-item ">
@@ -74,7 +81,7 @@
               <span>Đánh giá</span>
             </a>
           </li>
-          <li class="sidebar-list-item">
+          <li class="sidebar-list-item active">
             <a href="/admin/report">
               <i class="fa fa-bar-chart mr-2"
                  aria-hidden="true"></i>
@@ -183,7 +190,7 @@
           <a href="/admin/report/report-by-product"
              class="btn btn-outline-secondary">Doanh thu theo sản phẩm</a>
           <a href="/admin/report/report-by-user"
-             class="btn btn-info">Người dùng</a>
+             class="btn btn-outline-info">Người dùng</a>
 
         </div>
         <div class=" px-3 mt-4">

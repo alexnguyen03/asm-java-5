@@ -89,77 +89,61 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       </div>
     </div>
     <!-- Offcanvas Menu End -->
-
     <!-- Header Section Begin -->
     <header class="header">
-      <div class="header__top">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-md-7">
-              <div class="header__top__left">
-                <p>
-                  Miễn phí chuyển phát, 30-ngày trả lại hoặc hoàn tiền một cách
-                  đảm bảo.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-5">
-              <div class="header__top__right">
-                <div class="header__top__links">
-                  <a href="/login">Đăng nhập</a>
-                  <a href="#">FAQs</a>
-                </div>
-                <div class="header__top__hover">
-                  <span>Usd <i class="arrow_carrot-down"></i></span>
-                  <ul>
-                    <li>USD</li>
-                    <li>EUR</li>
-                    <li>USD</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
+      <div class="container ">
         <div class="row">
           <div class="col-lg-3 col-md-3">
             <div class="header__logo">
-              <a href="/"><img src="img/3mems.png"
-                     alt="" /></a>
+              <a href="/"><img src="img/main-logo.png"
+                     alt=""
+                     height="33px" /></a>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6">
+          <div class="col-lg-5 col-md-5">
             <nav class="header__menu mobile-menu">
               <ul>
-                <li><a href="./">Trang chủ</a></li>
-                <li class="active"><a href="/shop">Shop</a></li>
-                <li>
-                  <a href="#">Các trang</a>
-                  <ul class="dropdown">
-                    <li><a href="./about.html">Về chúng tôi</a></li>
-                    <li><a href="./shop-details.html">Thông tin shop</a></li>
-                    <li><a href="./shopping-cart.html">Giỏ hàng</a></li>
-                    <li><a href="./checkout.html">Thanh toán</a></li>
-                    <li><a href="./blog-details.html">Thông tin Blog</a></li>
-                  </ul>
-                </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Liên hệ</a></li>
+                <li><a href="/">Trang chủ</a></li>
+                <li class="active"><a href="/shop">Sản phẩm</a></li>
+                <li><a href="/shop/order-history">Đơn hàng</a></li>
               </ul>
             </nav>
           </div>
-          <div class="col-lg-3 col-md-3">
+          <div class="col-lg-4 col-md-4">
             <div class="header__nav__option">
               <a href="#"
                  class="search-switch"><img src="img/icon/search.png"
                      alt="" /></a>
-              <a href="#"><img src="img/icon/heart.png"
-                     alt="" /></a>
-              <a href="#"><img src="img/icon/cart.png"
-                     alt="" /> <span>0</span></a>
-              <div class="price">$0.00</div>
+              <a href="/shop/cart-detail"
+                 title="Giỏ hàng"
+                 class="position-relative pr-3"><img src="img/icon/cart.png"
+                     alt=""
+                     width="20px" /> <span class="badge badge-danger position-absolute "
+                      style="top: -2px;">2</span></a>
+              <div class="dropdown d-inline">
+                <div class="btn btn-white dropdown-toggle btn-sm"
+                     type="button"
+                     data-toggle="dropdown"
+                     aria-expanded="false">
+                  AlexNguyeen
+                  <i class="fa fa-user-circle-o"
+                     aria-hidden="true"></i>
+                </div>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item"
+                     href="/account/login"><i class="fa fa-sign-in"
+                       aria-hidden="true"></i> Đăng nhập</a>
+                  <a class="dropdown-item"
+                     href="/account/change-password"> <i class="fa fa-sign-out"
+                       aria-hidden="true"></i> Đổi mật khẩu</a>
+                  <a class="dropdown-item"
+                     href="/account/update-account"><i class="fa fa-pencil-square-o"
+                       aria-hidden="true"></i> Chỉnh sửa tài khoản</a>
+                  <a class="dropdown-item"
+                     href="/"><i class="fa fa-sign-out"
+                       aria-hidden="true"></i> Đăng xuất</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -167,17 +151,16 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       </div>
     </header>
     <!-- Header Section End -->
-
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-option">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
             <div class="breadcrumb__text">
-              <h4>Shop</h4>
+              <h4>Sản phẩm</h4>
               <div class="breadcrumb__links">
-                <a href="./index.html">Trang chủ</a>
-                <span>Shop</span>
+                <a href="/">Trang chủ</a>
+                <span>Sản phẩm</span>
               </div>
             </div>
           </div>
@@ -558,7 +541,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="footer__about">
               <div class="footer__logo">
-                <a href="#"><img src="img/footer-logo.png"
+                <a href="/"><img src="img/main-logo.png"
                        alt="" /></a>
               </div>
               <p>
@@ -569,20 +552,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                      alt="" /></a>
             </div>
           </div>
-          <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+          <div class="col-lg-2 offset-lg-1 col-md-2 col-sm-6">
             <div class="footer__widget">
-              <h6>Shopping</h6>
+              <h6>Sản phẩm</h6>
               <ul>
-                <li><a href="#">Cửa hàng quần áo</a></li>
-                <li><a href="#">Giày xu hướng</a></li>
+                <li><a href="#">Tai nghe</a></li>
+                <li><a href="#">Đồng hồ</a></li>
                 <li><a href="#">Phụ kiện</a></li>
-                <li><a href="#">Giảm giá</a></li>
+                <li><a href="#">Túi xách</a></li>
               </ul>
             </div>
           </div>
           <div class="col-lg-2 col-md-3 col-sm-6">
             <div class="footer__widget">
-              <h6>Shopping</h6>
+              <h6>Thông tin</h6>
               <ul>
                 <li><a href="#">Liên hệ chúng tôi</a></li>
                 <li><a href="#">Hình thức thanh toán</a></li>
@@ -593,15 +576,14 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           </div>
           <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
             <div class="footer__widget">
-              <h6>Thư mới</h6>
+              <h6>Phản hồi</h6>
               <div class="footer__newslatter">
                 <p>
-                  Hãy là người đầu tiên biết về những người mới đến, sách tìm
-                  kiếm, bán hàng và khuyến mãi!
+                  Mọi thắc mắc về các dịch vụ trên trang web vui lòng gửi qua Email
                 </p>
                 <form action="#">
                   <input type="text"
-                         placeholder="Your email" />
+                         placeholder="Email của bạn" />
                   <button type="submit">
                     <span class="icon_mail_alt"></span>
                   </button>
@@ -614,18 +596,15 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="col-lg-12 text-center">
             <div class="footer__copyright__text">
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              <p>Copyright &copy; & Edited by 3MEMS Team</p>
               <p>
-                Copyright ©
                 <script>
                   document.write(new Date().getFullYear());
                 </script>
-                2020 All rights reserved | This template is made with
-                <i class="fa fa-heart-o"
-                   aria-hidden="true"></i> by
-                <a href="https://colorlib.com"
-                   target="_blank">Colorlib</a>
+                2022 All rights reserved
+
               </p>
-              <p>@Copyright &copy; & Edited 2023 by 3MEMS Team</p>
+
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </div>
           </div>

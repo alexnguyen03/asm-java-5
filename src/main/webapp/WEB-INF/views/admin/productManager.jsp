@@ -78,17 +78,24 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
-            <a href="/admin">
+            <a href="/">
               <i class="fa fa-home mr-2"
                  aria-hidden="true"></i>
               <span>Trang chủ</span>
             </a>
           </li>
-          <li class="sidebar-list-item">
+          <li class="sidebar-list-item ">
             <a href="/admin/user">
               <i class="fa fa-user mr-2"
                  aria-hidden="true"></i>
               <span>Người dùng</span>
+            </a>
+          </li>
+          <li class="sidebar-list-item ">
+            <a href="/admin/coupon">
+              <i class="fa fa-product-hunt mr-2"
+                 aria-hidden="true"></i>
+              <span>Khuyến mãi</span>
             </a>
           </li>
           <li class="sidebar-list-item active">

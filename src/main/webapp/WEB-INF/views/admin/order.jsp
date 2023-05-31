@@ -40,11 +40,18 @@
               <span>Trang chủ</span>
             </a>
           </li>
-          <li class="sidebar-list-item">
+          <li class="sidebar-list-item ">
             <a href="/admin/user">
               <i class="fa fa-user mr-2"
                  aria-hidden="true"></i>
               <span>Người dùng</span>
+            </a>
+          </li>
+          <li class="sidebar-list-item ">
+            <a href="/admin/coupon">
+              <i class="fa fa-product-hunt mr-2"
+                 aria-hidden="true"></i>
+              <span>Khuyến mãi</span>
             </a>
           </li>
           <li class="sidebar-list-item ">

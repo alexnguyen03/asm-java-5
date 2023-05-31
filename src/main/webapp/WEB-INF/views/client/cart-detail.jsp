@@ -12,9 +12,8 @@
         <meta name="viewport"
               content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible"
-              content="ie=edge">
+              content="${pageContext.request.contextPath}/ie=edge">
         <title>Giỏ hàng</title>
-
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
               rel="stylesheet" />
@@ -50,7 +49,6 @@
         <div id="preloder">
             <div class="loader"></div>
         </div>
-
         <!-- Offcanvas Menu Begin -->
         <div class="offcanvas-menu-overlay"></div>
         <div class="offcanvas-menu-wrapper">
@@ -72,7 +70,6 @@
                 <a href="#"
                    class="search-switch"><img src="${pageContext.request.contextPath}/img/icon/search.png"
                          alt=""></a>
-
             </div>
             <div id="mobile-menu-wrap"></div>
             <div class="offcanvas__text">
@@ -80,70 +77,62 @@
             </div>
         </div>
         <!-- Offcanvas Menu End -->
-
         <!-- Header Section Begin -->
         <header class="header">
-            <div class="header__top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-7">
-                            <div class="header__top__left">
-                                <p>Free shipping, 30-day return or refund guarantee.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-5">
-                            <div class="header__top__right">
-                                <div class="header__top__links">
-                                    <a href="#">Sign in</a>
-                                    <a href="#">FAQs</a>
-                                </div>
-                                <div class="header__top__hover">
-                                    <span>Usd <i class="arrow_carrot-down"></i></span>
-                                    <ul>
-                                        <li>USD</li>
-                                        <li>EUR</li>
-                                        <li>USD</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
+            <div class="container ">
                 <div class="row">
                     <div class="col-lg-3 col-md-3">
                         <div class="header__logo">
-                            <a href="./index.html"><img src="${pageContext.request.contextPath}/img/logo.png"
-                                     alt=""></a>
+                            <a href="/"><img src="${pageContext.request.contextPath}/img/main-logo.png"
+                                     alt=""
+                                     height="33px" /></a>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-5 col-md-5">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li><a href="/">Trang chủ</a></li>
-                                <li class="active"><a href="./shop.html">Sản phẩm</a></li>
-                                <li><a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="./about.html">Về chúng tôi</a></li>
-                                        <!-- <li><a href="./shop-details.html">Shop Details</a></li> -->
-                                        <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                        <li><a href="./checkout.html">Check Out</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./blog.html">Blog</a></li>
-                                <li><a href="./contact.html">Contacts</a></li>
+                                <li class="active"><a href="/">Trang chủ</a></li>
+                                <li><a href="/shop">Sản phẩm</a></li>
+                                <li><a href="/shop/order-history">Đơn hàng</a></li>
                             </ul>
                         </nav>
                     </div>
-                    <div class="col-lg-3 col-md-3">
+                    <div class="col-lg-4 col-md-4">
                         <div class="header__nav__option">
                             <a href="#"
                                class="search-switch"><img src="${pageContext.request.contextPath}/img/icon/search.png"
-                                     alt=""></a>
-                            <a href="/shop/cart-detail"><img src="${pageContext.request.contextPath}/img/icon/cart.png"
-                                     alt="" />
+                                     alt="" /></a>
+                            <a href="/shop/cart-detail"
+                               title="Giỏ hàng"
+                               class="position-relative pr-3"><img
+                                     src="${pageContext.request.contextPath}/img/icon/cart.png"
+                                     alt=""
+                                     width="20px" /> <span class="badge badge-danger position-absolute "
+                                      style="top: -2px;">2</span></a>
+                            <div class="dropdown d-inline">
+                                <div class="btn btn-white dropdown-toggle"
+                                     type="button"
+                                     data-toggle="dropdown"
+                                     aria-expanded="false">
+                                    AlexNguyeen
+                                    <i class="fa fa-user-circle-o"
+                                       aria-hidden="true"></i>
+                                </div>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item"
+                                       href="/account/login"><i class="fa fa-sign-in"
+                                           aria-hidden="true"></i> Đăng nhập</a>
+                                    <a class="dropdown-item"
+                                       href="/account/change-password"> <i class="fa fa-sign-out"
+                                           aria-hidden="true"></i> Đổi mật khẩu</a>
+                                    <a class="dropdown-item"
+                                       href="/account/update-account"><i class="fa fa-pencil-square-o"
+                                           aria-hidden="true"></i> Chỉnh sửa tài khoản</a>
+                                    <a class="dropdown-item"
+                                       href="/"><i class="fa fa-sign-out"
+                                           aria-hidden="true"></i> Đăng xuất</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -151,7 +140,6 @@
             </div>
         </header>
         <!-- Header Section End -->
-
         <!-- Breadcrumb Section Begin -->
         <section class="breadcrumb-option">
             <div class="container">
@@ -170,7 +158,6 @@
             </div>
         </section>
         <!-- Breadcrumb Section End -->
-
         <!-- Shopping Cart Section Begin -->
         <section class="shopping-cart spad">
             <div class="container">
@@ -178,12 +165,10 @@
                     <div class="col-lg-8">
                         <div class="shopping__cart__table">
                             <form action="">
-
                                 <table>
                                     <thead>
                                         <tr>
                                             <th>
-
                                                 Sản phẩm
                                             </th>
                                             <th>Số lượng</th>
@@ -217,7 +202,7 @@
                                                     <div class="pro-qty-2">
                                                         <input type="text"
                                                                value="1"
-                                                               class="input__quantity">
+                                                               class="${pageContext.request.contextPath}/input__quantity">
                                                     </div>
                                                 </div>
                                             </td>
@@ -249,19 +234,16 @@
                                                     <div class="pro-qty-2">
                                                         <input type="text"
                                                                value="1"
-                                                               class="input__quantity">
+                                                               class="${pageContext.request.contextPath}/input__quantity">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="cart__price">200.000 <sup>đ</sup></td>
                                             <td class="cart__close "><i class="fa fa-close text-danger"></i></td>
                                         </tr>
-
-
                                     </tbody>
                                 </table>
                             </form>
-
                         </div>
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-sm-2 d-flex flex-column justify-content-center">
@@ -288,14 +270,13 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-
                         <div class="cart__total rounded">
                             <h5 class="text-center mb-3">CHỜ THANH TOÁN</h5>
                             <ul>
                                 <li>Tạm tính <span>400.000 <sup>đ</sup></span></li>
                                 <li>Tổng cộng <span>400.000 <sup>đ</sup></span></li>
                             </ul>
-                            <a href="#"
+                            <a href="/shop/checkout"
                                class="btn  btn-success w-100">THANH TOÁN</a>
                         </div>
                     </div>
@@ -303,7 +284,6 @@
             </div>
         </section>
         <!-- Shopping Cart Section End -->
-
         <!-- Footer Section Begin -->
         <footer class="footer">
             <div class="container">
@@ -311,45 +291,52 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="footer__about">
                             <div class="footer__logo">
-                                <a href="#"><img src="${pageContext.request.contextPath}/img/footer-logo.png"
-                                         alt=""></a>
+                                <a href="/"><img src="${pageContext.request.contextPath}/img/main-logo.png"
+                                         alt="" /></a>
                             </div>
-                            <p>The customer is at the heart of our unique business model, which includes design.</p>
+                            <p>
+                                Khách hàng luôn ở trung tâm trong những giao dịch độc nhất của
+                                chúng tôi, bao gốm cả thiết kế.
+                            </p>
                             <a href="#"><img src="${pageContext.request.contextPath}/img/payment.png"
-                                     alt=""></a>
+                                     alt="" /></a>
                         </div>
                     </div>
-                    <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="col-lg-2 offset-lg-1 col-md-2 col-sm-6">
                         <div class="footer__widget">
-                            <h6>Shopping</h6>
+                            <h6>Sản phẩm</h6>
                             <ul>
-                                <li><a href="#">Clothing Store</a></li>
-                                <li><a href="#">Trending Shoes</a></li>
-                                <li><a href="#">Accessories</a></li>
-                                <li><a href="#">Sale</a></li>
+                                <li><a href="#">Tai nghe</a></li>
+                                <li><a href="#">Đồng hồ</a></li>
+                                <li><a href="#">Phụ kiện</a></li>
+                                <li><a href="#">Túi xách</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-6">
                         <div class="footer__widget">
-                            <h6>Shopping</h6>
+                            <h6>Thông tin</h6>
                             <ul>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Payment Methods</a></li>
-                                <li><a href="#">Delivary</a></li>
-                                <li><a href="#">Return & Exchanges</a></li>
+                                <li><a href="#">Liên hệ chúng tôi</a></li>
+                                <li><a href="#">Hình thức thanh toán</a></li>
+                                <li><a href="#">Vận chuyển</a></li>
+                                <li><a href="#">Trả lại và trao đổi</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
                         <div class="footer__widget">
-                            <h6>NewLetter</h6>
+                            <h6>Phản hồi</h6>
                             <div class="footer__newslatter">
-                                <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                                <p>
+                                    Mọi thắc mắc về các dịch vụ trên trang web vui lòng gửi qua Email
+                                </p>
                                 <form action="#">
                                     <input type="text"
-                                           placeholder="Your email">
-                                    <button type="submit"><span class="icon_mail_alt"></span></button>
+                                           placeholder="Email của bạn" />
+                                    <button type="submit">
+                                        <span class="icon_mail_alt"></span>
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -359,20 +346,22 @@
                     <div class="col-lg-12 text-center">
                         <div class="footer__copyright__text">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            <p>Copyright ©
+                            <p>Copyright &copy; & Edited by 3MEMS Team</p>
+                            <p>
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script>
-                                All rights reserved <b class="text-danger">3MEMS</b>
+                                2022 All rights reserved
+
                             </p>
+
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </div>
                     </div>
                 </div>
             </div>
         </footer>
-        <!-- Footer Section End -->
-
+        <!-- Footer end -->
         <!-- Search Begin -->
         <div class="search-model">
             <div class="h-100 d-flex align-items-center justify-content-center">
@@ -385,7 +374,6 @@
             </div>
         </div>
         <!-- Search End -->
-
         <!-- Js Plugins -->
         <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -404,8 +392,6 @@
                     items[i].checked = source.checked;
                 }
             }
-
-
             // const items = document.querySelectorAll('.item')
             // var inputText = document.querySelectorAll('.input__quantity')
             // console.log(inputText);
@@ -422,8 +408,6 @@
             //         }
             //     });
             // }
-
-
         </script>
     </body>
 
