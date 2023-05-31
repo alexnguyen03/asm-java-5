@@ -114,11 +114,33 @@
 				</button>
 			</div>
 			<div class="app-content-actions">
-				<input class="search-bar" placeholder="Search..." type="text">
+				<div class="input-group" style="width: 250px;">
+					<div class="input-group-prepend" >
+						<label class="input-group-text" for="inputGroupSelect01">Tìm theo</label>
+					</div>
+					<select class="custom-select" id="inputGroupSelect01">
+						<option selected>Chọn</option>
+						<option value="1">Ngày hết hạn</option>
+						<option value="2">Tên khuyến mãi</option>
+					</select>
+				</div>
+				<input class="search-bar ml-2" placeholder="Search..." type="text" style="height: 40px;";>
+				<button type="button" class="btn btn-primary ml-2">Tìm</button>
+				<div class="input-group ml-5" style="width: 220px;">
+					<div class="input-group-prepend" >
+						<label class="input-group-text" for="inputGroupSelect01">Lọc</label>
+					</div>
+					<select class="custom-select" id="inputGroupSelect01">
+						<option selected>Chọn</option>
+						<option value="1">Hoạt động</option>
+						<option value="2">Ngưng hoạt động</option>
+					</select>
+				</div>
+				<button type="button" class="btn btn-primary ml-2">Lọc</button>
 				<div class="app-content-actions-wrapper">
 					<button type="button" class="btn btn-primary" data-toggle="modal"
 						data-target="#myModal">THÊM KHUYẾN MÃI</button>
-					<div class="filter-button-wrapper">
+					<div class="filter-button-wrapper d-none">
 						<button class="action-button filter jsFilter">
 							<span>Filter</span>
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -147,7 +169,7 @@
 							</div>
 						</div>
 					</div>
-					<button class="action-button list active" title="List View">
+					<button class="action-button list active d-none" title="List View">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							viewBox="0 0 24 24" fill="none" stroke="currentColor"
 							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -160,7 +182,7 @@
                 <line x1="3" y1="18" x2="3.01" y2="18" />
               </svg>
 					</button>
-					<button class="action-button grid" title="Grid View">
+					<button class="action-button grid d-none" title="Grid View">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							viewBox="0 0 24 24" fill="none" stroke="currentColor"
 							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -265,7 +287,7 @@
 					<div class="product-cell price">
 						<span class="cell-label">Price:</span>
 						<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#myModal">Sửa</button>
+							data-target="#myModal">Sửa</button>
 					</div>
 				</div>
 				<div class="products-row">
@@ -297,7 +319,7 @@
 					<div class="product-cell price">
 						<span class="cell-label">Price:</span>
 						<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#myModal">Sửa</button>
+							data-target="#myModal">Sửa</button>
 					</div>
 				</div>
 				<div class="products-row">
@@ -329,7 +351,7 @@
 					<div class="product-cell price">
 						<span class="cell-label">Price:</span>
 						<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#myModal">Sửa</button>
+							data-target="#myModal">Sửa</button>
 					</div>
 				</div>
 			</div>

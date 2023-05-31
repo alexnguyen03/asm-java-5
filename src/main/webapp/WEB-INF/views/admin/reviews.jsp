@@ -22,7 +22,7 @@
 </head>
 
 <body>
-<!-- 	demo -->
+	<!-- 	demo -->
 	<div class="app-container">
 		<div class="sidebar">
 			<div class="sidebar-header">
@@ -116,7 +116,20 @@
 			</div>
 			<div class="app-content-actions">
 				<div class="app-content-actions-wrapper">
-					<div class="filter-button-wrapper">
+					<div class="input-group" style="width: 250px;">
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="inputGroupSelect01">Lọc
+								theo</label>
+						</div>
+						<select class="custom-select" id="inputGroupSelect01">
+							<option selected>Chọn</option>
+							<option value="1">Mã sản phẩm</option>
+							<option value="2">Số sao</option>
+							<option value="2">Tên người dùng</option>
+						</select>
+					</div>
+					<button type="button" class="btn btn-primary ml-2">Lọc</button>
+					<div class="filter-button-wrapper d-none">
 						<button class="action-button filter jsFilter">
 							<span>Filter</span>
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -145,7 +158,7 @@
 							</div>
 						</div>
 					</div>
-					<button class="action-button list active" title="List View">
+					<button class="action-button list active d-none" title="List View">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							viewBox="0 0 24 24" fill="none" stroke="currentColor"
 							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -158,7 +171,7 @@
                 <line x1="3" y1="18" x2="3.01" y2="18" />
               </svg>
 					</button>
-					<button class="action-button grid" title="Grid View">
+					<button class="action-button grid d-none" title="Grid View">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							viewBox="0 0 24 24" fill="none" stroke="currentColor"
 							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -282,7 +295,9 @@
 								<td class="pt-4">Sản phẩm chât lượng!!!</td>
 								<td class="pt-4">27/02/2023</td>
 								<td class="pt-4"><h4>
-										<i class="fa fa-trash" aria-hidden="true"></i>
+										<button class="btn btn-danger font-weight-bold"
+											data-toggle="modal" data-target="#deleteCategoryModal">
+											<i class="fa fa-trash" aria-hidden="true"></i></button>
 									</h4></td>
 							</tr>
 							<tr class="align-middle">
@@ -298,7 +313,9 @@
 								<td class="pt-4">Rẻ và bền mọi người nên mua!!!</td>
 								<td class="pt-4">10/09/2023</td>
 								<td class="pt-4"><h4>
-										<i class="fa fa-trash" aria-hidden="true"></i>
+										<button class="btn btn-danger font-weight-bold"
+											data-toggle="modal" data-target="#deleteCategoryModal">
+											<i class="fa fa-trash" aria-hidden="true"></i></button>
 									</h4></td>
 							</tr>
 						</tbody>
@@ -309,6 +326,36 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="deleteCategoryModal" tabindex="-1"
+		role="dialog" aria-labelledby="deleteCategoryModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5- class="modal-title container-fluid font-weight-bold"
+						id="addProductModalLabel"> <i
+						class="fa-regular fa-trash-can mr-3"></i> Bạn có chắc muốn xóa
+					đánh giá ? <br />
+<!-- 					1 - <span class="text-danger">Tai nghe không dây</span> </h5-> -->
+<!-- 					<button type="button" class="close" data-dismiss="modal" -->
+<!-- 						aria-label="Close"> -->
+<!-- 						<span aria-hidden="true">&times;</span> -->
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container d-flex justify-content-center">
+						<img
+							src="https://inkythuatso.com/uploads/thumbnails/800/2023/01/8-anh-meme-meo-gio-tay-inkythuatso-17-15-30-30.jpg"
+							class="img-fluid m-auto" style="height: 400px; width: 100%" />
+					</div>
+				</div>
+				<div class="modal-footer d-flex justify-content-end">
+					<button class="btn btn-danger ml-3">Xóa</button>
 				</div>
 			</div>
 		</div>
