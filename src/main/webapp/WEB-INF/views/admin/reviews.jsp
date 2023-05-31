@@ -22,6 +22,7 @@
 </head>
 
 <body>
+<!-- 	demo -->
 	<div class="app-container">
 		<div class="sidebar">
 			<div class="sidebar-header">
