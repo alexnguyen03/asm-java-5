@@ -81,37 +81,37 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
-            <a href="#">
+            <a href="/admin">
               <i class="fa fa-home mr-2" aria-hidden="true"></i>
               <span>Trang chủ</span>
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="#">
+            <a href="/admin/">
               <i class="fa fa-user mr-2" aria-hidden="true"></i>
               <span>Người dùng</span>
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="#">
+            <a href="/admin/product-manager">
               <i class="fa fa-product-hunt mr-2" aria-hidden="true"></i>
               <span>Sản phẩm</span>
             </a>
           </li>
           <li class="sidebar-list-item active">
-            <a href="#">
+            <a href="/admin/category">
               <i class="fa-solid fa-bars mr-2"></i>
               <span>Danh mục</span>
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="#">
+            <a href="/admin/">
               <i class="fa fa-first-order mr-2" aria-hidden="true"></i>
               <span>Đặt hàng</span>
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="#">
+            <a href="/admin/">
               <i class="fa fa-bar-chart mr-2" aria-hidden="true"></i>
               <span>Thống kê</span>
             </a>
@@ -166,15 +166,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
             </svg>
           </button>
-          <button
-            type="button"
-            class="app-content-headerButton"
-            data-toggle="modal"
-            data-target="#addCategoryModal"
-          >
-            Thêm sản phẩm
-          </button>
         </div>
+
         <!-- -------------------------------------------------------- -->
         <!-- Modal -->
         <div
@@ -192,8 +185,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   class="modal-title container-fluid font-weight-bold"
                   id="addProductModalLabel"
                 >
-                   <i class="fa fa-bars mr-3" aria-hidden="true"></i> Thêm
-                  Danh mục
+                  <i class="fa fa-bars mr-3" aria-hidden="true"></i> Thêm Danh
+                  mục
                 </h5->
                 <button
                   type="button"
@@ -205,7 +198,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 </button>
               </div>
               <div class="modal-body">
-                <form action="#" class="container-fluid row">   
+                <form action="#" class="container-fluid row">
                   <div class="col-12">
                     <div class="form-group">
                       <label for="id" class="font-weight-bold"
@@ -218,10 +211,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                         aria-describedby="idHelp"
                         placeholder="ID"
                       />
-                      <small
-                        id="idHelp"
-                        class="form-text text-muted"
-                      ></small>
+                      <small id="idHelp" class="form-text text-muted"></small>
                     </div>
                   </div>
                   <div class="col-12">
@@ -236,13 +226,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                         aria-describedby="idHelp"
                         placeholder="Tên danh mục"
                       />
-                      <small
-                        id="idHelp"
-                        class="form-text text-muted"
-                      ></small>
+                      <small id="idHelp" class="form-text text-muted"></small>
                     </div>
                   </div>
-
 
                   <!-- Button form -->
                   <div class="col-12 d-flex justify-content-end">
@@ -260,8 +246,16 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="app-content-actions">
           <input class="search-bar" placeholder="Tìm kiếm..." type="text" />
           <div class="app-content-actions-wrapper">
-            <div class="filter-button-wrapper">
-              <button class="action-button filter jsFilter">
+            <div class="filter-button-wrapper d-flex justify-content-betwwen">
+              <button
+                type="button"
+                class="app-content-headerButton"
+                data-toggle="modal"
+                data-target="#addCategoryModal"
+              >
+                Thêm Danh mục
+              </button>
+              <button class="action-button filter jsFilter mx-3">
                 <span>Lọc</span
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
