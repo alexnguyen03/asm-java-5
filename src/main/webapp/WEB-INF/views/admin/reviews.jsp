@@ -354,6 +354,8 @@
 				</div>
 			</div>
 		</div>
+		</div>
+
 		<!-- The Modal -->
 		<div class="modal fade"
 			 id="myModal">
@@ -404,8 +406,11 @@
 									<td class="pt-4">27/02/2023</td>
 									<td class="pt-4">
 										<h4>
-											<i class="fa fa-trash"
-											   aria-hidden="true"></i>
+											<button class="btn btn-danger font-weight-bold"
+													data-toggle="modal"
+													data-target="#deleteCategoryModal">
+												<i class="fa fa-trash"
+												   aria-hidden="true"></i></button>
 										</h4>
 									</td>
 								</tr>
@@ -426,14 +431,18 @@
 									<td class="pt-4">10/09/2023</td>
 									<td class="pt-4">
 										<h4>
-											<i class="fa fa-trash"
-											   aria-hidden="true"></i>
+											<button class="btn btn-danger font-weight-bold"
+													data-toggle="modal"
+													data-target="#deleteCategoryModal">
+												<i class="fa fa-trash"
+												   aria-hidden="true"></i></button>
 										</h4>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
+
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button"
@@ -443,6 +452,41 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="modal fade"
+			 id="deleteCategoryModal"
+			 tabindex="-1"
+			 role="dialog"
+			 aria-labelledby="deleteCategoryModalLabel"
+			 aria-hidden="true">
+			<div class="modal-dialog"
+				 role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5- class="modal-title container-fluid font-weight-bold"
+							 id="addProductModalLabel"> <i class="fa-regular fa-trash-can mr-3"></i> Bạn có chắc muốn
+							xóa
+							đánh giá ? <br />
+							<!-- 					1 - <span class="text-danger">Tai nghe không dây</span> </h5-> -->
+							<!-- 					<button type="button" class="close" data-dismiss="modal" -->
+							<!-- 						aria-label="Close"> -->
+							<!-- 						<span aria-hidden="true">&times;</span> -->
+							</button>
+					</div>
+					<div class="modal-body">
+						<div class="container d-flex justify-content-center">
+							<img src="https://inkythuatso.com/uploads/thumbnails/800/2023/01/8-anh-meme-meo-gio-tay-inkythuatso-17-15-30-30.jpg"
+								 class="img-fluid m-auto"
+								 style="height: 400px; width: 100%" />
+						</div>
+					</div>
+					<div class="modal-footer d-flex justify-content-end">
+						<button class="btn btn-danger ml-3">Xóa</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<script src="${pageContext.request.contextPath}/js/script.js"></script>
 		<script src="${pageContext.request.contextPath }/js/jquery-3.3.1.min.js"></script>
 		<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
