@@ -13,10 +13,10 @@
 			  content="width=device-width, initial-scale=1.0">
 		<title>Dashboard</title>
 		<link rel="stylesheet"
-			  href="${pageContext.request.contextPath}/css/style-admin.css">
-		<link rel="stylesheet"
 			  href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 			  type="text/css">
+		<link rel="stylesheet"
+			  href="${pageContext.request.contextPath}/css/style-admin.css">
 		<script src="https://kit.fontawesome.com/c0f581682c.js"
 				crossorigin="anonymous"></script>
 	</head>
@@ -26,7 +26,7 @@
 			<div class="sidebar">
 				<div class="sidebar-header">
 					<div class="app-icon">
-						<img src="/img/3mems.png"
+						<img src="/img/main-logo.png"
 							 alt=""
 							 class="img-fluid mr-auto" />
 					</div>
@@ -142,6 +142,110 @@
 						   placeholder="Tìm kiếm..."
 						   type="text">
 					<div class="app-content-actions-wrapper">
+						<div class="filter-button-wrapper d-flex justify-content-betwwen">
+							<button class="action-button filter jsFilter mx-3">
+								<span>Lọc</span><svg xmlns="http://www.w3.org/2000/svg"
+									 width="16"
+									 height="16"
+									 viewBox="0 0 24 24"
+									 fill="none"
+									 stroke="currentColor"
+									 stroke-width="2"
+									 stroke-linecap="round"
+									 stroke-linejoin="round"
+									 class="feather feather-filter">
+									<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+								</svg>
+							</button>
+							<div class="filter-menu">
+								<label>Danh mục</label>
+								<select>
+									<option>Toàn danh mục</option>
+									<option>Tai nghe không dây</option>
+									<option>Tai nghe có dây</option>
+									<option>Đồng hồ</option>
+									<option>Ốp lưng</option>
+								</select>
+								<label>Trạng thái</label>
+								<select>
+									<option>Cả 2</option>
+									<option>Kích hoạt</option>
+									<option>Vô hiệu hóa</option>
+								</select>
+								<div class="filter-menu-buttons">
+									<button class="filter-button reset">Reset</button>
+									<button class="filter-button apply">Thay đổi</button>
+								</div>
+							</div>
+						</div>
+						<button class="action-button list active d-none"
+								title="List View">
+							<svg xmlns="http://www.w3.org/2000/svg"
+								 width="16"
+								 height="16"
+								 viewBox="0 0 24 24"
+								 fill="none"
+								 stroke="currentColor"
+								 stroke-width="2"
+								 stroke-linecap="round"
+								 stroke-linejoin="round"
+								 class="feather feather-list">
+								<line x1="8"
+									  y1="6"
+									  x2="21"
+									  y2="6" />
+								<line x1="8"
+									  y1="12"
+									  x2="21"
+									  y2="12" />
+								<line x1="8"
+									  y1="18"
+									  x2="21"
+									  y2="18" />
+								<line x1="3"
+									  y1="6"
+									  x2="3.01"
+									  y2="6" />
+								<line x1="3"
+									  y1="12"
+									  x2="3.01"
+									  y2="12" />
+								<line x1="3"
+									  y1="18"
+									  x2="3.01"
+									  y2="18" />
+							</svg>
+						</button>
+						<button class="action-button grid d-none"
+								title="Grid View">
+							<svg xmlns="http://www.w3.org/2000/svg"
+								 width="16"
+								 height="16"
+								 viewBox="0 0 24 24"
+								 fill="none"
+								 stroke="currentColor"
+								 stroke-width="2"
+								 stroke-linecap="round"
+								 stroke-linejoin="round"
+								 class="feather feather-grid">
+								<rect x="3"
+									  y="3"
+									  width="7"
+									  height="7" />
+								<rect x="14"
+									  y="3"
+									  width="7"
+									  height="7" />
+								<rect x="14"
+									  y="14"
+									  width="7"
+									  height="7" />
+								<rect x="3"
+									  y="14"
+									  width="7"
+									  height="7" />
+							</svg>
+						</button>
 						<button type="button"
 								class="btn btn-primary"
 								data-toggle="modal"
@@ -455,15 +559,15 @@
 				</div>
 			</div>
 		</div>
+		<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery.nicescroll.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery.countdown.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+		<script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/script.js"></script>
-		<script src="${pageContext.request.contextPath }/js/jquery-3.3.1.min.js"></script>
-		<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
-		<script src="${pageContext.request.contextPath }/js/jquery.nice-select.min.js"></script>
-		<script src="${pageContext.request.contextPath }/js/jquery.nicescroll.min.js"></script>
-		<script src="${pageContext.request.contextPath }/js/jquery.magnific-popup.min.js"></script>
-		<script src="${pageContext.request.contextPath }/js/jquery.countdown.min.js"></script>
-		<script src="${pageContext.request.contextPath }/js/jquery.slicknav.js"></script>
-		<script src="${pageContext.request.contextPath }/js/mixitup.min.js"></script>
 	</body>
 
 </html>

@@ -27,7 +27,7 @@
       <div class="sidebar">
         <div class="sidebar-header">
           <div class="app-icon">
-            <img src="/img/3mems.png"
+            <img src="/img/main-logo.png"
                  alt=""
                  class="img-fluid mr-auto" />
           </div>
@@ -156,9 +156,47 @@
                      aria-label="Text input with segmented dropdown button">
             </div>
           </form>
+          <div class="filter-button-wrapper d-flex justify-content-betwwen">
+
+            <button class="action-button filter jsFilter mx-3">
+              <span>Lọc</span><svg xmlns="http://www.w3.org/2000/svg"
+                   width="16"
+                   height="16"
+                   viewBox="0 0 24 24"
+                   fill="none"
+                   stroke="currentColor"
+                   stroke-width="2"
+                   stroke-linecap="round"
+                   stroke-linejoin="round"
+                   class="feather feather-filter">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+              </svg>
+            </button>
+            <div class="filter-menu">
+              <label>Trạng thái đơn</label>
+              <select>
+                <option>Đang chờ</option>
+                <option>Đang xử lý</option>
+                <option>Đang giao</option>
+                <option>Đã giao</option>
+              </select>
+              <label>Địa chỉ đặt hàng</label>
+              <select>
+                <option>Vĩnh Long</option>
+                <option>Cần Thơ</option>
+                <option>TP HCM</option>
+                <option>Hà Nội</option>
+                <option>Đà Nẵng</option>
+              </select>
+              <div class="filter-menu-buttons">
+                <button class="filter-button btn btn-secondary">Làm mới</button>
+                <button class="filter-button apply">Áp dụng</button>
+              </div>
+            </div>
+          </div>
           <div class="w-50 d-flex justify-content-center">
             <div class="product-cell status-cell d-flex flex-column justify-content-center">
-              <span class="status active py-2">Hiển thị hihi<strong class="mx-2">15 / 20</strong> người dùng</span>
+              <span class="status active py-2">Hiển thị <strong class="mx-2">15 / 20</strong> người dùng</span>
             </div>
             <nav aria-label="Page navigation example"
                  class="mt-3 ml-4">
@@ -166,7 +204,7 @@
                 <li class="page-item disabled">
                   <a class="page-link"
                      href="#"
-                     tabindex="-1">Previous</a>
+                     tabindex="-1">Đầu</a>
                 </li>
                 <li class="page-item"><a class="page-link"
                      href="#">1</a></li>
@@ -176,7 +214,7 @@
                      href="#">3</a></li>
                 <li class="page-item">
                   <a class="page-link"
-                     href="#">Next</a>
+                     href="#">Cuối</a>
                 </li>
               </ul>
             </nav>
@@ -186,6 +224,75 @@
                class="btn btn${isCancel == true ? '-outline': ''}-primary btn-sm mx-2 ml-4">Đơn đã đặt</a>
             <a href="/admin/order/cancel"
                class="btn btn${isCancel == true ? '': '-outline'}-warning btn-sm mx-2">Đơn đã hủy</a>
+
+            <button class="action-button list active d-none"
+                    title="List View">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="16"
+                   height="16"
+                   viewBox="0 0 24 24"
+                   fill="none"
+                   stroke="currentColor"
+                   stroke-width="2"
+                   stroke-linecap="round"
+                   stroke-linejoin="round"
+                   class="feather feather-list">
+                <line x1="8"
+                      y1="6"
+                      x2="21"
+                      y2="6" />
+                <line x1="8"
+                      y1="12"
+                      x2="21"
+                      y2="12" />
+                <line x1="8"
+                      y1="18"
+                      x2="21"
+                      y2="18" />
+                <line x1="3"
+                      y1="6"
+                      x2="3.01"
+                      y2="6" />
+                <line x1="3"
+                      y1="12"
+                      x2="3.01"
+                      y2="12" />
+                <line x1="3"
+                      y1="18"
+                      x2="3.01"
+                      y2="18" />
+              </svg>
+            </button>
+            <button class="action-button grid d-none"
+                    title="Grid View">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="16"
+                   height="16"
+                   viewBox="0 0 24 24"
+                   fill="none"
+                   stroke="currentColor"
+                   stroke-width="2"
+                   stroke-linecap="round"
+                   stroke-linejoin="round"
+                   class="feather feather-grid">
+                <rect x="3"
+                      y="3"
+                      width="7"
+                      height="7" />
+                <rect x="14"
+                      y="3"
+                      width="7"
+                      height="7" />
+                <rect x="14"
+                      y="14"
+                      width="7"
+                      height="7" />
+                <rect x="3"
+                      y="14"
+                      width="7"
+                      height="7" />
+              </svg>
+            </button>
           </div>
         </div>
         <div class="products-area-wrapper tableView">

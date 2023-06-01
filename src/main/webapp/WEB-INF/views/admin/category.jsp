@@ -70,7 +70,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       <div class="sidebar">
         <div class="sidebar-header">
           <div class="app-icon">
-            <img src="/img/3mems.png"
+            <img src="/img/main-logo.png"
                  alt=""
                  class="img-fluid mr-auto" />
           </div>

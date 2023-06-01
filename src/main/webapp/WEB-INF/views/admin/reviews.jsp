@@ -30,7 +30,7 @@
 			<div class="sidebar">
 				<div class="sidebar-header">
 					<div class="app-icon">
-						<img src="/img/3mems.png"
+						<img src="/img/main-logo.png"
 							 alt=""
 							 class="img-fluid mr-auto" />
 					</div>
@@ -177,7 +177,7 @@
 								</div>
 							</div>
 						</div>
-						<button class="action-button list active"
+						<button class="action-button list active d-none"
 								title="List View">
 							<svg xmlns="http://www.w3.org/2000/svg"
 								 width="16"
@@ -215,7 +215,7 @@
 									  y2="18" />
 							</svg>
 						</button>
-						<button class="action-button grid"
+						<button class="action-button grid d-none"
 								title="Grid View">
 							<svg xmlns="http://www.w3.org/2000/svg"
 								 width="16"

@@ -27,7 +27,7 @@
       <div class="sidebar">
         <div class="sidebar-header">
           <div class="app-icon">
-            <img src="/img/3mems.png"
+            <img src="/img/main-logo.png"
                  alt=""
                  class="img-fluid mr-auto" />
           </div>
@@ -137,7 +137,6 @@
               <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
             </svg>
           </button>
-
         </div>
         <div class="app-content-actions">
           <form action="">
@@ -145,7 +144,6 @@
                    placeholder="Tìm kiếm..."
                    type="text"
                    list="user">
-
             <!-- <input list="user"
               value=""
               type="text"
@@ -160,14 +158,13 @@
             <div class="product-cell status-cell d-flex flex-column justify-content-center">
               <span class="status active py-2">Hiển thị hihi<strong class="mx-2">15 / 20</strong> người dùng</span>
             </div>
-
             <nav aria-label="Page navigation example"
                  class="mt-3 ml-4">
               <ul class="pagination justify-content-center pagination-sm align-self-center">
                 <li class="page-item disabled">
                   <a class="page-link"
                      href="#"
-                     tabindex="-1">Previous</a>
+                     tabindex="-1">Đầu</a>
                 </li>
                 <li class="page-item"><a class="page-link"
                      href="#">1</a></li>
@@ -177,14 +174,49 @@
                      href="#">3</a></li>
                 <li class="page-item">
                   <a class="page-link"
-                     href="#">Next</a>
+                     href="#">Cuối</a>
                 </li>
               </ul>
             </nav>
             <!-- <div class="text-primary px-3 border">Hiển thị 15 / 20 người dùng</div> -->
-
           </div>
           <div class="app-content-actions-wrapper">
+            <div class="filter-button-wrapper d-flex justify-content-betwwen">
+              <button class="action-button filter jsFilter mx-3">
+                <span>Lọc</span><svg xmlns="http://www.w3.org/2000/svg"
+                     width="16"
+                     height="16"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     class="feather feather-filter">
+                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                </svg>
+              </button>
+              <div class="filter-menu">
+                <label>Địa chỉ</label>
+                <select>
+                  <option>Vĩnh Long</option>
+                  <option>Cần Thơ</option>
+                  <option>TP HCM</option>
+                  <option>Hà Nội</option>
+                  <option>Đà Nẵng</option>
+                </select>
+                <label>Trạng thái</label>
+                <select>
+                  <option>Cả 2</option>
+                  <option>Hoạt động</option>
+                  <option>Không hoạt động</option>
+                </select>
+                <div class="filter-menu-buttons">
+                  <button class="filter-button reset">Làm mới</button>
+                  <button class="filter-button apply">Thay đổi</button>
+                </div>
+              </div>
+            </div>
             <button class="action-button list active"
                     title="List View">
               <svg xmlns="http://www.w3.org/2000/svg"
@@ -306,7 +338,6 @@
                 </svg>
               </button></div>
             <div class="product-cell price">Thao tác
-
             </div>
           </div>
           <div class="products-row">
@@ -436,12 +467,9 @@
             <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
                     class="status active bg-primary text-white ">Quản trị viên</span></div>
             <div class="product-cell price"><span class="cell-label"></span>
-
               <div class="btn btn-sm btn-danger">
                 Xóa</div>
             </div>
-
-
           </div>
           <div class="products-row">
             <button class="cell-more-button">
@@ -654,12 +682,9 @@
             <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
                     class="status active bg-primary text-white ">Quản trị viên</span></div>
             <div class="product-cell price"><span class="cell-label"></span>
-
               <div class="btn btn-sm btn-danger">
                 Xóa</div>
             </div>
-
-
           </div>
           <div class="products-row">
             <button class="cell-more-button">
@@ -872,12 +897,9 @@
             <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
                     class="status active bg-primary text-white ">Quản trị viên</span></div>
             <div class="product-cell price"><span class="cell-label"></span>
-
               <div class="btn btn-sm btn-danger">
                 Xóa</div>
             </div>
-
-
           </div>
           <div class="products-row">
             <button class="cell-more-button">
@@ -994,13 +1016,10 @@
                        width="75%">
                 </div>
                 <div class="col-12">
-
                   <div class="alert alert-warning">Bạn có chắc muốn xóa người dùng
                     <strong class="text-danger">AlexNguyeen</strong> không ?
                   </div>
-
                 </div>
-
                 <!-- Submit Button -->
                 <div class="form-group col-lg-12 mx-auto mb-4 ">
                   <hr>
@@ -1012,17 +1031,12 @@
                     <span class="font-weight-bold">Xóa luôn</span>
                   </a>
                 </div>
-
               </div>
             </form>
           </div>
-
         </div>
       </div>
     </div>
-
-
-
     <!-- Modal -->
     <div class="modal fade"
          id="prevImg"
@@ -1033,27 +1047,21 @@
       <div class="modal-dialog"
            role="document">
         <div class="modal-content">
-
-
           <div class="modal-body">
-
             <button type="button"
                     class="close"
                     data-dismiss="modal"
                     aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-
             <img src="//media.tenor.com/images/556e9ff845b7dd0c62dcdbbb00babb4b/tenor.gif"
                  alt=""
                  id="image"
                  class="img-fluid">
           </div>
-
         </div>
       </div>
     </div>
-
     <!-- Js Plugins -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -1063,10 +1071,8 @@
         var button = $(event.relatedTarget);
         var modal = $(this);
         // Use above variables to manipulate the DOM
-
       });
       $(document).ready(function () {
-
         // Gets the video src from the data-src on each button
         var $imageSrc;
         console.log($('.image>img'));
@@ -1076,9 +1082,7 @@
         console.log($imageSrc);
         // when the modal is opened autoplay it  
         $('#prevImg').on('shown.bs.modal', function (e) {
-
           // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
-
           $("#image").attr('src', $imageSrc);
         })
         // reset the modal image
@@ -1088,9 +1092,6 @@
         })
         // document ready  
       });
-
-
-
     </script>
   </body>
 

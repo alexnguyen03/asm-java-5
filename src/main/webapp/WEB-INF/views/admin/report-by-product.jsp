@@ -27,7 +27,7 @@
       <div class="sidebar">
         <div class="sidebar-header">
           <div class="app-icon">
-            <img src="/img/3mems.png"
+            <img src="/img/main-logo.png"
                  alt=""
                  class="img-fluid mr-auto" />
           </div>
@@ -132,45 +132,6 @@
           </button>
         </div>
         <div class="app-content-actions">
-          <!-- <form action="">
-            <input class="search-bar"
-                   placeholder="Tìm kiếm..."
-                   type="text"
-                   list="user"> -->
-          <!-- <input list="user"
-              value=""
-              type="text"
-              class="col-sm-6 custom-select custom-select-sm"> -->
-          <!-- <datalist id="user">
-              <option value="Nguyễn Hoài Nam"></option>
-              <option value="Trần Trong Hiến"></option>
-              <option value="Lê Minh Dương">John Le</option>
-            </datalist>
-          </form>
-          <div class="w-100 d-flex justify-content-center">
-            <div class="product-cell status-cell d-flex flex-column justify-content-center">
-            </div> -->
-          <!-- <nav aria-label="Page navigation example"
-                 class="mt-3 ml-4">
-              <ul class="pagination justify-content-center pagination-sm align-self-center">
-                <li class="page-item disabled">
-                  <a class="page-link"
-                     href="#"
-                     tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link"
-                     href="#">1</a></li>
-                <li class="page-item"><a class="page-link"
-                     href="#">2</a></li>
-                <li class="page-item"><a class="page-link"
-                     href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link"
-                     href="#">Next</a>
-                </li>
-              </ul>
-            </nav> -->
-          <!-- <div class="text-primary px-3 border">Hiển thị 15 / 20 người dùng</div> -->
           <a href="/admin/report"
              class="btn btn-outline-primary">Top 10 sản phẩm bán chạy</a>
           <a href="/admin/report/report-by-category"
@@ -178,9 +139,9 @@
           <a href="/admin/report/report-by-product"
              class="btn btn-secondary">Doanh thu theo sản phẩm</a>
           <a href="/admin/report/report-by-user"
-             class="btn btn-info">Người dùng</a>
+             class="btn btn-outline-info">Người dùng</a>
         </div>
-        <div class=" px-3 mt-4">
+        <!-- <div class=" px-3 mt-4">
           <div class="">
             <form action=""
                   class="d-flex mb-3">
@@ -255,6 +216,164 @@
               </tbody>
             </table>
           </div>
+        </div> -->
+        <div class="mb-3">
+          <div class="app-content-actions-wrapper mb-3">
+            <div class="filter-button-wrapper d-flex justify-content-betwwen">
+              <button class="action-button filter jsFilter mx-3">
+                <span>Lọc</span><svg xmlns="http://www.w3.org/2000/svg"
+                     width="16"
+                     height="16"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     class="feather feather-filter">
+                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                </svg>
+              </button>
+              <div class="filter-menu">
+
+                <form action=""
+                      class=" mb-3">
+                  <div class=" input-group input-group-sm mb-3">
+                    <div class="input-group-prepend"> <button type="button"
+                              class="btn btn-outline-secondary">Ngày</button> <button type="button"
+                              class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"> <span class="sr-only">Toggle Dropdown</span> </button>
+                      <div class="dropdown-menu"> <a class="dropdown-item"
+                           href="#">Thống kê theo tuần</a>
+                        <a class="dropdown-item"
+                           href="#">Thống kê theo tháng</a>
+                        <a class="dropdown-item"
+                           href="#">Thống kê theo năm</a>
+                      </div>
+                    </div>
+                    <input type="week"
+                           class="form-control"
+                           aria-label="Text input with segmented dropdown button">
+                  </div>
+                  <div class="input-group input-group-sm mr-3">
+                    <label>Số lượng bán</label>
+                    <select class=""
+                            id="inputGroupSelect01">
+                      <option selected>Chọn số lượng</option>
+                      <option value="1">Dưới 100 sản phẩm</option>
+                      <option value="1">Từ 100 - 200 sản phẩm</option>
+                      <option value="1">Từ 200 - 300 sản phẩm</option>
+                    </select>
+                  </div>
+                  <div class="input-group input-group-sm mr-3">
+                    <label>Loại sản phẩm</label>
+                    <select class=""
+                            id="inputGroupSelect01">
+                      <option selected>Chọn loại</option>
+                      <option value="1">Tai nghe không dây</option>
+                      <option value="1">Tai nghe có dây</option>
+                    </select>
+                  </div>
+
+                  <div class="filter-menu-buttons">
+                    <button class="filter-button reset">Làm mới</button>
+                    <button class="filter-button apply">Thay đổi</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <button class="action-button list active d-none"
+                    title="List View">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="16"
+                   height="16"
+                   viewBox="0 0 24 24"
+                   fill="none"
+                   stroke="currentColor"
+                   stroke-width="2"
+                   stroke-linecap="round"
+                   stroke-linejoin="round"
+                   class="feather feather-list">
+                <line x1="8"
+                      y1="6"
+                      x2="21"
+                      y2="6" />
+                <line x1="8"
+                      y1="12"
+                      x2="21"
+                      y2="12" />
+                <line x1="8"
+                      y1="18"
+                      x2="21"
+                      y2="18" />
+                <line x1="3"
+                      y1="6"
+                      x2="3.01"
+                      y2="6" />
+                <line x1="3"
+                      y1="12"
+                      x2="3.01"
+                      y2="12" />
+                <line x1="3"
+                      y1="18"
+                      x2="3.01"
+                      y2="18" />
+              </svg>
+            </button>
+            <button class="action-button grid d-none"
+                    title="Grid View">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="16"
+                   height="16"
+                   viewBox="0 0 24 24"
+                   fill="none"
+                   stroke="currentColor"
+                   stroke-width="2"
+                   stroke-linecap="round"
+                   stroke-linejoin="round"
+                   class="feather feather-grid">
+                <rect x="3"
+                      y="3"
+                      width="7"
+                      height="7" />
+                <rect x="14"
+                      y="3"
+                      width="7"
+                      height="7" />
+                <rect x="14"
+                      y="14"
+                      width="7"
+                      height="7" />
+                <rect x="3"
+                      y="14"
+                      width="7"
+                      height="7" />
+              </svg>
+            </button>
+          </div>
+          <table class="table ">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Loại sản phẩm</th>
+                <th scope="col">Số lượng bán</th>
+                <th scope="col">Tổng doanh thu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Tai nghe airpod 3 Pro</td>
+                <td>Tai nghe không dây</td>
+                <td>100</td>
+                <td>250.000.000 <sup>đ</sup></td>
+              </tr>
+
+            </tbody>
+          </table>
         </div>
       </div>
       <!-- Modal -->
