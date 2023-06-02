@@ -54,103 +54,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       <div class="loader"></div>
     </div>
 
-    <!-- Offcanvas Menu Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-      <div class="offcanvas__option">
-        <div class="offcanvas__links">
-          <a href="/login">Đăng nhập</a>
-          <a href="#">FAQs</a>
-        </div>
-        <div class="offcanvas__top__hover">
-          <span>Usd <i class="arrow_carrot-down"></i></span>
-          <ul>
-            <li>USD</li>
-            <li>EUR</li>
-            <li>USD</li>
-          </ul>
-        </div>
-      </div>
-      <div class="offcanvas__nav__option">
-        <a href="#"
-           class="search-switch"><img src="img/icon/search.png"
-               alt="" /></a>
-        <a href="#"><img src="img/icon/heart.png"
-               alt="" /></a>
-        <a href="#"><img src="img/icon/cart.png"
-               alt="" /> <span>0</span></a>
-        <div class="price">$0.00</div>
-      </div>
-      <div id="mobile-menu-wrap"></div>
-      <div class="offcanvas__text">
-        <p>
-          Miễn phí chuyển phát, 30-ngày trả lại hoặc hoàn tiền một cách đảm bảo.
-        </p>
-      </div>
-    </div>
-    <!-- Offcanvas Menu End -->
-    <!-- Header Section Begin -->
-    <header class="header">
-      <div class="container ">
-        <div class="row">
-          <div class="col-lg-3 col-md-3">
-            <div class="header__logo">
-              <a href="/"><img src="img/main-logo.png"
-                     alt=""
-                     height="33px" /></a>
-            </div>
-          </div>
-          <div class="col-lg-5 col-md-5">
-            <nav class="header__menu mobile-menu">
-              <ul>
-                <li><a href="/">Trang chủ</a></li>
-                <li class="active"><a href="/shop">Sản phẩm</a></li>
-                <li><a href="/shop/order-history">Đơn hàng</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="col-lg-4 col-md-4">
-            <div class="header__nav__option">
-              <a href="#"
-                 class="search-switch"><img src="img/icon/search.png"
-                     alt="" /></a>
-              <a href="/shop/cart-detail"
-                 title="Giỏ hàng"
-                 class="position-relative pr-3"><img src="img/icon/cart.png"
-                     alt=""
-                     width="20px" /> <span class="badge badge-danger position-absolute "
-                      style="top: -2px;">2</span></a>
-              <div class="dropdown d-inline">
-                <div class="btn btn-white dropdown-toggle btn-sm"
-                     type="button"
-                     data-toggle="dropdown"
-                     aria-expanded="false">
-                  AlexNguyeen
-                  <i class="fa fa-user-circle-o"
-                     aria-hidden="true"></i>
-                </div>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item"
-                     href="/account/login"><i class="fa fa-sign-in"
-                       aria-hidden="true"></i> Đăng nhập</a>
-                  <a class="dropdown-item"
-                     href="/account/change-password"> <i class="fa fa-sign-out"
-                       aria-hidden="true"></i> Đổi mật khẩu</a>
-                  <a class="dropdown-item"
-                     href="/account/update-account"><i class="fa fa-pencil-square-o"
-                       aria-hidden="true"></i> Chỉnh sửa tài khoản</a>
-                  <a class="dropdown-item"
-                     href="/"><i class="fa fa-sign-out"
-                       aria-hidden="true"></i> Đăng xuất</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="canvas__open"><i class="fa fa-bars"></i></div>
-      </div>
-    </header>
-    <!-- Header Section End -->
+    <!-- Header -->
+    <jsp:include page="header.jsp" />
+
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-option">
       <div class="container">
@@ -302,7 +208,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="row">
               <!-- Item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <a href="/shop/product-detail" class="product__item">
                   <div class="product__item__pic">
                     <img
                       src="img/product/product-1.png"
@@ -323,7 +229,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                     </div>
                     <h5>3.510.000 <span class="text-danger">đ</span></h5>
                   </div>
-                </div>
+                </a>
               </div>
               <!-- Item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
