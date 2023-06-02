@@ -48,8 +48,40 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
   <body>
     <!-- Header Section Begin -->
-    <header class="header">
-      <div class="container ">
+    <header class="header header_scroll_top" id="header_scroll_top">
+      <div class="header__top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-7">
+              <div class="header__top__left">
+                <p>
+                  Miễn phí chuyển phát, 30-ngày trả lại hoặc hoàn tiền một cách
+                  đảm bảo.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-5">
+              <div class="header__top__right">
+                <div class="header__top__links">
+                  <a href="#">Đăng nhập</a>
+                  <a href="#">FAQs</a>
+                </div>
+                <div class="header__top__hover">
+                  <span>Usd <i class="arrow_carrot-down"></i></span>
+                  <ul>
+                    <li>${msg}</li>
+                    <li>/${pageContext.request.contextPath}</li>
+                    <li>USD</li>
+                    <li>EUR</li>
+                    <li>USD</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-3">
             <div class="header__logo">
@@ -110,7 +142,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     </header>
     <!-- Header Section End -->
     <!-- Hero Section Begin -->
-    <section class="hero">
+    <section class="hero mt-3">
       <div class="hero__slider owl-carousel">
         <div class="hero__items set-bg"
              data-setbg="img/hero/hero-1.jpg">
@@ -118,10 +150,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="row">
               <div class="col-xl-5 col-lg-7 col-md-8">
                 <div class="hero__text">
-                  <h6>Bộ sưu tập thịnh hành</h6>
+                  <h6>Sản phẩm thịnh hành</h6>
                   <h2>
-                    Thu - Đông <br />
-                    Bộ sưu tập 2030
+                    Hạ - Thu <br />
+                    Bộ sưu tập 2023
                   </h2>
                   <p>
                     Nhãn hiệu chuyên tạo ra các mặt hàng xa xỉ thiết yếu. Được
@@ -178,12 +210,14 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="col-lg-7 offset-lg-4">
             <div class="banner__item">
               <div class="banner__item__pic">
-                <img src="img/banner/img-banner-1.png"
-                     alt=""
-                     style="background: #ebecf1" />
+                <img
+                  src="img/banner/img-banner-1.png"
+                  style="background: #ebecf1"
+                  alt=""
+                />
               </div>
               <div class="banner__item__text">
-                <h2>Bộ sưu tập Smart Watch 2030</h2>
+                <h2 class="mr-3">Bộ sưu tập Smart Watch</h2>
                 <a href="/shop">Mua ngay</a>
               </div>
             </div>
@@ -191,9 +225,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="col-lg-5">
             <div class="banner__item banner__item--middle">
               <div class="banner__item__pic">
-                <img src="img/banner/img-banner-2.png"
-                     alt=""
-                     style="background: #ebecf1" />
+                <img
+                  src="img/banner/img-banner-2.png"
+                  style="background: #ebecf1"
+                  alt=""
+                />
               </div>
               <div class="banner__item__text">
                 <h2>Tai nghe</h2>
@@ -204,12 +240,14 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           <div class="col-lg-7">
             <div class="banner__item banner__item--last">
               <div class="banner__item__pic">
-                <img src="img/banner/img-banner-3.png"
-                     alt=""
-                     style="background: #ebecf1" />
+                <img
+                  src="img/product/product-8.png"
+                  style="background: #ebecf1"
+                  alt=""
+                />
               </div>
               <div class="banner__item__text">
-                <h2>Túi xách 2023</h2>
+                <h2>Túi xách</h2>
                 <a href="/shop">Mua ngay</a>
               </div>
             </div>
@@ -222,6 +260,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <section class="product spad">
       <div class="container">
         <div class="row">
+          <!-- Header fiilter -->
           <div class="col-lg-12">
             <ul class="filter__controls">
               <li class="active"
@@ -231,11 +270,15 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </ul>
           </div>
         </div>
+        <!-- List product -->
         <div class="row product__filter">
-          <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+          <!-- Item -->
+          <div
+            class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals"
+          >
             <div class="product__item">
-              <div class="product__item__pic set-bg"
-                   data-setbg="img/product/product-1.jpg">
+              <div class="product__item__pic">
+                <img src="img/product/product-1.png" class="img-fluid" alt="" />
                 <span class="label">Mới</span>
               </div>
               <div class="product__item__text">
@@ -253,10 +296,13 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+          <!-- Item -->
+          <div
+            class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales"
+          >
             <div class="product__item">
-              <div class="product__item__pic set-bg"
-                   data-setbg="img/product/product-2.jpg">
+              <div class="product__item__pic set-bg">
+                <img src="img/product/product-2.png" class="img-fluid" alt="" />
               </div>
               <div class="product__item__text">
                 <h6>EDIFICE CASIO</h6>
@@ -269,15 +315,18 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star-o"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>3.510.000 <span class="text-danger">đ</span> </h5>
+                <h5>3.510.000 <span class="text-danger">đ</span></h5>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+          <!-- Item -->
+          <div
+            class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals"
+          >
             <div class="product__item sale">
-              <div class="product__item__pic set-bg"
-                   data-setbg="img/product/product-3.jpg">
-                <span class="label">Giảm giá</span>
+              <div class="product__item__pic">
+                <img src="img/product/product-3.png" class="img-fluid" />
+                <span class="label">Mới</span>
               </div>
               <div class="product__item__text">
                 <h6>Samsung Galaxy Buds 2 Pro</h6>
@@ -294,10 +343,13 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+          <!-- Item -->
+          <div
+            class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales"
+          >
             <div class="product__item">
-              <div class="product__item__pic set-bg"
-                   data-setbg="img/product/product-4.jpg">
+              <div class="product__item__pic set-bg">
+                <img src="img/product/product-4.png" class="img-fluid" alt="" />
               </div>
               <div class="product__item__text">
                 <h6>AirPods 2 Apple</h6>
@@ -310,14 +362,17 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star-o"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>3.900.000 <span class="text-danger">đ</span> </h5>
+                <h5>3.900.000 <span class="text-danger">đ</span></h5>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+          <!-- Item -->
+          <div
+            class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals"
+          >
             <div class="product__item">
-              <div class="product__item__pic set-bg"
-                   data-setbg="img/product/product-5.jpeg">
+              <div class="product__item__pic set-bg">
+                <img src="img/product/product-5.png" class="img-fluid" alt="" />
               </div>
               <div class="product__item__text">
                 <h6>AirPods 3 Apple MV7N3</h6>
@@ -330,14 +385,17 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star-o"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>4.320.000 <span class="text-danger">đ</span> </h5>
+                <h5>4.320.000 <span class="text-danger">đ</span></h5>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+          <!-- Item -->
+          <div
+            class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales"
+          >
             <div class="product__item sale">
-              <div class="product__item__pic set-bg"
-                   data-setbg="img/product/product-8.jpeg">
+              <div class="product__item__pic set-bg">
+                <img src="img/product/product-6.png" class="img-fluid" alt="" />
                 <span class="label">Sale</span>
               </div>
               <div class="product__item__text">
@@ -351,14 +409,17 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>1.070.000 <span class="text-danger">đ</span> </h5>
+                <h5>1.070.000 <span class="text-danger">đ</span></h5>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+          <!-- Item -->
+          <div
+            class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals"
+          >
             <div class="product__item">
-              <div class="product__item__pic set-bg"
-                   data-setbg="img/product/product-7.jpg">
+              <div class="product__item__pic set-bg">
+                <img src="img/product/product-7.png" class="img-fluid" alt="" />
               </div>
               <div class="product__item__text">
                 <h6>Loa bluetooth FENDA F5 Plus</h6>
@@ -371,14 +432,17 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star-o"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>225.000 <span class="text-danger">đ</span> </h5>
+                <h5>225.000 <span class="text-danger">đ</span></h5>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+          <!-- Item -->
+          <div
+            class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales"
+          >
             <div class="product__item">
-              <div class="product__item__pic set-bg"
-                   data-setbg="img/product/product-10.jpg">
+              <div class="product__item__pic set-bg">
+                <img src="img/product/product-8.png" class="img-fluid" alt="" />
               </div>
               <div class="product__item__text">
                 <h6>Túi đựng nhiều ngăn</h6>
@@ -391,7 +455,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <i class="fa fa-star-o"></i>
                   <i class="fa fa-star-o"></i>
                 </div>
-                <h5>150.000 <span class="text-danger">đ</span> </h5>
+                <h5>150.000 <span class="text-danger">đ</span></h5>
               </div>
             </div>
           </div>
@@ -414,8 +478,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           </div>
           <div class="col-lg-4">
             <div class="categories__hot__deal">
-              <img src="img/product-sale.png"
-                   alt="" />
+              <img src="img/product/product-8.png" alt="" />
               <div class="hot__deal__sticker">
                 <span>Giảm giá</span>
                 <h5>100.000 đ</h5>
@@ -444,104 +507,15 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <span>18</span>
                   <p>Giây</p>
                 </div>
-              </d /shopv>
-              <a href="#"
-                 class="primary-btn">Mua ngay</a>
+              </div>
+              <a href="#" class="primary-btn">Mua ngay</a>
             </div>
           </div>
         </div>
       </div>
     </section>
     <!-- Categories Section End -->
-    <!-- Instagram Section Begin -->
-    <section class="instagram spad">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="instagram__pic">
-              <div class="instagram__pic__item set-bg"
-                   data-setbg="img/instagram/instagram-1.jpg"></div>
-              <div class="instagram__pic__item set-bg"
-                   data-setbg="img/instagram/instagram-2.jpg"></div>
-              <div class="instagram__pic__item set-bg"
-                   data-setbg="img/instagram/instagram-3.jpg"></div>
-              <div class="instagram__pic__item set-bg"
-                   data-setbg="img/instagram/instagram-4.jpg"></div>
-              <div class="instagram__pic__item set-bg"
-                   data-setbg="img/instagram/instagram-5.jpg"></div>
-              <div class="instagram__pic__item set-bg"
-                   data-setbg="img/instagram/instagram-6.jpg"></div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="instagram__text">
-              <h2>Instagram</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <h3>#Thời trang</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Instagram Section End -->
-    <!-- Latest Blog Section Begin -->
-    <section class="latest spad">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="section-title">
-              <span>Tin mới nhất</span>
-              <h2>Xu hướng thời trang</h2>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="blog__item">
-              <div class="blog__item__pic set-bg"
-                   data-setbg="img/blog/blog-1.jpg"></div>
-              <div class="blog__item__text">
-                <span><img src="img/icon/calendar.png"
-                       alt="" /> 16 Tháng 2
-                  2023</span>
-                <h5>Máy uốn tóc nào tốt nhất</h5>
-                <a href="#">Đọc thêm</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="blog__item">
-              <div class="blog__item__pic set-bg"
-                   data-setbg="img/blog/blog-2.jpg"></div>
-              <div class="blog__item__text">
-                <span><img src="img/icon/calendar.png"
-                       alt="" /> 21 Tháng 2
-                  2023</span>
-                <h5>Ban nhạc vĩnh cửu tồn tại mãi mãi</h5>
-                <a href="#">Đọc thêm</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="blog__item">
-              <div class="blog__item__pic set-bg"
-                   data-setbg="img/blog/blog-3.jpg"></div>
-              <div class="blog__item__text">
-                <span><img src="img/icon/calendar.png"
-                       alt="" /> 28 Tháng 2
-                  2023</span>
-                <h5>Những lợi ích cho sức khỏe khi đeo kính</h5>
-                <a href="#">Đọc thêm</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Latest Blog Section End -->
+
     <!-- Footer Section Begin -->
     <footer class="footer">
       <div class="container">
@@ -612,7 +586,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 2022 All rights reserved
 
               </p>
-
+              <p>@Copyright &copy; & Edited 2023 by 3MEMS Team</p>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </div>
           </div>
