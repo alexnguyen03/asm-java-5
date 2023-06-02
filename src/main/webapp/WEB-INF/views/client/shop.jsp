@@ -10,7 +10,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <meta name="keywords" content="Male_Fashion, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Male-Fashion | Template</title>
+    <title>Shop</title>
 
     <!-- Google Font -->
     <link
@@ -303,13 +303,18 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 </div>
               </div>
             </div>
+            <!-- Product List -->
             <div class="row">
+              <!-- Item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="img/product/product-1.jpg"
-                  ></div>
+                  <div class="product__item__pic">
+                    <img
+                      src="img/product/product-1.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
                   <div class="product__item__text">
                     <h6>EDIFICE CASIO</h6>
                     <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
@@ -320,17 +325,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                       <i class="fa fa-star-o"></i>
                       <i class="fa fa-star-o"></i>
                     </div>
-                    <h5>3.510.000 <span class="text-danger">đ</span> </h5>
+                    <h5>3.510.000 <span class="text-danger">đ</span></h5>
                   </div>
                 </div>
               </div>
+              <!-- Item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item sale">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="img/product/product-2.jpg"
-                  >
-                    <span class="label">Sale</span>
+                  <div class="product__item__pic">
+                    <img
+                      src="img/product/product-2.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                    <span class="label">Sell</span>
                   </div>
                   <div class="product__item__text">
                     <h6>G-SOCK</h6>
@@ -342,16 +350,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star-o"></i>
                     </div>
-                    <h5>3.170.000 <span class="text-danger">đ</span> </h5>
+                    <h5>3.170.000 <span class="text-danger">đ</span></h5>
                   </div>
                 </div>
               </div>
+              <!-- Item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="img/product/product-3.jpg"
-                  ></div>
+                  <div class="product__item__pic">
+                    <img
+                      src="img/product/product-3.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
                   <div class="product__item__text">
                     <h6>Tai nghe Samsung Galaxy Buds 2 Pro</h6>
                     <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
@@ -366,12 +378,15 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   </div>
                 </div>
               </div>
+              <!-- item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item sale">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="img/product/product-4.jpg"
-                  >
+                  <div class="product__item__pic">
+                    <img
+                      src="img/product/product-4.png"
+                      class="img-fluid"
+                      alt=""
+                    />
                     <span class="label">Sale</span>
                   </div>
                   <div class="product__item__text">
@@ -384,16 +399,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star-o"></i>
                     </div>
-                    <h5>3.900.000 <span class="text-danger">đ</span> </h5>
+                    <h5>3.900.000 <span class="text-danger">đ</span></h5>
                   </div>
                 </div>
               </div>
+              <!-- item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="img/product/product-5.jpeg"
-                  ></div>
+                  <div class="product__item__pic">
+                    <img
+                      src="img/product/product-5.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
                   <div class="product__item__text">
                     <h6>Tai nghe AirPods 3 Apple MV7N3</h6>
                     <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
@@ -404,16 +423,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                       <i class="fa fa-star-o"></i>
                       <i class="fa fa-star-o"></i>
                     </div>
-                    <h5>4.320.000 <span class="text-danger">đ</span> </h5>
+                    <h5>4.320.000 <span class="text-danger">đ</span></h5>
                   </div>
                 </div>
               </div>
+              <!-- Item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="img/product/product-8.jpeg"
-                  ></div>
+                  <div class="product__item__pic">
+                    <img
+                      src="img/product/product-6.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
                   <div class="product__item__text">
                     <h6>Loa Mozart BT 100</h6>
                     <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
@@ -424,110 +447,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                       <i class="fa fa-star-o"></i>
                       <i class="fa fa-star-o"></i>
                     </div>
-                    <h5>1.070.000 <span class="text-danger">đ</span> </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="img/product/product-9.jpeg"
-                  ></div>
-                  <div class="product__item__text">
-                    <h6>Loa bluetooth FENDA F5 Plus</h6>
-                    <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                    <div class="rating">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <h5>225.000 <span class="text-danger">đ</span> </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item sale">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="img/product/product-10.jpg"
-                  >
-                    <span class="label">Sale</span>
-                  </div>
-                  <div class="product__item__text">
-                    <h6>Túi đựng nhiều ngăn</h6>
-                    <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <h5>150.000 <span class="text-danger">đ</span> </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="img/product/product-11.jpg"
-                  ></div>
-                  <div class="product__item__text">
-                    <h6>Túi đựng nhiều ngăn</h6>
-                    <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                    <div class="rating">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <h5>350.000 <span class="text-danger">đ</span> </h5>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="img/product/product-13.jpg"
-                  ></div>
-                  <div class="product__item__text">
-                    <h6>Túi sách gucci</h6>
-                    <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                    <div class="rating">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <h5>4.999.000 <span class="text-danger">đ</span> </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div
-                    class="product__item__pic set-bg"
-                    data-setbg="img/product/product-14.jpeg"
-                  ></div>
-                  <div class="product__item__text">
-                    <h6>Anker powercore Esstial 20W A1287</h6>
-                    <a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-                    <div class="rating">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <h5>1.280.000 <span class="text-danger">đ</span> </h5>
+                    <h5>1.070.000 <span class="text-danger">đ</span></h5>
                   </div>
                 </div>
               </div>

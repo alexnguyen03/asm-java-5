@@ -906,7 +906,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <div class="product-cell image">
               <img
-                src="${pageContext.request.contextPath}/img/product/product-1.jpg"
+                src="${pageContext.request.contextPath}/img/product/product-1.png"
                 alt="product"
               />
             </div>
@@ -976,7 +976,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <div class="product-cell image">
               <img
-                src="${pageContext.request.contextPath}/img/product/product-2.jpg"
+                src="${pageContext.request.contextPath}/img/product/product-2.png"
                 alt="product"
                 class="img-fluid"
               />
@@ -1035,7 +1035,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <div class="product-cell image">
               <img
-                src="${pageContext.request.contextPath}/img/product/product-3.jpg"
+                src="${pageContext.request.contextPath}/img/product/product-3.png"
                 alt="product"
               />
             </div>
