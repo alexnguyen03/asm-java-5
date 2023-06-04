@@ -31,4 +31,9 @@ public class ReportManagementController {
         return "/admin/report-by-user";
     }
 
+    @GetMapping("")
+    public String getAdminHome(Model m) {
+        return "/admin/index";
+    }
+
 }

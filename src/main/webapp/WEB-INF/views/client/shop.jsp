@@ -54,103 +54,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       <div class="loader"></div>
     </div>
 
-    <!-- Offcanvas Menu Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-      <div class="offcanvas__option">
-        <div class="offcanvas__links">
-          <a href="/login">Đăng nhập</a>
-          <a href="#">FAQs</a>
-        </div>
-        <div class="offcanvas__top__hover">
-          <span>Usd <i class="arrow_carrot-down"></i></span>
-          <ul>
-            <li>USD</li>
-            <li>EUR</li>
-            <li>USD</li>
-          </ul>
-        </div>
-      </div>
-      <div class="offcanvas__nav__option">
-        <a href="#"
-           class="search-switch"><img src="img/icon/search.png"
-               alt="" /></a>
-        <a href="#"><img src="img/icon/heart.png"
-               alt="" /></a>
-        <a href="#"><img src="img/icon/cart.png"
-               alt="" /> <span>0</span></a>
-        <div class="price">$0.00</div>
-      </div>
-      <div id="mobile-menu-wrap"></div>
-      <div class="offcanvas__text">
-        <p>
-          Miễn phí chuyển phát, 30-ngày trả lại hoặc hoàn tiền một cách đảm bảo.
-        </p>
-      </div>
-    </div>
-    <!-- Offcanvas Menu End -->
-    <!-- Header Section Begin -->
-    <header class="header">
-      <div class="container ">
-        <div class="row">
-          <div class="col-lg-3 col-md-3">
-            <div class="header__logo">
-              <a href="/"><img src="img/main-logo.png"
-                     alt=""
-                     height="33px" /></a>
-            </div>
-          </div>
-          <div class="col-lg-5 col-md-5">
-            <nav class="header__menu mobile-menu">
-              <ul>
-                <li><a href="/">Trang chủ</a></li>
-                <li class="active"><a href="/shop">Sản phẩm</a></li>
-                <li><a href="/shop/order-history">Đơn hàng</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="col-lg-4 col-md-4">
-            <div class="header__nav__option">
-              <a href="#"
-                 class="search-switch"><img src="img/icon/search.png"
-                     alt="" /></a>
-              <a href="/shop/cart-detail"
-                 title="Giỏ hàng"
-                 class="position-relative pr-3"><img src="img/icon/cart.png"
-                     alt=""
-                     width="20px" /> <span class="badge badge-danger position-absolute "
-                      style="top: -2px;">2</span></a>
-              <div class="dropdown d-inline">
-                <div class="btn btn-white dropdown-toggle btn-sm"
-                     type="button"
-                     data-toggle="dropdown"
-                     aria-expanded="false">
-                  AlexNguyeen
-                  <i class="fa fa-user-circle-o"
-                     aria-hidden="true"></i>
-                </div>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item"
-                     href="/account/login"><i class="fa fa-sign-in"
-                       aria-hidden="true"></i> Đăng nhập</a>
-                  <a class="dropdown-item"
-                     href="/account/change-password"> <i class="fa fa-sign-out"
-                       aria-hidden="true"></i> Đổi mật khẩu</a>
-                  <a class="dropdown-item"
-                     href="/account/update-account"><i class="fa fa-pencil-square-o"
-                       aria-hidden="true"></i> Chỉnh sửa tài khoản</a>
-                  <a class="dropdown-item"
-                     href="/"><i class="fa fa-sign-out"
-                       aria-hidden="true"></i> Đăng xuất</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="canvas__open"><i class="fa fa-bars"></i></div>
-      </div>
-    </header>
-    <!-- Header Section End -->
+    <!-- Header -->
+    <jsp:include page="header.jsp" />
+
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-option">
       <div class="container">
@@ -298,11 +204,18 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 </div>
               </div>
             </div>
+            <!-- Product List -->
             <div class="row">
+              <!-- Item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div class="product__item__pic set-bg"
-                       data-setbg="img/product/product-1.jpg"></div>
+                <a href="/shop/product-detail" class="product__item">
+                  <div class="product__item__pic">
+                    <img
+                      src="img/product/product-1.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
                   <div class="product__item__text">
                     <h6>EDIFICE CASIO</h6>
                     <a href="#"
@@ -314,15 +227,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                       <i class="fa fa-star-o"></i>
                       <i class="fa fa-star-o"></i>
                     </div>
-                    <h5>3.510.000 <span class="text-danger">đ</span> </h5>
+                    <h5>3.510.000 <span class="text-danger">đ</span></h5>
                   </div>
-                </div>
+                </a>
               </div>
+              <!-- Item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item sale">
-                  <div class="product__item__pic set-bg"
-                       data-setbg="img/product/product-2.jpg">
-                    <span class="label">Sale</span>
+                  <div class="product__item__pic">
+                    <img
+                      src="img/product/product-2.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                    <span class="label">Sell</span>
                   </div>
                   <div class="product__item__text">
                     <h6>G-SOCK</h6>
@@ -335,14 +253,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star-o"></i>
                     </div>
-                    <h5>3.170.000 <span class="text-danger">đ</span> </h5>
+                    <h5>3.170.000 <span class="text-danger">đ</span></h5>
                   </div>
                 </div>
               </div>
+              <!-- Item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
-                  <div class="product__item__pic set-bg"
-                       data-setbg="img/product/product-3.jpg"></div>
+                  <div class="product__item__pic">
+                    <img
+                      src="img/product/product-3.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
                   <div class="product__item__text">
                     <h6>Tai nghe Samsung Galaxy Buds 2 Pro</h6>
                     <a href="#"
@@ -358,10 +282,15 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   </div>
                 </div>
               </div>
+              <!-- item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item sale">
-                  <div class="product__item__pic set-bg"
-                       data-setbg="img/product/product-4.jpg">
+                  <div class="product__item__pic">
+                    <img
+                      src="img/product/product-4.png"
+                      class="img-fluid"
+                      alt=""
+                    />
                     <span class="label">Sale</span>
                   </div>
                   <div class="product__item__text">
@@ -375,14 +304,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star-o"></i>
                     </div>
-                    <h5>3.900.000 <span class="text-danger">đ</span> </h5>
+                    <h5>3.900.000 <span class="text-danger">đ</span></h5>
                   </div>
                 </div>
               </div>
+              <!-- item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
-                  <div class="product__item__pic set-bg"
-                       data-setbg="img/product/product-5.jpeg"></div>
+                  <div class="product__item__pic">
+                    <img
+                      src="img/product/product-5.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
                   <div class="product__item__text">
                     <h6>Tai nghe AirPods 3 Apple MV7N3</h6>
                     <a href="#"
@@ -394,14 +329,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                       <i class="fa fa-star-o"></i>
                       <i class="fa fa-star-o"></i>
                     </div>
-                    <h5>4.320.000 <span class="text-danger">đ</span> </h5>
+                    <h5>4.320.000 <span class="text-danger">đ</span></h5>
                   </div>
                 </div>
               </div>
+              <!-- Item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
-                  <div class="product__item__pic set-bg"
-                       data-setbg="img/product/product-8.jpeg"></div>
+                  <div class="product__item__pic">
+                    <img
+                      src="img/product/product-6.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
                   <div class="product__item__text">
                     <h6>Loa Mozart BT 100</h6>
                     <a href="#"
@@ -413,105 +354,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                       <i class="fa fa-star-o"></i>
                       <i class="fa fa-star-o"></i>
                     </div>
-                    <h5>1.070.000 <span class="text-danger">đ</span> </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div class="product__item__pic set-bg"
-                       data-setbg="img/product/product-9.jpeg"></div>
-                  <div class="product__item__text">
-                    <h6>Loa bluetooth FENDA F5 Plus</h6>
-                    <a href="#"
-                       class="add-cart">+ Thêm vào giỏ hàng</a>
-                    <div class="rating">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <h5>225.000 <span class="text-danger">đ</span> </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item sale">
-                  <div class="product__item__pic set-bg"
-                       data-setbg="img/product/product-10.jpg">
-                    <span class="label">Sale</span>
-                  </div>
-                  <div class="product__item__text">
-                    <h6>Túi đựng nhiều ngăn</h6>
-                    <a href="#"
-                       class="add-cart">+ Thêm vào giỏ hàng</a>
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <h5>150.000 <span class="text-danger">đ</span> </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div class="product__item__pic set-bg"
-                       data-setbg="img/product/product-11.jpg"></div>
-                  <div class="product__item__text">
-                    <h6>Túi đựng nhiều ngăn</h6>
-                    <a href="#"
-                       class="add-cart">+ Thêm vào giỏ hàng</a>
-                    <div class="rating">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <h5>350.000 <span class="text-danger">đ</span> </h5>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div class="product__item__pic set-bg"
-                       data-setbg="img/product/product-13.jpg"></div>
-                  <div class="product__item__text">
-                    <h6>Túi sách gucci</h6>
-                    <a href="#"
-                       class="add-cart">+ Thêm vào giỏ hàng</a>
-                    <div class="rating">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <h5>4.999.000 <span class="text-danger">đ</span> </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
-                  <div class="product__item__pic set-bg"
-                       data-setbg="img/product/product-14.jpeg"></div>
-                  <div class="product__item__text">
-                    <h6>Anker powercore Esstial 20W A1287</h6>
-                    <a href="#"
-                       class="add-cart">+ Thêm vào giỏ hàng</a>
-                    <div class="rating">
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                    <h5>1.280.000 <span class="text-danger">đ</span> </h5>
+                    <h5>1.070.000 <span class="text-danger">đ</span></h5>
                   </div>
                 </div>
               </div>

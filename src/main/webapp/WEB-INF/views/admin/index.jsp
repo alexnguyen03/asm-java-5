@@ -22,8 +22,11 @@
 
   <body>
     <div class="app-container">
+      <!-- Sidebar -->
       <jsp:include page="sidebar.jsp" />
+      
       <div class="app-content">
+        <!-- Top content -->
         <jsp:include page="top-content.jsp" />
         <div class="container-fluid pt-5">
           <div class="card-deck mb-3">
