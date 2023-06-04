@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
-public class Category_Admin_Controller {
-    @GetMapping("/category")
-    public String getCategory(){
-        return "admin/category";
+public class ProductManagementController {
+    @GetMapping("/product-manager")
+    public String getProductManager() {
+        return "admin/productManager";
     }
 }

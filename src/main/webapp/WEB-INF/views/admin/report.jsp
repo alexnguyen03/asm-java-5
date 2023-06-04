@@ -139,45 +139,6 @@
           </button>
         </div>
         <div class="app-content-actions">
-          <!-- <form action="">
-            <input class="search-bar"
-                   placeholder="Tìm kiếm..."
-                   type="text"
-                   list="user"> -->
-          <!-- <input list="user"
-              value=""
-              type="text"
-              class="col-sm-6 custom-select custom-select-sm"> -->
-          <!-- <datalist id="user">
-              <option value="Nguyễn Hoài Nam"></option>
-              <option value="Trần Trong Hiến"></option>
-              <option value="Lê Minh Dương">John Le</option>
-            </datalist>
-          </form>
-          <div class="w-100 d-flex justify-content-center">
-            <div class="product-cell status-cell d-flex flex-column justify-content-center">
-            </div> -->
-          <!-- <nav aria-label="Page navigation example"
-                 class="mt-3 ml-4">
-              <ul class="pagination justify-content-center pagination-sm align-self-center">
-                <li class="page-item disabled">
-                  <a class="page-link"
-                     href="#"
-                     tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link"
-                     href="#">1</a></li>
-                <li class="page-item"><a class="page-link"
-                     href="#">2</a></li>
-                <li class="page-item"><a class="page-link"
-                     href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link"
-                     href="#">Next</a>
-                </li>
-              </ul>
-            </nav> -->
-          <!-- <div class="text-primary px-3 border">Hiển thị 15 / 20 người dùng</div> -->
           <a href="/admin/report"
              class="btn btn-primary">Top 10 sản phẩm bán chạy</a>
           <a href="/admin/report/report-by-category"

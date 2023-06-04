@@ -11,7 +11,6 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title>Dashboard </title>
-
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet"
@@ -19,7 +18,6 @@
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/font-awesome.min.css"
           type="text/css" />
-
   </head>
 
   <body>
@@ -41,10 +39,8 @@
               <div class="card-body text-center d-flex flex-column justify-content-center">
                 <h2 class="card-title">ĐƠN ĐƯỢC ĐẶT</h2>
                 <h4 class="card-text">324.000 đơn </h4>
-
               </div>
             </div>
-
             <div class="card">
               <div class="card-body  text-center d-flex flex-column justify-content-center">
                 <h2 class="card-title">DOANH THU</h2>
@@ -53,7 +49,6 @@
             </div>
           </div>
           <div class="card-deck mb-3">
-
             <div class="card">
               <div class="card-body  text-center d-flex flex-column justify-content-center">
                 <h2 class="card-title">SẢN PHẨM BÁN ĐƯỢC</h2>
@@ -75,7 +70,6 @@
             </div>
           </div>
           <div class="card-deck mb-3">
-
             <div class="card">
               <div class="card-body  text-center d-flex flex-column justify-content-center">
                 <h2 class="card-title">SẢN PHẨM BÁN CHẠY NHẤT</h2>
@@ -88,13 +82,10 @@
                 <h4 class="card-text alert alert-dange">Tai nghe AirPod 3 Pro</h4>
               </div>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
-
     </div>
     </div>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
