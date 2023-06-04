@@ -171,15 +171,41 @@
 				<div class="col-lg-10  m-auto">
 					<h4>Lịch Sử Đặt Hàng</h4>
 					<hr>
-					<div class="d-flex flex-row-reverse mb-3">
-						<button type="button" class="btn btn-warning ml-2">Đơn đã hủy</button>
-						<button type="button" class="btn btn-primary">Đơn đã thanh toán</button>
+					<div class="d-flex mb-2">
+						<div class="p-2">
+							<div class="input-group" style="width: 230px;">
+								<div class="input-group-prepend">
+									<label class="input-group-text" for="inputGroupSelect01">Tìm
+										theo</label>
+								</div>
+								<select class="custom-select" id="inputGroupSelect01">
+									<option selected>Chọn</option>
+									<option value="1">Mã đơn hàng</option>
+									<option value="2">Tên sản phẩm</option>
+								</select>
+							</div>
+						</div>
+						<div class="p-2">
+							<input class="search-bar bg-white text-dark form-control"
+								placeholder="Search..." type="text" style="height: 42px;">
+						</div>
+						<div class="mr-auto p-2">
+							<button type="button" class="btn btn-primary" style="height: 42px;">Tìm</button>
+						</div>
+						<div class="p-2">
+							<button type="button" class="btn btn-warning mr-2" style="height: 42px;">Đơn
+								đã hủy</button>
+						</div>
+						<div class="p-2">
+							<button type="button" class="btn btn-primary" style="height: 42px;">Đơn đã
+								thanh toán</button>
+						</div>
 					</div>
 					<div class="table-responsive">
 						<table class="table text-center">
 							<thead class="bg-dark text-white">
 								<tr>
-									<th scope="col">STT</th>
+									<th scope="col">Mã Đơn Hàng</th>
 									<th scope="col">Ngày Đặt</th>
 									<th scope="col">Tổng Tiền</th>
 									<th scope="col">Giảm Giá</th>
@@ -249,6 +275,9 @@
 				</div>
 				<!-- Modal body -->
 				<div class="modal-body">
+					<h5 class="mb-3">
+						Mã đơn hàng: <strong>1</strong>
+					</h5>
 					<table class="table font-weight-bold">
 						<thead class="bg-dark text-white text-center">
 							<tr>
@@ -295,13 +324,18 @@
 								<td class="pt-4">30.000.000đ</td>
 							</tr>
 						</tbody>
+
 					</table>
 				</div>
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
+					<h4>
+						Tổng số lượng sản phẩm: <strong>10</strong>
+					</h4>
+					<h4>
+						Tổng tiền : <strong>90.00.00đ</strong>
+					</h4>
 				</div>
 
 			</div>
