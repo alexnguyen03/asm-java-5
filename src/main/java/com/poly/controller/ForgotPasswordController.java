@@ -6,17 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("account")
-public class AccountController {
-
-    @GetMapping("login")
-    public String getFormLogin() {
-        return "/account/login";
-    }
-
-    @GetMapping("signup")
-    public String getFormSignin() {
-        return "/account/signup";
-    }
+public class ForgotPasswordController {
 
     @GetMapping("forgotpassword")
     public String getFormForgotPassword() {
@@ -33,13 +23,4 @@ public class AccountController {
         return "/account/resetpassword";
     }
 
-    @GetMapping("update-account")
-    public String getFormUpdate() {
-        return "/account/update_account";
-    }
-
-    @GetMapping("change-password")
-    public String getFormChangpass() {
-        return "account/change-password";
-    }
 }

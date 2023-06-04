@@ -8,7 +8,7 @@ import ch.qos.logback.core.model.Model;
 
 @Controller
 @RequestMapping("/admin")
-public class ReviewsController {
+public class ReviewsManagementController {
     @GetMapping("/review")
     public String index(Model m) {
         return "/admin/reviews";

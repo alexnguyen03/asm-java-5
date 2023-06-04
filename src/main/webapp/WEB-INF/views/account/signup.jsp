@@ -173,9 +173,9 @@
 
                                           <!-- Submit Button -->
                                           <div class="form-group col-lg-12 mx-auto mb-0">
-                                                <a href="#"
+                                                <a href="/account/verify"
                                                    class="btn btn-primary btn-block py-2">
-                                                      <span class="font-weight-bold">Tạo tài khoản</span>
+                                                      <span class="font-weight-bold">Nhận mã xác nhận</span>
                                                 </a>
                                           </div>
 
