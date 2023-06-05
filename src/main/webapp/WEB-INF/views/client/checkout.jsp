@@ -289,33 +289,228 @@ pageEncoding="UTF-8"%>
                 2022 All rights reserved
               </p>
 
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- Footer end -->
-    <!-- Search Begin -->
-    <div class="search-model">
-      <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-          <input type="text" id="search-input" placeholder="Search here....." />
-        </form>
-      </div>
-    </div>
-    <!-- Search End -->
-    <!-- Js Plugins -->
-    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.nicescroll.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.countdown.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
-    <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>
-  </body>
+	<!-- Checkout Section Begin -->
+	<div class="checkout">
+		<div class="container mt-5 mb-5">
+			<div class="row">
+				<div class="col-lg-6 border-right">
+					<h4 class="mb-4 text-center font-weight-bold">CHI TIẾT THANH TOÁN</h4>
+					<form>
+						<div class="form-group">
+							<label for="fullname" class="form-label">Họ và tên</label> <input
+								type="text" class="form-control" id="fullname">
+						</div>
+						<div class="container p-0">
+							<div class="row">
+								<div class="col-lg-7">
+									<div class="form-group">
+										<label for="email" class="form-label">Email</label> <input
+											type="email" class="form-control" id="email">
+									</div>
+								</div>
+								<div class="col-lg-5">
+									<div class="form-group">
+										<label for="phone" class="form-label">Số điện thoại</label> <input
+											type="text" class="form-control" id="phone">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="address" class="form-label">Địa chỉ</label> <input
+								type="text" class="form-control" id="address">
+						</div>
+						<div class="mb-3">
+							<label>Phương thức thanh toán</label>
+						</div>
+						<div class="form-check mb-3">
+							<input class="form-check-input" type="radio"
+								name="flexRadioDefault" id="vnpay"> <label
+								class="form-check-label" for="vnpay"> Thanh toán PayPal
+							</label> 
+							<i class="fa fa-paypal text-info ml-2" aria-hidden="true"></i>
+						</div>
+						<div class="form-check mb-3">
+							<input class="form-check-input" type="radio"
+								name="flexRadioDefault" id="khinhanhang" checked> <label
+								class="form-check-label" for="khinhanhang"> Thanh toán
+								khi nhận hàng </label> 
+								<i class="fa fa-exchange text-success ml-2" aria-hidden="true"></i>
+						</div>
+						<a href="" class="btn btn-secondary w-50 mt-2">Quay
+							lại giỏ hàng</a>
+					</form>
+
+				</div>
+				<div class="col-lg-6">
+					<h4 class="mb-4 text-center font-weight-bold">ĐƠN HÀNG CỦA BẠN</h4>
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-3 mb-3">
+								<img src="${pageContext.request.contextPath}/img/checkout/tainghe.png" class="card-img-top"
+									height="80">
+							</div>
+							<div class="col-lg-6">
+								<span class="font-weight-bold">Tai nghe
+									Bluetooth Jabra Elite 85h | 540.000.000 ₫</span><br> <span
+									class="text-dark">Số Lượng: 2</span>
+							</div>
+							<div class="col-lg-3">
+								<h4 class="mt-3 text-danger font-weight-bold">18,000 ₫</h4>
+							</div>
+							<div class="col-lg-3 mb-3">
+								<img src="${pageContext.request.contextPath}/img/checkout/tainghe.png" class="card-img-top"
+									height="80">
+							</div>
+							<div class="col-lg-6">
+								<span class="font-weight-bold">Tai nghe
+									Bluetooth Jabra Elite 85h | 540.000.000 ₫</span><br> <span
+									class="text-dark">Số Lượng: 2</span>
+							</div>
+							<div class="col-lg-3">
+								<h4 class="mt-3 text-danger font-weight-bold">18,000 ₫</h4>
+							</div>
+							<div class="col-lg-12">
+								<hr>
+							</div>
+							<div class="col-lg-9">
+								<form action="">
+									<input type="text" class="form-control"
+										placeholder="Mã giảm giá">
+								</form>
+							</div>
+							<div class="col-lg-3">
+								<button type="button" class="btn btn-primary w-100" disabled>Sử
+									dụng</button>
+							</div>
+							<div class="col-lg-12">
+								<hr>
+							</div>
+							<div class="col-lg-6">
+								<p>Tạm tính</p>
+								<p>Giảm giá</p>
+							</div>
+							<div class="col-lg-6 text-right">
+								<h4 class="font-weight-bold">18,000 ₫</h4>
+								<h4 class="font-weight-bold mt-2">0 ₫</h4>
+							</div>
+							<div class="col-lg-12">
+								<hr>
+							</div>
+							<div class="col-lg-6 mb-3">
+								<h3 class="font-weight-bold">Tổng cộng</h3>
+							</div>
+							<div class="col-lg-6 text-right">
+								<h3 class="font-weight-bold">120,000 ₫</h3>
+							</div>
+							<div class="col-lg-12">
+								<button type="submit"
+									class="btn btn-info w-100 font-weight-bold p-2">Thanh
+									toán</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Checkout Section End -->
+
+	<!-- Footer Section Begin -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="footer__about">
+						<div class="footer__logo">
+							<a href="#"><img src="${pageContext.request.contextPath}/img/footer-logo.png" alt=""></a>
+						</div>
+						<p>The customer is at the heart of our unique business model,
+							which includes design.</p>
+						<a href="#"><img src="${pageContext.request.contextPath}/img/payment.png" alt=""></a>
+					</div>
+				</div>
+				<div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+					<div class="footer__widget">
+						<h6>Shopping</h6>
+						<ul>
+							<li><a href="#">Clothing Store</a></li>
+							<li><a href="#">Trending Shoes</a></li>
+							<li><a href="#">Accessories</a></li>
+							<li><a href="#">Sale</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-3 col-sm-6">
+					<div class="footer__widget">
+						<h6>Shopping</h6>
+						<ul>
+							<li><a href="#">Contact Us</a></li>
+							<li><a href="#">Payment Methods</a></li>
+							<li><a href="#">Delivary</a></li>
+							<li><a href="#">Return & Exchanges</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+					<div class="footer__widget">
+						<h6>NewLetter</h6>
+						<div class="footer__newslatter">
+							<p>Be the first to know about new arrivals, look books, sales
+								& promos!</p>
+							<form action="#">
+								<input type="text" placeholder="Your email">
+								<button type="submit">
+									<span class="icon_mail_alt"></span>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="footer__copyright__text">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						<p>
+							Copyright ©
+							<script>
+								document.write(new Date().getFullYear());
+							</script>
+							2020 All rights reserved | This template is made with <i
+								class="fa fa-heart-o" aria-hidden="true"></i> by <a
+								href="https://colorlib.com" target="_blank">Colorlib</a>
+						</p>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer Section End -->
+
+	<!-- Search Begin -->
+	<div class="search-model">
+		<div class="h-100 d-flex align-items-center justify-content-center">
+			<div class="search-close-switch">+</div>
+			<form class="search-model-form">
+				<input type="text" id="search-input" placeholder="Search here.....">
+			</form>
+		</div>
+	</div>
+	<!-- Search End -->
+
+	<!-- Js Plugins -->
+	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.nicescroll.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.countdown.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
+</body>
+
 </html>
