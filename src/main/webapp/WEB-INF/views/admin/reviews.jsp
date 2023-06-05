@@ -24,9 +24,9 @@
 <body>
 	<!-- 	demo -->
 	<div class="app-container">
-		<jsp:include page="sidebar.jsp" />
+<%-- 		<jsp:include page="sidebar.jsp" /> --%>
 		<div class="app-content">
-			<jsp:include page="top-content.jsp" />
+<%-- 			<jsp:include page="top-content.jsp" /> --%>
 			<div class="app-content-header">
 				<h1 class="app-content-headerText">ĐÁNH GIÁ</h1>
 				<button class="mode-switch" title="Switch Theme">
