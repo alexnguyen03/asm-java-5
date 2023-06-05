@@ -196,7 +196,7 @@
 								khi nhận hàng </label> 
 								<i class="fa fa-exchange text-success ml-2" aria-hidden="true"></i>
 						</div>
-						<a href="" class="btn btn-secondary w-50 float-right mt-5">Quay
+						<a href="" class="btn btn-secondary w-50 mt-2">Quay
 							lại giỏ hàng</a>
 					</form>
 
