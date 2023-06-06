@@ -120,7 +120,7 @@ pageEncoding="UTF-8"%>
               </div>
               <a
                 href="/shop/cart-detail"
-                class="btn btn-secondary w-50 float-right mt-5"
+                class="btn btn-secondary w-50 mt-2"
                 >Quay lại giỏ hàng</a
               >
             </form>
