@@ -157,7 +157,7 @@
 										<div class="col-6">
 											<div class="form-group">
 												<label for="quantity" class="font-weight-bold">Số
-													lượng</label> <input type="text" class="form-control" id="quantity"
+													lượng</label> <input type="text" name="quantity" class="form-control" id="quantity"
 													aria-describedby="quantityHelp" placeholder="" /> <small
 													id="quantityHelp" class="form-text text-muted"></small>
 											</div>
@@ -412,7 +412,7 @@
 											</button>
 										</div>
 
-										<form action="/admin/product-manager/edit" method="POST"
+										<form action="/admin/product-manager/edit" method="Post"
 											class="row" enctype="multipart/form-data">
 											<!-- Left form -->
 											<div class="col-4">
@@ -426,9 +426,10 @@
 														</label> <input type="file"
 															value="${pageContext.request.contextPath}/img/product/${item.image}"
 															name="photo_file" hidden id="Video-edit-myPicture" /> <span
-															class="error"></span> <img
-															src="${pageContext.request.contextPath}/img/product/${item.image}"
-															alt="" />
+															class="error"></span>
+														<!-- 															<img -->
+														<%-- 															src="${pageContext.request.contextPath}/img/product/${item.image}" --%>
+														<!-- 															alt="" /> -->
 													</div>
 												</div>
 											</div>
@@ -442,7 +443,7 @@
 																phẩm</label> <input type="text" name="id" value="${item.id}"
 																class="form-control" id="name"
 																aria-describedby="nameHelp" placeholder=""
-																disabled="disabled" /> <small id="nameHelp"
+																readonly /> <small id="nameHelp"
 																class="form-text text-muted"></small>
 														</div>
 													</div>
@@ -512,9 +513,8 @@
 													style="width: 250px;" data-dismiss="modal"
 													aria-label="Close">Trở về</button>
 												<button class="btn btn-dark font-weight-bold"
-													style="width: 250px;" type="submit"
-													formaction="admin/product-manager/update">Cập nhật
-													sản phẩm</button>
+													style="width: 250px;" type="submit">Cập nhật sản
+													phẩm</button>
 											</div>
 										</form>
 									</div>

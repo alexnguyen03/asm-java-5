@@ -51,13 +51,13 @@ public class ProductManagementController {
 		return "admin/productManager";
 	}
 
-	@GetMapping("/edit/{id}")
-	private String edit(Model model, @PathVariable("id") Integer id) {
+	@PostMapping("/edit")
+	public String edit(Model model, @RequestParam("id") int id) {
 		Product item = productDAO.findById(id).get();
-		model.addAttribute("item", item);
-		List<Product> items = productDAO.findAll();
-		model.addAttribute("items", items);
-		return "admin/productManager";
+		System.out.println(item);
+//		item.setName(name);
+		productDAO.save(item);
+		return "redirect:/admin/product-manager";
 	}
 
 	@PostMapping("/create")
@@ -71,16 +71,16 @@ public class ProductManagementController {
 		return "redirect:/admin/product-manager";
 	}
 
-	@PostMapping("/update")
-	private String update(Product item, @RequestParam("photo_file") MultipartFile img)
-			throws IllegalStateException, IOException {
-		String filename = img.getOriginalFilename();
-		File file = new File(app.getRealPath("/images/" + filename));
-		img.transferTo(file);
-		item.setImage(filename);
-		productDAO.save(item);
-		return "redirect:/admin/edit/" + item.getId();
-	}
+//	@PostMapping("/update")
+//	private String update(Product item, @RequestParam("photo_file") MultipartFile img)
+//			throws IllegalStateException, IOException {
+//		String filename = img.getOriginalFilename();
+//		File file = new File(app.getRealPath("/images/" + filename));
+//		img.transferTo(file);
+//		item.setImage(filename);
+//		productDAO.save(item);
+//		return "redirect:/admin/edit/" + item.getId();
+//	}
 
 	@PostMapping("/delete/{id}")
 	private String delete(@PathVariable("id") Integer id) {
@@ -91,10 +91,10 @@ public class ProductManagementController {
 	@ModelAttribute("list_avaiable")
 	public Map<Boolean, String> getAvaiable() {
 		Map<Boolean, String> map = new HashMap<>();
-		map.put(false, "Hết hàng");
 		map.put(true, "Còn hàng");
+		map.put(false, "Hết hàng");
 		return map;
-	}
+	} 
 
 	@ModelAttribute("list_category")
 	public Map<String, String> getCategory() {
