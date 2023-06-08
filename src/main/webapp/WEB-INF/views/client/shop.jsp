@@ -208,13 +208,12 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="row">
               <!-- Item -->
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <a href="/shop/product-detail" class="product__item">
+                <a href="/shop/product-detail"
+                   class="product__item">
                   <div class="product__item__pic">
-                    <img
-                      src="img/product/product-1.png"
-                      class="img-fluid"
-                      alt=""
-                    />
+                    <img src="img/product/product-1.png"
+                         class="img-fluid"
+                         alt="" />
                   </div>
                   <div class="product__item__text">
                     <h6>EDIFICE CASIO</h6>
@@ -235,16 +234,14 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item sale">
                   <div class="product__item__pic">
-                    <img
-                      src="img/product/product-2.png"
-                      class="img-fluid"
-                      alt=""
-                    />
+                    <img src="img/product/product-2.png"
+                         class="img-fluid"
+                         alt="" />
                     <span class="label">Sell</span>
                   </div>
                   <div class="product__item__text">
                     <h6>G-SOCK</h6>
-                    <a href="#"
+                    <a href="/shop/cart-detail/add/1002"
                        class="add-cart">+ Thêm vào giỏ hàng</a>
                     <div class="rating">
                       <i class="fa fa-star"></i>
@@ -261,11 +258,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
                   <div class="product__item__pic">
-                    <img
-                      src="img/product/product-3.png"
-                      class="img-fluid"
-                      alt=""
-                    />
+                    <img src="img/product/product-3.png"
+                         class="img-fluid"
+                         alt="" />
                   </div>
                   <div class="product__item__text">
                     <h6>Tai nghe Samsung Galaxy Buds 2 Pro</h6>
@@ -286,11 +281,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item sale">
                   <div class="product__item__pic">
-                    <img
-                      src="img/product/product-4.png"
-                      class="img-fluid"
-                      alt=""
-                    />
+                    <img src="img/product/product-4.png"
+                         class="img-fluid"
+                         alt="" />
                     <span class="label">Sale</span>
                   </div>
                   <div class="product__item__text">
@@ -312,11 +305,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
                   <div class="product__item__pic">
-                    <img
-                      src="img/product/product-5.png"
-                      class="img-fluid"
-                      alt=""
-                    />
+                    <img src="img/product/product-5.png"
+                         class="img-fluid"
+                         alt="" />
                   </div>
                   <div class="product__item__text">
                     <h6>Tai nghe AirPods 3 Apple MV7N3</h6>
@@ -337,11 +328,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
                   <div class="product__item__pic">
-                    <img
-                      src="img/product/product-6.png"
-                      class="img-fluid"
-                      alt=""
-                    />
+                    <img src="img/product/product-6.png"
+                         class="img-fluid"
+                         alt="" />
                   </div>
                   <div class="product__item__text">
                     <h6>Loa Mozart BT 100</h6>

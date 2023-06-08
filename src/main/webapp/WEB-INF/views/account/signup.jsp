@@ -41,7 +41,6 @@
             <style>
                   body {
                         position: relative;
-
                   }
 
                   .img-fluid {
@@ -58,7 +57,6 @@
                   }
 
                   .row {
-
                         background-color: rgba(255, 255, 255, 0.266);
                   }
             </style>
@@ -76,12 +74,13 @@
                                    alt=""
                                    class="img-fluid mb-3 d-none d-md-block">
                               <h1 class="text-center pt-3">Tạo tài khoản</h1>
-
                         </div>
-
                         <!-- Registeration Form -->
                         <div class="col-md-6 col-lg-6 ml-auto my-3">
-                              <form action="#">
+                              <form:form action="/account/signup"
+                                         method="post"
+                                         enctype="multipart/form-data"
+                                         modelAttribute="account">
                                     <div class="row  py-3 bg rounded ">
                                           <div class="input-group col-lg-12 my-4">
                                                 <div class="input-group-prepend">
@@ -90,11 +89,11 @@
                                                             <i class="fa fa-user text-muted"></i>
                                                       </span>
                                                 </div>
-                                                <input id="username"
-                                                       type="text"
-                                                       name="username"
-                                                       placeholder="Tên đăng nhập"
-                                                       class="form-control bg-white border-left-0 border-md">
+                                                <form:input id="username"
+                                                            type="text"
+                                                            path="username"
+                                                            placeholder="Tên đăng nhập"
+                                                            cssClass="form-control bg-white border-left-0 border-md" />
                                           </div>
                                           <div class="input-group col-lg-12 mb-4">
                                                 <div class="input-group-prepend">
@@ -103,14 +102,12 @@
                                                             <i class="fa fa-user text-muted"></i>
                                                       </span>
                                                 </div>
-                                                <input id="fullname"
-                                                       type="text"
-                                                       name="fullname"
-                                                       placeholder="Họ và tên"
-                                                       class="form-control bg-white border-left-0 border-md">
+                                                <form:input id="fullname"
+                                                            type="text"
+                                                            path="fullname"
+                                                            placeholder="Họ và tên"
+                                                            cssClass="form-control bg-white border-left-0 border-md" />
                                           </div>
-
-
                                           <!-- Email Address -->
                                           <div class="input-group col-lg-12 mb-4">
                                                 <div class="input-group-prepend">
@@ -119,15 +116,12 @@
                                                             <i class="fa fa-envelope text-muted"></i>
                                                       </span>
                                                 </div>
-                                                <input id="email"
-                                                       type="email"
-                                                       name="email"
-                                                       placeholder="Email"
-                                                       class="form-control bg-white border-left-0 border-md">
+                                                <form:input id="email"
+                                                            type="email"
+                                                            path="email"
+                                                            placeholder="Email"
+                                                            cssClass="form-control bg-white border-left-0 border-md" />
                                           </div>
-
-
-
                                           <!-- Password -->
                                           <div class="input-group col-lg-12 mb-4">
                                                 <div class="input-group-prepend">
@@ -136,13 +130,29 @@
                                                             <i class="fa fa-lock text-muted"></i>
                                                       </span>
                                                 </div>
-                                                <input id="password"
-                                                       type="password"
-                                                       name="password"
-                                                       placeholder="Mật khẩu"
-                                                       class="form-control bg-white border-left-0 border-md">
+                                                <form:input id="password"
+                                                            type="password"
+                                                            path="password"
+                                                            placeholder="Mật khẩu"
+                                                            cssClass="form-control bg-white border-left-0 border-md" />
                                           </div>
 
+                                          <!-- activated -->
+                                          <form:input id="activated"
+                                                      type="hidden"
+                                                      path="activated"
+                                                      value="true"
+                                                      placeholder="Email"
+                                                      cssClass="form-control bg-white border-left-0 border-md" />
+                                          <!-- activated -->
+                                          <!-- activated -->
+                                          <form:input id="email"
+                                                      type="hidden"
+                                                      path="admin"
+                                                      value="false"
+                                                      placeholder="Email"
+                                                      cssClass="form-control bg-white border-left-0 border-md" />
+                                          <!-- activated -->
                                           <!-- Password Confirmation -->
                                           <div class="input-group col-lg-12 mb-4">
                                                 <div class="input-group-prepend">
@@ -152,33 +162,29 @@
                                                       </span>
                                                 </div>
                                                 <input id="passwordConfirmation"
-                                                       type="text"
+                                                       type="password"
                                                        name="passwordConfirmation"
                                                        placeholder="Xác nhận mật khẩu     "
                                                        class="form-control bg-white border-left-0 border-md">
                                           </div>
-
                                           <div class="input-group col-lg-12 mb-4">
                                                 <div class="custom-file ">
                                                       <input type="file"
                                                              class="custom-file-input"
-                                                             id="validatedCustomFile"
-                                                             required>
+                                                             name="avt">
                                                       <label class="custom-file-label"
                                                              for="validatedCustomFile">Chọn ảnh đại diện</label>
                                                       <div class="invalid-feedback">Vui lòng chọn ảnh đại diện
                                                       </div>
                                                 </div>
                                           </div>
-
                                           <!-- Submit Button -->
                                           <div class="form-group col-lg-12 mx-auto mb-0">
-                                                <a href="/account/verify"
-                                                   class="btn btn-primary btn-block py-2">
-                                                      <span class="font-weight-bold">Nhận mã xác nhận</span>
-                                                </a>
+                                                <button type="submit"
+                                                        class="btn btn-primary btn-block py-2">
+                                                      <span class="font-weight-bold">Gửi mã xác nhận</span>
+                                                </button>
                                           </div>
-
                                           <!-- Divider Text -->
                                           <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
                                                 <div class="border-bottom w-100 ml-5"></div>
@@ -186,16 +192,14 @@
                                                       class="px-2 small text-muted font-weight-bold text-muted">Hoặc</span>
                                                 <div class="border-bottom w-100 mr-5"></div>
                                           </div>
-
                                           <!-- Already Registered -->
                                           <div class="text-center w-100">
                                                 <p class="text-muted font-weight-bold">Bạn đã có tài khoản ? <a
                                                          href="/account/login"
                                                          class="text-primary ml-2">Đăng nhập</a></p>
                                           </div>
-
                                     </div>
-                              </form>
+                              </form:form>
                         </div>
                   </div>
             </div>

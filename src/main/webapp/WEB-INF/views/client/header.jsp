@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <!-- Header Section Begin -->
- <header class="header header_scroll_top" id="header_scroll_top">
+<!-- Header Section Begin -->
+<header class="header header_scroll_top"
+        id="header_scroll_top">
   <div class="container">
     <div class="row">
       <div class="col-lg-3 col-md-3">
@@ -31,7 +32,7 @@
              class="position-relative pr-3"><img src="${pageContext.request.contextPath }/img/icon/cart.png"
                  alt=""
                  width="20px" /> <span class="badge badge-danger position-absolute "
-                  style="top: -2px;">2</span></a>
+                  style="top: -2px;"> <%= session.getAttribute("totalCart") %></span></a>
           <div class="dropdown d-inline">
             <div class="btn btn-white dropdown-toggle  btn-sm"
                  type="button"
@@ -43,7 +44,7 @@
             </div>
             <div class="dropdown-menu">
               <a class="dropdown-item"
-                 href="/account/login"><i class="fa fa-sign-in"
+                 href="/login"><i class="fa fa-sign-in"
                    aria-hidden="true"></i> Đăng nhập</a>
               <a class="dropdown-item"
                  href="/account/change-password"> <i class="fa fa-sign-out"

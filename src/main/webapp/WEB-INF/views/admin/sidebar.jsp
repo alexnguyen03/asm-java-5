@@ -17,11 +17,11 @@
         <span>Trang chủ</span>
       </a>
     </li>
-    <li class="sidebar-list-item ">
+    <li class="sidebar-list-item ${pageActive == 'user' ? 'active' : ''}">
       <a href="/admin/user">
         <i class="fa fa-user mr-2"
            aria-hidden="true"></i>
-        <span>Người dùng</span>
+        <span>Người dùng </span>
       </a>
     </li>
     <li class="sidebar-list-item ">
@@ -31,7 +31,7 @@
         <span>Khuyến mãi</span>
       </a>
     </li>
-    <li class="sidebar-list-item active">
+    <li class="sidebar-list-item ">
       <a href="/admin/product-manager">
         <i class="fa fa-product-hunt mr-2"
            aria-hidden="true"></i>
@@ -44,11 +44,11 @@
         <span>Danh mục</span>
       </a>
     </li>
-    <li class="sidebar-list-item ">
+    <li class="sidebar-list-item ${pageActive == 'order' ? 'active' : ''}">
       <a href="/admin/order">
         <i class="fa fa-first-order mr-2"
            aria-hidden="true"></i>
-        <span>Đặt hàng</span>
+        <span>Đơn hàng </span>
       </a>
     </li>
     <li class="sidebar-list-item">

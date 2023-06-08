@@ -22,55 +22,94 @@
             crossorigin="anonymous"></script>
   </head>
 
-  <body>
-    <div class="app-container ">
+  <body onload="$('#deleteToast').toast('show')">
+    <div class="app-container position-relative ">
       <!-- Sidebar -->
       <jsp:include page="sidebar.jsp" />
 
       <div class="app-content  h-100">
+        <!-- toast msg  -->
+        <div class="toast position-absolute"
+             id="${isUpdated == true ? 'deleteToast' : ''}"
+             role="alert"
+             aria-live="assertive"
+             aria-atomic="true"
+             data-delay="3000"
+             style="top: 3.5rem;
+             left: 50%;
+             transform: translate(-50%,-50%);
+             z-index: 100;">
+          <div class="toast-header">
+            <strong class="mr-auto text-center">Hệ thống</strong>
+            <button type="button"
+                    class="ml-2 mb-1 close"
+                    data-dismiss="toast"
+                    aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="toast-body alert-info">Cập nhật trạng thái người dùng thành công !</div>
+        </div>
+        <!-- toast msg  -->
         <!-- Top content -->
-        <jsp:include page="top-content.jsp" />
-        
+        <jsp:include page="top-content.jsp">
+          <jsp:param name="title"
+                     value="${title}" />
+        </jsp:include>
+        <!-- Top content -->
         <div class="app-content-actions">
           <form action="">
             <input class="search-bar"
                    placeholder="Tìm kiếm..."
                    type="text"
                    list="user">
-            <!-- <input list="user"
-              value=""
-              type="text"
-              class="col-sm-6 custom-select custom-select-sm"> -->
             <datalist id="user">
-              <option value="Nguyễn Hoài Nam"></option>
-              <option value="Trần Trong Hiến"></option>
-              <option value="Lê Minh Dương">John Le</option>
+              <c:forEach var="u"
+                         items="${users}">
+                <option value="${u.fullname}"></option>
+              </c:forEach>
             </datalist>
           </form>
           <div class="w-100 d-flex justify-content-center">
             <div class="product-cell status-cell d-flex flex-column justify-content-center">
-              <span class="status active py-2">Hiển thị hihi<strong class="mx-2">15 / 20</strong> người dùng</span>
+              <span class="status active py-2">Hiển thị <strong class="mx-2">15 / 20</strong> người
+                dùng</span>
             </div>
-            <nav aria-label="Page navigation example"
-                 class="mt-3 ml-4">
-              <ul class="pagination justify-content-center pagination-sm align-self-center">
-                <li class="page-item disabled">
-                  <a class="page-link"
-                     href="#"
-                     tabindex="-1">Đầu</a>
+            <!--* paging start  -->
+            <%-- <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item ${page.number == 0 ? 'd-none': ''}"><a class="page-link"
+                     href="/product/sort-paging?field=${field}&p=0&eop=${eop}">First</a></li>
+                <c:forEach begin="0"
+                           end="${accountPages.totalPages - 1 }"
+                           varStatus="loop">
+                  <li class="page-item ${ loop.index == page.number ? 'active': ''} "><a class="page-link"
+                       href="/product/sort-paging?field=${field}&p=${loop.index}&eop=${eop}">${loop.count}
+                    </a>
+                  </li>
+                </c:forEach>
+                <li class="page-item  ${page.number == page.totalPages - 1   ? 'd-none': ''}"><a class="page-link"
+                     href="/product/sort-paging?field=${field}&p=${page.totalPages - 1}&eop=${eop}">Last</a>
                 </li>
+              </ul>
+            </nav>--%>
+            <!-- temp paging -->
+            <nav aria-label="Page navigation example">
+              <ul class="pagination pagination-sm my-1 ml-5">
+                <li class="page-item"><a class="page-link"
+                     href="#">Previous</a></li>
                 <li class="page-item"><a class="page-link"
                      href="#">1</a></li>
                 <li class="page-item"><a class="page-link"
                      href="#">2</a></li>
                 <li class="page-item"><a class="page-link"
                      href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link"
-                     href="#">Cuối</a>
-                </li>
+                <li class="page-item"><a class="page-link"
+                     href="#">Next</a></li>
               </ul>
             </nav>
+            <!-- temp paging -->
+            <!--* paging end -->
             <!-- <div class="text-primary px-3 border">Hiển thị 15 / 20 người dùng</div> -->
           </div>
           <div class="app-content-actions-wrapper">
@@ -233,700 +272,90 @@
             <div class="product-cell price">Thao tác
             </div>
           </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u1.jpg"
-                   alt="product"
-                   data-bigimage="${pageContext.request.contextPath}/img/user-management/u1.jpg"
-                   style="z-index: 1000;"
-                   data-toggle="modal"
-                   data-target="#prevImg">
-              <span>AlexNguyeen</span>
+          <c:forEach var="u"
+                     items="${ users }">
+            <div class="products-row">
+              <div class="product-cell image">
+                <img src="${pageContext.request.contextPath}/img/user-management/${u.photo}"
+                     alt=""
+                     data-bigimage="${pageContext.request.contextPath}/img/user-management/u1.jpg"
+                     style="z-index: 1000;"
+                     data-toggle="modal"
+                     data-target="#prevImg"
+                     title="${u.photo == null ? 'Không có hình ảnh': u.photo }">
+                <span>${u.username}</span>
+              </div>
+              <div class="product-cell category"><span class="cell-label">Họ và tên</span>${u.fullname}</div>
+              <div class="product-cell status-cell">
+                <span class="cell-label">Trạng thái</span>
+                <span class="status ${u.activated == true ? 'active' : 'disabled'}">${u.activated == true ? 'Hoạt động'
+                  :
+                  'Vô hiệu hóa'}${activated}</span>
+              </div>
+              <div class="product-cell sales"><span class="cell-label">Email</span>${u.email}</div>
+              <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
+                      class="status ${u.admin == true ? 'bg-primary' : 'bg-secondary'}  text-white ">
+                  ${u.admin == true ? 'Quản trị viên' : 'Khách hàng'}</span></div>
+              <div class="product-cell price"><span class="cell-label"></span>
+                <div class="btn btn-sm btn-${u.activated == true ? 'danger' : 'secondary'}"
+                     data-toggle="modal"
+                     data-target="#deleteModal${u.username}">
+                  ${u.activated == true ? 'Vô hiệu hóa' : 'Khôi phục'}</div>
+              </div>
             </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Nguyễn Hoài Nam</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status active">Hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>namnhpc03517@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status active bg-primary text-white ">Quản
-                trị
-                viên</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger"
-                   data-toggle="modal"
-                   data-target="#deleteModal">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u2.jpg"
-                   alt="product">
-              <span>John Le</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Lê Minh Dương</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status disabled">Không hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>duonglmpc043433@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status active bg-primary text-white ">Quản trị viên</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u3.jpg"
-                   alt="product">
-              <span>Lucas Tran</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Trần Trọng Hiến</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status disabled">Không hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>hienttpc034222@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status active bg-primary text-white ">Quản trị viên</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u4.jpg"
-                   alt="product">
-              <span>Henry Phan</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Phan Văn Lộc</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status disabled">Không hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>locpvpc56433@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status disabled bg-secondary text-white">Người
-                dùng</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u5.jpg"
-                   alt="product">
-              <span>Robert Vo</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Võ Phát Tài</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status disabled">Không hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>taivppc083433@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status disabled bg-secondary text-white">Người
-                dùng</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u1.jpg"
-                   alt="product"
-                   data-bigimage="${pageContext.request.contextPath}/img/user-management/u1.jpg"
-                   style="z-index: 1000;"
-                   data-toggle="modal"
-                   data-target="#prevImg">
-              <span>AlexNguyeen</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Nguyễn Hoài Nam</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status active">Hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>namnhpc03517@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status active bg-primary text-white ">Quản
-                trị
-                viên</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger"
-                   data-toggle="modal"
-                   data-target="#deleteModal">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u2.jpg"
-                   alt="product">
-              <span>John Le</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Lê Minh Dương</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status disabled">Không hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>duonglmpc043433@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status active bg-primary text-white ">Quản trị viên</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u3.jpg"
-                   alt="product">
-              <span>Lucas Tran</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Trần Trọng Hiến</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status disabled">Không hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>hienttpc034222@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status active bg-primary text-white ">Quản trị viên</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u4.jpg"
-                   alt="product">
-              <span>Henry Phan</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Phan Văn Lộc</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status disabled">Không hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>locpvpc56433@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status disabled bg-secondary text-white">Người
-                dùng</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u5.jpg"
-                   alt="product">
-              <span>Robert Vo</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Võ Phát Tài</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status disabled">Không hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>taivppc083433@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status disabled bg-secondary text-white">Người
-                dùng</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u1.jpg"
-                   alt="product"
-                   data-bigimage="${pageContext.request.contextPath}/img/user-management/u1.jpg"
-                   style="z-index: 1000;"
-                   data-toggle="modal"
-                   data-target="#prevImg">
-              <span>AlexNguyeen</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Nguyễn Hoài Nam</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status active">Hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>namnhpc03517@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status active bg-primary text-white ">Quản
-                trị
-                viên</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger"
-                   data-toggle="modal"
-                   data-target="#deleteModal">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u2.jpg"
-                   alt="product">
-              <span>John Le</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Lê Minh Dương</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status disabled">Không hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>duonglmpc043433@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status active bg-primary text-white ">Quản trị viên</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u3.jpg"
-                   alt="product">
-              <span>Lucas Tran</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Trần Trọng Hiến</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status disabled">Không hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>hienttpc034222@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status active bg-primary text-white ">Quản trị viên</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u4.jpg"
-                   alt="product">
-              <span>Henry Phan</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Phan Văn Lộc</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status disabled">Không hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>locpvpc56433@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status disabled bg-secondary text-white">Người
-                dùng</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger">
-                Xóa</div>
-            </div>
-          </div>
-          <div class="products-row">
-            <button class="cell-more-button">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="18"
-                   height="18"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-more-vertical">
-                <circle cx="12"
-                        cy="12"
-                        r="1" />
-                <circle cx="12"
-                        cy="5"
-                        r="1" />
-                <circle cx="12"
-                        cy="19"
-                        r="1" />
-              </svg>
-            </button>
-            <div class="product-cell image">
-              <img src="${pageContext.request.contextPath}/img/user-management/u5.jpg"
-                   alt="product">
-              <span>Robert Vo</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Họ và tên</span>Võ Phát Tài</div>
-            <div class="product-cell status-cell">
-              <span class="cell-label">Trạng thái</span>
-              <span class="status disabled">Không hoạt động</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Email</span>taivppc083433@fpt.edu.vn</div>
-            <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                    class="status disabled bg-secondary text-white">Người
-                dùng</span></div>
-            <div class="product-cell price"><span class="cell-label"></span>
-              <div class="btn btn-sm btn-danger">
-                Xóa</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade"
-         id="deleteModal"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="modelTitleId"
-         aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered"
-           role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title ">Xóa người dùng</h5>
-            <button type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form action="#">
-              <div class="row bg rounded ">
-                <div class="col-12 d-flex justify-content-center">
-                  <img src="${pageContext.request.contextPath}/img/user-management/confirm-delete.svg"
-                       alt=""
-                       width="75%">
-                </div>
-                <div class="col-12">
-                  <div class="alert alert-warning">Bạn có chắc muốn xóa người dùng
-                    <strong class="text-danger">AlexNguyeen</strong> không ?
+            <!-- * Start Modal -->
+            <div class="modal fade"
+                 id="deleteModal${u.username}"
+                 tabindex="-1"
+                 role="dialog"
+                 aria-labelledby="modelTitleId"
+                 aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered"
+                   role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title ">${u.activated == true ? 'Vô hiệu hóa' : 'Khôi phục'} người dùng <span
+                            class="text-danger">"${u.username}"</span>
+                    </h5>
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/admin/user/${u.activated == true ? 'delete' : 'restore'}/${u.username}"
+                          method="post">
+                      <div class="row bg rounded ">
+                        <div class="col-12 d-flex justify-content-center">
+                          <img src="${pageContext.request.contextPath}/img/user-management/confirm-delete.svg"
+                               alt=""
+                               width="75%">
+                        </div>
+                        <div class="col-12">
+                          <div class="alert alert-warning">Bạn có chắc muốn ${u.activated == true ? 'vô hiệu hóa' :
+                            'khôi phục'} người dùng
+                            <strong class="text-danger font-weight-bold">${u.username}</strong> không ?
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-12 mx-auto mb-4 ">
+                          <hr>
+                          <button type="submit"
+                                  class="btn btn-danger float-right w-50">
+                            <span class="font-weight-bold">Có, ${u.activated == true ? 'Vô hiệu hóa' : 'Khôi
+                              phục'}</span>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
-                <!-- Submit Button -->
-                <div class="form-group col-lg-12 mx-auto mb-4 ">
-                  <hr>
-                  <button type="button"
-                          class="btn btn-secondary mr-5"
-                          data-dismiss="modal">Hủy</button>
-                  <a href="#"
-                     class="btn btn-danger float-right w-50">
-                    <span class="font-weight-bold">Xóa luôn</span>
-                  </a>
-                </div>
               </div>
-            </form>
-          </div>
+            </div>
+            <!-- * End modal -->
+            <span></span>
+          </c:forEach>
         </div>
       </div>
     </div>
@@ -956,6 +385,12 @@
       </div>
     </div>
     <!-- Js Plugins -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/script.js"></script>

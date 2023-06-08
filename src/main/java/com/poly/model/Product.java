@@ -47,4 +47,9 @@ public class Product implements Serializable {
 	private List<CartDetail> cartDetails;
 	@OneToMany(mappedBy = "product")
 	private List<Review> reviews;
+
+	@Override
+	public String toString() {
+		return "nam";
+	}
 }

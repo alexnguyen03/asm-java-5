@@ -8,8 +8,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
+@Getter
+@Setter
 @Entity
 @Table(name = "Accounts")
 public class Account implements Serializable {
@@ -24,7 +28,12 @@ public class Account implements Serializable {
 	@OneToMany(mappedBy = "account")
 	private List<Order> orders;
 	@OneToMany(mappedBy = "account")
-	private List<Review> reivew;
+	private List<Review> reivews;
 	@OneToMany(mappedBy = "account")
 	private List<Cart> carts;
+
+	@Override
+	public String toString() {
+		return "nam";
+	}
 }
