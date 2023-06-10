@@ -157,7 +157,8 @@
 										<div class="col-6">
 											<div class="form-group">
 												<label for="quantity" class="font-weight-bold">Số
-													lượng</label> <input type="text" name="quantity" class="form-control" id="quantity"
+													lượng</label> <input type="text" name="quantity"
+													class="form-control" id="quantity"
 													aria-describedby="quantityHelp" placeholder="" /> <small
 													id="quantityHelp" class="form-text text-muted"></small>
 											</div>
@@ -182,7 +183,11 @@
 			<!-- -------------------------------------------------------- -->
 			<!-- App action -->
 			<div class="app-content-actions">
-				<input class="search-bar" placeholder="Tìm kiếm..." type="text" />
+				<!-- Search input -->
+				<form action="/admin/product-manager/search-product" method="POST">
+					<input class="search-bar" name="keywords" value="${keywords}"
+						placeholder="Tìm kiếm..." type="text" />
+				</form>
 				<div class="app-content-actions-wrapper">
 					<div class="filter-button-wrapper d-flex justify-content-betwwen">
 						<button type="button" class="btn btn-dark" data-toggle="modal"
@@ -339,7 +344,7 @@
 				</div>
 
 				<!-- Product rendering -->
-				<c:forEach var="item" items="${items}">
+				<c:forEach var="item" items="${page.content}">
 					<div class="products-row">
 						<button class="cell-more-button">
 							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -420,16 +425,11 @@
 												<div class="col-12">
 													<div class="mb-3">
 														<label for="" class="font-weight-bold">Hình ảnh
-															sản phẩm</label> <label for="Video-edit-myPicture"
-															class="video-edit-preview"> <i
-															class="fa-solid fa-cloud-arrow-up"></i>
-														</label> <input type="file"
-															value="${pageContext.request.contextPath}/img/product/${item.image}"
-															name="photo_file" hidden id="Video-edit-myPicture" /> <span
-															class="error"></span>
-														<!-- 															<img -->
-														<%-- 															src="${pageContext.request.contextPath}/img/product/${item.image}" --%>
-														<!-- 															alt="" /> -->
+															sản phẩm</label> <label for="Video-edit-myPicture"> <img
+															src="${pageContext.request.contextPath}/img/product/${item.image}"
+															class="video-edit-preview w-100 h-100" id="" />
+														</label> <input type="file" value="${item.image}" name="photo_file" hidden
+															id="Video-edit-myPicture" /> <span class="error"></span>
 													</div>
 												</div>
 											</div>
@@ -439,12 +439,12 @@
 												<div class="row">
 													<div class="col-12">
 														<div class="form-group">
-															<label for="id" class="font-weight-bold">Mã sản
-																phẩm</label> <input type="text" name="id" value="${item.id}"
+															<input type="hidden" name="id" value="${item.id}" /> <label
+																for="id" class="font-weight-bold">Mã sản phẩm</label> <input
+																type="text" name="id" value="${item.id}"
 																class="form-control" id="name"
-																aria-describedby="nameHelp" placeholder=""
-																readonly /> <small id="nameHelp"
-																class="form-text text-muted"></small>
+																aria-describedby="nameHelp" placeholder="" readonly />
+															<small id="nameHelp" class="form-text text-muted"></small>
 														</div>
 													</div>
 													<div class="col-12">
@@ -470,16 +470,14 @@
 															thái</label>
 														<div class="d-flex">
 															<div class="form-check">
-																<input class="form-check-input" type="radio"
-																	name="avaiable" id="Radios1" value="true" checked>
 																<label class="form-check-label" for="Radios1">
-																	Còn hàng </label>
+																	Còn hàng </label> <input class="form-check-input" type="radio"
+																	name="avaiable" id="Radios1" value="true" checked>
 															</div>
 															<div class="form-check ml-3">
-																<input class="form-check-input" type="radio"
-																	name="avaiable" id="Radios2" value="false"> <label
-																	class="form-check-label" for="Radios2"> Hết
-																	hàng </label>
+																<label class="form-check-label" for="Radios2">
+																	Hết hàng </label> <input class="form-check-input" type="radio"
+																	name="avaiable" id="Radios2" value="false">
 															</div>
 														</div>
 													</div>
@@ -559,6 +557,19 @@
 
 					</div>
 				</c:forEach>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="product__pagination">
+							<c:forEach var="i" begin="0" end="${page.totalPages - 1}">
+								<a class="${page.number==i?'active':''}"
+									href="/admin/product-manager?p=${i}">${i+1}</a>
+							</c:forEach>
+							<span>...</span> <a
+								href="/admin/product-manager?p=${page.totalPages - 1}">${page.totalPages}</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
