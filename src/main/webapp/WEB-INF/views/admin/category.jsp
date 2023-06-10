@@ -128,7 +128,11 @@
 			<!-- -------------------------------------------------------- -->
 			<!-- App actions -->
 			<div class="app-content-actions">
-				<input class="search-bar" placeholder="Tìm kiếm..." type="text" />
+				<!-- Search input -->
+				<form action="/admin/category-manager/search-category" method="POST">
+					<input class="search-bar" name="keywords" value="${keywords}"
+						placeholder="Tìm kiếm..." type="text" />
+				</form>
 				<div class="app-content-actions-wrapper">
 					<div class="filter-button-wrapper d-flex justify-content-betwwen">
 						<button type="button" class="btn btn-dark" data-toggle="modal"
@@ -225,7 +229,7 @@
 				</div>
 
 				<!-- 	Loop	 -->
-				<c:forEach var="item" items="${items}">
+				<c:forEach var="item" items="${page.content}">
 					<div class="products-row">
 						<button class="cell-more-button">
 							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -279,16 +283,16 @@
 											</button>
 										</div>
 
-										<form action="/admin/category-manager/edit"
-											method="Post" class="row">
+										<form action="/admin/category-manager/edit" method="Post"
+											class="row">
 											<!-- Left form -->
 											<div class="col-12">
 												<div class="form-group">
 													<label for="id" class="font-weight-bold">Mã danh
 														mục</label> <input type="text" name="id" value="${item.id}"
 														class="form-control" id="id" aria-describedby="nameHelp"
-														placeholder="" readonly /> <small
-														id="nameHelp" class="form-text text-muted"></small>
+														placeholder="" readonly /> <small id="nameHelp"
+														class="form-text text-muted"></small>
 												</div>
 											</div>
 											<div class="col-12">
@@ -355,6 +359,19 @@
 
 					</div>
 				</c:forEach>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="product__pagination">
+							<c:forEach var="i" begin="0" end="${page.totalPages - 1}">
+								<a class="${page.number==i?'active':''}"
+									href="/admin/category-manager?p=${i}">${i+1}</a>
+							</c:forEach>
+							<span>...</span> <a
+								href="/admin/category-manager?p=${page.totalPages - 1}">${page.totalPages}</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
