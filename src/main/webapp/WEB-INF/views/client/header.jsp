@@ -46,7 +46,7 @@
 									<c:if test="${isAdmin}">
 										<a class="dropdown-item font-weight-bold" href="/admin"><img
 											src="${pageContext.request.contextPath}/img/administrator.png"
-											width="16px" alt="" class="" />Quản lý</a>
+											width="16px" alt="" class="" /> Quản lý</a>
 									</c:if>
 									<a class="dropdown-item" href="/account/change-password"> <img
 										src="${pageContext.request.contextPath}/img/security.png"
