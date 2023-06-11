@@ -71,6 +71,7 @@
 			<!-- Top content -->
 			<jsp:include page="top-content.jsp" />
 			<!-- -------------------------------------------------------- -->
+
 			<!-- Modal -->
 			<!-- Add Product -->
 			<div class="modal fade" id="AddProductModal" tabindex="-1"
@@ -188,6 +189,8 @@
 					<input class="search-bar" name="keywords" value="${keywords}"
 						placeholder="Tìm kiếm..." type="text" />
 				</form>
+
+				<!-- App action bar -->
 				<div class="app-content-actions-wrapper">
 					<div class="filter-button-wrapper d-flex justify-content-betwwen">
 						<button type="button" class="btn btn-dark" data-toggle="modal"
@@ -427,9 +430,11 @@
 														<label for="" class="font-weight-bold">Hình ảnh
 															sản phẩm</label> <label for="Video-edit-myPicture"> <img
 															src="${pageContext.request.contextPath}/img/product/${item.image}"
-															class="video-edit-preview w-100 h-100" id="" />
+															class="video-edit-preview w-100 h-100"
+															id="Video-edit-myPicture" />
 														</label> <input type="file" id="Video-edit-myPicture"
 															name="photo_file" class="form-control-file"
+															hidden="hidden"
 															value="${pageContext.request.contextPath}/img/product/${item.image}">
 														<span class="error"></span>
 													</div>
@@ -471,12 +476,12 @@
 														<label for="avaiable" class="font-weight-bold">Trạng
 															thái</label>
 														<div class="d-flex">
-															<div class="form-check">
+															<div class="form-check d-flex">
 																<label class="form-check-label" for="Radios1">
 																	Còn hàng </label> <input class="form-check-input" type="radio"
 																	name="avaiable" id="Radios1" value="true" checked>
 															</div>
-															<div class="form-check ml-3">
+															<div class="form-check d-flex ml-3">
 																<label class="form-check-label" for="Radios2">
 																	Hết hàng </label> <input class="form-check-input" type="radio"
 																	name="avaiable" id="Radios2" value="false">
@@ -486,10 +491,11 @@
 													<div class="col-6">
 														<div class="form-group">
 															<label for="category_id" class="font-weight-bold">Mã
-																danh mục</label> <select name="category" class="custom-select"
-																id="inputGroupSelect01">
+																danh mục</label> <select name="category.id" class="form-control">
 																<c:forEach var="category" items="${lst_category}">
-																	<option value="${category.id}">${category.name}</option>
+																	<option class="ml-5"
+																		selected="${category.id==category.id?'selected':''}"
+																		value="${category.name}">${category.name}</option>
 																</c:forEach>
 															</select>
 														</div>

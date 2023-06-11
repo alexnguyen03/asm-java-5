@@ -3,21 +3,21 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 <meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="Male_Fashion Template" />
+<meta name="keywords" content="Male_Fashion, unica, creative, html" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
 <title>Home - 3MEMS</title>
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
 	rel="stylesheet" />
-<!--         <link rel="stylesheet" -->
-<!--               href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" -->
-<!--               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" -->
-<!--               crossorigin="anonymous" /> -->
+
 <!-- Css Styles -->
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
@@ -32,8 +32,8 @@
 <body>
 	<!-- Header -->
 	<jsp:include page="header.jsp" />
-
 	<!-- Header Section End -->
+
 	<!-- Hero Section Begin -->
 	<section class="hero mt-3">
 		<div class="hero__slider owl-carousel">
@@ -44,10 +44,10 @@
 							<div class="hero__text">
 								<h6>Sản phẩm thịnh hành</h6>
 								<h2>
-									Hạ - Thu <br /> Bộ sưu tập 2023
+									Tai nghe không dây <br /> BCAT 2023
 								</h2>
-								<p>Nhãn hiệu chuyên tạo ra các mặt hàng xa xỉ thiết yếu.
-									Được tạo ra dựa trên lòng tin, đạo đức, chất lượng vượt trội.</p>
+								<p>Tai nghe không dây chính hãng bán chạy nhất tại việt nam.
+									Với chất âm bass trầm vang cực hiện đại</p>
 								<a href="/shop" class="primary-btn">Mua ngay<span
 									class="arrow_right"></span></a>
 								<div class="hero__social">
@@ -61,17 +61,17 @@
 					</div>
 				</div>
 			</div>
-			<div class="hero__items set-bg" data-setbg="img/hero/hero-2.jpg">
+			<div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
 				<div class="container">
 					<div class="row">
 						<div class="col-xl-5 col-lg-7 col-md-8">
 							<div class="hero__text">
-								<h6>Bộ sưu tập thịnh hành</h6>
+								<h6>Sản phẩm thịnh hành</h6>
 								<h2>
-									Thu - Đông <br /> Bộ sưu tập 2030
+									Tai nghe không dây <br /> Bộ sưu tập 2023
 								</h2>
-								<p>Nhãn hiệu chuyên tạo ra các mặt hàng xa xỉ thiết yếu.
-									Được tạo ra dựa trên lòng tin, đạo đức, chất lượng vượt trội.</p>
+								<p>Tai nghe không dây chính hãng bán chạy nhất tại việt nam.
+									Với chất âm bass trầm vang cực hiện đại</p>
 								<a href="/shop" class="primary-btn">Mua ngay<span
 									class="arrow_right"></span></a>
 								<div class="hero__social">
@@ -88,43 +88,52 @@
 		</div>
 	</section>
 	<!-- Hero Section End -->
+
 	<!-- Banner Section Begin -->
 	<section class="banner spad">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-7 offset-lg-4">
 					<div class="banner__item">
-						<div class="banner__item__pic">
-							<img src="img/banner/img-banner-1.png"
-								style="background: #ebecf1" alt="" />
-						</div>
+						<a href="/shop/shop-search-product-by-tab?keywords=earpod"
+							class="banner__item__pic"> <img
+							src="img/banner/img-banner-1.png" style="background: #ebecf1"
+							alt="" />
+						</a>
 						<div class="banner__item__text">
-							<h2 class="mr-3">Bộ sưu tập Smart Watch</h2>
-							<a href="/shop">Mua ngay</a>
+							<h2 class="mr-3">Bộ sưu tập EarPod</h2>
+							<a href="/shop/shop-search-product-by-tab?keywords=earpod">Mua
+								ngay</a>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-5">
+				<div class="col-lg-5 mt-5">
 					<div class="banner__item banner__item--middle">
-						<div class="banner__item__pic">
-							<img src="img/banner/img-banner-2.png"
-								style="background: #ebecf1" alt="" />
-						</div>
+						<a href="/shop/shop-search-product-by-tab?keywords=tai nghe"
+							class="banner__item__pic"> <img
+							src="img/banner/img-banner-2.png" style="background: #ebecf1"
+							alt="" />
+						</a>
 						<div class="banner__item__text">
 							<h2>Tai nghe</h2>
-							<a href="/shop">Mua ngay</a>
+							<a href="/shop/shop-search-product-by-tab?keywords=tai nghe">Mua
+								ngay</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-7">
 					<div class="banner__item banner__item--last">
-						<div class="banner__item__pic">
-							<img src="img/product/product-8.png" style="background: #ebecf1"
-								alt="" />
-						</div>
+						<a href="/shop/shop-search-product-by-tab?keywords=loa"
+							class="banner__item__pic"> <img
+							src="img/banner/img-banner-3.png" style="background: #ebecf1"
+							alt="" />
+						</a>
 						<div class="banner__item__text">
-							<h2>Túi xách</h2>
-							<a href="/shop">Mua ngay</a>
+							<h2>
+								Bộ sưu tập <br /> Loa
+							</h2>
+							<a href="/shop/shop-search-product-by-tab?keywords=loa">Mua
+								ngay</a>
 						</div>
 					</div>
 				</div>
@@ -132,6 +141,7 @@
 		</div>
 	</section>
 	<!-- Banner Section End -->
+
 	<!-- Product Section Begin -->
 	<section class="product spad">
 		<div class="container">
@@ -152,11 +162,11 @@
 					<div
 						class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
 						<div class="product__item">
-							<div class="product__item__pic">
-								<img
-									src="${pageContext.request.contextPath}/img/product/${item.image}"
-									class="img-fluid" alt="${item.name}" /> <span class="label">Mới</span>
-							</div>
+							<a href="/shop/shop-detail?id=${item.id}"
+								class="product__item__pic"> <img
+								src="${pageContext.request.contextPath}/img/product/${item.image}"
+								class="img-fluid" alt="${item.name}" /> <span class="label">Mới</span>
+							</a>
 							<div class="product__item__text">
 								<h6>${item.name}</h6>
 								<a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
@@ -171,8 +181,10 @@
 					</div>
 				</c:forEach>
 			</div>
+		</div>
 	</section>
 	<!-- Product Section End -->
+
 	<!-- Categories Section Begin -->
 	<section class="categories spad">
 		<div class="container">
@@ -180,14 +192,14 @@
 				<div class="col-lg-3">
 					<div class="categories__text">
 						<h2>
-							Phụ kiện Hot <br /> <span>Bộ sưu tập Túi</span> <br />
-							SmartWatch
+							Phụ kiện Hot <br /> <span>Bộ sưu tập Tai nghe</span> <br />
+							Load JPL
 						</h2>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="categories__hot__deal">
-						<img src="img/product/product-8.png" alt="" />
+						<img src="img/banner/img-banner-2.png" alt="" />
 						<div class="hot__deal__sticker">
 							<span>Giảm giá</span>
 							<h5>100.000 đ</h5>
@@ -197,7 +209,7 @@
 				<div class="col-lg-4 offset-lg-1">
 					<div class="categories__deal__countdown">
 						<span>Giao dịch trong tuấn</span>
-						<h2>Túi sách nhiều ngăn cá tính</h2>
+						<h2>Tai nghe không dây EF105</h2>
 						<d class="categories__deal__countdown__timer" id="countdown">
 						<div class="cd-item">
 							<span>3</span>
@@ -296,6 +308,7 @@
 		</div>
 	</footer>
 	<!-- Footer end -->
+
 	<!-- Search Begin -->
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
@@ -306,6 +319,7 @@
 		</div>
 	</div>
 	<!-- Search End -->
+
 	<!-- Js Plugins -->
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -326,4 +340,5 @@
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
 </body>
-<html>
+
+</html>

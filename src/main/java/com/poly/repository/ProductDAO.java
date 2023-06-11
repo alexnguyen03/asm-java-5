@@ -14,10 +14,9 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	// ******************** SELECT AREA ********************
 
 	// Select Top 10 product
-	@Query("SELECT p.id, p.name, COUNT(od.quantity) AS quantitySold " + "FROM Product p "
-			+ "JOIN OrderDetail od ON p.id = od.product.id " + "GROUP BY p.id, p.name " + "ORDER BY quantitySold DESC "
-			+ "LIMIT 10")
-	List<Object[]> findTop10BestSellingProducts();
+	@Query("SELECT p " + "FROM Product p " + "JOIN OrderDetail od ON p.id = od.product.id " + "GROUP BY p "
+			+ "ORDER BY COUNT(od.id) DESC LIMIT 10")
+	List<Product> findTop10BestSellingProducts();
 
 	// Select by price between
 	Page<Product> findByPriceBetween(double minPrice, double maxPrice, Pageable pageable);
