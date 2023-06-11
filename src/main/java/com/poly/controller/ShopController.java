@@ -140,6 +140,11 @@ public class ShopController {
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findByNameLike("%" + kw + "%", pageable);
 		model.addAttribute("page", page);
+
+//		Category 
+		List<Category> categoryLst = categoryDAO.findAll();
+		model.addAttribute("categoryLst", categoryLst);
+
 		return "/client/shop";
 	}
 }

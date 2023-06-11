@@ -428,8 +428,10 @@
 															sản phẩm</label> <label for="Video-edit-myPicture"> <img
 															src="${pageContext.request.contextPath}/img/product/${item.image}"
 															class="video-edit-preview w-100 h-100" id="" />
-														</label> <input type="file" value="${item.image}" name="photo_file" hidden
-															id="Video-edit-myPicture" /> <span class="error"></span>
+														</label> <input type="file" id="Video-edit-myPicture"
+															name="photo_file" class="form-control-file"
+															value="${pageContext.request.contextPath}/img/product/${item.image}">
+														<span class="error"></span>
 													</div>
 												</div>
 											</div>

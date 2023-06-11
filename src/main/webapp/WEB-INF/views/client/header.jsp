@@ -43,12 +43,19 @@
 										aria-hidden="true"></i>
 								</div>
 								<div class="dropdown-menu">
+									<c:if test="${isAdmin}">
+										<a class="dropdown-item font-weight-bold" href="/admin"><img
+											src="${pageContext.request.contextPath}/img/administrator.png"
+											width="16px" alt="" class="" />Quản lý</a>
+									</c:if>
 									<a class="dropdown-item" href="/account/change-password"> <img
-										src="${pageContext.request.contextPath}/img/security.png" width="15px"
-										alt="" class=""/> Đổi mật khẩu
+										src="${pageContext.request.contextPath}/img/security.png"
+										width="15px" alt="" class="" /> Đổi mật khẩu
 									</a> <a class="dropdown-item" href="/account/update-account"><i
 										class="fa fa-pencil-square-o" aria-hidden="true"></i> Chỉnh
-										sửa tài khoản</a> <a class="dropdown-item" href="/log-out"><i
+										sửa tài khoản</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="/log-out"><i
 										class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a>
 								</div>
 							</div>
