@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -23,4 +24,9 @@ public class Category implements Serializable {
 	String name;
 	@OneToMany(mappedBy = "category")
 	List<Product> products;
+
+	@Override
+	public String toString() {
+		return "id" + id;
+	}
 }

@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "Products")
-public class Product implements Serializable{
+public class Product implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -45,4 +45,9 @@ public class Product implements Serializable{
 	private List<CartDetail> cartDetails;
 	@OneToMany(mappedBy = "product")
 	private List<Review> reviews;
+
+	@Override
+	public String toString() {
+		return "id" + id;
+	}
 }

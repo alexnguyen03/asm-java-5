@@ -6,42 +6,68 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.model.Account;
 import com.poly.repository.AccountDAO;
+import com.poly.service.CookieService;
+import com.poly.service.ParamService;
+import com.poly.service.SessionService;
+
+import jakarta.servlet.http.Cookie;
 
 @Controller
 @RequestMapping("account")
 public class LoginController {
-    @Autowired
-    AccountDAO dao;
+	@Autowired
+	AccountDAO dao;
 
-    @GetMapping("/login")
-    public String showLoginForm(Model model) {
-        Account account = new Account();
-        model.addAttribute("account", account); 
-        return "account/login";
-    }
+	@Autowired
+	SessionService session;
 
-    @PostMapping("/login")
-    public String processLoginForm(@ModelAttribute("account") Account account, Model model) {
-        Optional<Account> userStore = dao.findById(account.getUsername());
-        System.out.println(userStore);
-        Account user = userStore.orElse(null);
+	@Autowired
+	CookieService cookieService;
 
-        if (user == null) {
-            model.addAttribute("message", "Invalid username");
-            return "account/login";
-        } else if (!user.getPassword().equals(account.getPassword())) {
-            model.addAttribute("message", "Invalid password");
-            return "account/login";
-        } else {
-            model.addAttribute("message", "Login successful");
-            return "redirect:/account/login";
+	@Autowired
+	ParamService paramService;
+
+	@GetMapping("/login")
+	public String showLoginForm(Model model) {
+		String username = cookieService.getValue("username");
+        if (username != null) {
+            model.addAttribute("username", username);
         }
-    }
+		return "/account/login";
+	}
+
+	@PostMapping("/login")
+	public String processLoginForm(Model model) {
+		System.out.println("*******************************");
+
+		String username = paramService.getString("username", "");
+		String password = paramService.getString("password", "");
+		boolean remember = paramService.getBoolean("remember", false);
+
+		Account accountStore = dao.findById(username).orElse(null);
+
+		if (accountStore == null) {
+			model.addAttribute("message", "Tài khoản không tồn tại");
+			return "/account/login";
+		} else if (!accountStore.getPassword().equals(password)) {
+			model.addAttribute("message", "Sai mật khẩu");
+			return "/account/login";
+		} else {
+			if (remember) {
+				cookieService.add("username", username, 24);
+			} else {
+				cookieService.remove("username");
+			}
+		}
+
+		session.set("username", username);
+		return "redirect:/";
+	}
 
 }

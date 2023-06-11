@@ -9,15 +9,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.poly.model.Product;
-import com.poly.model.ProductDTO;
 
 public interface ProductDAO extends JpaRepository<Product, Integer> {
 	// ******************** SELECT AREA ********************
 
 	// Select Top 10 product
-	@Query("SELECT NEW ProductDTO(p.id, p.name,p.image ,p.price, SUM(od.quantity)) " + "FROM Product p "
-			+ "JOIN p.orderDetails od " + "GROUP BY p.id, p.name,p.image ,p.price " + "ORDER BY SUM(od.quantity) DESC")
-	List<ProductDTO> findTop10BestSellingProducts();
+	@Query("SELECT p.id, p.name, COUNT(od.quantity) AS quantitySold " + "FROM Product p "
+			+ "JOIN OrderDetail od ON p.id = od.product.id " + "GROUP BY p.id, p.name " + "ORDER BY quantitySold DESC "
+			+ "LIMIT 10")
+	List<Object[]> findTop10BestSellingProducts();
 
 	// Select by price between
 	Page<Product> findByPriceBetween(double minPrice, double maxPrice, Pageable pageable);

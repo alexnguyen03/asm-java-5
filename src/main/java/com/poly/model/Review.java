@@ -27,7 +27,7 @@ public class Review implements Serializable {
     @JoinColumn(name = "user_id")
     private Account account;
     private int rating;
-    @Column(name = "text_review")
+    @Column(name = "review_text")
     private String textReview;
     @Column(name = "date_review")
     private Date dateReview = new Date();

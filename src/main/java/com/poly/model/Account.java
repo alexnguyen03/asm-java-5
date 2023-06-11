@@ -27,4 +27,9 @@ public class Account implements Serializable {
 	private List<Review> reivew;
 	@OneToMany(mappedBy = "account")
 	private List<Cart> carts;
+	
+	@Override
+	public String toString() {
+		return "id" + username;
+	}
 }
