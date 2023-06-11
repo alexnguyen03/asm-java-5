@@ -60,8 +60,10 @@ public class ProductManagementController {
 	public String editProduct(@ModelAttribute("item") Product item, @RequestParam("id") int id,
 			@RequestParam("photo_file") MultipartFile file) throws IOException {
 
-		if (!file.isEmpty()) {
+		if (file != null && !file.isEmpty()) {
 			String fileName = file.getOriginalFilename();
+			System.out.println("File name");
+			System.out.println(fileName);
 			String filePath = app.getRealPath("/img/product/") + fileName;
 			file.transferTo(new File(filePath));
 			item.setImage(fileName);
@@ -112,7 +114,7 @@ public class ProductManagementController {
 //		Init Product
 		Product item = new Product();
 		model.addAttribute("item", item);
-		
+
 		String kwords = kw.orElse(session.get("keywords"));
 		session.set("keywords", kwords);
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);

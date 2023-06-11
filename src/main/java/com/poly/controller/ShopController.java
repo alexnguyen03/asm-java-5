@@ -40,6 +40,7 @@ public class ShopController {
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findAll(pageable);
 		model.addAttribute("page", page);
+		model.addAttribute("pageActive", "shop");
 
 //		Category 
 		List<Category> categoryLst = categoryDAO.findAll();
