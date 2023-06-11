@@ -66,7 +66,7 @@ body {
 			</button>
 			<div class="collapse navbar-collapse" id="collapsibleNavId">
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0 text-dark">
-					<a href="/shop" class="btn btn-dark ml-3">SHOPPING</a>
+					<a href="/shop" class="btn btn-dark ml-3">Xem trước sản phẩm</a>
 				</ul>
 			</div>
 		</nav>
