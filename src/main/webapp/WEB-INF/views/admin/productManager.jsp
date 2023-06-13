@@ -400,7 +400,6 @@
 							</div>
 						</div>
 
-
 						<!-- Update Product -->
 						<div class="modal fade" id="UpdateProductModal${item.id}"
 							tabindex="-1" role="dialog"
@@ -420,23 +419,23 @@
 											</button>
 										</div>
 
-										<form action="/admin/product-manager/edit" method="Post"
-											class="row" enctype="multipart/form-data">
+										<!-- Form -->
+										<form:form action="/admin/product-manager/update"
+											modelAttribute="item" class="row"
+											enctype="multipart/form-data">
 											<!-- Left form -->
 											<div class="col-4">
 												<!-- Img-priview -->
 												<div class="col-12">
 													<div class="mb-3">
 														<label for="" class="font-weight-bold">Hình ảnh
-															sản phẩm</label> <label for="Video-edit-myPicture"> <img
-															src="${pageContext.request.contextPath}/img/product/${item.image}"
-															class="video-edit-preview w-100 h-100"
-															id="Video-edit-myPicture" />
-														</label> <input type="file" id="Video-edit-myPicture"
-															name="photo_file" class="form-control-file"
-															hidden="hidden"
-															value="${pageContext.request.contextPath}/img/product/${item.image}">
-														<span class="error"></span>
+															sản phẩm</label> <label for="Video-edit-myPicture"
+															class="video-edit-preview"> <i
+															class="fa-solid fa-cloud-arrow-up"></i>
+														</label>
+														<form:input path="image" value="${item.image}" />
+														<input type="file" name="new_photo_file" hidden
+															id="Video-edit-myPicture" /> <span class="error"></span>
 													</div>
 												</div>
 											</div>
@@ -446,68 +445,60 @@
 												<div class="row">
 													<div class="col-12">
 														<div class="form-group">
-															<input type="hidden" name="id" value="${item.id}" /> <label
-																for="id" class="font-weight-bold">Mã sản phẩm</label> <input
-																type="text" name="id" value="${item.id}"
-																class="form-control" id="name"
-																aria-describedby="nameHelp" placeholder="" readonly />
+															<form:input path="id" placeholder="Id" hidden="hidden" />
+															<label for="id" class="font-weight-bold">Mã sản
+																phẩm</label>
+															<form:input path="id" type="text" class="form-control"
+																id="name" value="${item.id}" aria-describedby="nameHelp"
+																placeholder="" />
 															<small id="nameHelp" class="form-text text-muted"></small>
 														</div>
 													</div>
 													<div class="col-12">
 														<div class="form-group">
 															<label for="name" class="font-weight-bold">Tên
-																sản phẩm</label> <input name="name" value="${item.name}"
-																type="text" class="form-control" id="name"
-																aria-describedby="nameHelp" placeholder="" /> <small
-																id="nameHelp" class="form-text text-muted"></small>
+																sản phẩm</label>
+															<form:input path="name" type="text" class="form-control"
+																id="name" value="${item.name}"
+																aria-describedby="nameHelp" placeholder="" />
+															<small id="nameHelp" class="form-text text-muted"></small>
 														</div>
 													</div>
 													<div class="col-6">
 														<div class="form-group">
 															<label for="price" class="font-weight-bold">Giá
-																sản phẩm</label> <input name="price" value="${item.price}"
-																type="text" class="form-control" id="exampleInputEmail1"
-																aria-describedby="priceHelp" placeholder="" /> <small
-																id="priceHelp" class="form-text text-muted"></small>
+																sản phẩm</label>
+															<form:input path="price" type="text" class="form-control"
+																id="exampleInputEmail1" value="${item.price}"
+																aria-describedby="priceHelp" placeholder="" />
+															<small id="priceHelp" class="form-text text-muted"></small>
 														</div>
 													</div>
 													<div class="col-6">
 														<label for="avaiable" class="font-weight-bold">Trạng
-															thái</label>
-														<div class="d-flex">
-															<div class="form-check d-flex">
-																<label class="form-check-label" for="Radios1">
-																	Còn hàng </label> <input class="form-check-input" type="radio"
-																	name="avaiable" id="Radios1" value="true" checked>
-															</div>
-															<div class="form-check d-flex ml-3">
-																<label class="form-check-label" for="Radios2">
-																	Hết hàng </label> <input class="form-check-input" type="radio"
-																	name="avaiable" id="Radios2" value="false">
-															</div>
-														</div>
+															thái</label> <br />
+														<form:radiobuttons path="available" class="ml-2 mr-2"
+															items="${list_avaiable}" />
 													</div>
 													<div class="col-6">
 														<div class="form-group">
 															<label for="category_id" class="font-weight-bold">Mã
-																danh mục</label> <select name="category.id" class="form-control">
-																<c:forEach var="category" items="${lst_category}">
-																	<option class="ml-5"
-																		selected="${category.id==category.id?'selected':''}"
-																		value="${category.name}">${category.name}</option>
-																</c:forEach>
-															</select>
+																danh mục</label>
+															<form:select path="category.id" class="form-control">
+																<form:option value="">Danh mục</form:option>
+																<form:options items="${list_category}" />
+															</form:select>
 														</div>
 													</div>
 													<div class="col-6">
 														<div class="form-group">
 															<label for="quantity" class="font-weight-bold">Số
-																lượng</label> <input type="text" name="quantity"
-																value="${item.quantity}" class="form-control"
+																lượng</label>
+															<form:input path="quantity" value="${item.quantity}"
+																type="text" name="quantity" class="form-control"
 																id="quantity" aria-describedby="quantityHelp"
-																placeholder="" /> <small id="quantityHelp"
-																class="form-text text-muted"></small>
+																placeholder="" />
+															<small id="quantityHelp" class="form-text text-muted"></small>
 														</div>
 													</div>
 												</div>
@@ -516,18 +507,19 @@
 											<!-- Button form -->
 											<div class="col-12 mt-5 d-flex justify-content-end">
 												<button class="btn btn-outline-dark font-weight-bold mr-3"
-													style="width: 250px;" data-dismiss="modal"
+													style="width: 150px;" data-dismiss="modal"
 													aria-label="Close">Trở về</button>
 												<button class="btn btn-dark font-weight-bold"
-													style="width: 250px;" type="submit">Cập nhật sản
-													phẩm</button>
+													style="width: 150px;">Cập nhật sản phẩm</button>
 											</div>
-										</form>
+										</form:form>
 									</div>
 
 								</div>
 							</div>
 						</div>
+
+
 
 						<!-- Delete Product -->
 						<div class="modal fade " id="DeleteProductModal${item.id}"
@@ -566,15 +558,18 @@
 					</div>
 				</c:forEach>
 
+				<!-- Pagination -->
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="product__pagination">
-							<c:forEach var="i" begin="0" end="${page.totalPages - 1}">
-								<a class="${page.number==i?'active':''}"
-									href="/admin/product-manager?p=${i}">${i+1}</a>
-							</c:forEach>
-							<span>...</span> <a
-								href="/admin/product-manager?p=${page.totalPages - 1}">${page.totalPages}</a>
+							<c:if test="${page.totalPages - 1 > 1 }">
+								<c:forEach var="i" begin="0" end="${page.totalPages - 1}">
+									<a class="${page.number==i?'active':''}"
+										href="/admin/product-manager?p=${i}">${i+1}</a>
+								</c:forEach>
+								<span>...</span>
+								<a href="/admin/product-manager?p=${page.totalPages - 1}">${page.totalPages}</a>
+							</c:if>
 						</div>
 					</div>
 				</div>

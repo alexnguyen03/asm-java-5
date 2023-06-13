@@ -25,6 +25,7 @@ import com.poly.model.Category;
 import com.poly.model.Product;
 import com.poly.repository.CategoryDAO;
 import com.poly.repository.ProductDAO;
+import com.poly.service.ParamService;
 import com.poly.service.SessionService;
 
 import jakarta.servlet.ServletContext;
@@ -44,6 +45,9 @@ public class ProductManagementController {
 	@Autowired
 	SessionService session;
 
+	@Autowired
+	ParamService param;
+
 	@GetMapping("")
 	private String getProductManager(Model model, @RequestParam("p") Optional<Integer> p) {
 		Product item = new Product();
@@ -56,17 +60,22 @@ public class ProductManagementController {
 		return "admin/productManager";
 	}
 
-	@PostMapping("/edit")
-	public String editProduct(@ModelAttribute("item") Product item, @RequestParam("id") int id,
-			@RequestParam("photo_file") MultipartFile file) throws IOException {
+	@PostMapping("/update")
+	public String editProduct(@ModelAttribute("item") Product item,
+			@RequestParam("new_photo_file") MultipartFile file) {
+		
+		System.out.println(item.getImage());
+		String old_img = item.getImage();
+
+		System.out.println(item.getId());
+		System.out.println(old_img);
+		System.out.println(file.isEmpty());
 
 		if (file != null && !file.isEmpty()) {
-			String fileName = file.getOriginalFilename();
-			System.out.println("File name");
-			System.out.println(fileName);
-			String filePath = app.getRealPath("/img/product/") + fileName;
-			file.transferTo(new File(filePath));
-			item.setImage(fileName);
+			File file2 = param.save(file, "/img/product/");
+			item.setImage(file2.getName());
+		} else {
+			item.setImage(old_img);
 		}
 
 		productDAO.save(item);
@@ -74,12 +83,15 @@ public class ProductManagementController {
 	}
 
 	@PostMapping("/create")
-	private String createProduct(@ModelAttribute("item") Product item, @RequestParam("photo_file") MultipartFile img)
-			throws IllegalStateException, IOException {
-		String fileName = img.getOriginalFilename();
-		File file = new File(app.getRealPath("/img/product/" + fileName));
-		img.transferTo(file);
-		item.setImage(fileName);
+	private String createProduct(@ModelAttribute("item") Product item, @RequestParam("photo_file") MultipartFile img) {
+		File file = null;
+
+		if (!img.isEmpty()) {
+			file = param.save(img, "/img/product/");
+		}
+
+		item.setImage(file.getName());
+
 		productDAO.save(item);
 		return "redirect:/admin/product-manager";
 	}

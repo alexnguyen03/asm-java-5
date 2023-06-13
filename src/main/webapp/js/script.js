@@ -68,6 +68,7 @@ if (upload) {
     }
 
     const img = document.createElement("img");
+    img.name = "new_photo_file";
     img.src = URL.createObjectURL(file);
     console.log(URL.createObjectURL(file))
     preview.appendChild(img);

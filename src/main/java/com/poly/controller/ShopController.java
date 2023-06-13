@@ -71,6 +71,9 @@ public class ShopController {
 		List<Category> categoryLst = categoryDAO.findAll();
 		model.addAttribute("categoryLst", categoryLst);
 
+//		Page Active
+		model.addAttribute("pageActive", "shop");
+
 		return "/client/shop";
 	}
 
@@ -86,6 +89,8 @@ public class ShopController {
 		List<Category> categoryLst = categoryDAO.findAll();
 		model.addAttribute("categoryLst", categoryLst);
 
+//		Page Active
+		model.addAttribute("pageActive", "shop");
 		return "/client/shop";
 	}
 
@@ -112,6 +117,9 @@ public class ShopController {
 		List<Category> categoryLst = categoryDAO.findAll();
 		model.addAttribute("categoryLst", categoryLst);
 
+//		Page Active
+		model.addAttribute("pageActive", "shop");
+
 		return ("client/shop");
 	}
 
@@ -126,6 +134,9 @@ public class ShopController {
 		// Add category list to model for display
 		List<Category> categoryLst = categoryDAO.findAll();
 		model.addAttribute("categoryLst", categoryLst);
+
+//		Page Active
+		model.addAttribute("pageActive", "shop");
 
 		return "/client/shop";
 	}
@@ -144,6 +155,9 @@ public class ShopController {
 //		Category 
 		List<Category> categoryLst = categoryDAO.findAll();
 		model.addAttribute("categoryLst", categoryLst);
+
+//		Page Active
+		model.addAttribute("pageActive", "shop");
 
 		return "/client/shop";
 	}
