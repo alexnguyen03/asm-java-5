@@ -43,4 +43,9 @@ public class Order implements Serializable {
 	@JoinColumn(name = "coupon_id")
 	Coupon coupon;
 
+	@Override
+	public String toString() {
+		return "Order [id=" + id + "]";
+	}
+
 }

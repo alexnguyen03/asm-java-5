@@ -458,7 +458,7 @@ body {
 	}
 }
 @media screen and (max-width: 480px) {
-	.tableView .product-cell.stock {
+	.tableView .product-cell.stt {
 		display: none;
 	}
 	.tableView .product-cell.price {

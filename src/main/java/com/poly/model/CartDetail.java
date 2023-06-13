@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +33,7 @@ public class CartDetail implements Serializable {
 
     @Override
     public String toString() {
-        return "nam";
+        return "CartDetail [id=" + id + ", cart=" + cart + ", product=" + product + ", quantity=" + quantity + "]";
     }
+
 }

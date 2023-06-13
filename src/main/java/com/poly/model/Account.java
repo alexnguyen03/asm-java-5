@@ -28,12 +28,13 @@ public class Account implements Serializable {
 	@OneToMany(mappedBy = "account")
 	private List<Order> orders;
 	@OneToMany(mappedBy = "account")
-	private List<Review> reivews;
+	private List<Review> review;
 	@OneToMany(mappedBy = "account")
 	private List<Cart> carts;
 
 	@Override
 	public String toString() {
-		return "nam";
+		return "Account [username=" + username + "]";
 	}
+
 }

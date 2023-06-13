@@ -9,5 +9,6 @@ import com.poly.model.Product;
 import com.poly.model.ReportTop10;
 
 public interface ProductDAO extends JpaRepository<Product, Integer> {
-
+	@Query("SELECT c FROM Product c WHERE c.category.id = ?1")
+	List<Product> findByProductCategogy(String id);
 }

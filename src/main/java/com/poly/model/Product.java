@@ -17,13 +17,16 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@Getter
+@Setter
 @Entity
 @Table(name = "Products")
 public class Product implements Serializable {

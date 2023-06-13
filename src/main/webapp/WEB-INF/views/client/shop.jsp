@@ -216,7 +216,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                          alt="" />
                   </div>
                   <div class="product__item__text">
-                    <h6>EDIFICE CASIO</h6>
+                    <h6>Tai nghe Bluetooth Apple AirPods 2</h6>
                     <a href="#"
                        class="add-cart">+ Thêm vào giỏ hàng</a>
                     <div class="rating">

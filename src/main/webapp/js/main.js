@@ -1,25 +1,25 @@
 /*  ---------------------------------------------------
-    Template Name: Male Fashion
-    Description: Male Fashion - ecommerce teplate
-    Author: Colorib
-    Author URI: https://www.colorib.com/
-    Version: 1.0
-    Created: Colorib
+	Template Name: Male Fashion
+	Description: Male Fashion - ecommerce teplate
+	Author: Colorib
+	Author URI: https://www.colorib.com/
+	Version: 1.0
+	Created: Colorib
 ---------------------------------------------------------  */
 
 'use strict';
 
 (function ($) {
 	/*------------------
-        Preloader
-    --------------------*/
+		  Preloader
+	  --------------------*/
 	$(window).on('load', function () {
 		$('.loader').fadeOut();
 		$('#preloder').delay(200).fadeOut('slow');
 
 		/*------------------
-            Gallery filter
-        --------------------*/
+				Gallery filter
+			--------------------*/
 		$('.filter__controls li').on('click', function () {
 			$('.filter__controls li').removeClass('active');
 			$(this).addClass('active');
@@ -30,9 +30,41 @@
 		}
 	});
 
+	let star = document.querySelectorAll('input');
+	let showValue = document.querySelector('#rating-value');
+
+	for (let i = 0; i < star.length; i++) {
+		star[i].addEventListener('click', function () {
+			i = this.value;
+
+			showValue.value = i;
+		});
+	}
+
+	const decreaseBtn = document.querySelector('.decrease');
+	const increaseBtn = document.querySelector('.increase');
+	const quantityInput = document.getElementById('quantity');
+
+	decreaseBtn.addEventListener('click', () => {
+		let value = parseInt(quantityInput.value);
+		value = isNaN(value) ? 0 : value;
+		value--;
+		if (value < 1) {
+			value = 1;
+		}
+		quantityInput.value = value;
+	});
+
+	increaseBtn.addEventListener('click', () => {
+		let value = parseInt(quantityInput.value);
+		value = isNaN(value) ? 0 : value;
+		value++;
+		quantityInput.value = value;
+	});
+
 	/*------------------
-        Background Set
-    --------------------*/
+		  Background Set
+	  --------------------*/
 	$('.set-bg').each(function () {
 		var bg = $(this).data('setbg');
 		$(this).css('background-image', 'url(' + bg + ')');
@@ -50,16 +82,16 @@
 	});
 
 	/*------------------
-		Navigation
-	--------------------*/
+		  Navigation
+	  --------------------*/
 	$('.mobile-menu').slicknav({
 		prependTo: '#mobile-menu-wrap',
 		allowParentLinks: true,
 	});
 
 	/*------------------
-        Accordin Active
-    --------------------*/
+		  Accordin Active
+	  --------------------*/
 	$('.collapse').on('shown.bs.collapse', function () {
 		$(this).prev().addClass('active');
 	});
@@ -80,8 +112,8 @@
 	});
 
 	/*-----------------------
-        Hero Slider
-    ------------------------*/
+		  Hero Slider
+	  ------------------------*/
 	$('.hero__slider').owlCarousel({
 		loop: true,
 		margin: 0,
@@ -97,21 +129,21 @@
 	});
 
 	/*--------------------------
-        Select
-    ----------------------------*/
+		  Select
+	  ----------------------------*/
 	$('select').niceSelect();
 
 	/*-------------------
-		Radio Btn
-	--------------------- */
+		  Radio Btn
+	  --------------------- */
 	$('.product__color__select label, .shop__sidebar__size label, .product__details__option__size label').on('click', function () {
 		$('.product__color__select label, .shop__sidebar__size label, .product__details__option__size label').removeClass('active');
 		$(this).addClass('active');
 	});
 
 	/*-------------------
-		Scroll
-	--------------------- */
+		  Scroll
+	  --------------------- */
 	$('.nice-scroll').niceScroll({
 		cursorcolor: '#0d0d0d',
 		cursorwidth: '5px',
@@ -122,8 +154,8 @@
 	});
 
 	/*------------------
-        CountDown
-    --------------------*/
+		  CountDown
+	  --------------------*/
 	// For demo preview start
 	var today = new Date();
 	var dd = String(today.getDate()).padStart(2, '0');
@@ -141,7 +173,9 @@
 	// For demo preview end
 
 	// Uncomment below and use your date //
+	// Uncomment below and use your date //
 
+	/* var timerdate = "2020/12/30" */
 	/* var timerdate = "2020/12/30" */
 
 	$('#countdown').countdown(timerdate, function (event) {
@@ -149,61 +183,19 @@
 	});
 
 	/*------------------
-		Magnific
-	--------------------*/
+		  Magnific
+	  --------------------*/
 	$('.video-popup').magnificPopup({
 		type: 'iframe',
 	});
 
 	/*-------------------
-		Quantity change
-	--------------------- */
-	var proQty = $('.pro-qty');
-	proQty.prepend('<span class="fa fa-angle-up dec qtybtn"></span>');
-	proQty.append('<span class="fa fa-angle-down inc qtybtn"></span>');
-	proQty.on('click', '.qtybtn', function () {
-		var $button = $(this);
-		var oldValue = $button.parent().find('input').val();
-		if ($button.hasClass('inc')) {
-			var newVal = parseFloat(oldValue) + 1;
-		} else {
-			// Don't allow decrementing below zero
-			if (oldValue > 0) {
-				var newVal = parseFloat(oldValue) - 1;
-			} else {
-				newVal = 0;
-			}
-		}
-		$button.parent().find('input').val(newVal);
-	});
-
-	// increase total price
-
-	// var proQty = $('.pro-qty-2');
-	// proQty.prepend('<span class="fa fa-angle-left dec qtybtn"></span>');
-	// proQty.append('<span class="fa fa-angle-right inc qtybtn"></span>');
-	// proQty.on('click', '.qtybtn', function () {
-	// 	var $button = $(this);
-	// 	var oldValue = $button.parent().find('input').val();
-	// 	if ($button.hasClass('inc')) {
-	// 		var newVal = parseFloat(oldValue) + 1;
-	// 	} else {
-	// 		// Don't allow decrementing below zero
-	// 		if (oldValue > 0) {
-	// 			var newVal = parseFloat(oldValue) - 1;
-	// 		} else {
-	// 			newVal = 0;
-	// 		}
-	// 	}
-	// 	$button.parent().find('input').val(newVal);
-	// 	$button.parent().find('input');
-	// 	console.log($button.parent().find('input').val());
-	// 	document.querySelector('.cart__price').textContent = parseFloat(document.querySelector('.cart__price').textContent) * parseFloat($button.parent().find('input').val());
-	// });
+		  Quantity change
+	  --------------------- */
 
 	/*------------------
-        Achieve Counter
-    --------------------*/
+		  Achieve Counter
+	  --------------------*/
 	$('.cn_num').each(function () {
 		$(this)
 			.prop('Counter', 0)

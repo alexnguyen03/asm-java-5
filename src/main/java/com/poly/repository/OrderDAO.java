@@ -26,4 +26,6 @@ public interface OrderDAO extends JpaRepository<Order, Long> {
 
     Order findByAccountUsername(String uname);
 
+    @Query("SELECT c FROM Order c WHERE c.account.username = ?1")
+    List<Order> findByAccountName(String name);
 }

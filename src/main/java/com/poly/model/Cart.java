@@ -28,4 +28,9 @@ public class Cart implements Serializable {
     private int quantity;
     @OneToMany(mappedBy = "cart")
     private List<CartDetail> cartDetails;
+	@Override
+	public String toString() {
+		return "Cart [id=" + id + ", account=" + account + ", quantity=" + quantity + "]";
+	}
+	
 }
