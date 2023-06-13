@@ -1,11 +1,18 @@
 package com.poly.controller;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.model.Order;
 import com.poly.repository.OrderDAO;
+import com.poly.service.ParamService;
 import com.poly.service.SessionService;
 
 @Controller
@@ -25,15 +33,54 @@ public class OrderManagementController {
     OrderDAO orderDAO;
     @Autowired
     SessionService sessionService;
+    @Autowired
+    ParamService paramService;
 
     @GetMapping("order")
-    public String orderManagementView(Model m) {
-        m.addAttribute("title", "QUẢN LÝ ĐƠN HÀNG");
-        m.addAttribute("pageActive", "order");
-        List<Order> orders = orderDAO.findAll();
-        m.addAttribute("orders", orders);
+    public String orderManagementView(Model model,
+            @RequestParam("eop") Optional<Integer> eop,
+            @RequestParam("p") Optional<Integer> p, @RequestParam("d") Optional<Boolean> direc) {
+        int defaultPage = 0;
+        int defaultElementOfPage = 5;
+        String defaultField = "id";
+
+        Pageable pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage));
+
+        Page<Order> page = orderDAO.findOrderActive(pageable);
+        // List<Order> orders = orderDAO.findAll();
+        // ! dsl
+        // List<Order> orders = orderDAO.findOrderActive();
+        // get canceled orders
+        List<Order> orderCanceleds = orderDAO.findAllByStatusLike("H");
+        String searchKey = paramService.getString("searchKey", "");
+        if (!searchKey.isBlank()) {
+            Date searchVal = paramService.getDate("searchVal", "yyyy-MM");
+            LocalDate localDate = searchVal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            int day = localDate.getDayOfMonth();
+            int month = localDate.getMonthValue();
+            int year = localDate.getYear();
+            if (searchKey.equals("date")) {
+                page = orderDAO.findAllByCreateddateDate(day, month, year, pageable);
+            }
+            if (searchKey.equals("month")) {
+
+                page = orderDAO.findAllByCreateddateMonth(month, year, pageable);
+
+            }
+            model.addAttribute("page", page);
+            model.addAttribute("searchVal", searchVal);
+            model.addAttribute("searchKey", searchKey);
+        }
+        model.addAttribute("eop", eop.orElse(defaultElementOfPage));
+        model.addAttribute("p", p.orElse(defaultPage));
+        model.addAttribute("title", "QUẢN LÝ ĐƠN HÀNG");
+        model.addAttribute("pageActive", "order");
+
+        model.addAttribute("page", page);
+        model.addAttribute("orderCanceleds", orderCanceleds);
+        model.addAttribute("pageActive", "order");
         if (sessionService.get("isUpdated") != null) {
-            m.addAttribute("isUpdated", true);
+            model.addAttribute("isUpdated", true);
             sessionService.remove("isUpdated");
         }
         return "/admin/order";
@@ -54,8 +101,8 @@ public class OrderManagementController {
     }
 
     @GetMapping("/order/cancel")
-    public String orderCancelView(Model m) {
-        m.addAttribute("isCancel", true);
+    public String orderCancelView(Model model) {
+        model.addAttribute("isCancel", true);
         return "/admin/order";
     }
 

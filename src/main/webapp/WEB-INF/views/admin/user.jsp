@@ -23,11 +23,10 @@
   </head>
 
   <body onload="$('#deleteToast').toast('show')">
-    <div class="app-container position-relative ">
+    <div class="app-container  ">
       <!-- Sidebar -->
       <jsp:include page="sidebar.jsp" />
-
-      <div class="app-content  h-100">
+      <div class="app-content  h-100 position-relative">
         <!-- toast msg  -->
         <div class="toast position-absolute"
              id="${isUpdated == true ? 'deleteToast' : ''}"
@@ -36,7 +35,7 @@
              aria-atomic="true"
              data-delay="3000"
              style="top: 3.5rem;
-             left: 50%;
+             right:20px;
              transform: translate(-50%,-50%);
              z-index: 100;">
           <div class="toast-header">
@@ -58,10 +57,12 @@
         </jsp:include>
         <!-- Top content -->
         <div class="app-content-actions">
-          <form action="">
+          <form action="/admin/search"
+                class="">
             <input class="search-bar"
                    placeholder="Tìm kiếm..."
                    type="text"
+                   name="keyword"
                    list="user">
             <datalist id="user">
               <c:forEach var="u"
@@ -70,84 +71,80 @@
               </c:forEach>
             </datalist>
           </form>
-          <div class="w-100 d-flex justify-content-center">
-            <div class="product-cell status-cell d-flex flex-column justify-content-center">
-              <span class="status active py-2">Hiển thị <strong class="mx-2">15 / 20</strong> người
-                dùng</span>
-            </div>
-            <!--* paging start  -->
-            <%-- <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item ${page.number == 0 ? 'd-none': ''}"><a class="page-link"
-                     href="/product/sort-paging?field=${field}&p=0&eop=${eop}">First</a></li>
-                <c:forEach begin="0"
-                           end="${accountPages.totalPages - 1 }"
-                           varStatus="loop">
-                  <li class="page-item ${ loop.index == page.number ? 'active': ''} "><a class="page-link"
-                       href="/product/sort-paging?field=${field}&p=${loop.index}&eop=${eop}">${loop.count}
-                    </a>
+          <a href="/admin/user?field=${field}&p=${p}&eop=${eop}&d=${d}"
+             class="ml-3 btn btn-sm btn-outline-primary "
+             title="Làm mới"><i class="fa fa-refresh"
+               aria-hidden="true"></i></a>
+          <div class=" ml-3">Trang:</div>
+          <!--* paging start  -->
+          <c:choose>
+            <c:when test="${page.content.size() > 0}">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination pagination-sm mb-0 py-1 ml-3">
+                  <li class="page-item ${ p  == 0 ?'d-none'  : '' } "><a class="page-link"
+                       href="/admin/user?field=${field}&p=0&eop=${eop}&d=${d}">First</a></li>
+                  <c:forEach begin="0"
+                             end="${page.totalPages  - 1 }"
+                             varStatus="loop">
+                    <li class="page-item ${ loop.index == page.number ? 'active': ''} ">
+                      <a class="page-link"
+                         href="/admin/user?field=${field}&p=${loop.index}&eop=${eop}&d=${d}">
+                        ${loop.count}
+                      </a>
+                    </li>
+                  </c:forEach>
+                  <li class="page-item  ${ p  == page.totalPages - 1  ?'d-none'  : '' }"><a class="page-link"
+                       href="/admin/user?field=${field}&p=${page.totalPages - 1 }&eop=${eop}&d=${d}">Last</a>
                   </li>
-                </c:forEach>
-                <li class="page-item  ${page.number == page.totalPages - 1   ? 'd-none': ''}"><a class="page-link"
-                     href="/product/sort-paging?field=${field}&p=${page.totalPages - 1}&eop=${eop}">Last</a>
-                </li>
-              </ul>
-            </nav>--%>
-            <!-- temp paging -->
-            <nav aria-label="Page navigation example">
-              <ul class="pagination pagination-sm my-1 ml-5">
-                <li class="page-item"><a class="page-link"
-                     href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link"
-                     href="#">1</a></li>
-                <li class="page-item"><a class="page-link"
-                     href="#">2</a></li>
-                <li class="page-item"><a class="page-link"
-                     href="#">3</a></li>
-                <li class="page-item"><a class="page-link"
-                     href="#">Next</a></li>
-              </ul>
-            </nav>
-            <!-- temp paging -->
-            <!--* paging end -->
-            <!-- <div class="text-primary px-3 border">Hiển thị 15 / 20 người dùng</div> -->
+                </ul>
+              </nav>
+            </c:when>
+          </c:choose>
+          <!--* paging end -->
+          <div class="w-100 d-flex justify-content-center">
+
+            <!-- * select row to display -->
+            <div class="input-group input-group-sm  ml-3 w-50">
+              <div class="input-group-prepend">
+                <label class="input-group-text"
+                       for="inputGroupSelect01">Hiển thị</label>
+              </div>
+              <form action="/admin/user?eop&field=${field}&p=${p}&d=${d}"
+                    name="topicSelectionFormId"
+                    class=""
+                    method="get">
+                <select class="custom-select"
+                        id="inputGroupSelect01"
+                        name="eop"
+                        onchange="this.form.submit()">
+                  <option ${eop==5
+                          ? 'selected'
+                          : ''
+                          }
+                          value="5">5 khách hàng</option>
+                  <option ${eop==10
+                          ? 'selected'
+                          : ''
+                          }
+                          value="10">10 khách hàng</option>
+                  <option ${eop==15
+                          ? 'selected'
+                          : ''
+                          }
+                          value="15">15 khách hàng</option>
+                </select>
+              </form>
+              <div class="product-cell status-cell d-flex flex-column justify-content-center ml-3">
+                <span class="status active py-2">Hiển thị <strong class="mx-2">${page.numberOfElements} /
+                    ${page.totalElements}</strong>
+                  người
+                  dùng</span>
+              </div>
+            </div>
+            <!-- * select row to display -->
           </div>
           <div class="app-content-actions-wrapper">
             <div class="filter-button-wrapper d-flex justify-content-betwwen">
-              <button class="action-button filter jsFilter mx-3">
-                <span>Lọc</span><svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="2"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                     class="feather feather-filter">
-                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-                </svg>
-              </button>
-              <div class="filter-menu">
-                <label>Địa chỉ</label>
-                <select>
-                  <option>Vĩnh Long</option>
-                  <option>Cần Thơ</option>
-                  <option>TP HCM</option>
-                  <option>Hà Nội</option>
-                  <option>Đà Nẵng</option>
-                </select>
-                <label>Trạng thái</label>
-                <select>
-                  <option>Cả 2</option>
-                  <option>Hoạt động</option>
-                  <option>Không hoạt động</option>
-                </select>
-                <div class="filter-menu-buttons">
-                  <button class="filter-button reset">Làm mới</button>
-                  <button class="filter-button apply">Thay đổi</button>
-                </div>
-              </div>
             </div>
             <button class="action-button list active"
                     title="List View">
@@ -221,141 +218,150 @@
         </div>
         <div class="products-area-wrapper tableView">
           <div class="products-header">
+            <div class="product-cell "
+                 style="max-width: 50px;">
+              #
+            </div>
+            <div class="product-cell category">Họ tên<a href="/admin/user?field=fullname&p=${p}&eop=${eop}&d=${!d}"
+                 class="sort-button  ${field == 'fullname' ? 'text-primary' : '' }"> ${field == 'fullname' && d == true
+                ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+              </a></div>
             <div class="product-cell image">
               Tên đăng nhập
-              <button class="sort-button">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 512 512">
-                  <path fill="currentColor"
-                        d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-              </button>
+              <a href="/admin/user?field=username&p=${p}&eop=${eop}&d=${!d}"
+                 class="sort-button ${field == 'username' ? 'text-primary' : '' }"> ${field == 'username' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+              </a>
             </div>
-            <div class="product-cell category">Họ tên<button class="sort-button">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 512 512">
-                  <path fill="currentColor"
-                        d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-              </button></div>
-            <div class="product-cell status-cell">Trạng thái<button class="sort-button">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 512 512">
-                  <path fill="currentColor"
-                        d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-              </button></div>
-            <div class="product-cell sales">Email<button class="sort-button">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 512 512">
-                  <path fill="currentColor"
-                        d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-              </button></div>
-            <div class="product-cell stock">Vai trò<button class="sort-button">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 512 512">
-                  <path fill="currentColor"
-                        d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-              </button></div>
+            <div class="product-cell status-cell">Trạng thái<a
+                 href="/admin/user?field=activated&p=${p}&eop=${eop}&d=${!d}"
+                 class="sort-button  ${field == 'activated' ? 'text-primary' : '' }"> ${field == 'activated' && d ==
+                true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+              </a></div>
+            <div class="product-cell sales">Email<a href="/admin/user?field=email&p=${p}&eop=${eop}&d=${!d}"
+                 class="sort-button  ${field == 'email' ? 'text-primary' : '' }"> ${field == 'email' && d == true ? '<i
+                   class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+              </a></div>
+            <div class="product-cell stock">Vai trò<a href="/admin/user?field=admin&p=${p}&eop=${eop}&d=${!d}"
+                 class="sort-button  ${field == 'admin' ? 'text-primary' : '' }"> ${field == 'admin' && d == true ? '<i
+                   class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+              </a></div>
             <div class="product-cell price">Thao tác
             </div>
           </div>
-          <c:forEach var="u"
-                     items="${ users }">
-            <div class="products-row">
-              <div class="product-cell image">
-                <img src="${pageContext.request.contextPath}/img/user-management/${u.photo}"
-                     alt=""
-                     data-bigimage="${pageContext.request.contextPath}/img/user-management/u1.jpg"
-                     style="z-index: 1000;"
-                     data-toggle="modal"
-                     data-target="#prevImg"
-                     title="${u.photo == null ? 'Không có hình ảnh': u.photo }">
-                <span>${u.username}</span>
+          <c:choose>
+            <c:when test="${isPageEmpty == true}">
+              <div class="alert alert-info text-center mt-5 mx-auto w-75 py-3">Không tìm thấy khách hàng có tên <strong>
+                  ${keyword}</strong> !
+                <br>
+                <br>
+                <a href="/admin/user?field=${field}&p=${p}&eop=${eop}&d=${d}"
+                   class="ml-3 btn btn-sm btn-outline-primary "
+                   title="Làm mới">Làm mới <i class="fa fa-refresh"
+                     aria-hidden="true"></i></a>
               </div>
-              <div class="product-cell category"><span class="cell-label">Họ và tên</span>${u.fullname}</div>
-              <div class="product-cell status-cell">
-                <span class="cell-label">Trạng thái</span>
-                <span class="status ${u.activated == true ? 'active' : 'disabled'}">${u.activated == true ? 'Hoạt động'
-                  :
-                  'Vô hiệu hóa'}${activated}</span>
-              </div>
-              <div class="product-cell sales"><span class="cell-label">Email</span>${u.email}</div>
-              <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
-                      class="status ${u.admin == true ? 'bg-primary' : 'bg-secondary'}  text-white ">
-                  ${u.admin == true ? 'Quản trị viên' : 'Khách hàng'}</span></div>
-              <div class="product-cell price"><span class="cell-label"></span>
-                <div class="btn btn-sm btn-${u.activated == true ? 'danger' : 'secondary'}"
-                     data-toggle="modal"
-                     data-target="#deleteModal${u.username}">
-                  ${u.activated == true ? 'Vô hiệu hóa' : 'Khôi phục'}</div>
-              </div>
-            </div>
-            <!-- * Start Modal -->
-            <div class="modal fade"
-                 id="deleteModal${u.username}"
-                 tabindex="-1"
-                 role="dialog"
-                 aria-labelledby="modelTitleId"
-                 aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered"
-                   role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title ">${u.activated == true ? 'Vô hiệu hóa' : 'Khôi phục'} người dùng <span
-                            class="text-danger">"${u.username}"</span>
-                    </h5>
-                    <button type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+            </c:when>
+            <c:when test="${isPageEmpty == false}">
+              <c:forEach var="u"
+                         items="${ page.content }"
+                         varStatus="loop">
+                <div class="products-row">
+                  <div class="product-cell "
+                       style="max-width: 50px;"><span class="cell-label">STT</span>${loop.count}</div>
+                  <div class="product-cell category"><span class="cell-label">Họ và tên</span>${u.fullname}</div>
+                  <div class="product-cell image">
+                    <img src="${pageContext.request.contextPath}/img/user-management/${u.photo}"
+                         alt=""
+                         data-bigimage="${pageContext.request.contextPath}/img/user-management/u1.jpg"
+                         style="z-index: 1000;"
+                         data-toggle="modal"
+                         data-target="#prevImg"
+                         title="${u.photo == null ? 'Không có hình ảnh': u.photo }">
+                    <span>${u.username}</span>
                   </div>
-                  <div class="modal-body">
-                    <form action="/admin/user/${u.activated == true ? 'delete' : 'restore'}/${u.username}"
-                          method="post">
-                      <div class="row bg rounded ">
-                        <div class="col-12 d-flex justify-content-center">
-                          <img src="${pageContext.request.contextPath}/img/user-management/confirm-delete.svg"
-                               alt=""
-                               width="75%">
-                        </div>
-                        <div class="col-12">
-                          <div class="alert alert-warning">Bạn có chắc muốn ${u.activated == true ? 'vô hiệu hóa' :
-                            'khôi phục'} người dùng
-                            <strong class="text-danger font-weight-bold">${u.username}</strong> không ?
-                          </div>
-                        </div>
-                        <div class="form-group col-lg-12 mx-auto mb-4 ">
-                          <hr>
-                          <button type="submit"
-                                  class="btn btn-danger float-right w-50">
-                            <span class="font-weight-bold">Có, ${u.activated == true ? 'Vô hiệu hóa' : 'Khôi
-                              phục'}</span>
-                          </button>
-                        </div>
-                      </div>
-                    </form>
+                  <div class="product-cell status-cell">
+                    <span class="cell-label">Trạng thái</span>
+                    <span class="status ${u.activated == true ? 'active' : 'disabled'}">${u.activated == true ? 'Hoạt
+                      động'
+                      :
+                      'Vô hiệu hóa'}${activated}</span>
+                  </div>
+                  <div class="product-cell sales"><span class="cell-label">Email</span>${u.email}</div>
+                  <div class="product-cell stock"><span class="cell-label">Vai trò</span><span
+                          class="status ${u.admin == true ? 'bg-primary' : 'bg-secondary'}  text-white ">
+                      ${u.admin == true ? 'Quản trị viên' : 'Khách hàng'}</span></div>
+                  <div class="product-cell price"><span class="cell-label"></span>
+                    <div class="btn btn-sm btn-${u.activated == true ? 'danger' : 'secondary'}"
+                         data-toggle="modal"
+                         data-target="#deleteModal${u.username}">
+                      ${u.activated == true ? 'Vô hiệu hóa' : 'Khôi phục'}</div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <!-- * End modal -->
-            <span></span>
-          </c:forEach>
+                <!-- * Start Modal -->
+                <div class="modal fade"
+                     id="deleteModal${u.username}"
+                     tabindex="-1"
+                     role="dialog"
+                     aria-labelledby="modelTitleId"
+                     aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered"
+                       role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title ">${u.activated == true ? 'Vô hiệu hóa' : 'Khôi phục'} người dùng <span
+                                class="text-danger">"${u.username}"</span>
+                        </h5>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="/admin/user/${u.activated == true ? 'delete' : 'restore'}/${u.username}"
+                              method="post">
+                          <div class="row bg rounded ">
+                            <div class="col-12 d-flex justify-content-center">
+                              <img src="${pageContext.request.contextPath}/img/user-management/confirm-delete.svg"
+                                   alt=""
+                                   width="75%">
+                            </div>
+                            <div class="col-12">
+                              <div class="alert alert-warning">Bạn có chắc muốn ${u.activated == true ? 'vô hiệu hóa' :
+                                'khôi phục'} người dùng
+                                <strong class="text-danger font-weight-bold">${u.username}</strong> không ?
+                              </div>
+                            </div>
+                            <div class="form-group col-lg-12 mx-auto mb-4 ">
+                              <hr>
+                              <button type="submit"
+                                      class="btn btn-danger float-right w-50">
+                                <span class="font-weight-bold">Có, ${u.activated == true ? 'Vô hiệu hóa' : 'Khôi
+                                  phục'}</span>
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- * End modal -->
+                <span></span>
+              </c:forEach>
+            </c:when>
+          </c:choose>
         </div>
       </div>
     </div>

@@ -21,17 +21,18 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           type="text/css" />
     <script src="https://kit.fontawesome.com/c0f581682c.js"
             crossorigin="anonymous"></script>
+    <!-- Chart js  -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart js  -->
   </head>
 
   <body>
     <div class="app-container">
       <!-- Sidebar -->
       <jsp:include page="sidebar.jsp" />
-
       <div class="app-content h-100">
         <!-- Top content -->
         <jsp:include page="top-content.jsp" />
-
         <div class="app-content-actions">
           <a href="/admin/report"
              class="btn btn-primary">Top 10 sản phẩm bán chạy</a>
@@ -188,48 +189,46 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </button>
           </div>
         </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Tên sản phẩm</th>
-              <th scope="col">Số lượng bán</th>
-              <th scope="col">Danh mục</th>
-              <th scope="col">Tổng doanh thu</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Tai nghe airpod 3</td>
-              <td>100</td>
-              <td>Tai nghe không dây</td>
-              <td>100</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Tai nghe airpod 3</td>
-              <td>100</td>
-              <td>Tai nghe không dây</td>
-              <td>100</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Tai nghe airpod 3</td>
-              <td>100</td>
-              <td>Tai nghe không dây</td>
-              <td>100</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Tai nghe airpod 3</td>
-              <td>100</td>
-              <td>Tai nghe không dây</td>
-              <td>100</td>
-            </tr>
-          </tbody>
-        </table>
-        <canvas id="myChart"></canvas>
+        <div class="mb-3">
+          <div class="btn btn-primary"
+               id="btnChart"
+               onclick="fetchData();">Xem dạng biểu đồ</div>
+          <div class="btn btn-primary d-none"
+               onclick="tableView();"
+               id="btnTable">Xem dạng bảng</div>
+        </div>
+        <div class=""
+             id="table">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Số lượng bán</th>
+                <th scope="col">Danh mục</th>
+                <th scope="col">Tổng doanh thu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <c:forEach var="report"
+                         items="${reports}"
+                         varStatus="loop">
+
+                <tr>
+                  <th scope="row">${loop.count}</th>
+                  <td>${report.name}</td>
+                  <td>${report.quantity}</td>
+                  <td>${report.category}</td>
+                  <td>${report.price}</td>
+                </tr>
+              </c:forEach>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="w-50">
+          <canvas id="myChart"></canvas>
+        </div>
       </div>
     </div>
     <!-- Modal -->
@@ -346,6 +345,52 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         });
         // document ready
       });
+      // render chart 
+      let myChart;
+      const ctx = document.getElementById('myChart');
+      const table = document.getElementById('table')
+      const btnTable = document.getElementById('btnTable')
+      const btnChart = document.getElementById('btnChart')
+      async function fetchData() {
+        if (typeof myChart !== 'undefined') {
+          myChart.destroy();
+        }
+        try {
+          const response = await fetch('http://localhost:8080/admin/report/chart');
+          const dataJson = await response.json();
+          const names = dataJson.map(item => item.name);
+          const quantities = dataJson.map(item => item.quantity);
+          console.log(names);
+          myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: names,
+              datasets: [{
+                label: 'Số lượng bán được',
+                data: quantities,
+                borderWidth: 1,
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                ],
+              }]
+            },
+            options: {
+              indexAxis: 'y',
+            }
+          });
+        } catch (error) {
+          console.error(error);
+        }
+        btnTable.classList.remove('d-none')
+        btnChart.classList.add('d-none')
+        table.classList.add('d-none')
+      }
+      function tableView() {
+        btnChart.classList.remove('d-none')
+        btnTable.classList.add('d-none')
+        table.classList.remove('d-none')
+        ctx.style.display = 'none'
+      }
     </script>
   </body>
 

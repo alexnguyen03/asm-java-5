@@ -2,6 +2,7 @@
 pageEncoding="UTF-8" %> <%@ taglib
 uri="http://www.springframework.org/tags/form" prefix="form" %> <%@ taglib
 prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,33 +57,43 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                      value="${title}" />
         </jsp:include>
         <div class="app-content-actions">
-          <form action="">
-            <div class="input-group input-group-sm">
-              <div class="input-group-prepend">
-                <button type="button"
-                        class="btn btn-outline-secondary">
-                  Tìm theo ngày
-                </button>
-                <button type="button"
-                        class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                  <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item"
-                     href="#">Tìm theo ngày</a>
-                  <a class="dropdown-item"
-                     href="#">Tìm theo tháng</a>
-                </div>
+          <form action="/admin/order">
+            <div class="input-group">
+              <select class="custom-select"
+                      value="${searchKey}"
+                      id="searchKey"
+                      name="searchKey">
+                <option disabled
+                        selected
+                        value="defaultVal">Chọn tiêu chí tìm kiếm</option>
+                <option value="date"
+                        ${searchKey=='date'
+                        ? 'selected'
+                        : ''
+                        }>Tìm theo ngày</option>
+                <option value="month"
+                        ${searchKey=='month'
+                        ? 'selected'
+                        : ''
+                        }>Tìm theo tháng</option>
+              </select>
+              <div class="input-group-append">
+                <input type="month"
+                       class="form-control"
+                       id="filterByDate"
+                       value="${searchVal}"
+                       name="searchVal">
               </div>
-              <input type="month"
-                     class="form-control"
-                     aria-label="Text input with segmented dropdown button" />
+              <div class="input-group-append">
+                <button class="btn btn-sm btn-primary">Xem</button>
+              </div>
             </div>
           </form>
           <div class="filter-button-wrapper d-flex justify-content-betwwen">
+            <a href="/admin/order?p=${p}&eop=${eop}"
+               class="ml-3 btn btn-sm btn-outline-primary "
+               title="Làm mới">Làm mới <i class="fa fa-refresh"
+                 aria-hidden="true"></i></a>
             <button class="action-button filter jsFilter mx-3">
               <span>Lọc</span><svg xmlns="http://www.w3.org/2000/svg"
                    width="16"
@@ -120,35 +131,101 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
           </div>
           <div class="w-50 d-flex justify-content-center">
-            <div class="product-cell status-cell d-flex flex-column justify-content-center">
-              <span class="status active py-2">Hiển thị <strong class="mx-2">15 / 20</strong> người dùng</span>
+            <!-- * select row to display -->
+            <div class="input-group input-group-sm  ml-3 w-50">
+              <div class="product-cell status-cell d-flex flex-column justify-content-center ml-3">
+                <span class="status active py-2">Hiển thị <strong class="mx-2">${page.numberOfElements} /
+                    ${page.totalElements}</strong>
+                  đơn hàng</span>
+              </div>
             </div>
-            <nav aria-label="Page navigation example"
-                 class="mt-3 ml-4">
-              <ul class="pagination justify-content-center pagination-sm align-self-center">
-                <li class="page-item disabled">
-                  <a class="page-link"
-                     href="#"
-                     tabindex="-1">Đầu</a>
-                </li>
-                <li class="page-item"><a class="page-link"
-                     href="#">1</a></li>
-                <li class="page-item"><a class="page-link"
-                     href="#">2</a></li>
-                <li class="page-item"><a class="page-link"
-                     href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link"
-                     href="#">Cuối</a>
-                </li>
-              </ul>
-            </nav>
+            <!-- * select row to display -->
+            <!--* paging start  -->
+            <c:choose>
+              <c:when test="${page.content.size() > 0}">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination pagination-sm mb-0 py-1 ml-3">
+                    <li class="page-item ${ p  == 0 ?'d-none'  : '' } "><a class="page-link"
+                         href="/admin/order?p=0&eop=${eop}">First</a></li>
+                    <c:forEach begin="0"
+                               end="${page.totalPages  - 1 }"
+                               varStatus="loop">
+                      <li class="page-item ${ loop.index == page.number ? 'active': ''} ">
+                        <a class="page-link"
+                           href="/admin/user?p=${loop.index}&eop=${eop}">
+                          ${loop.count}
+                        </a>
+                      </li>
+                    </c:forEach>
+                    <li class="page-item  ${ p  == page.totalPages - 1  ?'d-none'  : '' }"><a class="page-link"
+                         href="/admin/user?p=${page.totalPages - 1 }&eop=${eop}">Last</a>
+                    </li>
+                  </ul>
+                </nav>
+              </c:when>
+            </c:choose>
+            <!--* paging end -->
           </div>
           <div class="app-content-actions-wrapper">
-            <a href="/admin/order"
-               class="btn btn${isCancel == true ? '-outline': ''}-primary btn-sm mx-2 ml-4">Đơn đã đặt</a>
-            <a href="/admin/order/cancel"
-               class="btn btn${isCancel == true ? '': '-outline'}-warning btn-sm mx-2">Đơn đã hủy</a>
+            <!-- order canceled -->
+            <button class="btn btn-warning btn-sm mx-2"
+                    title="Xem đơn hàng đã hủy "
+                    data-toggle="modal"
+                    data-target="#modalCanceledOrder"
+                    style="z-index: 1000;">Đơn đã hủy</button>
+            <!-- Modal  order canceled -->
+            <div class="modal fade"
+                 id="modalCanceledOrder"
+                 tabindex="-1"
+                 role="dialog"
+                 aria-labelledby="modelTitleId"
+                 aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg "
+                   style="min-width: 1200px;"
+                   role="document">
+                <div class="modal-content"
+                     style="min-width: 1200px;">
+                  <div class="modal-header alert alert-warning">
+                    <h3 class="modal-title w-100 text-center "> ĐƠN HÀNG ĐÃ HỦY</h3>
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table table-hover">
+                      <thead class="thead-inverse">
+                        <tr>
+                          <th>#</th>
+                          <th>Mã đơn hàng</th>
+                          <th>Khách hàng</th>
+                          <th>Tổng tiền </th>
+                          <th>Ngày đặt</th>
+                          <th>Lý do hủy</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <c:forEach var="oc"
+                                   items="${orderCanceleds}"
+                                   varStatus="loop">
+                          <tr>
+                            <td>${loop.count}</td>
+                            <td>${oc.id}</td>
+                            <td>${oc.account.username}</td>
+                            <td>${oc.totalPrice}</td>
+                            <td>${oc.createDate}</td>
+                            <td>${oc.notes}</td>
+                          </tr>
+                        </c:forEach>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal -->
             <button class="action-button list active d-none"
                     title="List View">
               <svg xmlns="http://www.w3.org/2000/svg"
@@ -224,365 +301,335 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <div class=" mx-3">STT</div>
             <div class="product-cell image">
               Họ tên khách hàng
-              <button class="sort-button">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 512 512">
-                  <path fill="currentColor"
-                        d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-              </button>
             </div>
             <div class="product-cell category">
-              Tổng tiền<button class="sort-button">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 512 512">
-                  <path fill="currentColor"
-                        d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-              </button>
+              Tổng tiền
             </div>
             <div class="product-cell status-cell">
-              Trạng thái đơn<button class="sort-button">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 512 512">
-                  <path fill="currentColor"
-                        d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-              </button>
+              Trạng thái đơn
             </div>
             <div class="product-cell sales">
-              Ngày đặt<button class="sort-button">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 512 512">
-                  <path fill="currentColor"
-                        d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-              </button>
+              Ngày đặt
             </div>
             <div class="product-cell stock">
-              Địa chỉ<button class="sort-button">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 512 512">
-                  <path fill="currentColor"
-                        d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-              </button>
+              Địa chỉ
             </div>
             <div class="product-cell price">Thao tác</div>
           </div>
-          <c:forEach var="o"
-                     items="${ orders }"
-                     varStatus="loop">
-            <div class="products-row">
-              <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="18"
-                     height="18"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="2"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                     class="feather feather-more-vertical">
-                  <circle cx="12"
-                          cy="12"
-                          r="1" />
-                  <circle cx="12"
-                          cy="5"
-                          r="1" />
-                  <circle cx="12"
-                          cy="19"
-                          r="1" />
-                </svg>
-              </button>
-              <div class="mx-4">
-                <span>${ loop.count } </span>
-              </div>
-              <div class="product-cell">
-                <span>${o.account.fullname}</span>
-              </div>
-              <div class="product-cell category">
-                <span class="cell-label">Tổng tiền</span>${o.totalPrice}<sup>đ</sup>
-              </div>
-              <div class="product-cell status-cell">
-                <span class="cell-label">Trạng thái</span>
-                <span class="status ${o.status =='DG' ? 'active' : 'disabled'} ">
-                  <c:choose>
-                    <c:when test="${o.status =='C'}">
-                      Đang chờ
-                    </c:when>
-                    <c:when test="${o.status =='XL'}">
-                      Đang xử lý
-                    </c:when>
-                    <c:when test="${o.status =='G'}">
-                      Đang giao
-                    </c:when>
-                    <c:when test="${o.status =='DG'}">
-                      Đã giao
-                    </c:when>
-                    <c:when test="${o.status =='H'}">
-                      Đã hủy
-                    </c:when>
-                    <c:otherwise>
-                      Đang chờ
-                    </c:otherwise>
-                  </c:choose>
-                </span>
-              </div>
-              <div class="product-cell sales">
-                <span class="cell-label">Ngày đặt</span>${o.createDate}
-              </div>
-              <div class="product-cell address">
-                <span class="cell-label">Địa chỉ </span>${o.address}
-              </div>
-              <div class="product-cell price">
-                <span class="cell-label"> </span>
-                <button class="btn btn-sm btn-primary mr-3"
-                        data-toggle="modal"
-                        data-target="#updateModal${o.id}">
-                  Cập nhật trạng thái
-                </button>
-                <button class="btn btn-sm btn-info"
-                        data-toggle="modal"
-                        data-target="#viewModal${o.id}">
-                  <i class="fa fa-info-circle"
-                     aria-hidden="true"></i>
-                </button>
-              </div>
-              <!-- Modal -->
-              <div class="modal fade"
-                   id="viewModal${o.id}"
-                   tabindex="-1"
-                   role="dialog"
-                   aria-labelledby="modelTitleId"
-                   aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg "
-                     style="min-width: 1200px;"
-                     role="document">
-                  <div class="modal-content"
-                       style="min-width: 1200px;">
-                    <div class="modal-header alert alert-info">
-                      <h3 class="modal-title w-100 text-center ">CHI TIẾT ĐƠN HÀNG </h3>
-                      <button type="button"
-                              class="close"
-                              data-dismiss="modal"
-                              aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="row rounded">
-                        <div class="col-4">
-                          <div class="card border-primary ">
-                            <div class="card-header">
-                              <h4 class="w-100 text-center mb-0">THÔNG TIN KHÁCH HÀNG</h4>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                              <li class="list-group-item"><span>Mã khách hàng</span>
-                                <strong class="text-danger">${o.account.username}</strong>
-                              </li>
-                              <li class="list-group-item"><span>Họ tên:</span>
-                                <strong class="text-danger">${o.account.fullname}</strong>
-                              </li>
-                              <li class="list-group-item"><span>Địa chỉ</span>
-                                <strong class="text-danger">${o.address}</strong>
-                              </li>
-                              <li class="list-group-item"><span>Số điện thoại</span>
-                                <strong class="text-danger">${o.phone}</strong>
-                              </li>
-                              <li class="list-group-item"><span>Ngày đặt hàng</span>
-                                <strong class="text-danger">${o.createDate}</strong>
-                              </li>
-                              <li class="list-group-item"><span>Email</span>
-                                <strong class="text-danger">${o.account.email}</strong>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="card mt-3 border-success">
-                            <div class="card-header">
-                              <h4 class="w-100 text-center mb-0">THÔNG TIN ĐƠN HÀNG</h4>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                              <li class="list-group-item">
-                                <span>Mã đơn hàng</span>
-                                <strong class="text-danger">${o.id}</strong>
-                              </li>
-                              <li class="list-group-item">
-                                <span>Tạm tính:</span>
-                                <strong class="text-danger">${o.totalPrice - (o.coupon.discountAmount * o.totalPrice)
-                                  }<sup>đ</sup></strong>
-                              </li>
-                              <li class="list-group-item">
-                                <span>Giảm giá:</span>
-                                <strong class="text-danger">${o.coupon.discountAmount * o.totalPrice}
-                                  <sup>đ</sup></strong>
-                              </li>
-                              <li class="list-group-item">
-                                <span>Thành tiền:</span>
-                                <strong class="text-danger">${o.totalPrice} <sup>đ</sup></strong>
-                              </li>
-                            </ul>
-                          </div>
+          <c:choose>
+            <c:when test="${!page.isEmpty()}">
+              <c:forEach var="o"
+                         items="${ page.content }"
+                         varStatus="loop">
+                <div class="products-row">
+                  <button class="cell-more-button">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="18"
+                         height="18"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="feather feather-more-vertical">
+                      <circle cx="12"
+                              cy="12"
+                              r="1" />
+                      <circle cx="12"
+                              cy="5"
+                              r="1" />
+                      <circle cx="12"
+                              cy="19"
+                              r="1" />
+                    </svg>
+                  </button>
+                  <div class="mx-4">
+                    <span>${ loop.count } </span>
+                  </div>
+                  <div class="product-cell">
+                    <span>${o.account.fullname}</span>
+                  </div>
+                  <div class="product-cell category">
+                    <span class="cell-label">Tổng tiền</span>${o.totalPrice}<sup>đ</sup>
+                  </div>
+                  <div class="product-cell status-cell">
+                    <span class="cell-label">Trạng thái</span>
+                    <span class="status ${o.status =='DG' ? 'active' : 'disabled'} ">
+                      <c:choose>
+                        <c:when test="${o.status =='C'}">
+                          Đang chờ
+                        </c:when>
+                        <c:when test="${o.status =='XL'}">
+                          Đang xử lý
+                        </c:when>
+                        <c:when test="${o.status =='G'}">
+                          Đang giao
+                        </c:when>
+                        <c:when test="${o.status =='DG'}">
+                          Đã giao
+                        </c:when>
+                        <c:when test="${o.status =='H'}">
+                          Đã hủy
+                        </c:when>
+                        <c:otherwise>
+                          Đang chờ
+                        </c:otherwise>
+                      </c:choose>
+                    </span>
+                  </div>
+                  <div class="product-cell sales">
+                    <span class="cell-label">Ngày đặt</span>${o.createDate}
+                  </div>
+                  <div class="product-cell address">
+                    <span class="cell-label">Địa chỉ </span>${o.address}
+                  </div>
+                  <div class="product-cell price">
+                    <span class="cell-label"> </span>
+                    <button class="btn btn-sm btn-primary mr-3"
+                            data-toggle="modal"
+                            data-target="#updateModal${o.id}">
+                      Cập nhật trạng thái
+                    </button>
+                    <button class="btn btn-sm btn-info"
+                            data-toggle="modal"
+                            data-target="#viewModal${o.id}">
+                      <i class="fa fa-info-circle"
+                         aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  <!-- Modal -->
+                  <div class="modal fade"
+                       id="viewModal${o.id}"
+                       tabindex="-1"
+                       role="dialog"
+                       aria-labelledby="modelTitleId"
+                       aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg "
+                         style="min-width: 1200px;"
+                         role="document">
+                      <div class="modal-content"
+                           style="min-width: 1200px;">
+                        <div class="modal-header alert alert-info">
+                          <h3 class="modal-title w-100 text-center ">CHI TIẾT ĐƠN HÀNG </h3>
+                          <button type="button"
+                                  class="close"
+                                  data-dismiss="modal"
+                                  aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                         </div>
-                        <div class="col-8">
-                          <table class="table table-hover">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Ảnh SP</th>
-                                <th>Tên SP</th>
-                                <th>Số lượng</th>
-                                <th class="mx-3">Tổng cộng</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <c:forEach var="orderDetail"
-                                         items="${o.orderDetails}"
-                                         varStatus="loop">
-                                <tr class="">
-                                  <td>${loop.count}</td>
-                                  <td class="product__cart__item">
-                                    <img src="${pageContext.request.contextPath}/img/product/${orderDetail.product.image}"
-                                         alt=""
-                                         width="35px"
-                                         height="35px"
-                                         class="" />
-                                  </td>
-                                  <td class="product__cart__item">
-                                    <h6 class="">${orderDetail.product.name}</h6>
-                                  </td>
-                                  <td class="quantity__item">
-                                    <div class="quantity">
-                                      <div class="pro-qty-2 text-center">
-                                        <span>${orderDetail.quantity}</span>
-                                      </div>
-                                    </div>
-                                  </td>
-                                  <td class="cart__price">${orderDetail.price}<sup>đ</sup></td>
-                                </tr>
-                              </c:forEach>
-                            </tbody>
-                          </table>
+                        <div class="modal-body">
+                          <div class="row rounded">
+                            <div class="col-4">
+                              <div class="card border-primary ">
+                                <div class="card-header">
+                                  <h4 class="w-100 text-center mb-0">THÔNG TIN KHÁCH HÀNG</h4>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item"><span>Mã khách hàng</span>
+                                    <strong class="text-danger">${o.account.username}</strong>
+                                  </li>
+                                  <li class="list-group-item"><span>Họ tên:</span>
+                                    <strong class="text-danger">${o.account.fullname}</strong>
+                                  </li>
+                                  <li class="list-group-item"><span>Địa chỉ</span>
+                                    <strong class="text-danger">${o.address}</strong>
+                                  </li>
+                                  <li class="list-group-item"><span>Số điện thoại</span>
+                                    <strong class="text-danger">${o.phone}</strong>
+                                  </li>
+                                  <li class="list-group-item"><span>Ngày đặt hàng</span>
+                                    <strong class="text-danger">${o.createDate}</strong>
+                                  </li>
+                                  <li class="list-group-item"><span>Email</span>
+                                    <strong class="text-danger">${o.account.email}</strong>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div class="card mt-3 border-success">
+                                <div class="card-header">
+                                  <h4 class="w-100 text-center mb-0">THÔNG TIN ĐƠN HÀNG</h4>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">
+                                    <span>Mã đơn hàng</span>
+                                    <strong class="text-danger">${o.id}</strong>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <span>Tạm tính:</span>
+                                    <strong class="text-danger">${o.totalPrice - (o.coupon.discountAmount *
+                                      o.totalPrice)
+                                      }<sup>đ</sup></strong>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <span>Giảm giá:</span>
+                                    <strong class="text-danger">${o.coupon.discountAmount * o.totalPrice}
+                                      <sup>đ</sup></strong>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <span>Thành tiền:</span>
+                                    <strong class="text-danger">${o.totalPrice} <sup>đ</sup></strong>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="col-8">
+                              <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>Ảnh SP</th>
+                                    <th>Tên SP</th>
+                                    <th>Số lượng</th>
+                                    <th class="mx-3">Tổng cộng</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <c:forEach var="orderDetail"
+                                             items="${o.orderDetails}"
+                                             varStatus="loop">
+                                    <tr class="">
+                                      <td>${loop.count}</td>
+                                      <td class="product__cart__item">
+                                        <img src="${pageContext.request.contextPath}/img/product/${orderDetail.product.image}"
+                                             alt=""
+                                             width="35px"
+                                             height="35px"
+                                             class="" />
+                                      </td>
+                                      <td class="product__cart__item">
+                                        <h6 class="">${orderDetail.product.name}</h6>
+                                      </td>
+                                      <td class="quantity__item">
+                                        <div class="quantity">
+                                          <div class="pro-qty-2 text-center">
+                                            <span>${orderDetail.quantity}</span>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td class="cart__price">${orderDetail.price}<sup>đ</sup></td>
+                                    </tr>
+                                  </c:forEach>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <!-- Modal -->
-              <!-- update modal -->
-              <div class="modal fade"
-                   id="updateModal${o.id}"
-                   tabindex="-1"
-                   role="dialog"
-                   aria-labelledby="modelTitleId"
-                   aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg"
-                     role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Cập nhật trạng thái đơn hàng</h5>
-                      <button type="button"
-                              class="close"
-                              data-dismiss="modal"
-                              aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <form action="/admin/order"
-                            method="post">
-                        <div class="row rounded">
-                          <div class="col-12">
-                            <div class="row mb-3">
-                              <div class="col-6">
-                                <span>Mã khách hàng</span>
-                              </div>
-                              <div class="col-6">
-                                <span>${o.account.username}</span>
-                              </div>
-                            </div>
-                            <div class="row mb-3">
-                              <div class="col-6">
-                                <span>Tên khách hàng:</span>
-                              </div>
-                              <div class="col-6">
-                                <span>${o.account.fullname}</span>
-                              </div>
-                            </div>
-                            <div class="row mb-3">
-                              <div class="col-6">
-                                <span>Tổng tiền đặt hàng:</span>
-                              </div>
-                              <div class="col-6">
-                                <span>${o.totalPrice} <sup>đ</sup></span>
-                              </div>
-                            </div>
-                            <div class="row mb-3">
-                              <div class="col-6">
-                                <span>Ngày đặt hàng:</span>
-                              </div>
-                              <div class="col-6">
-                                <span>${o.createDate}</span>
-                              </div>
-                            </div>
-                            <div class="row mb-3">
-                              <div class="col-6">
-                                <span>Trạng thái đơn hàng:</span>
-                              </div>
-                              <div class="col-6">
-                                <div class="input-group">
-                                  <input type="hidden"
-                                         name="id"
-                                         value="${o.id}">
-                                  <select class="custom-select custom-select-sm"
-                                          id="inputGroupSelect04"
-                                          name="status">
-                                    <option selected>Chọn trạng thái</option>
-                                    <c:forEach var="s"
-                                               items="${listStatus}">
-                                      <option value="${s.key}"
-                                              class="text-primary">
-                                        ${s.value}
-                                      </option>
-                                    </c:forEach>
-                                  </select>
+                  <!-- Modal -->
+                  <!-- update modal -->
+                  <div class="modal fade"
+                       id="updateModal${o.id}"
+                       tabindex="-1"
+                       role="dialog"
+                       aria-labelledby="modelTitleId"
+                       aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg"
+                         role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Cập nhật trạng thái đơn hàng</h5>
+                          <button type="button"
+                                  class="close"
+                                  data-dismiss="modal"
+                                  aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="/admin/order"
+                                method="post">
+                            <div class="row rounded">
+                              <div class="col-12">
+                                <div class="row mb-3">
+                                  <div class="col-6">
+                                    <span>Mã khách hàng</span>
+                                  </div>
+                                  <div class="col-6">
+                                    <span>${o.account.username}</span>
+                                  </div>
+                                </div>
+                                <div class="row mb-3">
+                                  <div class="col-6">
+                                    <span>Tên khách hàng:</span>
+                                  </div>
+                                  <div class="col-6">
+                                    <span>${o.account.fullname}</span>
+                                  </div>
+                                </div>
+                                <div class="row mb-3">
+                                  <div class="col-6">
+                                    <span>Tổng tiền đặt hàng:</span>
+                                  </div>
+                                  <div class="col-6">
+                                    <span>${o.totalPrice} <sup>đ</sup></span>
+                                  </div>
+                                </div>
+                                <div class="row mb-3">
+                                  <div class="col-6">
+                                    <span>Ngày đặt hàng:</span>
+                                  </div>
+                                  <div class="col-6">
+                                    <span>${o.createDate}</span>
+                                  </div>
+                                </div>
+                                <div class="row mb-3">
+                                  <div class="col-6">
+                                    <span>Trạng thái đơn hàng:</span>
+                                  </div>
+                                  <div class="col-6">
+                                    <div class="input-group">
+                                      <input type="hidden"
+                                             name="id"
+                                             value="${o.id}">
+                                      <select class="custom-select custom-select-sm"
+                                              id="selectStatus"
+                                              name="status">
+                                        <option selected>Chọn trạng thái</option>
+                                        <c:forEach var="s"
+                                                   items="${listStatus}">
+                                          <option onchange="console.log(value)"
+                                                  value="${s.key}"
+                                                  class="text-primary">
+                                            ${s.value}
+                                          </option>
+                                        </c:forEach>
+                                      </select>
+                                    </div>
+                                    <div class="my-2 "
+                                         id="notes">
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Submit Button -->
+                                <div class="form-group col-lg-12 mx-auto mb-4">
+                                  <hr />
+                                  <button class="btn btn-danger float-right w-100">
+                                    <span class="font-weight-bold">Cập nhật</span>
+                                  </button>
                                 </div>
                               </div>
                             </div>
-                            <!-- Submit Button -->
-                            <div class="form-group col-lg-12 mx-auto mb-4">
-                              <hr />
-                              <button type="button"
-                                      class="btn btn-secondary mr-5"
-                                      data-dismiss="modal">
-                                Hủy
-                              </button>
-                              <button class="btn btn-danger float-right w-75">
-                                <span class="font-weight-bold">Cập nhật</span>
-                              </button>
-                            </div>
-                          </div>
+                          </form>
                         </div>
-                      </form>
+                      </div>
                     </div>
                   </div>
+                  <!-- update modal -->
                 </div>
+              </c:forEach>
+            </c:when>
+            <c:when test="${page.isEmpty()}">
+              <div class="alert alert-info text-center mt-5 mx-auto w-75 py-3">Không tìm thấy đơn hàng trong ${
+                searchKey == 'date' ? 'Ngày' : 'Tháng'}
+                <fmt:formatDate pattern="MM-yyyy"
+                                value="${searchVal}" />!
               </div>
-              <!-- update modal -->
-            </div>
-          </c:forEach>
+            </c:when>
+          </c:choose>
         </div>
       </div>
     </div>
@@ -601,6 +648,45 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         var modal = $(this);
         // Use above variables to manipulate the DOM
       });
+      const select = document.getElementById('selectStatus');
+      var notes = document.getElementById("notes")
+      let label = document.createElement('label')
+      let txt = document.createElement('textarea')
+      let br = document.createElement('br')
+      label.append("Lý do hủy đơn hàng")
+      select.addEventListener('change', function handleChange(event) {
+        if (event.target.value === 'H') {
+          notes.append(label)
+          notes.append(br)
+          notes.append(txt)
+        } else {
+          notes.removeChild(txt)
+          txt.value = ''
+          notes.removeChild(br)
+          notes.removeChild(label)
+        }
+      });
+      var searchKey = document.getElementById('searchKey')
+      var filterByDate = document.getElementById('filterByDate')
+      window.onload = function (e) {
+        filterByDate.readOnly = true
+        if (e.target.value === 'defaultVal') {
+        }
+        if (searchKey.value === 'date') {
+          filterByDate.type = 'date'
+        }
+        if (searchKey.value === 'month') {
+          filterByDate.type = 'month'
+        }
+      }
+      searchKey.addEventListener('change', function handleSearchChange(e) {
+        filterByDate.readOnly = false
+        if (e.target.value === 'date') {
+          filterByDate.type = 'date'
+        } else if (e.target.value === 'month') {
+          filterByDate.type = 'month'
+        }
+      })
     </script>
   </body>
 

@@ -69,10 +69,12 @@
             <div class="container">
                   <div class="row py-5  align-items-center">
                         <div class="col-8 offset-2 shadow rounded ">
-                              <form action="#">
-                                    <h2 class="text-center pt-5 mb-5 font-weight-bold">Xác nhận tài khoản</h2>
+                              <form action="/account/verify"
+                                    method="post">
+                                    <div class="${msg !=  null? 'alert' : ''} alert-danger">${msg}</div>
+                                    <h2 class="text-center pt-5 mb-5 font-weight-bold">Xác nhận tài khoản email</h2>
                                     <small class="text-center d-block my-2 font-weight-bold ">Vui lòng kiểm tra email
-                                          <strong>namnhpc...</strong> để
+                                          <strong><%= session.getAttribute("signupMail") %></strong> để
                                           nhập mã mã xác nhận
                                           vào ô bên dưới</small>
                                     <div class="row  bg rounded ">
@@ -86,16 +88,16 @@
                                                 </div>
                                                 <input id="username"
                                                        type="text"
-                                                       name="username"
+                                                       name="code"
                                                        placeholder="Mã xác nhận"
                                                        class="form-control bg-white border-left-0 border-md">
                                           </div>
                                           <!-- Submit Button -->
                                           <div class="form-group col-lg-6 offset-3 mx-auto mb-5">
-                                                <a href="#"
-                                                   class="btn btn-primary btn-block py-2">
+                                                <button type="submit"
+                                                        class="btn btn-primary btn-block py-2">
                                                       <span class="font-weight-bold">Tạo tài khoản</span>
-                                                </a>
+                                                </button>
                                           </div>
                                     </div>
                               </form>

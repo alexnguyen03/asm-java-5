@@ -40,7 +40,8 @@ public class SignupController {
         File newFile = paramService.save(file, "/files");
         account.setPhoto(newFile.getName());
         sessionService.set("signupMail", account.getEmail());
-        accountDAO.save(account);
+        sessionService.set("signupUser", account);
+
         System.out.println(account.getEmail());
         String code = Generator.getCode();
         sessionService.set("code", code);

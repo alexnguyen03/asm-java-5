@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.poly.model.Account;
 import com.poly.model.Product;
 import com.poly.repository.AccountDAO;
+import com.poly.service.ParamService;
 import com.poly.service.SessionService;
 
 @Controller
@@ -27,26 +28,54 @@ public class UserManagementController {
     @Autowired
     SessionService sessionService;
 
+    @Autowired
+    ParamService paramService;
+
+    /*
+     * @param: field: field to sort; eop: element of page; p: page to display; d:
+     * direction(true is default(asending) / false is desending )
+     */
     @GetMapping("user")
-    public String userManagementView(Model m) {
-        int defaultPage = 2;
+    public String userManagementView(Model model, @RequestParam("field") Optional<String> field,
+            @RequestParam("eop") Optional<Integer> eop,
+            @RequestParam("showAdmin") Optional<Boolean> showAdmin,
+            @RequestParam("p") Optional<Integer> p, @RequestParam("d") Optional<Boolean> direc) {
+        int defaultPage = 0;
+        int defaultElementOfPage = 5;
         String defaultField = "username";
-        // Account account = new Account();
-        // m.addAttribute("account", account);
-        // Pageable pageable = PageRequest.of(0, defaultPage,
-        // Sort.by(defaultField).ascending());
-        // Page<Account> accountPages = accountDAO.findAll(pageable);
-        // m.addAttribute("users", accountPages);
-        // System.out.println(accountPages.getContent());
-        System.out.println("" + sessionService.get("isUpdated"));
+        String keyword = paramService.getString("keyword", " ");
         if (sessionService.get("isUpdated") != null) {
-            m.addAttribute("isUpdated", true);
+            model.addAttribute("isUpdated", true);
             sessionService.remove("isUpdated");
         }
-        List<Account> users = accountDAO.findAll();
-        m.addAttribute("users", users);
-        m.addAttribute("title", "QUẢN LÝ NGƯỜI DÙNG");
-        m.addAttribute("pageActive", "user");
+        // asending is default
+        Pageable pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),
+                Sort.by(field.orElse(defaultField)).ascending());
+
+        if (direc.isPresent() && !direc.get().booleanValue()) {
+            pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),
+                    Sort.by(field.orElse(defaultField)).descending());
+
+        }
+
+        Page<Account> page = accountDAO.findByFullnameLike("%" + keyword + "%", pageable);
+        System.out.println(page.getContent().size() + " size");
+
+        if (page.isEmpty()) {
+            model.addAttribute("isPageEmpty", true);
+        } else {
+            model.addAttribute("isPageEmpty", false);
+            model.addAttribute("page", page);
+        }
+
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("field", field.orElse(defaultField));
+        model.addAttribute("eop", eop.orElse(defaultElementOfPage));
+        model.addAttribute("p", p.orElse(defaultPage));
+        model.addAttribute("d", direc.orElse(true));
+        model.addAttribute("users", accountDAO.findAll());
+        model.addAttribute("title", "QUẢN LÝ NGƯỜI DÙNG");
+        model.addAttribute("pageActive", "user");
         return "/admin/user";
     }
 
@@ -68,18 +97,9 @@ public class UserManagementController {
         return "redirect:/admin/user";
     }
 
-    @RequestMapping("sort")
-    public String sortAndPaging(Model model, @RequestParam("field") Optional<String> field,
-            @RequestParam("eop") Optional<Integer> eop,
-            @RequestParam("p") Optional<Integer> p) {
-        int defaultPage = 2;
-        String defaultField = "username";
-        // sorting and paging by price is default
-        Pageable pageable = PageRequest.of(p.orElse(0), eop.orElse(defaultPage),
-                Sort.by(field.orElse(defaultField)).ascending());
-        Page<Account> page = accountDAO.findAll(pageable);
-        model.addAttribute("eop", eop.orElse(2));
-        model.addAttribute("page", page);
-        return ("/admin/user");
+    @RequestMapping("search")
+    public String searchUser(@RequestParam("keyword") String keyword) {
+
+        return "forward:/admin/user";
     }
 }
