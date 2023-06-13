@@ -19,14 +19,14 @@ public class OrderHistoryController {
 	@Autowired
 	OrderDAO orderDao;
 	@Autowired
-	OrderDetailDAO orderDetailDao; 
-	
+	OrderDetailDAO orderDetailDao;
+
 	@GetMapping("order-history")
-    public String index(Model model) {
-		List<Order> orders = orderDao.findByAccountName("hoainam");
+	public String index(Model model) {
+		List<Order> orders = orderDao.findByAccountName("Alexx");
 		model.addAttribute("orders", orders);
 		model.addAttribute("pageActive", "order-history");
 		model.addAttribute("activeTab", false);
-        return "/client/order-history";
-    }
+		return "/client/order-history";
+	}
 }

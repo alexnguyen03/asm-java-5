@@ -47,31 +47,30 @@ public class CheckOutController {
 
 	@RequestMapping("")
 	public String index(Model model) {
-//		Order order = orderDAO.findById((long) 1).get();
-//		sessionService.set("cart", order.getOrderDetails());
-//
-//		Account account = accountDAO.findById("hoainam").get();
-//		sessionService.set("account", account);
+		Order order = orderDAO.findById((long) 1).get();
+		sessionService.set("cart", order.getOrderDetails());
+		Account account = accountDAO.findById("hoainam").get();
+		sessionService.set("account", account);
 
-		String couponId = paramService.getString("couponId", "");
-		try {
-			Coupon coupon = couponDAO.findById(couponId).get();
-			sessionService.set("coupon", coupon);
-			model.addAttribute("discountAmount", coupon.getDiscountAmount());
-		} catch (Exception e) {
-			System.out.println("Không có coupon");
-			sessionService.remove("coupon");
-			model.addAttribute("discountAmount", 0);
-		}
-		
-		Account account = sessionService.get("account");
-		model.addAttribute("account", account);
+		// String couponId = paramService.getString("couponId", "");
+		// try {
+		// Coupon coupon = couponDAO.findById(couponId).get();
+		// sessionService.set("coupon", coupon);
+		// model.addAttribute("discountAmount", coupon.getDiscountAmount());
+		// } catch (Exception e) {
+		// System.out.println("Không có coupon");
+		// sessionService.remove("coupon");
+		// model.addAttribute("discountAmount", 0);
+		// }
+
+		Account account2 = sessionService.get("account");
+		model.addAttribute("account", account2);
 		return "/client/checkout";
 	}
 
 	@PostMapping("/create")
 	public String checkout() {
-		//Order
+		// Order
 		Order order = new Order();
 		double toTal_Price = 0;
 		List<OrderDetail> ODL = sessionService.get("cart");
@@ -90,34 +89,34 @@ public class CheckOutController {
 		order.setAddress(address);
 		order.setTotalPrice(toTal_Price - discountAmount);
 		order.setStatus("Đang xử lý");
-//		orderDAO.save(order);
+		// orderDAO.save(order);
 		sessionService.remove("coupon");
-		//OrderDetail
+		// OrderDetail
 		for (OrderDetail od : ODL) {
 			OrderDetail orderDetail = new OrderDetail();
 			orderDetail.setOrder(order);
 			orderDetail.setProduct(od.getProduct());
 			orderDetail.setPrice(od.getPrice());
 			orderDetail.setQuantity(od.getQuantity());
-//			orderDetailDAO.save(orderDetail);
-			
+			// orderDetailDAO.save(orderDetail);
+
 			int productId = od.getProduct().getId();
 			System.out.println(productId);
-			cartDetailDAO.deleteByProductId(productId);
+			// cartDetailDAO.deleteByProductId(productId);
 		}
 		return "redirect:/shop/checkout";
 	}
 
-//	@PostMapping("/coupon")
-//	public String getCoupon() {
-//		String couponId = paramService.getString("couponId", "");
-//		try {
-//			Coupon coupon = couponDAO.findById(couponId).get();
-//			sessionService.set("coupon", coupon);
-//		} catch (Exception e) {
-//			System.out.println("Không có coupon");
-//			sessionService.remove("coupon");
-//		}
-//		return "redirect:/shop/checkout";
-//	}
+	// @PostMapping("/coupon")
+	// public String getCoupon() {
+	// String couponId = paramService.getString("couponId", "");
+	// try {
+	// Coupon coupon = couponDAO.findById(couponId).get();
+	// sessionService.set("coupon", coupon);
+	// } catch (Exception e) {
+	// System.out.println("Không có coupon");
+	// sessionService.remove("coupon");
+	// }
+	// return "redirect:/shop/checkout";
+	// }
 }
