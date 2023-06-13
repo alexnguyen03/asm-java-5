@@ -39,7 +39,7 @@
       </a>
     </li>
     <li class="sidebar-list-item">
-      <a href="/admin/category">
+      <a href="/admin/category-manager">
         <i class="fa-solid fa-bars mr-2"></i>
         <span>Danh mục</span>
       </a>

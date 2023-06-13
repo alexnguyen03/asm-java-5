@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -27,4 +28,9 @@ public class Category implements Serializable {
 	String name;
 	@OneToMany(mappedBy = "category")
 	List<Product> products;
+
+	@Override
+	public String toString() {
+		return "id" + id;
+	}
 }

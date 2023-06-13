@@ -19,14 +19,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "Products")
 public class Product implements Serializable {
@@ -53,6 +49,6 @@ public class Product implements Serializable {
 
 	@Override
 	public String toString() {
-		return "nam";
+		return "id" + id;
 	}
 }

@@ -7,6 +7,9 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * CookieService
+ */
 @Service
 public class CookieService {
     @Autowired
@@ -16,38 +19,43 @@ public class CookieService {
 
     public Cookie get(String name) {
         Cookie[] cookies = request.getCookies();
-        for (Cookie ck : cookies) {
-            if (ck.getName().equalsIgnoreCase(name))
-                return ck;
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equalsIgnoreCase(name))
+                    ;
+                return cookie;
+            }
         }
         return null;
     }
 
     public String getValue(String name) {
         Cookie[] cookies = request.getCookies();
-        for (Cookie ck : cookies) {
-            if (ck.getName().equalsIgnoreCase(name))
-                return ck.getValue();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equalsIgnoreCase(name)) {
+                    return cookie.getValue();
+                }
+            }
         }
-        return "";
+        return null;
     }
 
-    public Cookie add(String name, String value, int hour) {
-        Cookie cookie = new Cookie(name, value);
-        cookie.setPath("/");
-        cookie.setMaxAge(hour * 60 * 60);
-        response.addCookie(cookie);
-        return cookie;
+    public Cookie add(String name, String value, int hours) {
+        Cookie cookies = new Cookie(name, value);
+        cookies.setPath("/");
+        cookies.setMaxAge(hours * 60 * 60);
+        response.addCookie(cookies);
+        return cookies;
     }
 
     public void remove(String name) {
-        // create a cookie
-        Cookie cookie = new Cookie(name, null);
-        cookie.setMaxAge(0);
-        cookie.setSecure(true);
-        cookie.setHttpOnly(true);
-        cookie.setPath("/");
-        // add cookie to response
-        response.addCookie(cookie);
+        Cookie cookies = new Cookie(name, null);
+        cookies.setMaxAge(0);
+        cookies.setSecure(true);
+        cookies.setHttpOnly(true);
+        cookies.setPath("/");
+        response.addCookie(cookies);
     }
+
 }

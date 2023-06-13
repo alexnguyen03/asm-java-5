@@ -34,7 +34,6 @@ public class Account implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Account [username=" + username + "]";
+		return "id" + username;
 	}
-
 }

@@ -69,6 +69,8 @@ if (upload) {
 
     const img = document.createElement("img");
     img.src = URL.createObjectURL(file);
+    console.log(URL.createObjectURL(file))
     preview.appendChild(img);
+    console.log(img);
   });
 }
