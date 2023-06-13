@@ -46,9 +46,16 @@ public class ShopController {
 	ProductDAO productDAO;
 	@Autowired
 	CategoryDAO categoryDAO;
+	@Autowired
+	SessionService session;
 
 	@GetMapping("")
 	public String index(Model model, @RequestParam("p") Optional<Integer> p) {
+		if (session.get("username") != null) {
+			Account account = accountDAO.findById(session.get("username")).orElse(null);
+			model.addAttribute("isAdmin", account.getAdmin());
+		}
+
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findAll(pageable);
 		model.addAttribute("page", page);
