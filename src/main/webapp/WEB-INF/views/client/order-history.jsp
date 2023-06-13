@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -128,22 +128,16 @@
 								style="height: 42px;">Tìm</button>
 						</div>
 						<div class="pr-2">
-							<button type="button" class="btn btn-warning mr-2"
+							<button type="button"
+								class="btn btn-${ activeTab ? 'outline-' : '' }warning mr-2"
 								style="height: 42px;">Đơn đã hủy</button>
 						</div>
 						<div class="pr-2">
-							<button type="button" class="btn btn-primary"
+							<button type="button"
+								class="btn btn-${ !activeTab ? 'outline-' : '' }primary"
 								style="height: 42px;">Đơn đã thanh toán</button>
 						</div>
 					</div>
-					<!--             <div class="d-flex flex-row-reverse mb-3"> -->
-					<!--               <button type="button" class="btn btn-warning ml-2"> -->
-					<!--                 Đơn đã hủy -->
-					<!--               </button> -->
-					<!--               <button type="button" class="btn btn-primary"> -->
-					<!--                 Đơn đã thanh toán -->
-					<!--               </button> -->
-					<!--             </div> -->
 					<div class="table-responsive">
 						<table class="table text-center">
 							<thead class="bg-dark text-white">
@@ -159,46 +153,29 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th class="pt-4">1</th>
-									<td class="pt-4">2023-11-04</td>
-									<td class="pt-4">90.000.000đ</td>
-									<td class="pt-4">100.000đ</td>
-									<td class="pt-4">Hậu Giang</td>
-									<td class="pt-4">0776856483</td>
-									<td class="pt-4">Đã thanh toán</td>
-									<td class="pt-3">
-										<h5>
-											<!-- Button to Open the Modal -->
-											<button type="button" class="btn btn-light bg-white border-0"
-												data-toggle="modal" data-target="#myModal">
-												<h4>
-													<i class="fa fa-eye text-info mr-2" aria-hidden="true"></i>
-												</h4>
-											</button>
-										</h5>
-									</td>
-								</tr>
-								<tr>
-									<th class="pt-4">2</th>
-									<td class="pt-4">2023-11-04</td>
-									<td class="pt-4">90.000.000đ</td>
-									<td class="pt-4">30.000đ</td>
-									<td class="pt-4">Hậu Giang</td>
-									<td class="pt-4">0776856483</td>
-									<td class="pt-4">Đã hủy</td>
-									<td class="pt-3">
-										<h5>
-											<!-- Button to Open the Modal -->
-											<button type="button" class="btn btn-light bg-white border-0"
-												data-toggle="modal" data-target="#myModal">
-												<h4>
-													<i class="fa fa-eye text-info mr-2" aria-hidden="true"></i>
-												</h4>
-											</button>
-										</h5>
-									</td>
-								</tr>
+								<c:forEach var="order" items="${ orders }">
+									<tr>
+										<th class="pt-4">${ order.id }</th>
+										<td class="pt-4">${ order.createDate }</td>
+										<td class="pt-4">${ order.totalPrice }đ</td>
+										<td class="pt-4">${ order.coupon.discountAmount}</td>
+										<td class="pt-4">${ order.address }</td>
+										<td class="pt-4">${ order.phone }</td>
+										<td class="pt-4">${ order.status }</td>
+										<td class="pt-3">
+											<h5>
+												<!-- Button to Open the Modal -->
+												<button type="button"
+													class="btn btn-light bg-white border-0" data-toggle="modal"
+													data-target="#myModal${ order.id }">
+													<h4>
+														<i class="fa fa-eye text-info mr-2" aria-hidden="true"></i>
+													</h4>
+												</button>
+											</h5>
+										</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -206,83 +183,72 @@
 			</div>
 		</div>
 	</div>
-	<!-- The Modal -->
-	<div class="modal fade" id="myModal">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title">Chi Tiết Đơn Hàng</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<!-- Modal body -->
-				<div class="modal-body">
-					<h5 class="mb-3">
-						Mã đơn hàng: <strong>1</strong>
-					</h5>
-					<table class="table font-weight-bold">
-						<thead class="bg-dark text-white text-center">
-							<tr>
-								<th scope="col" class="p-0">STT</th>
-								<th scope="col" class="p-0">Ảnh</th>
-								<th scope="col" class="p-0">Tên Sản Phẩm</th>
-								<th scope="col" class="p-0">Đơn Giá</th>
-								<th scope="col" class="p-0">Số Lượng</th>
-								<th scope="col" class="p-0">Tổng Tiền</th>
-							</tr>
-						</thead>
-						<tbody style="font-size: 15px;" class="text-center">
-							<tr class="align-middle">
-								<th class="pt-4">1</th>
-								<td><img src="/img/order-history/tainghe.png"
-									class="card-img-top" height="50px"></td>
-								<td class="pt-4">
-									<p>Tai nghe Bluetooth Jabra Elite 85h</p>
-								</td>
-								<td class="pt-4">5.000.000đ</td>
-								<td class="pt-4">6</td>
-								<td class="pt-4">30.000.000đ</td>
-							</tr>
-							<tr class="align-middle">
-								<th class="pt-4">2</th>
-								<td><img src="/img/order-history/tainghe.png"
-									class="card-img-top" height="50px"></td>
-								<td class="pt-4">
-									<p>Tai nghe Bluetooth Jabra Elite 85h</p>
-								</td>
-								<td class="pt-4">5.000.000đ</td>
-								<td class="pt-4">6</td>
-								<td class="pt-4">30.000.000đ</td>
-							</tr>
-							<tr class="align-middle">
-								<th class="pt-4">3</th>
-								<td><img src="/img/order-history/tainghe.png"
-									class="card-img-top" height="50px"></td>
-								<td class="pt-4">
-									<p>Tai nghe Bluetooth Jabra Elite 85h</p>
-								</td>
-								<td class="pt-4">5.000.000đ</td>
-								<td class="pt-4">6</td>
-								<td class="pt-4">30.000.000đ</td>
-							</tr>
-						</tbody>
 
-					</table>
+	<c:forEach var="order" items="${ orders }" varStatus="loop">
+		<!-- The Modal -->
+		<div class="modal fade" id="myModal${ order.id }">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Chi Tiết Đơn Hàng</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<!-- Modal body -->
+					<div class="modal-body">
+						<h5 class="mb-3">
+							Mã đơn hàng: <strong>${ order.id }</strong>
+						</h5>
+						<table class="table font-weight-bold">
+							<thead class="bg-dark text-white text-center">
+								<tr>
+									<th scope="col" class="p-0">STT</th>
+									<th scope="col" class="p-0">Ảnh</th>
+									<th scope="col" class="p-0">Tên Sản Phẩm</th>
+									<th scope="col" class="p-0">Đơn Giá</th>
+									<th scope="col" class="p-0">Số Lượng</th>
+									<th scope="col" class="p-0">Tổng Tiền</th>
+								</tr>
+							</thead>
+							<tbody style="font-size: 15px;" class="text-center">
+								<c:forEach var="orderdetail" items="${ order.orderDetails }"
+									varStatus="loop">
+									<tr class="align-middle">
+										<th class="pt-4">${ loop.count }</th>
+										<td><img
+											src="${pageContext.request.contextPath }/img/product/${ orderdetail.product.image }"
+											class="card-img-top" height="50px"></td>
+										<td class="pt-4">
+											<p>${ orderdetail.product.name }</p>
+										</td>
+										<td class="pt-4">${ orderdetail.product.price }<sup>đ</sup></td>
+										<td class="pt-4">${ orderdetail.quantity }</td>
+										<td class="pt-4">${ orderdetail.product.price  * orderdetail.quantity }
+											<sup>đ</sup>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<h4>
+							Tổng số lượng: <strong><c:set var="totalQuantity"
+									value="0" /> <c:forEach var="detail"
+									items="${order.orderDetails}">
+									<c:set var="totalQuantity"
+										value="${totalQuantity + detail.quantity}" />
+								</c:forEach> ${totalQuantity}</strong>
+						</h4>
+						<h4>
+							Tổng tiền : <strong>${ order.totalPrice }đ</strong>
+						</h4>
+					</div>
 				</div>
-
-				<!-- Modal footer -->
-				<div class="modal-footer">
-					<h4>
-						Tổng số lượng sản phẩm: <strong>10</strong>
-					</h4>
-					<h4>
-						Tổng tiền : <strong>90.00.00đ</strong>
-					</h4>
-				</div>
-
 			</div>
 		</div>
-	</div>
+	</c:forEach>
 	<!-- Footer Section Begin -->
 	<footer class="footer">
 		<div class="container">
@@ -348,7 +314,7 @@
 								document.write(new Date().getFullYear());
 							</script>
 							2022 All rights reserved
-						</p>					
+						</p>
 						<!-- Search Begin -->
 						<div class="search-model">
 							<div

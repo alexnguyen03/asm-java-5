@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ChangePasswordController {
     @RequestMapping("/change-password")
     public String login(){
-        return "client/change-password";
+        return "account/change-password";
     }
 }

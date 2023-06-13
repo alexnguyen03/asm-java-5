@@ -8,10 +8,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "CartDetails")
 public class CartDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +25,9 @@ public class CartDetail implements Serializable {
     @JoinColumn(name = "product_id")
     private Product product;
     private int quantity;
+	@Override
+	public String toString() {
+		return "CartDetail [id=" + id + ", cart=" + cart + ", product=" + product + ", quantity=" + quantity + "]";
+	}
+	 
 }

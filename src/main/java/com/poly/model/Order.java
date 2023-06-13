@@ -39,6 +39,13 @@ public class Order implements Serializable {
 	Account account;
 	@OneToMany(mappedBy = "order")
 	List<OrderDetail> orderDetails;
-	@OneToMany(mappedBy = "order")
-	List<Coupon> counpons;
+	@ManyToOne
+	@JoinColumn(name = "coupon_id")
+	Coupon coupon;
+	@Override
+	public String toString() {
+		return "Order [id=" + id + "]";
+	}
+	
+	
 }

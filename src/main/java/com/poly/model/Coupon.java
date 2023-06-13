@@ -1,33 +1,40 @@
 package com.poly.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "Coupons")
-public class Coupon {
+public class Coupon implements Serializable{
     @Id
     @Column(name = "coupon_code")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String code;
+    String couponCode;
     @Column(name = "discount_amount")
     Double discountAmount;
-    @Column(name = "expiration_date")
-    Date exprirationDate;
-    Boolean actived;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "expiration_date")
+    Date expirationDate;
+    Boolean activated;
     @Column(name = "coupon_name")
-    String name;
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    Order order;
+    String couponName;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "created_date")
+    Date createdDate = new Date();
+    @OneToMany(mappedBy = "coupon")
+	private List<Order> order;
 }
