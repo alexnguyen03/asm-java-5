@@ -13,6 +13,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
@@ -21,6 +22,7 @@ import lombok.Data;
 public class Coupon implements Serializable {
     @Id
     @Column(name = "coupon_code")
+    @NotBlank(message = "{NotBlank.cp.couponCode}")
     String couponCode;
     @Column(name = "discount_amount")
     Double discountAmount;
@@ -36,5 +38,5 @@ public class Coupon implements Serializable {
     @Column(name = "created_date")
     Date createdDate = new Date();
     @OneToMany(mappedBy = "coupon")
-    private List<Order> order;
+    private List<Order> orders;
 }

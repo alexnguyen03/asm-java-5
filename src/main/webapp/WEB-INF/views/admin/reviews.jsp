@@ -38,6 +38,7 @@
               <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
             </svg>
 				</button>
+				<a href="" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">THỐNG KÊ</a>
 			</div>
 			<form action="/admin/review/search" method="post">
 				<div class="app-content-actions">
@@ -52,8 +53,10 @@
 								<option value="select">Chọn</option>
 								<option value="nameSP" ${ isNameSP ? 'selected' : '' }>Tên
 									sản phẩm</option>
-								<option value="countS" ${ iscountS ? 'selected' : '' }>Số sao</option>
-								<option value="nameKH" ${ isnameKH ? 'selected' : '' }>Tên khách hàng</option>
+								<option value="countS" ${ iscountS ? 'selected' : '' }>Số
+									sao</option>
+								<option value="nameKH" ${ isnameKH ? 'selected' : '' }>Tên
+									khách hàng</option>
 							</select>
 						</div>
 						<input class="search-bar ml-2" placeholder="Search..." type="text"
@@ -255,13 +258,17 @@
 				<nav aria-label="Page navigation example" class="mt-3 ml-4">
 					<ul
 						class="pagination justify-content-center pagination-sm align-self-center">
-						<li class="page-item"><a class="page-link"
-							href="/admin/review/index?p=0" tabindex="-1">Đầu</a></li>
-						<c:forEach var="i" begin="0" end="${reviews.totalPages - 1}">
-							<li class="page-item"><a class="page-link"
-								href="/admin/review/index?p=${i}">${i+1}</a></li>
+						<li class="page-item" ${ reviews.number == 0 ? 'hidden' : '' }><a
+							class="page-link" href="/admin/review/index?p=0" tabindex="-1">Đầu</a></li>
+						<c:forEach var="i" begin="0" end="${reviews.totalPages - 1}"
+							varStatus="look">
+							<li
+								class="page-item ${ look.index == reviews.number ? 'active' : '' }"><a
+								class="page-link" href="/admin/review/index?p=${i}">${i+1}</a></li>
 						</c:forEach>
-						<li class="page-item"><a class="page-link"
+						<li class="page-item"
+							${ reviews.number == reviews.totalPages-1 ? 'hidden' : '' }><a
+							class="page-link"
 							href="/admin/coupon/review?p=${reviews.totalPages-1}">Cuối</a></li>
 					</ul>
 				</nav>

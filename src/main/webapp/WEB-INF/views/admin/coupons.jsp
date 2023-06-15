@@ -24,7 +24,7 @@
 		<div class="app-content">
 			<jsp:include page="top-content.jsp" />
 			<div class="app-content-header">
-				<h1 class="app-content-headerText">KHUYẾN MÃI</h1>
+				<h1 class="app-content-headerText">GIẢM GIÁ</h1>
 				<button class="mode-switch d-none" title="Switch Theme">
 					<svg class="moon" fill="none" stroke="currentColor"
 						stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -35,7 +35,7 @@
 				</button>
 			</div>
 			<div class="app-content-actions">
-				<form action="/admin/coupon/search" method="post"
+				<form action="/admin/coupon/search"
 					class="d-flex justify-content-center">
 					<div class="input-group" style="width: 270px;">
 						<div class="input-group-prepend">
@@ -134,78 +134,66 @@
 			<div class="products-area-wrapper tableView">
 				<div class="products-header">
 					<div class="product-cell category">
-						Tên giảm giá
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-                  <path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-						</button>
+						Tên giảm giá <a
+							href="/admin/coupon/index?field=couponName&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'couponName' ? 'text-primary' : '' }">
+							${field == 'couponName' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
 					<div class="product-cell image">
-						Mã giảm giá
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-                  <path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-						</button>
+						Mã giảm giá <a
+							href="/admin/coupon/index?field=couponCode&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'couponCode' ? 'text-primary' : '' }">
+							${field == 'couponCode' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
 					<div class="product-cell status-cell">
-						Giá giảm <a href="/admin/coupon/index?field=discountAmount">
-							<button class="sort-button">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-									viewBox="0 0 512 512">
-                  <path fill="currentColor"
-										d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-							</button>
+						Giá giảm <a
+							href="/admin/coupon/index?field=discountAmount&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'discountAmount' ? 'text-primary' : '' }">
+							${field == 'discountAmount' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
 						</a>
 					</div>
 					<div class="product-cell sales">
-						Ngày hết hạn <a href="/admin/coupon/index?field=expirationDate">
-							<button class="sort-button">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-									viewBox="0 0 512 512">
-                  <path fill="currentColor"
-										d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-							</button>
+						Ngày hết hạn <a
+							href="/admin/coupon/index?field=expirationDate&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'expirationDate' ? 'text-primary' : '' }">
+							${field == 'expirationDate' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
 						</a>
 					</div>
 					<div class="product-cell sales">
-						Ngày tạo <a href="/admin/coupon/index?field=createdDate">
-							<button class="sort-button">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-									viewBox="0 0 512 512">
-                  <path fill="currentColor"
-										d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-							</button>
+						Ngày tạo <a
+							href="/admin/coupon/index?field=createdDate&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'createdDate' ? 'text-primary' : '' }">
+							${field == 'createdDate' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
 						</a>
 					</div>
 					<div class="product-cell stock">
-						Trạng Thái
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-                  <path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-						</button>
+						Trạng Thái <a
+							href="/admin/coupon/index?field=activated&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'activated' ? 'text-primary' : '' }">
+							${field == 'activated' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
-					<div class="product-cell price">
-						Thao tác
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-                  <path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-						</button>
-					</div>
+					<div class="product-cell price">Thao tác</div>
 				</div>
 				<c:forEach var="coupon" items="${ coupons.content }">
 					<div class="products-row">
@@ -249,7 +237,7 @@
 							<div class="modal-content">
 								<!-- Modal Header -->
 								<div class="modal-header">
-									<h4 class="modal-title">CẬP NHẬT KHUYẾN MÃI</h4>
+									<h4 class="modal-title">CẬP NHẬT GIẢM GIÁ</h4>
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 								</div>
 								<!-- Modal body -->
@@ -321,19 +309,44 @@
 						</div>
 					</div>
 				</c:forEach>
-				<nav aria-label="Page navigation example" class="mt-3 ml-4">
-					<ul
-						class="pagination justify-content-center pagination-sm align-self-center">
-						<li class="page-item" ${ coupons.number == 0 ? 'hidden' : '' }><a class="page-link"
-							href="/admin/coupon/index?p=0" tabindex="-1">Đầu</a></li>
-						<c:forEach var="i" begin="0" end="${coupons.totalPages - 1}" varStatus="look">
-							<li class="page-item ${ look.index == coupons.number ? 'active' : '' }"><a class="page-link"
-								href="/admin/coupon/index?p=${i}">${i+1}</a></li>
-						</c:forEach>
-						<li class="page-item" ${ coupons.number == coupons.totalPages-1 ? 'hidden' : '' }><a class="page-link"
-							href="/admin/coupon/index?p=${coupons.totalPages-1}">Cuối</a></li>
-					</ul>
-				</nav>
+				<!--* paging start  -->
+				<c:choose>
+					<c:when test="${coupons.content.size() > 0}">
+						<nav aria-label="Page navigation example" class="mt-3 ml-4">
+							<ul class="pagination pagination-sm justify-content-center">
+								<li class="page-item ${ p  == 0 ?'d-none'  : '' } "><a
+									class="page-link"
+									href="/admin/coupon/index?field=${field}&p=0&eop=${eop}&d=${d}">First</a></li>
+								<c:forEach begin="0" end="${coupons.totalPages  - 1 }"
+									varStatus="loop">
+									<li
+										class="page-item ${ loop.index == coupons.number ? 'active': ''} ">
+										<a class="page-link"
+										href="/admin/coupon/index?field=${field}&p=${loop.index}&eop=${eop}&d=${d}">
+											${loop.count} </a>
+									</li>
+								</c:forEach>
+								<li
+									class="page-item  ${ p  == coupons.totalPages - 1  ?'d-none'  : '' }"><a
+									class="page-link"
+									href="/admin/coupon/index?field=${field}&p=${coupons.totalPages - 1 }&eop=${eop}&d=${d}">Last</a>
+								</li>
+							</ul>
+						</nav>
+					</c:when>
+				</c:choose>
+				<!--* paging end -->
+				<c:if test="${not empty success}">
+					<div class="alert alert-success alert-dismissible fade show mt-5 text-center"
+						role="alert">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						${success} <br>
+						<a href="/admin/coupon/index" class="btn btn-info btn-lg active h-100" role="button" aria-pressed="true">Làm mới</a>
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -343,11 +356,12 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">THÊM KHUYẾN MÃI</h4>
+					<h4 class="modal-title">THÊM GIẢM GIÁ</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
-					<form action="/admin/coupon/index" method="post">
+					<form:form action="/admin/coupon/create" modelAttribute="cp"
+						method="post">
 						<div class="container">
 							<div class="row">
 								<div class="col-lg-6">
@@ -355,6 +369,7 @@
 										<label for="coupon_code" class="form-label fw-bold">Mã
 											giảm giá</label> <input type="text" name="couponCode"
 											class="form-control" id="coupon_code">
+										<form:errors path="couponCode"></form:errors>
 									</div>
 								</div>
 								<div class="col-lg-6">
@@ -393,11 +408,11 @@
 									</div>
 								</div>
 							</div>
-							<button type="submit"
+							<button type="submit" data-dismiss="false"
 								class="btn btn-primary mt-2 font-weight-bold float-right px-4 py-2"
 								formaction="/admin/coupon/create">THÊM</button>
 						</div>
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>
@@ -416,5 +431,9 @@
 	<script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
 	<script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/script.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
 </body>
 </html>

@@ -28,7 +28,7 @@ public class Account implements Serializable {
 	@OneToMany(mappedBy = "account")
 	private List<Order> orders;
 	@OneToMany(mappedBy = "account")
-	private List<Review> review;
+	private List<Review> reviews;
 	@OneToMany(mappedBy = "account")
 	private List<Cart> carts;
 

@@ -95,33 +95,38 @@
 						&nbsp;&nbsp;&nbsp;&nbsp; <strong>THỂ LOẠI:</strong>&nbsp; ${ product.category.name }
 					</h5>
 					<strong class="d-flex justify-content-start">MÔ TẢ:</strong>
-					<p class="details text-justify">Là chiếc tai
-						nghe chống ồn mới nhất trên thị trường của hãng âm thanh Đan Mạch.
-						Được trang bị nhiều công nghệ tiên tiến giúp cho
-						chiếc tai nghe có được một khả năng chơi nhạc và chống ồn vô cùng
-						ấn tượng, hứa hẹn sẽ là đối thủ nặng ký của những chiếc tai nghe
-						chống ồn đầu bảng hiện tại.</p>
+					<p class="details text-justify">Là chiếc tai nghe chống ồn mới
+						nhất trên thị trường của hãng âm thanh Đan Mạch. Được trang bị
+						nhiều công nghệ tiên tiến giúp cho chiếc tai nghe có được một khả
+						năng chơi nhạc và chống ồn vô cùng ấn tượng, hứa hẹn sẽ là đối thủ
+						nặng ký của những chiếc tai nghe chống ồn đầu bảng hiện tại.</p>
 					<h5 class="float-left mr-4 mt-2">Giá:</h5>
 					<h3 class="text-danger">${ product.price }₫</h3>
-					<div class="container p-0 mb-3 float-left">
-						<div class="row mt-3">
-							<div class="col-lg-2 mt-2">
-								<h5>Số lượng:</h5>
-							</div>
-							<div class="col-lg-3">
-								<div class="input-group mb-3">
-									<i class="fa fa-minus border p-2 text-dark decrease"
-										aria-hidden="true"></i> <input type="text"
-										class="form-control text-center" value="1" id="quantity" /> <i
-										class="fa fa-plus text-dark border p-2 increase"
-										aria-hidden="true"></i>
+					<form action="/shop/product-detail/get" method="post">
+						<div class="container p-0 mb-3 float-left">
+							<div class="row mt-3">
+								<div class="col-lg-2 mt-2">
+									<h5>Số lượng:</h5>
+								</div>
+								<div class="col-lg-3">
+									<div class="input-group mb-3">
+										<i class="fa fa-minus border p-2 text-dark decrease"
+											aria-hidden="true"></i> <input type="text"
+											class="form-control text-center" value="1" id="quantity" name="quantity"/>
+										<i class="fa fa-plus text-dark border p-2 increase"
+											aria-hidden="true"></i>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<a href=""
-						class="border bg-dark text-white p-3 font-weight-bold float-right">THÊM
-						VÀO GIỎ HÀNG</a>
+						<input hidden="" name="productId" value="${ product.id }">
+						<button type="submit"
+							class="border bg-dark text-white p-3 font-weight-bold float-right">THÊM
+							VÀO GIỎ HÀNG</button>
+					</form>
+					<!-- 					<a href="" -->
+					<!-- 						class="border bg-dark text-white p-3 font-weight-bold float-right">THÊM -->
+					<!-- 						VÀO GIỎ HÀNG</a> -->
 				</div>
 			</div>
 		</div>

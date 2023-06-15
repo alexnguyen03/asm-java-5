@@ -8,8 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.model.Account;
 import com.poly.model.Cart;
@@ -44,27 +47,45 @@ public class CheckOutController {
 	CouponDAO couponDAO;
 	@Autowired
 	CartDetailDAO cartDetailDAO;
+	@Autowired
+	CartDAO cartDAO;
 
-	@RequestMapping("")
+	@GetMapping("")
 	public String index(Model model) {
-		Order order = orderDAO.findById((long) 1).get();
-		sessionService.set("cart", order.getOrderDetails());
-		Account account = accountDAO.findById("hoainam").get();
-		sessionService.set("account", account);
+		// Cart cart = cartDAO.findById(1).get();
+		// sessionService.set("cart", cart.getCartDetails());
+		//
+		// Account account = accountDAO.findById("hoainam").get();
+		// sessionService.set("account", account);
 
-		// String couponId = paramService.getString("couponId", "");
-		// try {
-		// Coupon coupon = couponDAO.findById(couponId).get();
-		// sessionService.set("coupon", coupon);
-		// model.addAttribute("discountAmount", coupon.getDiscountAmount());
-		// } catch (Exception e) {
-		// System.out.println("Không có coupon");
-		// sessionService.remove("coupon");
-		// model.addAttribute("discountAmount", 0);
-		// }
+		// lấy coupon và kiểm tra có trong database không
+		String couponId = paramService.getString("couponId", "");
+		try {
+			Coupon coupon = couponDAO.findById(couponId).get();
+			sessionService.set("coupon", coupon);
+			model.addAttribute("discountAmount", coupon.getDiscountAmount());
+		} catch (Exception e) {
+			System.out.println("Không có coupon");
+			sessionService.remove("coupon");
+			model.addAttribute("discountAmount", 0);
+		}
 
-		Account account2 = sessionService.get("account");
-		model.addAttribute("account", account2);
+		// lấy account
+		Account account = sessionService.get("account");
+
+		// lấy product
+		List<CartDetail> ODL = sessionService.get("cart");
+
+		// tính tổng tiền
+		double toTal_Price = 0;
+		for (CartDetail od : ODL) {
+			double toTal = od.getProduct().getPrice() * od.getQuantity();
+			toTal_Price += toTal;
+		}
+
+		model.addAttribute("cartDetails", ODL);
+		model.addAttribute("provisional", toTal_Price);
+		model.addAttribute("account", account);
 		return "/client/checkout";
 	}
 
@@ -73,9 +94,9 @@ public class CheckOutController {
 		// Order
 		Order order = new Order();
 		double toTal_Price = 0;
-		List<OrderDetail> ODL = sessionService.get("cart");
-		for (OrderDetail od : ODL) {
-			double toTal = od.getPrice() * od.getQuantity();
+		List<CartDetail> ODL = sessionService.get("cart");
+		for (CartDetail od : ODL) {
+			double toTal = od.getProduct().getPrice() * od.getQuantity();
 			toTal_Price += toTal;
 		}
 		String phone = paramService.getString("phone", "");
@@ -89,20 +110,19 @@ public class CheckOutController {
 		order.setAddress(address);
 		order.setTotalPrice(toTal_Price - discountAmount);
 		order.setStatus("Đang xử lý");
-		// orderDAO.save(order);
+		orderDAO.save(order);
 		sessionService.remove("coupon");
 		// OrderDetail
-		for (OrderDetail od : ODL) {
+		for (CartDetail od : ODL) {
 			OrderDetail orderDetail = new OrderDetail();
 			orderDetail.setOrder(order);
 			orderDetail.setProduct(od.getProduct());
-			orderDetail.setPrice(od.getPrice());
+			orderDetail.setPrice(od.getProduct().getPrice());
 			orderDetail.setQuantity(od.getQuantity());
-			// orderDetailDAO.save(orderDetail);
+			orderDetailDAO.save(orderDetail);
 
 			int productId = od.getProduct().getId();
-			System.out.println(productId);
-			// cartDetailDAO.deleteByProductId(productId);
+			cartDetailDAO.deleteByProductId(productId);
 		}
 		return "redirect:/shop/checkout";
 	}

@@ -9,17 +9,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.model.Product;
 import com.poly.model.Review;
 import com.poly.repository.ProductDAO;
 import com.poly.repository.ReviewDAO;
+import com.poly.service.SessionService;
 
 @Controller
 @RequestMapping("shop/product-detail")
 public class ShopDetailController {
 	@Autowired
 	ProductDAO productDao;
+	@Autowired
+	SessionService sessionService;
 
 	@GetMapping("")
 	public String index(Model model) {
@@ -37,5 +41,12 @@ public class ShopDetailController {
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("product_similars", product_similars);
 		return "/client/shop-details";
+	}
+	
+	@PostMapping("get")
+	public String getProductId(@RequestParam("productId") String productId, @RequestParam("quantity") Integer quantity) {
+//		sessionService.set("productId", productId);
+//		sessionService.set("quantity", quantity);
+		return "redirect:/shop/cart-detail";
 	}
 }
