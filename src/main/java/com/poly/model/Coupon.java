@@ -38,5 +38,5 @@ public class Coupon implements Serializable{
 	@Column(name = "created_date")
     Date createdDate = new Date();
     @OneToMany(mappedBy = "coupon")
-	private List<Order> order;
+	private List<Order> orders;
 }
