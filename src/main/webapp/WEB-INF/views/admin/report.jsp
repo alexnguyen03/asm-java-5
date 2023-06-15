@@ -61,7 +61,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 </svg>
               </button>
               <div class="filter-menu">
-                <form action=""
+                <form action="/admin/report"
+                      method="get"
                       class="mb-3">
                   <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
@@ -80,7 +81,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                         <a class="dropdown-item"
                            href="#">Thống kê theo ngày</a>
                         <a class="dropdown-item"
-                           href="#">Thống kê theo tuần</a>
+                           href="/admin/report">Thống kê theo tuần</a>
                         <a class="dropdown-item"
                            href="#">Thống kê theo tháng</a>
                         <a class="dropdown-item"
@@ -94,27 +95,21 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <div class="input-group input-group-sm mr-3">
                     <label>Lọc theo danh mục</label>
                     <select class=""
+                            name="category"
                             id="inputGroupSelect01">
                       <option selected>Chọn theo danh mục</option>
-                      <option value="1">Tai nghe không dây</option>
-                      <option value="2">Tai nghe có dây</option>
-                      <option value="3">Đồng hồ cơ</option>
-                      <option value="3">Đồng hồ thông minh</option>
+                      <c:forEach items="${categories}"
+                                 var="category">
+                        <option value="${category.id}">${category.name}</option>
+                      </c:forEach>
                     </select>
                   </div>
-                  <div class="input-group input-group-sm mr-3">
-                    <label>Số lượng bán</label>
-                    <select class=""
-                            id="inputGroupSelect01">
-                      <option selected>Chọn số lượng</option>
-                      <option value="1">Dưới 100 sản phẩm</option>
-                      <option value="1">Từ 100 - 200 sản phẩm</option>
-                      <option value="1">Từ 200 - 300 sản phẩm</option>
-                    </select>
-                  </div>
+
                   <div class="filter-menu-buttons">
-                    <button class="filter-button reset">Làm mới</button>
-                    <button class="filter-button apply">Thay đổi</button>
+                    <button type="reset"
+                            class="btn btn-sm btn-secondary">Làm mới</button>
+                    <button type="submit"
+                            class="btn btn-sm btn-primary">Thay đổi</button>
                   </div>
                 </form>
               </div>
@@ -213,7 +208,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <c:forEach var="report"
                          items="${reports}"
                          varStatus="loop">
-
                 <tr>
                   <th scope="row">${loop.count}</th>
                   <td>${report.name}</td>
@@ -222,7 +216,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   <td>${report.price}</td>
                 </tr>
               </c:forEach>
-
             </tbody>
           </table>
         </div>

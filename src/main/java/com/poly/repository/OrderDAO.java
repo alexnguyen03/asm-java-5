@@ -16,7 +16,7 @@ public interface OrderDAO extends JpaRepository<Order, Long> {
     // DSL
     List<Order> findAllByStatusNotLike(String key, Pageable pageable);
 
-    List<Order> findAllByStatusLike(String key);
+    List<Order> findByStatus(String key);
 
     @Query("SELECT o FROM Order o WHERE  MONTH(o.createDate) = ?1 and YEAR(o.createDate) = ?2 and o.status != 'H'  ")
     Page<Order> findAllByCreateddateMonth(int month, int year, Pageable pageable);

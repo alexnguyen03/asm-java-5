@@ -31,4 +31,9 @@ public class OrderDetail implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	Order order;
+
+	@Override
+	public String toString() {
+		return "id " + id;
+	}
 }

@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.poly.model.Order;
 import com.poly.repository.OrderDAO;
 import com.poly.service.ParamService;
@@ -42,16 +40,15 @@ public class OrderManagementController {
             @RequestParam("p") Optional<Integer> p, @RequestParam("d") Optional<Boolean> direc) {
         int defaultPage = 0;
         int defaultElementOfPage = 5;
-        String defaultField = "id";
-
+        // get param status
+        String status = paramService.getString("status", "");
         Pageable pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage));
-
         Page<Order> page = orderDAO.findOrderActive(pageable);
         // List<Order> orders = orderDAO.findAll();
         // ! dsl
         // List<Order> orders = orderDAO.findOrderActive();
         // get canceled orders
-        List<Order> orderCanceleds = orderDAO.findAllByStatusLike("H");
+        List<Order> orderCanceleds = orderDAO.findByStatus("H");
         String searchKey = paramService.getString("searchKey", "");
         if (!searchKey.isBlank()) {
             Date searchVal = paramService.getDate("searchVal", "yyyy-MM");
@@ -63,19 +60,28 @@ public class OrderManagementController {
                 page = orderDAO.findAllByCreateddateDate(day, month, year, pageable);
             }
             if (searchKey.equals("month")) {
-
                 page = orderDAO.findAllByCreateddateMonth(month, year, pageable);
-
             }
             model.addAttribute("page", page);
             model.addAttribute("searchVal", searchVal);
             model.addAttribute("searchKey", searchKey);
         }
+        System.out.println(status);
+        List<Order> filterByStatus = null;
+        if (!status.isBlank()) {
+            model.addAttribute("status", status);
+            filterByStatus = orderDAO.findByStatus(status);
+            if (filterByStatus.size() > 0) {
+                model.addAttribute("filterByStatus", filterByStatus);
+            } else if (filterByStatus.size() == 0) {
+                model.addAttribute("filterByStatus", null);
+            }
+
+        }
         model.addAttribute("eop", eop.orElse(defaultElementOfPage));
         model.addAttribute("p", p.orElse(defaultPage));
         model.addAttribute("title", "QUẢN LÝ ĐƠN HÀNG");
         model.addAttribute("pageActive", "order");
-
         model.addAttribute("page", page);
         model.addAttribute("orderCanceleds", orderCanceleds);
         model.addAttribute("pageActive", "order");
