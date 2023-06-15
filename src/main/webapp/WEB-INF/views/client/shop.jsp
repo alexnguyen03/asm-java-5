@@ -250,7 +250,7 @@
 										 alt="" />
 									<h4 class="text-center mt-3 w-50 font-weight-bold">
 										Rất tiếc, sản phẩm bạn tìm kiếm hiện <span class="text-warning">chưa
-											được lên kệ</span>
+											được lên kệ. </span>
 									</h4>
 								</div>
 							</c:if>
