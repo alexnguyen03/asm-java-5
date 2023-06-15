@@ -73,7 +73,7 @@ public class CouponsManagementController {
 			model.addAttribute("success", "Chúng tôi chưa biết bạn tìm gì !!!");
 			return "/admin/coupons";
 		} else if (search.equals("name")) {
-			if(keyword.equals("")){
+			if (keyword.equals("")) {
 				model.addAttribute("success", "Vui lòng nhập dữ liệu trước khi tìm !!! ");
 				model.addAttribute("isEd", true);
 				return "/admin/coupons";
@@ -121,60 +121,61 @@ public class CouponsManagementController {
 		return "forward:/admin/coupon/index";
 	}
 
-//	@PostMapping("search")
-//	public String search(Model model, @RequestParam("search") String search, @RequestParam("keyword") String keyword,
-//			@RequestParam("p") Optional<Integer> p) {
-//		if (search.equals("ed")) {
-//			Date date = null;
-//			try {
-//				date = paramService.getDate(keyword, "yyyy-MM-dd");
-//			} catch (Exception e) {
-//				return "redirect:/admin/coupon/index";
-//			}
-//
-//			Pageable pageable = PageRequest.of(p.orElse(0), 3);
-//			Page<Coupon> coupons = dao.findByExpirationDate(date, pageable);
-//			if (coupons.getTotalPages() > 0) {
-//				model.addAttribute("coupons", coupons);
-//				model.addAttribute("isEd", true);
-//			} else {
-//				return "redirect:/admin/coupon/index";
-//			}
-//
-//		} else if (search.equals("select")) {
-//			return "redirect:/admin/coupon/index";
-//		} else if (search.equals("cd")) {
-//			Date date = null;
-//			try {
-//				date = paramService.getDate(keyword, "yyyy-MM-dd");
-//			} catch (Exception e) {
-//				return "redirect:/admin/coupon/index";
-//			}
-//			Pageable pageable = PageRequest.of(p.orElse(0), 1);
-//			Page<Coupon> coupons = dao.findByCreatedDate(date, pageable);
-//			if (coupons.getTotalPages() > 0) {
-//				model.addAttribute("coupons", coupons);
-//				model.addAttribute("isCd", true);
-//			} else {
-//				return "redirect:/admin/coupon/index";
-//			}
-//		} else if (search.equals("name")) {
-//			if (keyword != null) {
-//				Pageable pageable = PageRequest.of(p.orElse(0), 1);
-//				Page<Coupon> coupons = dao.findByCouponName("%" + keyword + "%", pageable);
-//				if (coupons.getTotalPages() > 0) {
-//					model.addAttribute("coupons", coupons);
-//					model.addAttribute("isName", true);
-//				} else {
-//					return "redirect:/admin/coupon/index";
-//				}
-//			}
-//			if (keyword.equals("")) {
-//				return "redirect:/admin/coupon/index";
-//			}
-//		}
-//		return "/admin/coupons";
-//	}
+	// @PostMapping("search")
+	// public String search(Model model, @RequestParam("search") String search,
+	// @RequestParam("keyword") String keyword,
+	// @RequestParam("p") Optional<Integer> p) {
+	// if (search.equals("ed")) {
+	// Date date = null;
+	// try {
+	// date = paramService.getDate(keyword, "yyyy-MM-dd");
+	// } catch (Exception e) {
+	// return "redirect:/admin/coupon/index";
+	// }
+	//
+	// Pageable pageable = PageRequest.of(p.orElse(0), 3);
+	// Page<Coupon> coupons = dao.findByExpirationDate(date, pageable);
+	// if (coupons.getTotalPages() > 0) {
+	// model.addAttribute("coupons", coupons);
+	// model.addAttribute("isEd", true);
+	// } else {
+	// return "redirect:/admin/coupon/index";
+	// }
+	//
+	// } else if (search.equals("select")) {
+	// return "redirect:/admin/coupon/index";
+	// } else if (search.equals("cd")) {
+	// Date date = null;
+	// try {
+	// date = paramService.getDate(keyword, "yyyy-MM-dd");
+	// } catch (Exception e) {
+	// return "redirect:/admin/coupon/index";
+	// }
+	// Pageable pageable = PageRequest.of(p.orElse(0), 1);
+	// Page<Coupon> coupons = dao.findByCreatedDate(date, pageable);
+	// if (coupons.getTotalPages() > 0) {
+	// model.addAttribute("coupons", coupons);
+	// model.addAttribute("isCd", true);
+	// } else {
+	// return "redirect:/admin/coupon/index";
+	// }
+	// } else if (search.equals("name")) {
+	// if (keyword != null) {
+	// Pageable pageable = PageRequest.of(p.orElse(0), 1);
+	// Page<Coupon> coupons = dao.findByCouponName("%" + keyword + "%", pageable);
+	// if (coupons.getTotalPages() > 0) {
+	// model.addAttribute("coupons", coupons);
+	// model.addAttribute("isName", true);
+	// } else {
+	// return "redirect:/admin/coupon/index";
+	// }
+	// }
+	// if (keyword.equals("")) {
+	// return "redirect:/admin/coupon/index";
+	// }
+	// }
+	// return "/admin/coupons";
+	// }
 
 	@PostMapping("filter")
 	public String search(Model model, @RequestParam("status") String status, @RequestParam("p") Optional<Integer> p) {

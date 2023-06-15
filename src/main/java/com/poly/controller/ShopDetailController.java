@@ -42,11 +42,12 @@ public class ShopDetailController {
 		model.addAttribute("product_similars", product_similars);
 		return "/client/shop-details";
 	}
-	
+
 	@PostMapping("get")
-	public String getProductId(@RequestParam("productId") String productId, @RequestParam("quantity") Integer quantity) {
-//		sessionService.set("productId", productId);
-//		sessionService.set("quantity", quantity);
+	public String getProductId(@RequestParam("productId") String productId,
+			@RequestParam("quantity") Integer quantity) {
+		// sessionService.set("productId", productId);
+		// sessionService.set("quantity", quantity);
 		return "redirect:/shop/cart-detail";
 	}
 }

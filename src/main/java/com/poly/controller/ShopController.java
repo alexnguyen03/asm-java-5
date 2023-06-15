@@ -2,7 +2,6 @@ package com.poly.controller;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.poly.model.Account;
 import com.poly.model.Cart;
 import com.poly.model.CartDetail;
@@ -44,10 +42,6 @@ public class ShopController {
 	OrderDetailDAO dao;
 	@Autowired
 	ProductDAO productDAO;
-
-	@Autowired
-	AccountDAO accountDAO;
-
 	@Autowired
 	CategoryDAO categoryDAO;
 	@Autowired
@@ -59,12 +53,10 @@ public class ShopController {
 			Account account = accountDAO.findById(session.get("username")).orElse(null);
 			model.addAttribute("isAdmin", account.getAdmin());
 		}
-
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findAll(pageable);
 		model.addAttribute("page", page);
 		model.addAttribute("pageActive", "shop");
-
 		// Category
 		List<Category> categoryLst = categoryDAO.findAll();
 		model.addAttribute("categoryLst", categoryLst);
@@ -80,15 +72,12 @@ public class ShopController {
 		Cart cart = cartDAO.findByUsername("hoainam");
 		List<CartDetail> cartDetails = cart.getCartDetails();
 		int totalQuantity = 0;
-
 		Double totalPrice = 0.0;
 		for (CartDetail cartDetail : cartDetails) {
 			totalPrice += (cartDetail.getProduct().getPrice() * cartDetail.getQuantity());
 			totalQuantity += cartDetail.getQuantity();
-
 		}
 		sessionService.set("totalCart", totalQuantity);
-
 		m.addAttribute("cartDetails", cartDetails);
 		m.addAttribute("totalPrice", totalPrice);
 		m.addAttribute("cart", cart);
@@ -139,21 +128,16 @@ public class ShopController {
 		// Init Product
 		Product item = new Product();
 		model.addAttribute("item", item);
-
 		String kwords = kw.orElse(sessionService.get("keywords"));
 		sessionService.set("keywords", kwords);
-
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findByNameLike("%" + kwords + "%", pageable);
 		model.addAttribute("page", page);
-
 		// Category
 		List<Category> categoryLst = categoryDAO.findAll();
 		model.addAttribute("categoryLst", categoryLst);
-
 		// Page Active
 		model.addAttribute("pageActive", "shop");
-
 		return "/client/shop";
 	}
 
@@ -164,11 +148,9 @@ public class ShopController {
 		Page<Product> page = productDAO.findByCategoryNameLike("%" + name + "%", pageable);
 		System.out.println(page);
 		model.addAttribute("page", page);
-
 		// Category
 		List<Category> categoryLst = categoryDAO.findAll();
 		model.addAttribute("categoryLst", categoryLst);
-
 		// Page Active
 		model.addAttribute("pageActive", "shop");
 		return "/client/shop";
@@ -179,7 +161,6 @@ public class ShopController {
 			@RequestParam("p") Optional<Integer> p) {
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findByPriceSortASC(pageable);
-
 		if (sortValue.equalsIgnoreCase("ASC")) {
 			System.out.println("ASC");
 			page = productDAO.findByPriceSortASC(pageable);
@@ -187,37 +168,29 @@ public class ShopController {
 			System.out.println("DESC");
 			page = productDAO.findByPriceSortDESC(pageable);
 		}
-
 		for (Product product : page) {
 			System.out.println(product.getName());
 		}
 		model.addAttribute("page", page);
-
 		// Category
 		List<Category> categoryLst = categoryDAO.findAll();
 		model.addAttribute("categoryLst", categoryLst);
-
 		// Page Active
 		model.addAttribute("pageActive", "shop");
-
 		return ("client/shop");
 	}
 
 	@RequestMapping("shop-search-product-by-price")
 	public String searchProductByPrice(Model model, @RequestParam("startPrice") Double startPrice,
 			@RequestParam("endPrice") Double endPrice, @RequestParam("p") Optional<Integer> p) {
-
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findByPriceBetween(startPrice, endPrice, pageable);
 		model.addAttribute("page", page);
-
 		// Add category list to model for display
 		List<Category> categoryLst = categoryDAO.findAll();
 		model.addAttribute("categoryLst", categoryLst);
-
 		// Page Active
 		model.addAttribute("pageActive", "shop");
-
 		return "/client/shop";
 	}
 
@@ -227,18 +200,14 @@ public class ShopController {
 		// Init Product
 		Product item = new Product();
 		model.addAttribute("item", item);
-
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findByNameLike("%" + kw + "%", pageable);
 		model.addAttribute("page", page);
-
 		// Category
 		List<Category> categoryLst = categoryDAO.findAll();
 		model.addAttribute("categoryLst", categoryLst);
-
 		// Page Active
 		model.addAttribute("pageActive", "shop");
-
 		return "/client/shop";
 	}
 }

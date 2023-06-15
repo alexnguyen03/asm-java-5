@@ -34,7 +34,7 @@ public class OrderHistoryController {
 
 	@GetMapping("")
 	public String index(Model model) {
-		List<Order> orders = orderDao.findByAccountName("hoainam");
+		List<Order> orders = orderDao.findByAccountName("Alexx");
 		model.addAttribute("orders", orders);
 		return "/client/order-history";
 	}

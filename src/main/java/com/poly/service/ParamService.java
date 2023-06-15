@@ -45,7 +45,7 @@ public class ParamService {
 		SimpleDateFormat formatter = new SimpleDateFormat(pattern);
 		Date date = null;
 		try {
-			date = formatter.parse(name);
+			date = formatter.parse(request.getParameter(name));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("Pattern is invalid !!");
