@@ -242,6 +242,19 @@
 									</div>
 								</div>
 							</c:forEach>
+
+							<c:if test="${empty page.content}">
+								<div class="d-flex justify-content-center mt-5 align-items-center flex-column w-100">
+									<img src="${pageContext.request.contextPath}/img/cat-delete.jpg"
+										 style="border-radius: 50%; width: 150px"
+										 alt="" />
+									<h4 class="text-center mt-3 w-50 font-weight-bold">
+										Rất tiếc, sản phẩm bạn tìm kiếm hiện <span class="text-warning">chưa
+											được lên kệ</span>
+									</h4>
+								</div>
+							</c:if>
+
 						</div>
 
 
@@ -367,7 +380,7 @@
 				});
 		</script>
 
-		<!-- Js Plugins -->
+
 		<!-- jquery -->
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 				integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -375,6 +388,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 				integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
 				crossorigin="anonymous"></script>
+
+		<!-- Js Plugins -->
 		<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>

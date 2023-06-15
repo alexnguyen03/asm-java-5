@@ -38,6 +38,7 @@ public class ChangePasswordController {
 		String password = paramService.getString("password", "");
 		String newPass = paramService.getString("newpass", "");
 		String comfirm = paramService.getString("confirm", "");
+		boolean changepwSucess = false;
 
 		Account account = accountDAO.findById(username).orElse(null);
 		System.out.println(account.getPassword());
@@ -58,6 +59,7 @@ public class ChangePasswordController {
 			account.setPassword(newPass);
 			accountDAO.save(account);
 			model.addAttribute("message", "Đổi mật khẩu thành công");
+			model.addAttribute("success", changepwSucess = true);
 		}
 
 		return "/account/change-password";

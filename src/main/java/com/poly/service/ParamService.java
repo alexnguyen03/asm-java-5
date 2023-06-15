@@ -17,58 +17,58 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class ParamService {
-    @Autowired
-    HttpServletRequest request;
+	@Autowired
+	HttpServletRequest request;
 
-    @Autowired
-    ServletContext app;
+	@Autowired
+	ServletContext app;
 
-    public String getString(String name, String defaultValue) {
-        return request.getParameter(name) != null ? request.getParameter(name) : defaultValue;
-    }
+	public String getString(String name, String defaultValue) {
+		return request.getParameter(name) != null ? request.getParameter(name) : defaultValue;
+	}
 
-    public int getInt(String name, int defaultValue) {
-        return request.getParameter(name) != null ? Integer.parseInt(request.getParameter(name)) : defaultValue;
-    }
+	public int getInt(String name, int defaultValue) {
+		return request.getParameter(name) != null ? Integer.parseInt(request.getParameter(name)) : defaultValue;
+	}
 
-    public double getDouble(String name, double defaultValue) {
-        return request.getParameter(name) != null ? Double.parseDouble(request.getParameter(name)) : defaultValue;
-    }
+	public double getDouble(String name, double defaultValue) {
+		return request.getParameter(name) != null ? Double.parseDouble(request.getParameter(name)) : defaultValue;
+	}
 
-    public Boolean getBoolean(String name, Boolean defaultValue) {
-        if (request.getParameter(name) != null && (request.getParameter(name).equals("on")))
-            defaultValue = !defaultValue;
-        return defaultValue;
-    }
+	public Boolean getBoolean(String name, Boolean defaultValue) {
+		if (request.getParameter(name) != null && (request.getParameter(name).equals("on")))
+			defaultValue = !defaultValue;
+		return defaultValue;
+	}
 
-    public Date getDate(String name, String pattern) {
-        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-        Date date = null;
-        try {
-            date = formatter.parse(name);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Pattern is invalid !!");
-        }
-        return date;
-    }
+	public Date getDate(String name, String pattern) {
+		SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+		Date date = null;
+		try {
+			date = formatter.parse(name);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Pattern is invalid !!");
+		}
+		return date;
+	}
 
-    public File save(MultipartFile file, String path) {
-        File newFile = null;
-        File dir = new File(request.getServletContext().getRealPath(path));
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-        if (!file.isEmpty()) {
-            String fileName = file.getOriginalFilename();
-            newFile = new File(app.getRealPath(path + "/" + fileName));
-            try {
-                file.transferTo(newFile);
-            } catch (IOException | IllegalStateException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-        return newFile;
-    }
+	public File save(MultipartFile file, String path) {
+		File newFile = null;
+		File dir = new File(request.getServletContext().getRealPath(path));
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		if (!file.isEmpty()) {
+			String fileName = file.getOriginalFilename();
+			newFile = new File(app.getRealPath(path + "/" + fileName));
+			try {
+				file.transferTo(newFile);
+			} catch (IOException | IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return newFile;
+	}
 }

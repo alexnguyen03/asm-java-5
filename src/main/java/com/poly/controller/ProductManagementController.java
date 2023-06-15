@@ -1,10 +1,7 @@
 package com.poly.controller;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poly.model.Category;
 import com.poly.model.Product;
 import com.poly.repository.CategoryDAO;
 import com.poly.repository.ProductDAO;
+import com.poly.service.ParamService;
 import com.poly.service.SessionService;
 
 import jakarta.servlet.ServletContext;
@@ -44,6 +43,9 @@ public class ProductManagementController {
 	@Autowired
 	SessionService session;
 
+	@Autowired
+	ParamService param;
+
 	@GetMapping("")
 	private String getProductManager(Model model, @RequestParam("p") Optional<Integer> p) {
 		Product item = new Product();
@@ -51,62 +53,63 @@ public class ProductManagementController {
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findAll(pageable);
 		model.addAttribute("page", page);
+
 		List<Category> category = categoryDAO.findAll();
 		model.addAttribute("lst_category", category);
 		return "admin/productManager";
 	}
 
-	@PostMapping("/edit")
-	public String editProduct(@ModelAttribute("item") Product item, @RequestParam("id") int id,
-			@RequestParam("photo_file") MultipartFile file) throws IOException {
+	@PostMapping("/update")
+	public String editProduct(@ModelAttribute("product") Product product,
+			@RequestParam("photo_file") MultipartFile file, RedirectAttributes redirectAttributes) {
+
+		String oldImg = product.getImage();
 
 		if (file != null && !file.isEmpty()) {
-			String fileName = file.getOriginalFilename();
-			System.out.println("File name");
-			System.out.println(fileName);
-			String filePath = app.getRealPath("/img/product/") + fileName;
-			file.transferTo(new File(filePath));
-			item.setImage(fileName);
+			File file2 = param.save(file, "/img/product/");
+			product.setImage(file2.getName());
+		} else {
+			product.setImage(oldImg);
 		}
 
-		productDAO.save(item);
+		productDAO.save(product);
+
+		boolean success = productDAO.save(product) != null;
+		if (success) {
+			redirectAttributes.addFlashAttribute("successMessage", "Cập nhật sản phẩm thành công!");
+		} else {
+			redirectAttributes.addFlashAttribute("errorMessage", "Cập nhật sản phẩm thất bại!");
+		}
+
 		return "redirect:/admin/product-manager";
 	}
 
 	@PostMapping("/create")
-	private String createProduct(@ModelAttribute("item") Product item, @RequestParam("photo_file") MultipartFile img)
-			throws IllegalStateException, IOException {
-		String fileName = img.getOriginalFilename();
-		File file = new File(app.getRealPath("/img/product/" + fileName));
-		img.transferTo(file);
-		item.setImage(fileName);
+	private String createProduct(@ModelAttribute("item") Product item, @RequestParam("photo_file") MultipartFile img) {
+		File file = null;
+
+		if (!img.isEmpty()) {
+			file = param.save(img, "/img/product/");
+		}
+
+		item.setImage(file.getName());
+		item.setAvailable(true);
+
 		productDAO.save(item);
 		return "redirect:/admin/product-manager";
 	}
 
-	@PostMapping("/delete/{id}")
-	private String deleteProduct(@PathVariable("id") Integer id) {
-		productDAO.deleteById(id);
-		return "redirect:/admin/product-manager";
-	}
+//	@PostMapping("/delete/{id}")
+//	private String deleteProduct(@PathVariable("id") Integer id) {
+//		Product product = productDAO.findById(id).orElse(null);
+//		System.out.println(product.getId());
+//		product.setAvailable(false);
 
-	@ModelAttribute("list_avaiable")
-	public Map<Boolean, String> getAvaiable() {
-		Map<Boolean, String> map = new HashMap<>();
-		map.put(false, "Hết hàng");
-		map.put(true, "Còn hàng");
-		return map;
-	}
-
-	@ModelAttribute("list_category")
-	public Map<String, String> getCategory() {
-		Map<String, String> map = new HashMap<>();
-		List<Category> categoryitems = categoryDAO.findAll();
-		for (Category item : categoryitems) {
-			map.put(item.getId(), item.getName());
-		}
-		return map;
-	}
+//		Delete img if product is deleted
+//		String uploadDir = "src/main/webapp/img/product/";
+//        FileUploadUtil.deleteFile(uploadDir, product.getImage());
+//		return "redirect:/admin/product-manager";
+//	}
 
 	@RequestMapping("search-product")
 	public String searchAndPageProduct(Model model, @RequestParam("keywords") Optional<String> kw,
@@ -120,6 +123,38 @@ public class ProductManagementController {
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findByNameLike("%" + kwords + "%", pageable);
 		model.addAttribute("page", page);
+		return "admin/productManager";
+	}
+
+	@RequestMapping("filter-product-by-available")
+	public String FilterAvailableAndPageProduct(Model model,
+			@RequestParam(value = "available", required = false) Boolean isAvailable,
+			@RequestParam("p") Optional<Integer> p) {
+//		Init Product
+		Product item = new Product();
+		model.addAttribute("item", item);
+
+		Pageable pageable = PageRequest.of(p.orElse(0), 5);
+		Page<Product> page = productDAO.findProductsByAvailability(isAvailable, pageable);
+		model.addAttribute("page", page);
+		return "admin/productManager";
+	}
+
+	@RequestMapping("filter-product-by-category")
+	public String FilterCategoryAndPageProduct(Model model,
+			@PathVariable(value = "categoryId", required = false) String categoryId,
+			@RequestParam("p") Optional<Integer> p) {
+//		Init Product
+		Product item = new Product();
+		model.addAttribute("item", item);
+
+		Pageable pageable = PageRequest.of(p.orElse(0), 5);
+		Page<Product> page = productDAO.findByCategoryNameLike("%" + categoryId + "%", pageable);
+		model.addAttribute("page", page);
+
+		List<Category> category = categoryDAO.findAll();
+		model.addAttribute("lst_category", category);
+
 		return "admin/productManager";
 	}
 }
