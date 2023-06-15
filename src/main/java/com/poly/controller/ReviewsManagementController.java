@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +35,7 @@ import com.poly.repository.ReviewDAO;
 import com.poly.service.ParamService;
 
 @Controller
-@RequestMapping("/admin/review/")
+@RequestMapping("/admin/review")
 public class ReviewsManagementController {
 	@Autowired
 	ReviewDAO dao;
@@ -131,5 +133,10 @@ public class ReviewsManagementController {
 			return "redirect:/admin/review/index";
 		}
 		return "/admin/reviews";
+	}
+	
+	@GetMapping("report")
+	public String report() {
+		return "/admin/chart";
 	}
 }

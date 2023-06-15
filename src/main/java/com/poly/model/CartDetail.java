@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "CartDetails")
+@Table(name = "Cartdetails")
 public class CartDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -75,7 +76,7 @@
 					<form action="/shop/checkout/create" method="post">
 						<div class="form-group">
 							<label for="fullname" class="form-label">Họ và tên</label> <input
-								type="text" class="form-control" id="fullname"
+								type="text" class="form-control" id="fullname" readonly
 								value="${ account.fullname }" />
 						</div>
 						<div class="container p-0">
@@ -83,7 +84,7 @@
 								<div class="col-lg-7">
 									<div class="form-group">
 										<label for="email" class="form-label">Email</label> <input
-											type="email" class="form-control" id="email"
+											type="email" class="form-control" id="email" readonly
 											value="${ account.email }" />
 									</div>
 								</div>
@@ -110,43 +111,33 @@
 					<h4 class="mb-4 text-center font-weight-bold">ĐƠN HÀNG CỦA BẠN</h4>
 					<div class="container">
 						<div class="row">
-							<div class="col-lg-3 mb-3">
-								<img
-									src="${pageContext.request.contextPath}/img/checkout/tainghe.png"
-									class="card-img-top" height="80" />
-							</div>
-							<div class="col-lg-6">
-								<span class="font-weight-bold">Tai nghe Bluetooth Jabra
-									Elite 85h | 540.000.000 ₫</span><br /> <span class="text-dark">Số
-									Lượng: 2</span>
-							</div>
-							<div class="col-lg-3">
-								<h4 class="mt-3 text-danger font-weight-bold">18,000 ₫</h4>
-							</div>
-							<div class="col-lg-3 mb-3">
-								<img
-									src="${pageContext.request.contextPath}/img/checkout/tainghe.png"
-									class="card-img-top" height="80" />
-							</div>
-							<div class="col-lg-6">
-								<span class="font-weight-bold">Tai nghe Bluetooth Jabra
-									Elite 85h | 540.000.000 ₫</span><br /> <span class="text-dark">Số
-									Lượng: 2</span>
-							</div>
-							<div class="col-lg-3">
-								<h4 class="mt-3 text-danger font-weight-bold">18,000 ₫</h4>
-							</div>
+							<c:forEach var="list" items="${ cartDetails }">
+								<div class="col-lg-3 mb-3">
+									<img
+										src="${pageContext.request.contextPath}/img/product/${list.product.image}"
+										class="card-img-top" height="80" />
+								</div>
+								<div class="col-lg-5">
+									<span class="font-weight-bold">${list.product.name} |
+										${list.product.price} ₫</span><br /> <span class="text-dark">Số
+										Lượng: ${list.quantity}</span>
+								</div>
+								<div class="col-lg-4">
+									<h4 class="mt-3 text-danger font-weight-bold">${list.product.price * list.quantity}
+										₫</h4>
+								</div>
+							</c:forEach>
 							<div class="col-lg-12">
 								<hr />
 							</div>
 							<form action="/shop/checkout"
-								class="d-flex justify-content-center w-100" method="post">
+								class="d-flex justify-content-center w-100">
 								<div class="col-lg-9">
 									<input type="text" class="form-control"
-										placeholder="Mã giảm giá" name="couponId" value="abc123" />
+										placeholder="Mã giảm giá" name="couponId" id="couponId" />
 								</div>
 								<div class="col-lg-3">
-									<button type="submit" class="btn btn-primary w-100">Sử
+									<button type="button" class="btn btn-primary w-100">Sử
 										dụng</button>
 								</div>
 							</form>
@@ -158,8 +149,9 @@
 								<p>Giảm giá</p>
 							</div>
 							<div class="col-lg-6 text-right">
-								<h4 class="font-weight-bold">18,000 ₫</h4>
-								<h4 class="font-weight-bold mt-2">${ discountAmount } ₫</h4>
+								<h4 class="font-weight-bold">${provisional}₫</h4>
+								<h4 class="font-weight-bold mt-2">${ discountAmount * provisional }
+									₫</h4>
 							</div>
 							<div class="col-lg-12">
 								<hr />
@@ -168,7 +160,8 @@
 								<h3 class="font-weight-bold">Tổng cộng</h3>
 							</div>
 							<div class="col-lg-6 text-right">
-								<h3 class="font-weight-bold">120,000 ₫</h3>
+								<h3 class="font-weight-bold">${provisional - (discountAmount * provisional)}
+									₫</h3>
 							</div>
 						</div>
 					</div>
@@ -243,26 +236,28 @@
 							</script>
 							2022 All rights reserved
 						</p>
-
-						<!-- Js Plugins -->
-						<script
-							src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath}/js/jquery.nicescroll.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath}/js/jquery.countdown.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
-						<script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
-						<script src="${pageContext.request.contextPath}/js/main.js"></script>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Js Plugins -->
+			<script
+				src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+			<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+			<script
+				src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+			<script
+				src="${pageContext.request.contextPath}/js/jquery.nicescroll.min.js"></script>
+			<script
+				src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+			<script
+				src="${pageContext.request.contextPath}/js/jquery.countdown.min.js"></script>
+			<script
+				src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+			<script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
+			<script
+				src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+			<script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 
 </html>

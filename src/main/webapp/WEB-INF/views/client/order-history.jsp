@@ -102,40 +102,77 @@
 	<div class="order-history-wrapper mt-4">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-10 m-auto mt-4">
+				<div class="col-lg-12 m-auto mt-4">
 					<h4>Lịch Sử Đặt Hàng</h4>
+					<c:if test="${not empty success}">
+						<div class="alert alert-success alert-dismissible fade show"
+							role="alert">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							${success}
+						</div>
+					</c:if>
 					<hr />
 					<div class="d-flex mt-3 mb-3">
-						<div class="p-0">
-							<div class="input-group" style="width: 230px;">
-								<div class="input-group-prepend">
-									<label class="input-group-text" for="inputGroupSelect01">Tìm
-										theo</label>
+						<form action="/shop/order-history/search" method="post"
+							class="d-flex justify-content-center">
+							<div class="p-0">
+								<div class="input-group" style="width: 230px;">
+									<div class="input-group-prepend">
+										<label class="input-group-text" for="inputGroupSelect01">Tìm
+											theo</label>
+									</div>
+									<select class="custom-select" id="inputGroupSelect01"
+										name="search">
+										<option value="select">Chọn</option>
+										<option value="id" ${ isId ? 'selected' : '' }>Mã đơn
+											hàng</option>
+										<option value="date" ${ isCreateDate ? 'selected' : '' }>Ngày
+											đặt</option>
+									</select>
 								</div>
-								<select class="custom-select" id="inputGroupSelect01">
-									<option selected>Chọn</option>
-									<option value="1">Mã đơn hàng</option>
-									<option value="2">Tên sản phẩm</option>
-								</select>
 							</div>
-						</div>
-						<div class="pl-2">
-							<input class="search-bar bg-white text-dark form-control"
-								placeholder="Search..." type="text" style="height: 42px;">
-						</div>
+							<div class="pl-2">
+								<input class="search-bar bg-white text-dark form-control"
+									placeholder="Search..." type="text" style="height: 40px;"
+									name="keyword">
+							</div>
+							<div class="mr-auto pl-2">
+								<button type="submit" class="btn btn-primary"
+									style="height: 42px;">Tìm</button>
+							</div>
+						</form>
 						<div class="mr-auto pl-2">
-							<button type="button" class="btn btn-primary"
-								style="height: 42px;">Tìm</button>
+							<a href="/shop/order-history"
+								class="btn btn-secondary btn-lg active font-weight-bold px-4 ml-5"
+								role="button" aria-pressed="true" style="height: 42px;">Làm
+								mới</a>
 						</div>
-						<div class="pr-2">
-							<button type="button"
-								class="btn btn-${ activeTab ? 'outline-' : '' }warning mr-2"
-								style="height: 42px;">Đơn đã hủy</button>
-						</div>
-						<div class="pr-2">
-							<button type="button"
-								class="btn btn-${ !activeTab ? 'outline-' : '' }primary"
-								style="height: 42px;">Đơn đã thanh toán</button>
+						<div class="pr-2 d-flex justify-content-center ">
+							<form action="/shop/order-history/filter" method="post"
+								class="d-flex justify-content-center">
+								<div class="input-group" style="width: 250px;">
+									<div class="input-group-prepend">
+										<label class="input-group-text" for="inputGroupSelect01"
+											style="height: 40px;">Lọc theo</label>
+									</div>
+									<select class="custom-select mr-2" id="inputGroupSelect01"
+										name="status" style="height: 40px;">
+										<option value="select">Chọn trạng thái</option>
+										<option value="c" ${ isC ? 'selected' : '' }>Đang chờ</option>
+										<option value="xl" ${ isXl ? 'selected' : '' }>Đang
+											xử lý</option>
+										<option value="g" ${ isG ? 'selected' : '' }>Đang
+											giao</option>
+										<option value="dg" ${ isDg ? 'selected' : '' }>Đã
+											giao</option>
+									</select>
+								</div>
+								<button type="submit" class="btn btn-primary"
+									style="height: 40px;">Lọc</button>
+							</form>
 						</div>
 					</div>
 					<div class="table-responsive">
@@ -149,6 +186,7 @@
 									<th scope="col">Địa Chỉ</th>
 									<th scope="col">Số Điện Thoại</th>
 									<th scope="col">Trạng Thái</th>
+									<th scope="col">Ghi chú</th>
 									<th scope="col">Hành Động</th>
 								</tr>
 							</thead>
@@ -162,6 +200,7 @@
 										<td class="pt-4">${ order.address }</td>
 										<td class="pt-4">${ order.phone }</td>
 										<td class="pt-4">${ order.status }</td>
+										<td class="pt-4">${ order.notes }</td>
 										<td class="pt-3">
 											<h5>
 												<!-- Button to Open the Modal -->
@@ -242,7 +281,11 @@
 								</c:forEach> ${totalQuantity}</strong>
 						</h4>
 						<h4>
-							Tổng tiền : <strong>${ order.totalPrice }đ</strong>
+							Tổng tiền : <strong><c:set var="total" value="0" /> <c:forEach
+									var="detail" items="${order.orderDetails}">
+									<c:set var="total"
+										value="${total + (detail.product.price  * detail.quantity)}" />
+								</c:forEach>${ total } đ</strong>
 						</h4>
 					</div>
 				</div>
@@ -326,26 +369,32 @@
 								</form>
 							</div>
 						</div>
-						<!-- Js Plugins -->
-						<script
-							src="${pageContext.request.contextPath }/js/jquery-3.3.1.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath }/js/jquery.nice-select.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath }/js/jquery.nicescroll.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath }/js/jquery.magnific-popup.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath }/js/jquery.countdown.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath }/js/jquery.slicknav.js"></script>
-						<script
-							src="${pageContext.request.contextPath }/js/mixitup.min.js"></script>
-						<script
-							src="${pageContext.request.contextPath }/js/owl.carousel.min.js"></script>
-						<script src="${pageContext.request.contextPath }/js/main.js"></script>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Js Plugins -->
+	<script
+		src="${pageContext.request.contextPath }/js/jquery-3.3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/js/jquery.nice-select.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/js/jquery.nicescroll.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/js/jquery.magnific-popup.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/js/jquery.countdown.min.js"></script>
+	<script src="${pageContext.request.contextPath }/js/jquery.slicknav.js"></script>
+	<script src="${pageContext.request.contextPath }/js/mixitup.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath }/js/main.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>
