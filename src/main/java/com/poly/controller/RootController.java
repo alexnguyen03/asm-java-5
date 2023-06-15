@@ -21,7 +21,7 @@ public class RootController {
 	ProductDAO productDAO;
 
 	@Autowired
-	AccountDAO accoutDAO;
+	AccountDAO accountDAO;
 
 	@Autowired
 	SessionService session;
@@ -29,7 +29,7 @@ public class RootController {
 	@GetMapping("")
 	public String index(Model model) {
 		if (session.get("username") != null) {
-			Account account = accoutDAO.findById(session.get("username")).orElse(null);
+			Account account = accountDAO.findById(session.get("username")).orElse(null);
 			model.addAttribute("isAdmin", account.getAdmin());
 		}
 

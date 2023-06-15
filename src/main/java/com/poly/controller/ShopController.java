@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.poly.model.Account;
 import com.poly.model.Category;
 import com.poly.model.Product;
+import com.poly.repository.AccountDAO;
 import com.poly.repository.CategoryDAO;
 import com.poly.repository.ProductDAO;
 import com.poly.service.SessionService;
@@ -30,6 +32,9 @@ public class ShopController {
 	ProductDAO productDAO;
 
 	@Autowired
+	AccountDAO accountDAO;
+
+	@Autowired
 	CategoryDAO categoryDAO;
 
 	@Autowired
@@ -37,6 +42,11 @@ public class ShopController {
 
 	@GetMapping("")
 	public String index(Model model, @RequestParam("p") Optional<Integer> p) {
+		if (session.get("username") != null) {
+			Account account = accountDAO.findById(session.get("username")).orElse(null);
+			model.addAttribute("isAdmin", account.getAdmin());
+		}
+
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findAll(pageable);
 		model.addAttribute("page", page);

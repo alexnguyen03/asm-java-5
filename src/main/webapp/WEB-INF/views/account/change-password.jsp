@@ -55,7 +55,8 @@ body {
 					cách dễ dàng.</h6>
 				<form action="/account/change-password" method="POST" class="mt-5">
 					<c:if test="${not empty message}">
-						<div class="text-danger text-left" role="alert">${message}</div>
+						<div class="${success?'text-success':'text-danger'} text-left"
+							role="alert">${message}</div>
 					</c:if>
 					<div class="form-group mt-3">
 						<input type="text" class="form-control" name="username"
