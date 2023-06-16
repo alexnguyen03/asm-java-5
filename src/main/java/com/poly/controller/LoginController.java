@@ -63,9 +63,13 @@ public class LoginController {
 			} else {
 				cookieService.remove("username");
 			}
+
+			session.set("username", username);
+
+			Account account = dao.findById(session.get("username")).get();
+			session.set("account", account);
 		}
 
-		session.set("username", username);
 		return "redirect:/";
 	}
 
