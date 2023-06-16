@@ -169,13 +169,10 @@
 							</a>
 							<div class="product__item__text">
 								<h6>${item.name}</h6>
-								<a href="#" class="add-cart">+ Thêm vào giỏ hàng</a>
-								<div class="rating">
-									<i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
-										class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i
-										class="fa fa-star-o"></i>
-								</div>
-								<h5>${item.price}</h5>
+								<a href="/shop/add-to-cart" class="add-cart">+ Thêm vào giỏ hàng</a>
+								<h5>${item.price}
+									<span class="text-danger" style="text-decoration: underline;">đ</span>
+								</h5>
 							</div>
 						</div>
 					</div>
@@ -228,7 +225,7 @@
 							<p>Giây</p>
 						</div>
 					</div>
-					<a href="#" class="primary-btn">Mua ngay</a>
+					<a href="/shop/add-to-cart" class="primary-btn">Mua ngay</a>
 				</div>
 			</div>
 		</div>

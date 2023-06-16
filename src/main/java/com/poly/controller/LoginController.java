@@ -1,22 +1,17 @@
 package com.poly.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.model.Account;
 import com.poly.repository.AccountDAO;
 import com.poly.service.CookieService;
 import com.poly.service.ParamService;
 import com.poly.service.SessionService;
-
-import jakarta.servlet.http.Cookie;
 
 @Controller
 @RequestMapping("account")
@@ -36,9 +31,9 @@ public class LoginController {
 	@GetMapping("/login")
 	public String showLoginForm(Model model) {
 		String username = cookieService.getValue("username");
-        if (username != null) {
-            model.addAttribute("username", username);
-        }
+		if (username != null) {
+			model.addAttribute("username", username);
+		}
 		return "/account/login";
 	}
 
@@ -51,6 +46,10 @@ public class LoginController {
 		boolean remember = paramService.getBoolean("remember", false);
 
 		Account accountStore = dao.findById(username).orElse(null);
+
+		if (username != null) {
+			session.set("username", username);
+		}
 
 		if (accountStore == null) {
 			model.addAttribute("message", "Tài khoản không tồn tại");

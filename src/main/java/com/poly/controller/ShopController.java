@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poly.model.Account;
 import com.poly.model.Category;
@@ -61,6 +62,17 @@ public class ShopController {
 	@GetMapping("cart-detail")
 	public String getCartDetail() {
 		return "/client/cart-detail";
+	}
+
+	@GetMapping("add-to-cart")
+	public String AddToCart(Model model, RedirectAttributes rdAtr) {
+		if (session.get("username") == null) {
+			session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
+			rdAtr.addAttribute("isMessageShop", true);
+			return "redirect:/account/login";
+		}
+
+		return "redirect:/shop";
 	}
 
 	@RequestMapping("shop-search-product")

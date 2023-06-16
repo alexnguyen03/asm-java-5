@@ -48,10 +48,52 @@ body {
 	left: 0;
 	right: 0;
 }
+
+.toast {
+	position: absolute;
+	top: 0;
+	right: 1.5rem;
+	transform: translateX(100%);
+	z-index: 100;
+	top: 3.5rem;
+	transition: all 0.5s;
+}
+
+.toast.show {
+	transform: translateX(0);
+}
 </style>
 </head>
 
 <body class="d-flex justify-content-center align-items-center">
+
+	<c:if test="${not empty messageShop}">
+		<!-- toast msg  -->
+		<div class="toast show" role="alert" aria-live="assertive"
+			aria-atomic="true" data-delay="3000">
+			<div class="toast-header">
+				<strong class="mr-auto text-center">Quản lý sản phẩm</strong>
+				<button type="button" class="ml-2 mb-1 close" data-dismiss="toast"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="toast-body alert-info">${messageShop}</div>
+		</div>
+		<!-- toast msg  -->
+
+		<script>
+			setTimeout(() => {
+				const toast = document.querySelector('.toast');
+				toast.classList.remove('show');
+			}, 3000);
+		</script>
+
+		<%
+		session.removeAttribute("messageProductManager");
+		%>
+	</c:if>
+
 	<!-- Header -->
 	<header class="container login__header__fixed">
 		<nav class="navbar navbar-expand-sm container">
@@ -126,5 +168,14 @@ body {
 	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
+
+	<script>
+	 $('#toast').on('show.bs.modal', event => {
+	        var button = $(event.relatedTarget);
+	        var modal = $(this);
+	        // Use above variables to manipulate the DOM
+	      });
+	</script>
+
 </body>
 </html>
