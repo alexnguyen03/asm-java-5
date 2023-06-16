@@ -33,8 +33,8 @@ public class ShopDetailController {
 	CartDAO cartDAO;
 
 	@GetMapping("")
-	public String index(Model model) {
-		Product product = productDao.findById(1001).get();
+	public String index(Model model, @RequestParam("id") Integer productId) {
+		Product product = productDao.findById(productId).get();
 		List<Review> reviews = product.getReviews();
 		List<Product> product_similars = productDao.findByProductCategogy(product.getCategory().getId());
 		float sum_Rating = 0;

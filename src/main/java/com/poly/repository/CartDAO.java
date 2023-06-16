@@ -11,5 +11,6 @@ import com.poly.model.CartDetail;
 
 public interface CartDAO extends JpaRepository<Cart, Integer> {
     @Query("SELECT c FROM Cart c WHERE c.account.username = ?1")
+
     Cart findByUserName(String username);
 }

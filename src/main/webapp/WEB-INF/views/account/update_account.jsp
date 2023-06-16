@@ -127,9 +127,10 @@
 														<label for="password"
 															   class="form-label fw-bold">Mật
 															Khẩu</label>
-														<form:password path="password"
-																	   id="password"
-																	   cssClass="form-control" />
+														<form:input path="password"
+																	id="password"
+																	type="password"
+																	cssClass="form-control" />
 														<form:errors path="password"
 																	 cssClass="msg_errols"></form:errors>
 													</div>

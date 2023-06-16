@@ -2,7 +2,6 @@ package com.poly.controller;
 
 import java.util.Iterator;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.poly.model.Account;
 import com.poly.model.Cart;
 import com.poly.model.CartDetail;
@@ -59,7 +57,6 @@ public class CheckOutController {
 		//
 		// Account account = accountDAO.findById("hoainam").get();
 		// sessionService.set("account", account);
-
 		// lấy coupon và kiểm tra có trong database không
 		String couponId = paramService.getString("couponId", "");
 		try {
@@ -73,42 +70,43 @@ public class CheckOutController {
 			model.addAttribute("discountAmount", 0);
 			model.addAttribute("success", "Không tìm thấy giảm giá nào có mã " + couponId);
 		}
-
 		// lấy account
 		Account account = sessionService.get("account");
-
+		Cart cart = cartDAO.findByUserName(account.getUsername());
 		// lấy product
-		List<CartDetail> ODL = sessionService.get("cart");
-
+		List<CartDetail> listCartDetail = cart.getCartDetails();
 		// tính tổng tiền
 		double toTal_Price = 0;
-		for (CartDetail od : ODL) {
+		for (CartDetail od : listCartDetail) {
 			double toTal = od.getProduct().getPrice() * od.getQuantity();
 			toTal_Price += toTal;
 		}
-
-		model.addAttribute("cartDetails", ODL);
+		model.addAttribute("cartDetails", listCartDetail);
 		model.addAttribute("provisional", toTal_Price);
 		model.addAttribute("account", account);
 		return "/client/checkout";
 	}
 
 	@PostMapping("/create")
-	public String checkout() {
+	public String checkout(Model model) {
 		// Order
 		Order order = new Order();
 		double toTal_Price = 0;
-		List<CartDetail> ODL = sessionService.get("cart");
-		for (CartDetail od : ODL) {
+		Account account = sessionService.get("account");
+		Cart cart = cartDAO.findByUserName(account.getUsername());
+		// lấy product
+		List<CartDetail> listCartDetail = cart.getCartDetails();
+		for (CartDetail od : listCartDetail) {
 			double toTal = od.getProduct().getPrice() * od.getQuantity();
 			toTal_Price += toTal;
 		}
 		String phone = paramService.getString("phone", "");
 		String address = paramService.getString("address", "");
-		Account account = sessionService.get("account");
 		Coupon coupon = sessionService.get("coupon");
-		double discountAmount = coupon.getDiscountAmount();
-
+		double discountAmount = 0.0;
+		if (coupon != null) {
+			discountAmount = coupon.getDiscountAmount();
+		}
 		if (PhoneNumberValidator.validate(phone)) {
 			order.setCoupon(coupon);
 			order.setAccount(account);
@@ -119,14 +117,13 @@ public class CheckOutController {
 			orderDAO.save(order);
 			sessionService.remove("coupon");
 			// OrderDetail
-			for (CartDetail od : ODL) {
+			for (CartDetail od : listCartDetail) {
 				OrderDetail orderDetail = new OrderDetail();
 				orderDetail.setOrder(order);
 				orderDetail.setProduct(od.getProduct());
 				orderDetail.setPrice(od.getProduct().getPrice());
 				orderDetail.setQuantity(od.getQuantity());
 				orderDetailDAO.save(orderDetail);
-
 				int productId = od.getProduct().getId();
 				cartDetailDAO.deleteByProductId(productId);
 			}
@@ -140,10 +137,8 @@ public class CheckOutController {
 			model.addAttribute("success", "Số điện thoại không hợp lệ !!!");
 			return "/client/checkout";
 		}
-
 		return "redirect:/shop/checkout";
 	}
-
 	// @PostMapping("/coupon")
 	// public String getCoupon() {
 	// String couponId = paramService.getString("couponId", "");

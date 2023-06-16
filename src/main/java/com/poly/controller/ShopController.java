@@ -2,6 +2,7 @@ package com.poly.controller;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.poly.model.Account;
 import com.poly.model.Cart;
 import com.poly.model.CartDetail;
@@ -66,10 +68,9 @@ public class ShopController {
     @GetMapping("cart-detail")
     public String getCartDetailView(Model m) {
         // ! mockup get client form session
-        Account account = accountDAO.findById("hoainam").get();
+        Account account = sessionService.get("account");
         // * get client form session
-        sessionService.set("user", account);
-        Cart cart = cartDAO.findByUsername("hoainam");
+        Cart cart = cartDAO.findByUserName(account.getUsername());
         List<CartDetail> cartDetails = cart.getCartDetails();
         int totalQuantity = 0;
         Double totalPrice = 0.0;
@@ -87,8 +88,8 @@ public class ShopController {
     @GetMapping("/cart-detail/add/{productId}")
     public String addCartDetail(@PathVariable("productId") Integer productId) {
         // mock client form session
-        Account account = sessionService.get("user");
-        Cart cart = cartDAO.findByUsername(account.getUsername());
+        Account account = sessionService.get("account");
+        Cart cart = cartDAO.findByUserName(account.getUsername());
         CartDetail cartDetail = new CartDetail();
         cartDetail.setProduct(productDAO.findById(productId).get());
         CartDetail testCarDetail = cartDetailDAO.findByProduct(productDAO.findById(productId).get());
@@ -114,8 +115,8 @@ public class ShopController {
     public String addCartDetailFromProductDetail(@RequestParam("productId") Integer productId,
             @RequestParam("quantity") Integer quantity) {
         // mock client form session
-        Account account = sessionService.get("user");
-        Cart cart = cartDAO.findByUsername(account.getUsername());
+        Account account = sessionService.get("account");
+        Cart cart = cartDAO.findByUserName(account.getUsername());
         CartDetail cartDetail = new CartDetail();
         cartDetail.setProduct(productDAO.findById(productId).get());
         CartDetail testCarDetail = cartDetailDAO.findByProduct(productDAO.findById(productId).get());
@@ -153,15 +154,6 @@ public class ShopController {
     public String deleteCartDetail(@PathVariable("id") Integer cartdetailId) {
         cartDetailDAO.deleteById(cartdetailId);
         return "redirect:/shop/cart-detail";
-    }
-
-    @GetMapping("cart-detail/checkout")
-    public String goToCheckout() {
-        sessionService.set("listCart", cartDAO.findByUsername("hoainam").getCartDetails());
-        List<CartDetail> list = sessionService.get("listCart");
-        System.out.println(list.get(0).getId());
-        ;
-        return "redirect:/shop/checkout";
     }
 
     @RequestMapping("shop-search-product")

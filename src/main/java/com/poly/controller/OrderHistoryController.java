@@ -3,7 +3,6 @@ package com.poly.controller;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,13 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import com.poly.model.Account;
+import com.poly.model.Cart;
+import com.poly.model.CartDetail;
 import com.poly.model.Coupon;
 import com.poly.model.Order;
 import com.poly.model.OrderDetail;
 import com.poly.repository.OrderDAO;
 import com.poly.repository.OrderDetailDAO;
 import com.poly.service.ParamService;
+import com.poly.service.SessionService;
 
 @Controller
 @RequestMapping("/shop/order-history")
@@ -31,10 +33,13 @@ public class OrderHistoryController {
 	OrderDetailDAO orderDetailDao;
 	@Autowired
 	ParamService paramService;
+	@Autowired
+	SessionService sessionService;
 
 	@GetMapping("")
 	public String index(Model model) {
-		List<Order> orders = orderDao.findByAccountName("Alexx");
+		Account account = sessionService.get("account");
+		List<Order> orders = orderDao.findByAccountName(account.getUsername());
 		model.addAttribute("orders", orders);
 		return "/client/order-history";
 	}

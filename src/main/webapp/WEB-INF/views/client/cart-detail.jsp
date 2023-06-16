@@ -107,7 +107,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                class="" />
                         </div>
                         <div class="product__cart__item__text">
-                          <h6><a href="/shop/product-detail/${cd.product.id}"
+                          <h6><a href="/shop/product-detail?id=${cd.product.id}"
                                class="text-secondary">
                               ${cd.product.name}
                             </a>
@@ -195,7 +195,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                   </span>
                 </li>
               </ul>
-              <a href="/shop/cart-detail/checkout"
+              <a href="/shop/checkout"
                  class="btn btn-success w-100">Đặt hàng</a>
             </div>
           </div>

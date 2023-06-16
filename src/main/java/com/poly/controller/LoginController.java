@@ -67,6 +67,8 @@ public class LoginController {
 		}
 
 		session.set("username", username);
+		Account account = dao.findById(session.get("username")).get();
+		session.set("account", account);
 		return "redirect:/";
 	}
 
