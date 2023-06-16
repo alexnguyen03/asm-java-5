@@ -46,13 +46,122 @@ public class ReviewsManagementController {
 	@Autowired
 	ProductDAO productDao;
 
-	@GetMapping("/index")
-	public String index(Model model, @RequestParam("p") Optional<Integer> p,
-			@RequestParam("field") Optional<String> field) {
-		Pageable pageable = PageRequest.of(p.orElse(0), 2, Sort.by(Direction.DESC, field.orElse("rating")));
+	@GetMapping("")
+	public String index(Model model, @RequestParam("p") Optional<Integer> p, @RequestParam("eop") Optional<Integer> eop,
+			@RequestParam("field") Optional<String> field, @RequestParam("d") Optional<Boolean> direc) {
+		int defaultPage = 0;
+		int defaultElementOfPage = 3;
+		String defaultField = "dateReview";
+		String keyword = paramService.getString("keyword", " ");
+		String search = paramService.getString("search", " ");
+
+		// asending is default
+		Pageable pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),
+				Sort.by(field.orElse(defaultField)).ascending());
+
+		if (direc.isPresent() && !direc.get().booleanValue()) {
+			pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),
+					Sort.by(field.orElse(defaultField)).descending());
+		}
+
 		Page<Review> reviews = dao.findAll(pageable);
+		if (search.equals("nameSP")) {
+			if (keyword.equals("")) {
+				model.addAttribute("success", "Vui lòng nhập dữ liệu trước khi tìm !!! ");
+				model.addAttribute("isNameSP", true);
+				return "/admin/reviews";
+			}
+			try {
+				Integer.parseInt(keyword);
+				model.addAttribute("success", "Tên sản phẩm phải là ký tự !!! ");
+				model.addAttribute("isNameSP", true);
+				return "/admin/reviews";
+			} catch (Exception e) {
+			}
+			Date date = null;
+			try {
+				date = paramService.getDate(keyword, "yyyy-MM-dd");
+				model.addAttribute("success", "Tên sản phẩm phải là ký tự !!! ");
+				model.addAttribute("isNameSP", true);
+			} catch (Exception e) {
+			}
+			reviews = dao.findByNameProduct("%" + keyword + "%", pageable);
+			if (reviews.getTotalPages() > 0) {
+				model.addAttribute("reviews", reviews);
+				model.addAttribute("success", "Đã tìm thấy tên sản phẩm có chứa : " + keyword);
+				model.addAttribute("isNameSP", true);
+			}else {
+				model.addAttribute("success", "Không tìm thấy sản phẩm có tên " + keyword);
+			}
+		} else if (search.equals("countS")) {
+			if (keyword.equals("")) {
+				model.addAttribute("success", "Vui lòng nhập dữ liệu trước khi tìm !!! ");
+				model.addAttribute("iscountS", true);
+				return "/admin/reviews";
+			}
+			try {
+				Integer.parseInt(keyword);
+			} catch (Exception e) {
+				model.addAttribute("success", "Số sao phải là số nguyên !!! ");
+				model.addAttribute("iscountS", true);
+				return "/admin/reviews";
+			}
+			Date date = null;
+			try {
+				date = paramService.getDate(keyword, "yyyy-MM-dd");
+			} catch (Exception e) {
+				model.addAttribute("success", "Số sao phải là số nguyên !!! ");
+				model.addAttribute("iscountS", true);
+			}
+			reviews = dao.findByRating(Integer.parseInt(keyword), pageable);
+			if (reviews.getTotalPages() > 0) {
+				model.addAttribute("reviews", reviews);
+				model.addAttribute("success", "Đã tìm thấy đánh giá có " + keyword + " sao");
+				model.addAttribute("iscountS", true);
+			}else {
+				model.addAttribute("success", "Không tìm thấy đánh giá có " + keyword + " sao");
+			}
+		}else if (search.equals("nameKH")) {
+			if (keyword.equals("")) {
+				model.addAttribute("success", "Vui lòng nhập dữ liệu trước khi tìm !!! ");
+				model.addAttribute("isnameKH", true);
+				return "/admin/reviews";
+			}
+			try {
+				Integer.parseInt(keyword);
+				model.addAttribute("success", "Tên khách hàng phải là ký tự !!! ");
+				model.addAttribute("isnameKH", true);
+				return "/admin/reviews";
+			} catch (Exception e) {
+			}
+			Date date = null;
+			try {
+				date = paramService.getDate(keyword, "yyyy-MM-dd");
+				model.addAttribute("success", "Tên khách hàng phải là ký tự !!! ");
+				model.addAttribute("isnameKH", true);
+			} catch (Exception e) {
+			}
+			reviews = dao.findByNameAcount("%" + keyword + "%", pageable);
+			if (reviews.getTotalPages() > 0) {
+				model.addAttribute("reviews", reviews);
+				model.addAttribute("success", "Đã tìm thấy tên khách hàng có chứa : " + keyword);
+				model.addAttribute("isnameKH", true);
+			}else {
+				model.addAttribute("success", "Không tìm thấy khách hàng có tên " + keyword);
+			}
+		}
+
+		model.addAttribute("field", field.orElse(defaultField));
+		model.addAttribute("eop", eop.orElse(defaultElementOfPage));
+		model.addAttribute("p", p.orElse(defaultPage));
+		model.addAttribute("d", direc.orElse(true));
 		model.addAttribute("reviews", reviews);
 		return "/admin/reviews";
+	}
+
+	@RequestMapping("search")
+	public String searchCoupon(@RequestParam("search") String search, @RequestParam("keyword") String keyword) {
+		return "forward:/admin/review";
 	}
 
 	@PostMapping("create")
@@ -76,65 +185,10 @@ public class ReviewsManagementController {
 	@GetMapping("delete/{id}")
 	public String create(@PathVariable("id") Integer id) {
 		dao.deleteById(id);
+		
 		return "redirect:/admin/review/index";
 	}
 
-	@PostMapping("search")
-	public String search(Model model, @RequestParam("search") String search, @RequestParam("keyword") String keyword,
-			@RequestParam("p") Optional<Integer> p) {
-		if (search.equals("nameSP")) {
-			if (keyword != null) {
-				Pageable pageable = PageRequest.of(p.orElse(0), 3);
-				Page<Review> reviews = dao.findByNameProduct("%" + keyword + "%", pageable);
-				if (reviews.getTotalPages() > 0) {
-					model.addAttribute("reviews", reviews);
-					model.addAttribute("isNameSP", true);
-				} else {
-					return "redirect:/admin/review/index";
-				}
-			}
-			if (keyword.equals("")) {
-				return "redirect:/admin/review/index";
-			}
-		} else if (search.equals("countS")) {
-			if (keyword.equals("")) {
-				return "redirect:/admin/review/index";
-			}
-			try {
-				Integer.parseInt(keyword);
-			} catch (Exception e) {
-				return "redirect:/admin/review/index";
-			}
-			if (keyword != null) {
-				Pageable pageable = PageRequest.of(p.orElse(0), 3);
-				Page<Review> reviews = dao.findByRating(Integer.parseInt(keyword), pageable);
-				if (reviews.getTotalPages() > 0) {
-					model.addAttribute("reviews", reviews);
-					model.addAttribute("iscountS", true);
-				} else {
-					return "redirect:/admin/review/index";
-				}
-			}
-		} else if (search.equals("nameKH")) {
-			if (keyword != null) {
-				Pageable pageable = PageRequest.of(p.orElse(0), 3);
-				Page<Review> reviews = dao.findByNameAcount("%" + keyword + "%", pageable);
-				if (reviews.getTotalPages() > 0) {
-					model.addAttribute("reviews", reviews);
-					model.addAttribute("isnameKH", true);
-				} else {
-					return "redirect:/admin/review/index";
-				}
-			}
-			if (keyword.equals("")) {
-				return "redirect:/admin/review/index";
-			}
-		} else if (search.equals("select")) {
-			return "redirect:/admin/review/index";
-		}
-		return "/admin/reviews";
-	}
-	
 	@GetMapping("report")
 	public String report() {
 		return "/admin/chart";

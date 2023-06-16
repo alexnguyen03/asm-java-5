@@ -106,6 +106,16 @@
 							class="btn btn-info font-weight-bold mt-2 float-right w-50">Thanh
 							toán</button>
 					</form>
+					<c:if test="${not empty success}">
+						<div class="alert alert-success alert-dismissible fade show mt-4"
+							role="alert">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							${success}
+						</div>
+					</c:if>
 				</div>
 				<div class="col-lg-6">
 					<h4 class="mb-4 text-center font-weight-bold">ĐƠN HÀNG CỦA BẠN</h4>
@@ -137,7 +147,7 @@
 										placeholder="Mã giảm giá" name="couponId" id="couponId" />
 								</div>
 								<div class="col-lg-3">
-									<button type="button" class="btn btn-primary w-100">Sử
+									<button type="submit" class="btn btn-primary w-100">Sử
 										dụng</button>
 								</div>
 							</form>
@@ -239,7 +249,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Js Plugins -->
 			<script
 				src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
@@ -258,6 +268,10 @@
 			<script
 				src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 			<script src="${pageContext.request.contextPath}/js/main.js"></script>
+			<script
+				src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+				integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+				crossorigin="anonymous"></script>
 </body>
 
 </html>

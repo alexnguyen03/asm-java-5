@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poly.model.Account;
 import com.poly.model.Cart;
@@ -28,6 +29,7 @@ import com.poly.repository.CouponDAO;
 import com.poly.repository.OrderDAO;
 import com.poly.repository.OrderDetailDAO;
 import com.poly.service.ParamService;
+import com.poly.service.PhoneNumberValidator;
 import com.poly.service.SessionService;
 
 @Controller
@@ -58,32 +60,33 @@ public class CheckOutController {
 //		Account account = accountDAO.findById("hoainam").get();
 //		sessionService.set("account", account);
 
-		//lấy coupon và kiểm tra có trong database không
+		// lấy coupon và kiểm tra có trong database không
 		String couponId = paramService.getString("couponId", "");
 		try {
 			Coupon coupon = couponDAO.findById(couponId).get();
 			sessionService.set("coupon", coupon);
 			model.addAttribute("discountAmount", coupon.getDiscountAmount());
+			model.addAttribute("success", "Áp dụng Giảm giá thành công");
 		} catch (Exception e) {
 			System.out.println("Không có coupon");
 			sessionService.remove("coupon");
 			model.addAttribute("discountAmount", 0);
+			model.addAttribute("success", "Không tìm thấy giảm giá nào có mã " + couponId);
 		}
-		
-		//lấy account
+
+		// lấy account
 		Account account = sessionService.get("account");
-		
-		//lấy product
+
+		// lấy product
 		List<CartDetail> ODL = sessionService.get("cart");
-		
-		
-		//tính tổng tiền
+
+		// tính tổng tiền
 		double toTal_Price = 0;
 		for (CartDetail od : ODL) {
 			double toTal = od.getProduct().getPrice() * od.getQuantity();
 			toTal_Price += toTal;
 		}
-		
+
 		model.addAttribute("cartDetails", ODL);
 		model.addAttribute("provisional", toTal_Price);
 		model.addAttribute("account", account);
@@ -91,8 +94,8 @@ public class CheckOutController {
 	}
 
 	@PostMapping("/create")
-	public String checkout() {
-		//Order
+	public String checkout(Model model) {
+		// Order
 		Order order = new Order();
 		double toTal_Price = 0;
 		List<CartDetail> ODL = sessionService.get("cart");
@@ -105,26 +108,40 @@ public class CheckOutController {
 		Account account = sessionService.get("account");
 		Coupon coupon = sessionService.get("coupon");
 		double discountAmount = coupon.getDiscountAmount();
-		order.setCoupon(coupon);
-		order.setAccount(account);
-		order.setPhone(phone);
-		order.setAddress(address);
-		order.setTotalPrice(toTal_Price - discountAmount);
-		order.setStatus("Đang xử lý");
-		orderDAO.save(order);
-		sessionService.remove("coupon");
-		//OrderDetail
-		for (CartDetail od : ODL) {
-			OrderDetail orderDetail = new OrderDetail();
-			orderDetail.setOrder(order);
-			orderDetail.setProduct(od.getProduct());
-			orderDetail.setPrice(od.getProduct().getPrice());
-			orderDetail.setQuantity(od.getQuantity());
-			orderDetailDAO.save(orderDetail);
-			
-			int productId = od.getProduct().getId();
-			cartDetailDAO.deleteByProductId(productId);
+
+		if (PhoneNumberValidator.validate(phone)) {
+			order.setCoupon(coupon);
+			order.setAccount(account);
+			order.setPhone(phone);
+			order.setAddress(address);
+			order.setTotalPrice(toTal_Price - (toTal_Price * discountAmount));
+			order.setStatus("C");
+			orderDAO.save(order);
+			sessionService.remove("coupon");
+			// OrderDetail
+			for (CartDetail od : ODL) {
+				OrderDetail orderDetail = new OrderDetail();
+				orderDetail.setOrder(order);
+				orderDetail.setProduct(od.getProduct());
+				orderDetail.setPrice(od.getProduct().getPrice());
+				orderDetail.setQuantity(od.getQuantity());
+				orderDetailDAO.save(orderDetail);
+
+				int productId = od.getProduct().getId();
+				cartDetailDAO.deleteByProductId(productId);
+			}
+		}else if(phone.equals("")) {
+			model.addAttribute("success", "Bạn chưa nhập số điện thoại !!!");
+			return "/client/checkout";
+		}else if(address.equals("")) {
+			model.addAttribute("success", "Bạn chưa nhập địa chỉ !!!");
+			return "/client/checkout";
 		}
+		else {
+			model.addAttribute("success", "Số điện thoại không hợp lệ !!!");
+			return "/client/checkout";
+		}
+
 		return "redirect:/shop/checkout";
 	}
 

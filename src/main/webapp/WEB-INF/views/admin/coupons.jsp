@@ -74,8 +74,10 @@
 					<button type="submit" class="btn btn-primary ml-2">Lọc</button>
 				</form>
 				<div class="app-content-actions-wrapper">
-					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#addCoupon">THÊM KHUYẾN MÃI</button>
+					<!-- 					<button type="button" class="btn btn-primary" data-toggle="modal" -->
+					<!-- 						data-target="#addCoupon">THÊM KHUYẾN MÃI</button> -->
+					<a href="/admin/coupon/add" class="btn btn-secondary" role="button"
+						aria-pressed="true" style="height: 40px;">THÊM GIẢM GIÁ</a>
 					<div class="filter-button-wrapper d-none">
 						<button class="action-button filter jsFilter">
 							<span>Filter</span>
@@ -135,7 +137,7 @@
 				<div class="products-header">
 					<div class="product-cell category">
 						Tên giảm giá <a
-							href="/admin/coupon/index?field=couponName&p=${p}&eop=${eop}&d=${!d}"
+							href="/admin/coupon?field=couponName&p=${p}&eop=${eop}&d=${!d}"
 							class="sort-button ${field == 'couponName' ? 'text-primary' : '' }">
 							${field == 'couponName' &&
                 d == true ? '<i class="fa fa-chevron-up"
@@ -145,7 +147,7 @@
 					</div>
 					<div class="product-cell image">
 						Mã giảm giá <a
-							href="/admin/coupon/index?field=couponCode&p=${p}&eop=${eop}&d=${!d}"
+							href="/admin/coupon?field=couponCode&p=${p}&eop=${eop}&d=${!d}"
 							class="sort-button ${field == 'couponCode' ? 'text-primary' : '' }">
 							${field == 'couponCode' &&
                 d == true ? '<i class="fa fa-chevron-up"
@@ -154,8 +156,8 @@
 						</a>
 					</div>
 					<div class="product-cell status-cell">
-						Giá giảm <a
-							href="/admin/coupon/index?field=discountAmount&p=${p}&eop=${eop}&d=${!d}"
+						Phần trăm giảm <a
+							href="/admin/coupon?field=discountAmount&p=${p}&eop=${eop}&d=${!d}"
 							class="sort-button ${field == 'discountAmount' ? 'text-primary' : '' }">
 							${field == 'discountAmount' &&
                 d == true ? '<i class="fa fa-chevron-up"
@@ -165,7 +167,7 @@
 					</div>
 					<div class="product-cell sales">
 						Ngày hết hạn <a
-							href="/admin/coupon/index?field=expirationDate&p=${p}&eop=${eop}&d=${!d}"
+							href="/admin/coupon?field=expirationDate&p=${p}&eop=${eop}&d=${!d}"
 							class="sort-button ${field == 'expirationDate' ? 'text-primary' : '' }">
 							${field == 'expirationDate' &&
                 d == true ? '<i class="fa fa-chevron-up"
@@ -175,7 +177,7 @@
 					</div>
 					<div class="product-cell sales">
 						Ngày tạo <a
-							href="/admin/coupon/index?field=createdDate&p=${p}&eop=${eop}&d=${!d}"
+							href="/admin/coupon?field=createdDate&p=${p}&eop=${eop}&d=${!d}"
 							class="sort-button ${field == 'createdDate' ? 'text-primary' : '' }">
 							${field == 'createdDate' &&
                 d == true ? '<i class="fa fa-chevron-up"
@@ -185,7 +187,7 @@
 					</div>
 					<div class="product-cell stock">
 						Trạng Thái <a
-							href="/admin/coupon/index?field=activated&p=${p}&eop=${eop}&d=${!d}"
+							href="/admin/coupon?field=activated&p=${p}&eop=${eop}&d=${!d}"
 							class="sort-button ${field == 'activated' ? 'text-primary' : '' }">
 							${field == 'activated' &&
                 d == true ? '<i class="fa fa-chevron-up"
@@ -214,7 +216,7 @@
 							<span>${ coupon.couponCode }</span>
 						</div>
 						<div class="product-cell status-cell">
-							<span>${ coupon.discountAmount } đ</span>
+							<span>${ coupon.discountAmount }</span>
 						</div>
 						<div class="product-cell sales">
 							<span class="cell-label">Sales:</span> ${ coupon.expirationDate }
@@ -227,8 +229,10 @@
 						</div>
 						<div class="product-cell price">
 							<span class="cell-label">Price:</span>
-							<button type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#updateCoupon${coupon.couponCode}">Sửa</button>
+							<!-- 							<button type="button" class="btn btn-primary" data-toggle="modal" -->
+							<%-- 								data-target="#updateCoupon${coupon.couponCode}">Sửa</button> --%>
+							<a href="/admin/coupon/edit/${ coupon.couponCode }" class="btn btn-dark"
+								role="button" aria-pressed="true" style="height: 40px;">Edit</a>
 						</div>
 					</div>
 					<!-- The Modal -->
@@ -316,20 +320,20 @@
 							<ul class="pagination pagination-sm justify-content-center">
 								<li class="page-item ${ p  == 0 ?'d-none'  : '' } "><a
 									class="page-link"
-									href="/admin/coupon/index?field=${field}&p=0&eop=${eop}&d=${d}">First</a></li>
+									href="/admin/coupon?field=${field}&p=0&eop=${eop}&d=${d}">First</a></li>
 								<c:forEach begin="0" end="${coupons.totalPages  - 1 }"
 									varStatus="loop">
 									<li
 										class="page-item ${ loop.index == coupons.number ? 'active': ''} ">
 										<a class="page-link"
-										href="/admin/coupon/index?field=${field}&p=${loop.index}&eop=${eop}&d=${d}">
+										href="/admin/coupon?field=${field}&p=${loop.index}&eop=${eop}&d=${d}">
 											${loop.count} </a>
 									</li>
 								</c:forEach>
 								<li
 									class="page-item  ${ p  == coupons.totalPages - 1  ?'d-none'  : '' }"><a
 									class="page-link"
-									href="/admin/coupon/index?field=${field}&p=${coupons.totalPages - 1 }&eop=${eop}&d=${d}">Last</a>
+									href="/admin/coupon?field=${field}&p=${coupons.totalPages - 1 }&eop=${eop}&d=${d}">Last</a>
 								</li>
 							</ul>
 						</nav>
@@ -337,14 +341,16 @@
 				</c:choose>
 				<!--* paging end -->
 				<c:if test="${not empty success}">
-					<div class="alert alert-success alert-dismissible fade show mt-5 text-center"
+					<div
+						class="alert alert-success alert-dismissible fade show mt-5 text-center"
 						role="alert">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						${success} <br>
-						<a href="/admin/coupon/index" class="btn btn-info btn-lg active h-100" role="button" aria-pressed="true">Làm mới</a>
+						${success} <br> <a href="/admin/coupon"
+							class="btn btn-info btn-lg active h-100" role="button"
+							aria-pressed="true">Làm mới</a>
 					</div>
 				</c:if>
 			</div>

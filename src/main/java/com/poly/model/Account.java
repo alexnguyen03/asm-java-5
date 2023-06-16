@@ -7,6 +7,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
@@ -15,9 +20,18 @@ import lombok.Data;
 public class Account implements Serializable {
 	@Id
 	private String username;
+	
+	@NotBlank(message = "{NotBlank.account.password}")
+	@Size(min = 5, max = 10, message = "{Size.account.password}")
 	private String password;
+	
+	@NotBlank(message = "{NotBlank.account.fullname}")
 	private String fullname;
+	
+	@NotBlank(message = "{NotBlank.account.email}")
+	@Email(message = "{Email.account.email}")
 	private String email;
+	
 	private String photo;
 	private Boolean activated;
 	private Boolean admin;

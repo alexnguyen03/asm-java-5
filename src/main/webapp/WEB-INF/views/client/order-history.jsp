@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -195,11 +196,31 @@
 									<tr>
 										<th class="pt-4">${ order.id }</th>
 										<td class="pt-4">${ order.createDate }</td>
-										<td class="pt-4">${ order.totalPrice }đ</td>
-										<td class="pt-4">${ order.coupon.discountAmount}</td>
+										<td class="pt-4"><fmt:formatNumber type="number"
+												 maxFractionDigits = "3" value="${ order.totalPrice}" /><sup>đ</sup></td>
+										<td class="pt-4"><fmt:formatNumber type="number"
+												 maxFractionDigits = "3"
+												value="${(order.totalPrice / (1 - order.coupon.discountAmount)) * 0.1}" />
+											<sup>đ</sup></td>
 										<td class="pt-4">${ order.address }</td>
 										<td class="pt-4">${ order.phone }</td>
-										<td class="pt-4">${ order.status }</td>
+										<td class="pt-4"><c:choose>
+												<c:when test="${order.status == 'C'}">
+									            Đang chờ
+									         </c:when>
+												<c:when test="${order.status == 'XL'}">
+									           Đang xử lý
+									         </c:when>
+												<c:when test="${order.status == 'G'}">
+									           Đang giao
+									         </c:when>
+												<c:when test="${order.status == 'DG'}">
+									           Đã giao
+									         </c:when>
+												<c:when test="${order.status == 'H'}">
+									           Đã hủy
+									         </c:when>
+											</c:choose></td>
 										<td class="pt-4">${ order.notes }</td>
 										<td class="pt-3">
 											<h5>
