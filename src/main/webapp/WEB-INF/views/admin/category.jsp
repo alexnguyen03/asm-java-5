@@ -167,107 +167,7 @@
 									class="btn btn-dark"
 									data-toggle="modal"
 									data-target="#AddCategoryModel">Thêm Danh mục</button>
-							<button class="action-button filter jsFilter mx-3">
-								<span>Lọc</span>
-								<svg xmlns="http://www.w3.org/2000/svg"
-									 width="16"
-									 height="16"
-									 viewBox="0 0 24 24"
-									 fill="none"
-									 stroke="currentColor"
-									 stroke-width="2"
-									 stroke-linecap="round"
-									 stroke-linejoin="round"
-									 class="feather feather-filter">
-									<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-								</svg>
-							</button>
-							<div class="filter-menu">
-								<label>Danh mục</label> <select>
-									<option>Toàn danh mục</option>
-									<option>Tai nghe không dây</option>
-									<option>Tai nghe có dây</option>
-									<option>Đồng hồ</option>
-									<option>Ốp lưng</option>
-								</select> <label>Trạng thái</label> <select>
-									<option>Cả 2</option>
-									<option>Kích hoạt</option>
-									<option>Vô hiệu hóa</option>
-								</select>
-								<div class="filter-menu-buttons">
-									<button class="filter-button reset">Reset</button>
-									<button class="filter-button apply">Thay đổi</button>
-								</div>
-							</div>
 						</div>
-						<button class="action-button list active d-none"
-								title="List View">
-							<svg xmlns="http://www.w3.org/2000/svg"
-								 width="16"
-								 height="16"
-								 viewBox="0 0 24 24"
-								 fill="none"
-								 stroke="currentColor"
-								 stroke-width="2"
-								 stroke-linecap="round"
-								 stroke-linejoin="round"
-								 class="feather feather-list">
-								<line x1="8"
-									  y1="6"
-									  x2="21"
-									  y2="6" />
-								<line x1="8"
-									  y1="12"
-									  x2="21"
-									  y2="12" />
-								<line x1="8"
-									  y1="18"
-									  x2="21"
-									  y2="18" />
-								<line x1="3"
-									  y1="6"
-									  x2="3.01"
-									  y2="6" />
-								<line x1="3"
-									  y1="12"
-									  x2="3.01"
-									  y2="12" />
-								<line x1="3"
-									  y1="18"
-									  x2="3.01"
-									  y2="18" />
-							</svg>
-						</button>
-						<button class="action-button grid d-none"
-								title="Grid View">
-							<svg xmlns="http://www.w3.org/2000/svg"
-								 width="16"
-								 height="16"
-								 viewBox="0 0 24 24"
-								 fill="none"
-								 stroke="currentColor"
-								 stroke-width="2"
-								 stroke-linecap="round"
-								 stroke-linejoin="round"
-								 class="feather feather-grid">
-								<rect x="3"
-									  y="3"
-									  width="7"
-									  height="7" />
-								<rect x="14"
-									  y="3"
-									  width="7"
-									  height="7" />
-								<rect x="14"
-									  y="14"
-									  width="7"
-									  height="7" />
-								<rect x="3"
-									  y="14"
-									  width="7"
-									  height="7" />
-							</svg>
-						</button>
 					</div>
 				</div>
 
@@ -352,12 +252,8 @@
 										<button data-toggle="modal"
 												data-target="#UpdateCategoryModal${item.id}"
 												class="btn btn-outline-primary font-weight-bold"
-												data-id="${item.id}">Sửa</button>
-									</div>
-									<div class="col-6">
-										<button class="btn btn-danger font-weight-bold"
-												data-toggle="modal"
-												data-target="#DeleteCategoryModal${item.id}">Xóa</button>
+												data-id="${item.id}"
+												style="width: 150px">Cập nhật</button>
 									</div>
 								</div>
 							</div>
@@ -436,47 +332,6 @@
 											</form>
 										</div>
 
-									</div>
-								</div>
-							</div>
-
-							<!-- Delete Product -->
-							<div class="modal fade "
-								 id="DeleteCategoryModal${item.id}"
-								 tabindex="-1"
-								 role="dialog"
-								 aria-labelledby="DeleteCategoryModalLabel"
-								 aria-hidden="true">
-								<div class="modal-dialog"
-									 role="document">
-									<div class="modal-content">
-										<div class="modal-body text-center">
-											<div class="container">
-												<div style="max-width: 500px; overflow: hidden;">
-													<img src="${pageContext.request.contextPath}/img/cat-delete.jpg"
-														 class="img-fluid"
-														 style="width: 50%; border-radius: 50%"
-														 alt="" />
-												</div>
-												<div class="my-3">
-													<h5>Bạn có chắc chắn xóa danh mục này?</h5>
-													<p>
-														"<span class="font-italic">${item.name}</span>"
-													</p>
-												</div>
-												<form:form action="/admin/category-manager/delete/${item.id}"
-														   method="POST"
-														   class="d-flex justify-content-center mt-5">
-													<button class="btn btn-outline-dark font-weight-bold mr-2"
-															data-dismiss="modal"
-															aria-label="Close"
-															style="width: 100px;">Trở lại</button>
-													<button type="submit"
-															class="btn btn-danger font-weight-bold ml-2"
-															style="width: 100px;">Xóa</button>
-												</form:form>
-											</div>
-										</div>
 									</div>
 								</div>
 							</div>

@@ -10,55 +10,55 @@
     </div>
   </div>
   <ul class="sidebar-list">
-    <li class="sidebar-list-item">
+    <li class="sidebar-list-item ${isPageActive == 'index'?'active':''}">
       <a href="/admin">
         <i class="fa fa-home mr-2"
            aria-hidden="true"></i>
         <span>Trang chủ</span>
       </a>
     </li>
-    <li class="sidebar-list-item ${pageActive == 'user' ? 'active' : ''}">
+    <li class="sidebar-list-item ${isPageActive == 'user'?'active':''}">
       <a href="/admin/user">
         <i class="fa fa-user mr-2"
            aria-hidden="true"></i>
         <span>Người dùng </span>
       </a>
     </li>
-    <li class="sidebar-list-item ">
-      <a href="/admin/coupon/index">
+    <li class="sidebar-list-item ${isPageActive == 'coupon'?'active':''}">
+      <a href="/admin/coupon">
         <i class="fa fa-product-hunt mr-2"
            aria-hidden="true"></i>
         <span>Khuyến mãi</span>
       </a>
     </li>
-    <li class="sidebar-list-item ">
+    <li class="sidebar-list-item ${isPageActive == 'product'?'active':''}">
       <a href="/admin/product-manager">
         <i class="fa fa-product-hunt mr-2"
            aria-hidden="true"></i>
         <span>Sản phẩm</span>
       </a>
     </li>
-    <li class="sidebar-list-item">
+    <li class="sidebar-list-item ${isPageActive == 'category'?'active':''}">
       <a href="/admin/category-manager">
         <i class="fa-solid fa-bars mr-2"></i>
         <span>Danh mục</span>
       </a>
     </li>
-    <li class="sidebar-list-item ${pageActive == 'order' ? 'active' : ''}">
+    <li class="sidebar-list-item ${isPageActive == 'order'?'active':''}">
       <a href="/admin/order">
         <i class="fa fa-first-order mr-2"
            aria-hidden="true"></i>
         <span>Đơn hàng </span>
       </a>
     </li>
-    <li class="sidebar-list-item">
-      <a href="/admin/review/index">
+    <li class="sidebar-list-item ${isPageActive == 'preview'?'active':''}">
+      <a href="/admin/review">
         <i class="fa fa-first-order mr-2"
            aria-hidden="true"></i>
         <span>Đánh giá</span>
       </a>
     </li>
-    <li class="sidebar-list-item">
+    <li class="sidebar-list-item ${isPageActive == 'statistic'?'active':''}">
       <a href="/admin/report">
         <i class="fa fa-bar-chart mr-2"
            aria-hidden="true"></i>

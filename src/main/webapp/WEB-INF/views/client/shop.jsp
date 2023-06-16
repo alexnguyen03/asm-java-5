@@ -228,15 +228,12 @@
 										</a>
 										<div class="product__item__text">
 											<h6>${item.name}</h6>
-											<a href="#"
-											   class="add-cart">+ Thêm vào giỏ hàng</a>
-											<div class="rating">
-												<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												   class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												   class="fa fa-star-o"></i>
-											</div>
+											<a href="/shop/add-to-cart"
+											   class="add-cart">+ Thêm vào
+												giỏ hàng</a>
 											<h5>
-												${item.price} <span class="text-danger">đ</span>
+												${item.price} <span class="text-danger"
+													  style="text-decoration: underline;">đ</span>
 											</h5>
 										</div>
 									</div>
@@ -265,12 +262,13 @@
 									<c:if test="${page.totalPages > 1}">
 										<c:forEach var="i"
 												   begin="0"
-												   end="${page.totalPages - 1}">
+												   end="${page.totalPages - 2}">
 											<a class="${page.number==i?'active':''}"
 											   href="/shop?p=${i}">${i+1}</a>
 										</c:forEach>
 										<span>...</span>
-										<a href="/admin/product-manager?p=${page.totalPages - 1}">${page.totalPages}</a>
+										<a href="/shop?p=${page.totalPages - 1}"
+										   class="${page.number == page.totalPages - 1?'active':''}">${page.totalPages}</a>
 									</c:if>
 								</div>
 							</div>

@@ -1,6 +1,5 @@
 package com.poly.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.model.Category;
-import com.poly.model.Product;
 import com.poly.repository.CategoryDAO;
 import com.poly.service.SessionService;
 
@@ -38,6 +36,10 @@ public class CategoryManagementController {
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Category> page = categoryDAO.findAll(pageable);
 		model.addAttribute("page", page);
+		
+//		Sidebar Active
+		model.addAttribute("isPageActive", "category");
+		
 		return "admin/category";
 	}
 

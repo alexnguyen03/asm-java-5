@@ -68,10 +68,11 @@
 .toast {
 	position: absolute;
 	top: 0;
-	right: 1.5rem;
+	right: 3.5rem;
 	transform: translateX(100%);
 	z-index: 100;
 	top: 3.5rem;
+	transition: all 0.5s;
 }
 
 .toast.show {
@@ -82,20 +83,32 @@
 
 <body>
 
-	<!-- toast msg  -->
-	<div class="toast" role="alert" aria-live="assertive"
-		aria-atomic="true" data-delay="3000">
-		<div class="toast-header">
-			<strong class="mr-auto text-center">Hệ thống</strong>
-			<button type="button" class="ml-2 mb-1 close" data-dismiss="toast"
-				aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
+	<c:if test="${not empty messageProductManager}">
+		<!-- toast msg  -->
+		<div class="toast show" role="alert" aria-live="assertive"
+			aria-atomic="true" data-delay="3000">
+			<div class="toast-header">
+				<strong class="mr-auto text-center">Quản lý sản phẩm</strong>
+				<button type="button" class="ml-2 mb-1 close" data-dismiss="toast"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="toast-body alert-info">${messageProductManager}</div>
 		</div>
-		<div class="toast-body alert-info">Cập nhật trạng thái sản phẩm
-			thành công !</div>
-	</div>
-	<!-- toast msg  -->
+		<!-- toast msg  -->
+
+		<script>
+			setTimeout(() => {
+				const toast = document.querySelector('.toast');
+				toast.classList.remove('show');
+			}, 3000);
+		</script>
+
+		<%
+		session.removeAttribute("messageProductManager");
+		%>
+	</c:if>
 
 	<div class="app-container">
 		<!-- Sidebar -->
@@ -126,18 +139,18 @@
 								</button>
 							</div>
 
-							<form:form action="/admin/product-manager/create"
+							<form:form action="/admin/product-manager/create" id="addForm"
 								modelAttribute="item" class="row" enctype="multipart/form-data">
 								<!-- Left form -->
 								<div class="col-4">
 									<!-- Img-priview -->
 									<div class="col-12">
 										<div class="mb-3">
-											<label for="" class="font-weight-bold">Hình ảnh sản
-												phẩm</label> <label for="Video-edit-myPicture"
+											<label for="Video-edit-myPicture" class="font-weight-bold">Hình
+												ảnh sản phẩm</label> <label for="Video-edit-myPicture"
 												class="video-edit-preview"> <i
 												class="fa-solid fa-cloud-arrow-up"></i>
-											</label> <input type="file" value="" name="photo_file" hidden
+											</label> <input type="file" name="photo_file" hidden="hidden"
 												id="Video-edit-myPicture" /> <span class="error"></span>
 										</div>
 									</div>
@@ -146,29 +159,20 @@
 								<!-- Right form -->
 								<div class="col-8">
 									<div class="row">
-										<!-- 										<div class="col-12"> -->
-										<!-- 											<div class="form-group"> -->
-										<%-- 												<form:input path="id" placeholder="Id" hidden="hidden" /> --%>
-										<!-- 												<label for="id" class="font-weight-bold">Mã sản phẩm</label> -->
-										<%-- 												<form:input path="id" type="text" class="form-control" --%>
-										<%-- 													id="name" aria-describedby="nameHelp" placeholder="" /> --%>
-										<!-- 												<small id="nameHelp" class="form-text text-muted"></small> -->
-										<!-- 											</div> -->
-										<!-- 										</div> -->
 										<div class="col-12">
 											<div class="form-group">
 												<label for="name" class="font-weight-bold">Tên sản
 													phẩm</label>
-												<form:input path="name" type="text" class="form-control"
+												<form:input path="name" type="text" name="name" class="form-control"
 													id="name" aria-describedby="nameHelp" placeholder="" />
-												<small id="nameHelp" class="form-text text-muted"></small>
+												<small id="nameHelp" class="form-text text-muted">${message}</small>
 											</div>
 										</div>
 										<div class="col-12">
 											<div class="form-group">
 												<label for="price" class="font-weight-bold">Giá sản
 													phẩm</label>
-												<form:input path="price" type="text" class="form-control"
+												<form:input path="price" type="number" class="form-control"
 													id="exampleInputEmail1" aria-describedby="priceHelp"
 													placeholder="" />
 												<small id="priceHelp" class="form-text text-muted"></small>
@@ -187,7 +191,7 @@
 										<div class="col-6">
 											<div class="form-group">
 												<label for="quantity" class="font-weight-bold">Số
-													lượng</label> <input type="text" name="quantity"
+													lượng</label> <input type="number" name="quantity"
 													class="form-control" id="quantity"
 													aria-describedby="quantityHelp" placeholder="" /> <small
 													id="quantityHelp" class="form-text text-muted"></small>
@@ -213,6 +217,7 @@
 			<!-- -------------------------------------------------------- -->
 			<!-- App action -->
 			<div class="app-content-actions">
+				<!-- Action left bar -->
 				<div class="d-flex">
 					<!-- Search input -->
 					<form action="/admin/product-manager/search-product" method="POST">
@@ -223,24 +228,24 @@
 
 					<form action="/admin/product-manager/filter-product-by-available"
 						method="POST" class="d-flex ml-3">
-						<select class="custom-select form-control" name="available">
+						<select class="custom-select form-control" name="available"
+							onchange="this.form.submit()">
 							<option selected value="null">Lọc theo trạng thái</option>
 							<option value="true">Còn hàng</option>
 							<option value="false">Hết hàng</option>
 						</select>
-						<button type="submit" class="btn btn-dark ml-2">Lọc</button>
 					</form>
 
 					<form action="/admin/product-manager/filter-product-by-category"
 						method="POST" class="d-flex ml-3">
-						<select id="category" name="category.id" class="form-control">
-							<option value="">-- Lọc theo danh mục --</option>
+						<select id="category" name="category.id" class="form-control"
+							onchange="this.form.submit()">
+							<option value="">Lọc theo danh mục</option>
 							<c:forEach items="${lst_category}" var="category">
 								<option value="${category.id}"
 									${product.category.id == category.id ? "selected" : ""}>${category.name}</option>
 							</c:forEach>
 						</select>
-						<button type="submit" class="btn btn-dark ml-2">Lọc</button>
 					</form>
 
 				</div>
@@ -249,6 +254,8 @@
 				<!-- App action bar -->
 				<div class="app-content-actions-wrapper">
 					<div class="filter-button-wrapper d-flex justify-content-betwwen">
+						<a href="/admin/product-manager" class="btn btn-outline-dark mr-3">Rest
+							Page</a>
 						<button type="button" class="btn btn-dark" data-toggle="modal"
 							data-target="#AddProductModal">Thêm sản phẩm</button>
 					</div>
@@ -399,11 +406,6 @@
 										class="btn btn-outline-primary font-weight-bold"
 										style="min-width: 120px">Cập nhật</button>
 								</div>
-								<!-- 								<div class="col-6"> -->
-								<!-- 									<button class="btn btn-danger font-weight-bold" -->
-								<!-- 										data-toggle="modal" -->
-								<%-- 										data-target="#DeleteProductModal${product.id}">Xóa</button> --%>
-								<!-- 								</div> -->
 							</div>
 						</div>
 
@@ -538,43 +540,6 @@
 								</div>
 							</div>
 						</div>
-
-
-						<!-- Delete Product -->
-						<%-- 						<div class="modal fade " id="DeleteProductModal${product.id}" --%>
-						<!-- 							tabindex="-1" role="dialog" -->
-						<!-- 							aria-labelledby="DeleteProductModalLabel" aria-hidden="true"> -->
-						<!-- 							<div class="modal-dialog" role="document"> -->
-						<!-- 								<div class="modal-content"> -->
-						<!-- 									<div class="modal-body text-center"> -->
-						<!-- 										<div class="container"> -->
-						<!-- 											<div style="max-width: 500px; overflow: hidden;"> -->
-						<!-- 												<img -->
-						<%-- 													src="${pageContext.request.contextPath}/img/cat-delete.jpg" --%>
-						<!-- 													class="img-fluid" style="width: 50%; border-radius: 50%" -->
-						<!-- 													alt="" /> -->
-						<!-- 											</div> -->
-						<!-- 											<div class="my-3"> -->
-						<!-- 												<h5>Chỉnh sửa trạng thái sản phẩm thành "hết hàng"?</h5> -->
-						<!-- 												<p> -->
-						<%-- 													"<span class="font-italic">${product.name}</span>" --%>
-						<!-- 												</p> -->
-						<!-- 											</div> -->
-						<%-- 											<form:form --%>
-						<%-- 												action="/admin/product-manager/delete/${product.id}" --%>
-						<%-- 												method="POST" class="d-flex justify-content-center mt-5"> --%>
-						<!-- 												<button class="btn btn-outline-dark font-weight-bold mr-2" -->
-						<!-- 													data-dismiss="modal" aria-label="Close" -->
-						<!-- 													style="width: 100px;">Trở lại</button> -->
-						<!-- 												<button class="btn btn-danger font-weight-bold ml-2" -->
-						<!-- 													style="width: 100px;">Xóa</button> -->
-						<%-- 											</form:form> --%>
-						<!-- 										</div> -->
-						<!-- 									</div> -->
-						<!-- 								</div> -->
-						<!-- 							</div> -->
-						<!-- 						</div> -->
-
 					</div>
 				</c:forEach>
 
@@ -583,84 +548,36 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="product__pagination">
-							<c:if test="${page.totalPages - 1 > 1 }">
-								<c:forEach var="i" begin="0" end="${page.totalPages - 1}">
-									<a class="${page.number==i?'active':''}"
-										href="/admin/product-manager?p=${i}">${i+1}</a>
-								</c:forEach>
-								<span>...</span>
-								<a href="/admin/product-manager?p=${page.totalPages - 1}">${page.totalPages}</a>
-							</c:if>
+							<c:choose>
+								<c:when test="${isPagination == 'index'}">
+									<c:if test="${page.totalPages - 1 > 1 }">
+										<c:forEach var="i" begin="0" end="${page.totalPages - 2}">
+											<a class="${page.number==i?'active':''}"
+												href="/admin/product-manager?p=${i}">${i+1}</a>
+										</c:forEach>
+										<c:if test="${page.totalPages -1 > 2}">
+											<span>...</span>
+											<a href="/admin/product-manager?p=${page.totalPages - 1}"
+												class="${page.number == page.totalPages - 1?'active':''}">${page.totalPages}</a>
+										</c:if>
+									</c:if>
+								</c:when>
+								<c:otherwise>
+									<c:if test="${page.totalPages - 1 > 1 }">
+										<c:forEach var="i" begin="0" end="${page.totalPages - 2}">
+											<a class="${page.number==i?'active':''}"
+												href="/admin/product-manager/filter-product-by-available?p=${i}">${i+1}</a>
+										</c:forEach>
+										<span>...</span>
+										<a
+											href="/admin/product-manager/filter-product-by-available?p=${page.totalPages - 1}">${page.totalPages}</a>
+									</c:if>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</div>
 
-				<!-- 	Modal when update or somthing happen -->
-				<div class="modal fade" id="successModal" tabindex="-1"
-					role="dialog" aria-labelledby="successModalLabel"
-					aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="successModalLabel">Thông báo</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<p>Cập nhật sản phẩm thành công!</p>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary"
-									data-dismiss="modal">Đóng</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Modal thông báo khi cập nhật sản phẩm thất bại -->
-				<div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
-					aria-labelledby="errorModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="errorModalLabel">Thông báo</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<p>Cập nhật sản phẩm thất bại!</p>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary"
-									data-dismiss="modal">Đóng</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<c:if test="${not empty successMessage}">
-					<div class="alert alert-success alert-dismissible fade show"
-						role="alert">
-						<span>${successMessage}</span>
-						<button type="button" class="close" data-dismiss="alert"
-							aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-				</c:if>
-				<c:if test="${not empty errorMessage}">
-					<div class="alert alert-danger alert-dismissible fade show"
-						role="alert">
-						<span>${errorMessage}</span>
-						<button type="button" class="close" data-dismiss="alert"
-							aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-				</c:if>
 			</div>
 		</div>
 	</div>
@@ -670,5 +587,23 @@
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/script.js"></script>
 
+	<script>
+		const addForm = document.getElementById('addForm');
+		addForm.addEventListener('submit', function (event) {
+		     // Store the modal state in local storage
+				localStorage.setItem('modalOpen', 'true');
+			
+				// Check if the modal state is stored in local storage
+				if (localStorage.getItem('modalOpen') === 'true') {
+				    // Open the modal
+				    $('#AddProductModal').modal('show');
+				}
+				
+				// When the modal is closed, remove the modal state from local storage
+				$('#AddProductModal').on('hidden.bs.modal', function () {
+				    localStorage.removeItem('modalOpen');
+				});
+		    });
+	</script>
 </body>
 </html>

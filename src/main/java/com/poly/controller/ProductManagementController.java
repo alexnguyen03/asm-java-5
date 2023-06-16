@@ -1,7 +1,9 @@
 package com.poly.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,9 +55,20 @@ public class ProductManagementController {
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findAll(pageable);
 		model.addAttribute("page", page);
+		model.addAttribute("isPagination", "index");
+
+//		Title 
+		model.addAttribute("isPage", "Product Manager");
+
+//		Remove a kwordk search session
+		session.remove("isAvaiable");
+
+//		Sidebar Active
+		model.addAttribute("isPageActive", "product");
 
 		List<Category> category = categoryDAO.findAll();
 		model.addAttribute("lst_category", category);
+
 		return "admin/productManager";
 	}
 
@@ -76,16 +89,29 @@ public class ProductManagementController {
 
 		boolean success = productDAO.save(product) != null;
 		if (success) {
-			redirectAttributes.addFlashAttribute("successMessage", "Cập nhật sản phẩm thành công!");
+			session.set("messageProductManager", "Cập nhật sản phẩm thành công");
 		} else {
-			redirectAttributes.addFlashAttribute("errorMessage", "Cập nhật sản phẩm thất bại!");
+			session.set("messageProductManager", "Cập nhật phẩm thành công");
+			return "redirect:/admin/product-manager";
 		}
 
 		return "redirect:/admin/product-manager";
 	}
 
 	@PostMapping("/create")
-	private String createProduct(@ModelAttribute("item") Product item, @RequestParam("photo_file") MultipartFile img) {
+	private String createProduct(@ModelAttribute("item") Product item, @RequestParam("photo_file") MultipartFile img,
+			Model model) {
+		String name = param.getString("name", "");
+		double price = param.getDouble("price", 0);
+		System.out.println(name);
+		if (name.equals("")) {
+			model.addAttribute("message", "Không để trống tên sản phẩm");
+			return "admin/productManager";
+		}else if(price == 0) {
+			model.addAttribute("message", "Không để trống giá sản phẩm");
+			return "admin/productManager";
+		}
+
 		File file = null;
 
 		if (!img.isEmpty()) {
@@ -95,21 +121,23 @@ public class ProductManagementController {
 		item.setImage(file.getName());
 		item.setAvailable(true);
 
+		session.set("messageProductManager", "Thêm sản phẩm thành công");
+
 		productDAO.save(item);
+
 		return "redirect:/admin/product-manager";
 	}
 
-//	@PostMapping("/delete/{id}")
-//	private String deleteProduct(@PathVariable("id") Integer id) {
-//		Product product = productDAO.findById(id).orElse(null);
-//		System.out.println(product.getId());
-//		product.setAvailable(false);
+	@ModelAttribute("list_category")
+	public Map<String, String> getCategory() {
+		Map<String, String> map = new HashMap<>();
 
-//		Delete img if product is deleted
-//		String uploadDir = "src/main/webapp/img/product/";
-//        FileUploadUtil.deleteFile(uploadDir, product.getImage());
-//		return "redirect:/admin/product-manager";
-//	}
+		List<Category> categoryitems = categoryDAO.findAll();
+		for (Category item : categoryitems) {
+			map.put(item.getId(), item.getName());
+		}
+		return map;
+	}
 
 	@RequestMapping("search-product")
 	public String searchAndPageProduct(Model model, @RequestParam("keywords") Optional<String> kw,
@@ -118,11 +146,19 @@ public class ProductManagementController {
 		Product item = new Product();
 		model.addAttribute("item", item);
 
+//		Remove a kwordk search session
+		session.remove("isAvaiable");
+
 		String kwords = kw.orElse(session.get("keywords"));
 		session.set("keywords", kwords);
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findByNameLike("%" + kwords + "%", pageable);
 		model.addAttribute("page", page);
+
+//		Lst Category
+		List<Category> category = categoryDAO.findAll();
+		model.addAttribute("lst_category", category);
+
 		return "admin/productManager";
 	}
 
@@ -134,24 +170,49 @@ public class ProductManagementController {
 		Product item = new Product();
 		model.addAttribute("item", item);
 
+//		Remove a kwordk search session
+		session.remove("keywords");
+
+		session.set("isAvaiable", "true");
+
+		if (session.get("isAvaiable") != null) {
+			isAvailable = true;
+		}
+
+		System.out.println(isAvailable);
+
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findProductsByAvailability(isAvailable, pageable);
 		model.addAttribute("page", page);
+
+//		Lst Category
+		List<Category> category = categoryDAO.findAll();
+		model.addAttribute("lst_category", category);
+
 		return "admin/productManager";
 	}
 
 	@RequestMapping("filter-product-by-category")
-	public String FilterCategoryAndPageProduct(Model model,
-			@PathVariable(value = "categoryId", required = false) String categoryId,
+	public String FilterCategoryAndPageProduct(Model model, @RequestParam("category.id") String categoryId,
 			@RequestParam("p") Optional<Integer> p) {
 //		Init Product
 		Product item = new Product();
 		model.addAttribute("item", item);
 
-		Pageable pageable = PageRequest.of(p.orElse(0), 5);
-		Page<Product> page = productDAO.findByCategoryNameLike("%" + categoryId + "%", pageable);
+//		Remove a kwordk search session
+		session.remove("isAvaiable");
+
+//		Remove a kwordk search session
+		session.remove("keywords");
+
+		Category category_kw = categoryDAO.findById(categoryId).get();
+		System.out.println(category_kw.getName());
+
+		Pageable pageable = PageRequest.of(p.orElse(0), 15);
+		Page<Product> page = productDAO.findByCategoryNameLike("%" + category_kw.getName() + "%", pageable);
 		model.addAttribute("page", page);
 
+//		Lst Category
 		List<Category> category = categoryDAO.findAll();
 		model.addAttribute("lst_category", category);
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poly.model.Account;
 import com.poly.model.Cart;
@@ -154,6 +155,17 @@ public class ShopController {
     public String deleteCartDetail(@PathVariable("id") Integer cartdetailId) {
         cartDetailDAO.deleteById(cartdetailId);
         return "redirect:/shop/cart-detail";
+    }
+
+    @GetMapping("add-to-cart")
+    public String AddToCart(Model model, RedirectAttributes rdAtr) {
+        if (session.get("username") == null) {
+            session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
+            rdAtr.addAttribute("isMessageShop", true);
+            return "redirect:/account/login";
+        }
+
+        return "redirect:/shop";
     }
 
     @RequestMapping("shop-search-product")
