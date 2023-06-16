@@ -102,7 +102,7 @@
 						nặng ký của những chiếc tai nghe chống ồn đầu bảng hiện tại.</p>
 					<h5 class="float-left mr-4 mt-2">Giá:</h5>
 					<h3 class="text-danger">${ product.price }₫</h3>
-					<form action="/shop/product-detail/get" method="post">
+					<form action="/cart-detail/add" method="post">
 						<div class="container p-0 mb-3 float-left">
 							<div class="row mt-3">
 								<div class="col-lg-2 mt-2">
@@ -124,9 +124,6 @@
 							class="border bg-dark text-white p-3 font-weight-bold float-right">THÊM
 							VÀO GIỎ HÀNG</button>
 					</form>
-					<!-- 					<a href="" -->
-					<!-- 						class="border bg-dark text-white p-3 font-weight-bold float-right">THÊM -->
-					<!-- 						VÀO GIỎ HÀNG</a> -->
 				</div>
 			</div>
 		</div>

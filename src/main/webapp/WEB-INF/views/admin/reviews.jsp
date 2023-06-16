@@ -38,9 +38,10 @@
               <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
             </svg>
 				</button>
-				<a href="" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">THỐNG KÊ</a>
+				<a href="" class="btn btn-secondary btn-lg active" role="button"
+					aria-pressed="true">THỐNG KÊ</a>
 			</div>
-			<form action="/admin/review/search" method="post">
+			<form action="/admin/review/search">
 				<div class="app-content-actions">
 					<div class="app-content-actions-wrapper mb-3">
 						<div class="input-group" style="width: 300px;">
@@ -121,65 +122,67 @@
 			<div class="products-area-wrapper tableView">
 				<div class="products-header">
 					<div class="product-cell stt">
-						STT
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-                  <path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-						</button>
+						Mã đánh giá
+						<a
+							href="/admin/review?field=id&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'id' ? 'text-primary' : '' }">
+							${field == 'id' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
 					<div class="product-cell customer-name">
 						Tên khách hàng
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-                  <path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-						</button>
+						<a
+							href="/admin/review?field=account.fullname&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'account.fullname' ? 'text-primary' : '' }">
+							${field == 'account.fullname' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
 					<div class="product-cell product-name">
 						Tên sản phẩm
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-                  <path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-						</button>
+						<a
+							href="/admin/review?field=product.name&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'product.name' ? 'text-primary' : '' }">
+							${field == 'product.name' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
 					<div class="product-cell rating">
-						Đánh giá <a href="/admin/review/index?field=rating">
-							<button class="sort-button">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-									viewBox="0 0 512 512">
-                  <path fill="currentColor"
-										d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-							</button>
+						Đánh giá <a
+							href="/admin/review?field=rating&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'rating' ? 'text-primary' : '' }">
+							${field == 'rating' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
 						</a>
 					</div>
 					<div class="product-cell review">
 						Bình luận
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-                  <path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-						</button>
+						<a
+							href="/admin/review?field=textReview&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'textReview' ? 'text-primary' : '' }">
+							${field == 'textReview' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
 					<div class="product-cell time">
-						Thời gian <a href="/admin/review/index?field=dateReview">
-							<button class="sort-button">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-									viewBox="0 0 512 512">
-                  <path fill="currentColor"
-										d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                </svg>
-							</button>
+						Thời gian <a
+							href="/admin/review?field=dateReview&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'dateReview' ? 'text-primary' : '' }">
+							${field == 'dateReview' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
 						</a>
 					</div>
 					<div class="product-cell delete">Thao tác</div>
@@ -198,7 +201,7 @@
               </svg>
 						</button>
 						<div class="product-cell image">
-							<span>${ status.count }</span>
+							<span>${ review.id }</span>
 						</div>
 						<div class="product-cell customer-name">
 							<span>${ review.account.fullname }</span>
@@ -230,8 +233,7 @@
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">
 										<div class="modal-header">
-											<i class="fa-regular fa-trash-can mr-3 mt-1"></i>
-											<h6>Bạn có chắc muốn xóa đánh giá của ${ review.account.fullname }
+											<h6>Bạn có chắc muốn xóa đánh giá của <strong>${ review.account.fullname }</strong>
 												?</h6>
 											<button type="button" class="close" data-dismiss="modal"
 												aria-label="Close">
@@ -255,23 +257,46 @@
 						</div>
 					</div>
 				</c:forEach>
-				<nav aria-label="Page navigation example" class="mt-3 ml-4">
-					<ul
-						class="pagination justify-content-center pagination-sm align-self-center">
-						<li class="page-item" ${ reviews.number == 0 ? 'hidden' : '' }><a
-							class="page-link" href="/admin/review/index?p=0" tabindex="-1">Đầu</a></li>
-						<c:forEach var="i" begin="0" end="${reviews.totalPages - 1}"
-							varStatus="look">
-							<li
-								class="page-item ${ look.index == reviews.number ? 'active' : '' }"><a
-								class="page-link" href="/admin/review/index?p=${i}">${i+1}</a></li>
-						</c:forEach>
-						<li class="page-item"
-							${ reviews.number == reviews.totalPages-1 ? 'hidden' : '' }><a
-							class="page-link"
-							href="/admin/coupon/review?p=${reviews.totalPages-1}">Cuối</a></li>
-					</ul>
-				</nav>
+				<!--* paging start  -->
+				<c:choose>
+					<c:when test="${reviews.content.size() > 0}">
+						<nav aria-label="Page navigation example" class="mt-3 ml-4">
+							<ul class="pagination pagination-sm justify-content-center">
+								<li class="page-item ${ p  == 0 ?'d-none'  : '' } "><a
+									class="page-link"
+									href="/admin/review?field=${field}&p=0&eop=${eop}&d=${d}">First</a></li>
+								<c:forEach begin="0" end="${reviews.totalPages  - 1 }"
+									varStatus="loop">
+									<li
+										class="page-item ${ loop.index == reviews.number ? 'active': ''} ">
+										<a class="page-link"
+										href="/admin/review?field=${field}&p=${loop.index}&eop=${eop}&d=${d}">
+											${loop.count} </a>
+									</li>
+								</c:forEach>
+								<li
+									class="page-item  ${ p  == reviews.totalPages - 1  ?'d-none'  : '' }"><a
+									class="page-link"
+									href="/admin/review?field=${field}&p=${reviews.totalPages - 1 }&eop=${eop}&d=${d}">Last</a>
+								</li>
+							</ul>
+						</nav>
+					</c:when>
+				</c:choose>
+				<!--* paging end -->
+				<c:if test="${not empty success}">
+					<div
+						class="alert alert-success alert-dismissible fade show mt-5 text-center"
+						role="alert">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						${success} <br> <a href="/admin/review"
+							class="btn btn-info btn-lg active h-100" role="button"
+							aria-pressed="true">Làm mới</a>
+					</div>
+				</c:if>
 			</div>
 		</div>
 

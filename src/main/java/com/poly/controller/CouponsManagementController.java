@@ -36,11 +36,11 @@ public class CouponsManagementController {
 	@Autowired
 	ParamService paramService;
 
-	@GetMapping("index")
+	@GetMapping("")
 	public String index(Model model, @RequestParam("p") Optional<Integer> p, @RequestParam("eop") Optional<Integer> eop,
 			@RequestParam("field") Optional<String> field, @RequestParam("d") Optional<Boolean> direc) {
 		int defaultPage = 0;
-		int defaultElementOfPage = 1;
+		int defaultElementOfPage = 3;
 		String defaultField = "expirationDate";
 		String keyword = paramService.getString("keyword", " ");
 		String search = paramService.getString("search", " ");
@@ -52,7 +52,6 @@ public class CouponsManagementController {
 		if (direc.isPresent() && !direc.get().booleanValue()) {
 			pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),
 					Sort.by(field.orElse(defaultField)).descending());
-
 		}
 
 		Page<Coupon> coupons = dao.findAll(pageable);
@@ -68,6 +67,8 @@ public class CouponsManagementController {
 				model.addAttribute("coupons", coupons);
 				model.addAttribute("success", "Đã tìm thấy ngày hết hạn: " + keyword);
 				model.addAttribute("isEd", true);
+			} else {
+				model.addAttribute("success", "Không tìm thấy ngày hết hạn là: " + keyword);
 			}
 		} else if (search.equals("select")) {
 			model.addAttribute("success", "Chúng tôi chưa biết bạn tìm gì !!!");
@@ -75,25 +76,50 @@ public class CouponsManagementController {
 		} else if (search.equals("name")) {
 			if (keyword.equals("")) {
 				model.addAttribute("success", "Vui lòng nhập dữ liệu trước khi tìm !!! ");
-				model.addAttribute("isEd", true);
+				model.addAttribute("isName", true);
 				return "/admin/coupons";
 			}
 			try {
 				Integer.parseInt(keyword);
 				model.addAttribute("success", "Tên giảm giá phải là ký tự !!! ");
-				model.addAttribute("isEd", true);
+				model.addAttribute("isName", true);
 				return "/admin/coupons";
+			} catch (Exception e) {
+			}
+			Date date = null;
+			try {
+				date = paramService.getDate(keyword, "yyyy-MM-dd");
+				model.addAttribute("success", "Tên giảm giá phải là ký tự !!! ");
+				model.addAttribute("isName", true);
 			} catch (Exception e) {
 			}
 			coupons = dao.findByCouponName("%" + keyword + "%", pageable);
 			if (coupons.getTotalPages() > 0) {
 				model.addAttribute("coupons", coupons);
 				model.addAttribute("success", "Đã tìm thấy tên giảm giá có chứa : " + keyword);
-				model.addAttribute("isEd", true);
+				model.addAttribute("isName", true);
+			} else {
+				model.addAttribute("success", "Không tìm thấy giảm giá có tên " + keyword);
 			}
 		} else if (search.equals("select")) {
 			model.addAttribute("success", "Chúng tôi chưa biết bạn tìm gì !!!");
 			return "/admin/coupons";
+		} else if (search.equals("cd")) {
+			Date date = null;
+			try {
+				date = paramService.getDate(keyword, "yyyy-MM-dd");
+			} catch (Exception e) {
+				model.addAttribute("success", "Không đúng định dạng năm - tháng - ngày !!!");
+				model.addAttribute("isCd", true);
+			}
+			coupons = dao.findByCreatedDate(date, pageable);
+			if (coupons.getTotalPages() > 0) {
+				model.addAttribute("coupons", coupons);
+				model.addAttribute("success", "Đã tìm thấy ngày tạo: " + keyword);
+				model.addAttribute("isCd", true);
+			} else {
+				model.addAttribute("success", "Không tìm thấy ngày tạo là: " + keyword);
+			}
 		}
 
 		model.addAttribute("field", field.orElse(defaultField));
@@ -104,95 +130,85 @@ public class CouponsManagementController {
 		return "/admin/coupons";
 	}
 
+	@GetMapping("add")
+	public String add(Coupon coupon) {
+		return "/admin/coupons-add";
+	}
+
+	@GetMapping("edit/{id}")
+	public String edit(Model model, @PathVariable("id") String id) {
+		Coupon coupon = dao.findById(id).get();
+		model.addAttribute("coupon", coupon);
+		return "/admin/coupons-update";
+	}
+
 	@PostMapping("update")
-	public String update(Coupon coupon) {
-		dao.save(coupon);
-		return "redirect:/admin/coupon/index";
+	public String update(Model model, @Validated @ModelAttribute("coupon") Coupon coupon, BindingResult result) {
+		if (result.hasErrors()) {
+			return "/admin/coupons-update";
+		} else if (coupon.getExpirationDate().before(new Date())) {
+			model.addAttribute("sussces", "Ngày hết hạn phải trước ngày hiện tại !!!");
+			return "/admin/coupons-update";
+		} else {
+			dao.save(coupon);
+			model.addAttribute("success", "Cập nhật giảm giá thành công");
+		}
+
+		return "/admin/coupons";
 	}
 
 	@PostMapping("create")
-	public String create(@Validated @ModelAttribute("cp") Coupon cp, BindingResult result) {
-		dao.save(cp);
+	public String create(Model model, @Validated @ModelAttribute("coupon") Coupon coupon, BindingResult result) {
+		if (result.hasErrors()) {
+			return "/admin/coupons-add";
+		} else if (coupon.getExpirationDate().before(new Date())) {
+			model.addAttribute("sussces", "Ngày hết hạn phải trước ngày hiện tại !!!");
+			return "/admin/coupons-add";
+		} else {
+			dao.save(coupon);
+			model.addAttribute("success", "Thêm giảm giá thành công");
+		}
+
 		return "/admin/coupons";
 	}
 
 	@RequestMapping("search")
 	public String searchCoupon(@RequestParam("keyword") String keyword, @RequestParam("search") String search) {
-		return "forward:/admin/coupon/index";
+		return "forward:/admin/coupon";
 	}
 
-	// @PostMapping("search")
-	// public String search(Model model, @RequestParam("search") String search,
-	// @RequestParam("keyword") String keyword,
-	// @RequestParam("p") Optional<Integer> p) {
-	// if (search.equals("ed")) {
-	// Date date = null;
-	// try {
-	// date = paramService.getDate(keyword, "yyyy-MM-dd");
-	// } catch (Exception e) {
-	// return "redirect:/admin/coupon/index";
-	// }
-	//
-	// Pageable pageable = PageRequest.of(p.orElse(0), 3);
-	// Page<Coupon> coupons = dao.findByExpirationDate(date, pageable);
-	// if (coupons.getTotalPages() > 0) {
-	// model.addAttribute("coupons", coupons);
-	// model.addAttribute("isEd", true);
-	// } else {
-	// return "redirect:/admin/coupon/index";
-	// }
-	//
-	// } else if (search.equals("select")) {
-	// return "redirect:/admin/coupon/index";
-	// } else if (search.equals("cd")) {
-	// Date date = null;
-	// try {
-	// date = paramService.getDate(keyword, "yyyy-MM-dd");
-	// } catch (Exception e) {
-	// return "redirect:/admin/coupon/index";
-	// }
-	// Pageable pageable = PageRequest.of(p.orElse(0), 1);
-	// Page<Coupon> coupons = dao.findByCreatedDate(date, pageable);
-	// if (coupons.getTotalPages() > 0) {
-	// model.addAttribute("coupons", coupons);
-	// model.addAttribute("isCd", true);
-	// } else {
-	// return "redirect:/admin/coupon/index";
-	// }
-	// } else if (search.equals("name")) {
-	// if (keyword != null) {
-	// Pageable pageable = PageRequest.of(p.orElse(0), 1);
-	// Page<Coupon> coupons = dao.findByCouponName("%" + keyword + "%", pageable);
-	// if (coupons.getTotalPages() > 0) {
-	// model.addAttribute("coupons", coupons);
-	// model.addAttribute("isName", true);
-	// } else {
-	// return "redirect:/admin/coupon/index";
-	// }
-	// }
-	// if (keyword.equals("")) {
-	// return "redirect:/admin/coupon/index";
-	// }
-	// }
-	// return "/admin/coupons";
-	// }
-
 	@PostMapping("filter")
-	public String search(Model model, @RequestParam("status") String status, @RequestParam("p") Optional<Integer> p) {
+	public String search(Model model, @RequestParam("status") String status, @RequestParam("p") Optional<Integer> p,
+			@RequestParam("eop") Optional<Integer> eop, @RequestParam("field") Optional<String> field,
+			@RequestParam("d") Optional<Boolean> direc) {
+		int defaultPage = 0;
+		int defaultElementOfPage = 3;
+		String defaultField = "expirationDate";
+
+		// asending is default
+		Pageable pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),
+				Sort.by(field.orElse(defaultField)).ascending());
+
+		if (direc.isPresent() && !direc.get().booleanValue()) {
+			pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),
+					Sort.by(field.orElse(defaultField)).descending());
+		}
+
 		if (status.equals("active")) {
-			System.out.println(status);
-			Pageable pageable = PageRequest.of(p.orElse(0), 3);
 			Page<Coupon> coupons = dao.findByActivated(true, pageable);
 			model.addAttribute("coupons", coupons);
 			model.addAttribute("isActive", true);
+			model.addAttribute("success", "Đã tìm thấy giảm giá có trạng thái là Hoạt động");
 		} else if (status.equals("inactive")) {
-			Pageable pageable = PageRequest.of(p.orElse(0), 3);
 			Page<Coupon> coupons = dao.findByActivated(false, pageable);
 			model.addAttribute("coupons", coupons);
 			model.addAttribute("isInactive", true);
+			model.addAttribute("success", "Đã tìm thấy giảm giá có trạng thái là Không hoạt động");
 		} else if (status.equals("select")) {
-			return "redirect:/admin/coupon/index";
+			model.addAttribute("success", "Chúng tôi chưa biết bạn lọc gì !!!");
+			return "/admin/coupons";
 		}
+		model.addAttribute("isHide", true);
 		return "/admin/coupons";
 	}
 }

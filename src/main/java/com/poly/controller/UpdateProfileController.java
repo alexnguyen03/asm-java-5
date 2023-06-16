@@ -5,7 +5,10 @@ import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,15 +41,22 @@ public class UpdateProfileController {
 	}
 
 	@PostMapping("update")
-	public String update(Account account, @RequestParam("photo_file") MultipartFile img) {
-		if(img.isEmpty()) {
-			dao.save(account);
+	public String update(Model model, @RequestParam("photo_file") MultipartFile img,
+			@Validated @ModelAttribute("account") Account account, BindingResult result) {
+		if (result.hasErrors()) {
+			model.addAttribute("success", "Vui lòng sửa các lỗi sau !!!");
 		}else {
-			paramService.save(img, "/img/user-management");
-			account.setPhoto(img.getOriginalFilename());
-			dao.save(account);
+			if (img.isEmpty()) {
+				dao.save(account);
+				model.addAttribute("success", "Cập nhật tài khoản thành công");
+			} else {
+				paramService.save(img, "/img/user-management");
+				account.setPhoto(img.getOriginalFilename());
+				dao.save(account);
+				model.addAttribute("success", "Cập nhật tài khoản thành công");
+			}
 		}
-		return "redirect:/account/update-account";
+		return "/account/update_account";
 	}
 
 }

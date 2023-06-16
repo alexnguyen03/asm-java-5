@@ -20,5 +20,11 @@ public interface CartDetailDAO extends JpaRepository<CartDetail, Integer> {
 	@Query("DELETE FROM CartDetail WHERE product.id = :productId")
 	void deleteByProductId(@Param("productId") Integer productId);
 
+	@Query("SELECT c FROM CartDetail c WHERE c.cart.id = ?1")
+	CartDetail finByCartId(Integer cartId);
+
+	@Query("SELECT c FROM CartDetail c WHERE c.product.id = ?1")
+	List<CartDetail> finByProductId(Integer id);
+
 	CartDetail findByProduct(Product product);
 }
