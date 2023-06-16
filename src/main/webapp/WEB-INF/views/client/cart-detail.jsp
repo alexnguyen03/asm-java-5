@@ -2,6 +2,7 @@
 pageEncoding="UTF-8" %> <%@ taglib
 uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,12 +93,12 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                              varStatus="loop">
                     <tr id="cartdetail${cd.id}">
                       <td class="product__cart__item d-flex justify-content-space-bewteen">
-                        <div class="form-check d-flex flex-column justify-content-center">
+                        <!-- <div class="form-check d-flex flex-column justify-content-center">
                           <input class="form-check-input item"
                                  type="checkbox"
                                  value=""
                                  id="defaultCheck1" />
-                        </div>
+                        </div> -->
                         <div class="product__cart__item__pic">
                           <img src="${pageContext.request.contextPath}/img/product/${cd.product.image}"
                                alt=""
@@ -106,7 +107,11 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                class="" />
                         </div>
                         <div class="product__cart__item__text">
-                          <h6>${cd.product.name} </h6>
+                          <h6><a href="/shop/product-detail/${cd.product.id}"
+                               class="text-secondary">
+                              ${cd.product.name}
+                            </a>
+                          </h6>
                           <h5> ${cd.product.price} <sup>đ</sup></h5>
                         </div>
                       </td>
@@ -119,6 +124,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                      name="cartdetailId"
                                      value="${cd.id}">
                               <input type="number"
+                                     min="0"
                                      name="quantity"
                                      value="${cd.quantity}"
                                      class="input__quantity${cd.id}"
@@ -126,12 +132,15 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                                        document.querySelector('.cart__price${cd.id}').innerHTML =  parseFloat(price) * parseFloat(this.value) +'<sup>đ</sup>'"
                                      onblur="this.form.submit()"
                                      onload="const price1 = document.querySelector('#price${cd.id}').value ;
-                                      document.querySelector('.cart__price${cd.id}').innerHTML = parseFloat(price) * parseFloat(this.value) +'<sup>đ</sup>'" />
+                             document.querySelector('.cart__price${cd.id}').innerHTML = parseFloat(price) * parseFloat(this.value) +'<sup>đ</sup>'" />
                             </div>
                           </div>
                         </form>
                       </td>
-                      <td class="cart__price${cd.id}">${cd.product.price * cd.quantity} <sup>đ</sup></td>
+                      <td class="cart__price${cd.id}">
+                        ${cd.product.price * cd.quantity}
+                        <sup>đ</sup>
+                      </td>
                       <input type="text"
                              id="price${cd.id}"
                              hidden
@@ -151,17 +160,18 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
               </table>
             </div>
             <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-2 d-flex flex-column justify-content-center">
+              <!-- <div class="col-lg-6 col-md-6 col-sm-2 d-flex flex-column justify-content-center">
                 <div class="form-check d-flex ">
                   <input class="form-check-input"
                          type="checkbox"
                          value=""
+                         checked
                          id="checkAll"
                          onClick="selectAll(this)">
                   <label for="checkAll"
                          class="font-weight-bold">Chọn tất cả</label>
                 </div>
-              </div>
+              </div> -->
               <div class="col-lg-6 col-md-6 col-sm-5">
                 <div class="continue__btn">
                   <a href="/shop">Tiếp tục mua sắm</a>
@@ -177,10 +187,15 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                   Tổng sản phẩm <span><%= session.getAttribute("totalCart") %> sản phẩm</span>
                 </li>
                 <li>
-                  Tổng tiền <span>${totalPrice} <sup>đ</sup></span>
+                  Tổng tiền <span>
+                    <fmt:formatNumber value="${totalPrice}"
+                                      type="currency"
+                                      currencySymbol="" />
+                    <sup>đ</sup>
+                  </span>
                 </li>
               </ul>
-              <a href="/shop/checkout"
+              <a href="/shop/cart-detail/checkout"
                  class="btn btn-success w-100">Đặt hàng</a>
             </div>
           </div>
@@ -295,6 +310,9 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
     <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/main.js"></script>
     <script>
+      if (document.getElementById('checkAll').checked) {
+        selectAll(document.getElementById('checkAll'));
+      }
       function selectAll(source) {
         const items = document.querySelectorAll(".item");
         for (var i = 0, n = items.length; i < n; i++) {

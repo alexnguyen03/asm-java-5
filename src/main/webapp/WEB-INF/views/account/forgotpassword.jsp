@@ -41,7 +41,6 @@
             <style>
                   body {
                         position: relative;
-
                   }
 
                   .img-fluid {
@@ -58,14 +57,12 @@
                   }
 
                   .row {
-
                         background-color: rgba(255, 255, 255, 0.504);
                   }
             </style>
       </head>
 
       <body class="">
-
             <img src="${pageContext.request.contextPath}/img/forgotpass/bg-forgotpass.jpg"
                  alt=""
                  class="img-fluid">
@@ -77,14 +74,21 @@
                                    alt=""
                                    class="img-fluid d-none d-md-block">
                         </div>
-
                         <!-- Registeration Form -->
                         <div class="col-md-6 col-lg-6 ml-auto my-3">
-                              <form action="#"
+                              <form action="/account/forgotpassword"
+                                    method="post"
+                                    modelAttribute="account"
                                     class="py-5 bg-white px-4 rounded">
                                     <div class="row   ">
+                                          <div class="col-12">
+                                                <div
+                                                     class="${msg !=  null? 'alert' : ''} alert-danger text-center mt-3">
+                                                      ${msg}
+                                                </div>
+                                          </div>
                                           <h2 class="text-center d-block w-100 mb-2">Quên mật khẩu</h2>
-                                          <div class="input-group col-lg-12 my-4">
+                                          <div class="input-group col-lg-12">
                                                 <div class="input-group-prepend">
                                                       <span
                                                             class="input-group-text bg-white px-4 border-md border-right-0">
@@ -97,8 +101,11 @@
                                                        placeholder="Tên đăng nhập"
                                                        class="form-control bg-white border-left-0 border-md">
                                           </div>
+                                          <div class="ml-4 mt-2 mb-3">
+                                                <span>loi</span>
+                                          </div>
                                           <!-- Email Address -->
-                                          <div class="input-group col-lg-12 mb-4">
+                                          <div class="input-group col-lg-12">
                                                 <div class="input-group-prepend">
                                                       <span
                                                             class="input-group-text bg-white px-4 border-md border-right-0">
@@ -111,18 +118,16 @@
                                                        placeholder="Email"
                                                        class="form-control bg-white border-left-0 border-md">
                                           </div>
+                                          <div class="ml-4 mt-2 mb-3">
+                                                <span>loi</span>
+                                          </div>
                                           <!-- Submit Button -->
                                           <div class="form-group col-lg-12 mx-auto mb-0 mt-4">
-                                                <a href="/account/token"
-                                                   class="btn btn-primary btn-block py-2">
+                                                <button type="submit"
+                                                        class="btn btn-primary btn-block py-2">
                                                       <span class="font-weight-bold">Gửi mã xác nhận</span>
-                                                </a>
+                                                </button>
                                           </div>
-
-
-
-
-
                                     </div>
                               </form>
                         </div>

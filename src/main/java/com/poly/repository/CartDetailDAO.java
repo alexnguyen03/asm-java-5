@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.poly.model.CartDetail;
+import com.poly.model.Product;
 
 import jakarta.transaction.Transactional;
 
@@ -18,4 +19,6 @@ public interface CartDetailDAO extends JpaRepository<CartDetail, Integer> {
 	@Transactional
 	@Query("DELETE FROM CartDetail WHERE product.id = :productId")
 	void deleteByProductId(@Param("productId") Integer productId);
+
+	CartDetail findByProduct(Product product);
 }

@@ -45,6 +45,32 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <div class="mb-3">
           <div class="app-content-actions-wrapper">
+            <form action="/admin/report"
+                  class="w-50 d-flex justify-content-betwwen"
+                  method="post">
+
+              <div class="">
+                <select class="custom-select"
+                        name="searchKey"
+                        id="searchKey">
+                  <option disabled
+                          selected
+                          value="defaultVal">Chọn tiêu chí hiển thị thống kê</option>
+                  <option value="date">Thống kê theo ngày</option>
+                  <option value="week">Thống kê theo tuần</option>
+                  <option value="month">Thống kê theo tháng</option>
+                  <option value="year">Thống kê theo năm</option>
+                </select>
+              </div>
+              <div class="">
+                <input type="date"
+                       class="form-control"
+                       name="searchVal"
+                       id="filterByDate">
+              </div>
+              <button class="btn btn-primary">Xem thống kê</button>
+            </form>
+
             <div class="filter-button-wrapper d-flex justify-content-betwwen">
               <button class="action-button filter jsFilter mx-3">
                 <span>Lọc</span><svg xmlns="http://www.w3.org/2000/svg"
@@ -64,34 +90,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <form action="/admin/report"
                       method="get"
                       class="mb-3">
-                  <div class="input-group input-group-sm mb-3">
-                    <div class="input-group-prepend">
-                      <button type="button"
-                              class="btn btn-outline-secondary">
-                        Ngày
-                      </button>
-                      <button type="button"
-                              class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item"
-                           href="#">Thống kê theo ngày</a>
-                        <a class="dropdown-item"
-                           href="/admin/report">Thống kê theo tuần</a>
-                        <a class="dropdown-item"
-                           href="#">Thống kê theo tháng</a>
-                        <a class="dropdown-item"
-                           href="#">Thống kê theo năm</a>
-                      </div>
-                    </div>
-                    <input type="week"
-                           class="form-control"
-                           aria-label="Text input with segmented dropdown button" />
-                  </div>
+
                   <div class="input-group input-group-sm mr-3">
                     <label>Lọc theo danh mục</label>
                     <select class=""
@@ -384,6 +383,44 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         table.classList.remove('d-none')
         ctx.style.display = 'none'
       }
+
+      // change input type form select 
+      var searchKey = document.getElementById('searchKey')
+      var filterByDate = document.getElementById('filterByDate')
+      window.onload = function (e) {
+        filterByDate.readOnly = true
+        if (e.target.value === 'defaultVal') {
+        }
+        if (searchKey.value === 'date') {
+          filterByDate.type = 'date'
+        }
+        if (searchKey.value === 'week') {
+          filterByDate.type = 'week'
+        }
+        if (searchKey.value === 'month') {
+          filterByDate.type = 'month'
+        }
+        if (searchKey.value === 'year') {
+          filterByDate.type = 'year'
+        }
+      }
+      searchKey.addEventListener('change', function handleSearchChange(e) {
+        filterByDate.readOnly = false
+        if (e.target.value === 'date') {
+          filterByDate.type = 'date'
+        } else if (e.target.value === 'week') {
+          filterByDate.type = 'week'
+        } else if (e.target.value === 'month') {
+          filterByDate.type = 'month'
+        } else if (e.target.value === 'year') {
+          filterByDate.type = 'date'
+          filterByDate.pattern = 'yy'
+
+
+
+        }
+      })
+
     </script>
   </body>
 

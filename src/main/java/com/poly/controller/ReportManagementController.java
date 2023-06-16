@@ -1,6 +1,9 @@
 package com.poly.controller;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +19,7 @@ import com.poly.model.Category;
 import com.poly.model.ReportTop10;
 import com.poly.repository.CategoryDAO;
 import com.poly.repository.OrderDetailDAO;
+import com.poly.service.ParamService;
 
 @Controller
 @RequestMapping("/admin")
@@ -24,9 +28,37 @@ public class ReportManagementController {
     OrderDetailDAO orderDetailDAO;
     @Autowired
     CategoryDAO categoryDAO;
+    @Autowired
+    ParamService paramService;
 
     @GetMapping("/report")
     public String reportTop10View(Model model) {
+
+        model.addAttribute("reports", orderDetailDAO.getInventoryTop());
+        model.addAttribute("categories", categoryDAO.findAll());
+        return "/admin/report";
+    }
+
+    @PostMapping("/report")
+    public String reportTop10Search(Model model) {
+        String searchKey = paramService.getString("searchKey", "");
+        if (!searchKey.isBlank()) {
+            Date searchVal = paramService.getDate("searchVal", "yyyy-MM");
+            LocalDate localDate = searchVal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            int day = localDate.getDayOfMonth();
+            int month = localDate.getMonthValue();
+            int year = localDate.getYear();
+            if (searchKey.equals("date")) {
+            }
+            if (searchKey.equals("month")) {
+            }
+            if (searchKey.equals("month")) {
+            }
+            if (searchKey.equals("month")) {
+            }
+            model.addAttribute("searchVal", searchVal);
+            model.addAttribute("searchKey", searchKey);
+        }
         model.addAttribute("reports", orderDetailDAO.getInventoryTop());
         model.addAttribute("categories", categoryDAO.findAll());
         return "/admin/report";

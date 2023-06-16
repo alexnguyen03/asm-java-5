@@ -142,7 +142,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <!--* paging start  -->
             <c:choose>
               <c:when test="${page.content.size() > 0}">
-                <div class="my-auto">Trang: ${filterByStatus== null }</div>
+                <div class="my-auto">Trang:</div>
                 <nav aria-label="Page navigation example">
                   <ul class="pagination pagination-sm mb-0 py-1 ml-3">
                     <li class="page-item ${ p  == 0 ?'d-none'  : '' } "><a class="page-link"
@@ -317,7 +317,14 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="product-cell price">Thao tác</div>
           </div>
           <c:choose>
-            <c:when test="${!page.isEmpty() && filterByStatus.isEmpty() }">
+            <c:when test="${page.isEmpty()}">
+              <div class="alert alert-info text-center mt-5 mx-auto w-75 py-3">Không tìm thấy đơn hàng trong ${
+                searchKey == 'date' ? 'Ngày' : 'Tháng'}
+                <fmt:formatDate pattern="MM-yyyy"
+                                value="${searchVal}" />!
+              </div>
+            </c:when>
+            <c:when test="${!page.isEmpty() && isFilterByStatusEmpty }">
               <c:forEach var="o"
                          items="${ page.content }"
                          varStatus="loop">
@@ -622,7 +629,312 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 </div>
               </c:forEach>
             </c:when>
-            <c:when test="${filterByStatus == null}">
+            <c:when test="${!page.isEmpty() && searchKey != null }">
+              <c:forEach var="o"
+                         items="${ page.content }"
+                         varStatus="loop">
+                <div class="products-row">
+                  <button class="cell-more-button">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="18"
+                         height="18"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="feather feather-more-vertical">
+                      <circle cx="12"
+                              cy="12"
+                              r="1" />
+                      <circle cx="12"
+                              cy="5"
+                              r="1" />
+                      <circle cx="12"
+                              cy="19"
+                              r="1" />
+                    </svg>
+                  </button>
+                  <div class="mx-4">
+                    <span>${ loop.count } </span>
+                  </div>
+                  <div class="product-cell">
+                    <span>${o.account.fullname}</span>
+                  </div>
+                  <div class="product-cell category">
+                    <span class="cell-label">Tổng tiền</span>${o.totalPrice}<sup>đ</sup>
+                  </div>
+                  <div class="product-cell status-cell">
+                    <span class="cell-label">Trạng thái</span>
+                    <span class="status ${o.status =='DG' ? 'active' : 'disabled'} ">
+                      <c:choose>
+                        <c:when test="${o.status =='C'}">
+                          Đang chờ
+                        </c:when>
+                        <c:when test="${o.status =='XL'}">
+                          Đang xử lý
+                        </c:when>
+                        <c:when test="${o.status =='G'}">
+                          Đang giao
+                        </c:when>
+                        <c:when test="${o.status =='DG'}">
+                          Đã giao
+                        </c:when>
+                        <c:when test="${o.status =='H'}">
+                          Đã hủy
+                        </c:when>
+                        <c:otherwise>
+                          Đang chờ
+                        </c:otherwise>
+                      </c:choose>
+                    </span>
+                  </div>
+                  <div class="product-cell sales">
+                    <span class="cell-label">Ngày đặt</span>${o.createDate}
+                  </div>
+                  <div class="product-cell address">
+                    <span class="cell-label">Địa chỉ </span>${o.address}
+                  </div>
+                  <div class="product-cell price">
+                    <span class="cell-label"> </span>
+                    <button class="btn btn-sm btn-primary mr-3"
+                            data-toggle="modal"
+                            data-target="#updateModal${o.id}">
+                      Cập nhật trạng thái
+                    </button>
+                    <button class="btn btn-sm btn-info"
+                            data-toggle="modal"
+                            data-target="#viewModal${o.id}">
+                      <i class="fa fa-info-circle"
+                         aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  <!-- Modal -->
+                  <div class="modal fade"
+                       id="viewModal${o.id}"
+                       tabindex="-1"
+                       role="dialog"
+                       aria-labelledby="modelTitleId"
+                       aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg "
+                         style="min-width: 1200px;"
+                         role="document">
+                      <div class="modal-content"
+                           style="min-width: 1200px;">
+                        <div class="modal-header alert alert-info">
+                          <h3 class="modal-title w-100 text-center ">CHI TIẾT ĐƠN HÀNG </h3>
+                          <button type="button"
+                                  class="close"
+                                  data-dismiss="modal"
+                                  aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row rounded">
+                            <div class="col-4">
+                              <div class="card border-primary ">
+                                <div class="card-header">
+                                  <h4 class="w-100 text-center mb-0">THÔNG TIN KHÁCH HÀNG</h4>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item"><span>Mã khách hàng</span>
+                                    <strong class="text-danger">${o.account.username}</strong>
+                                  </li>
+                                  <li class="list-group-item"><span>Họ tên:</span>
+                                    <strong class="text-danger">${o.account.fullname}</strong>
+                                  </li>
+                                  <li class="list-group-item"><span>Địa chỉ</span>
+                                    <strong class="text-danger">${o.address}</strong>
+                                  </li>
+                                  <li class="list-group-item"><span>Số điện thoại</span>
+                                    <strong class="text-danger">${o.phone}</strong>
+                                  </li>
+                                  <li class="list-group-item"><span>Ngày đặt hàng</span>
+                                    <strong class="text-danger">${o.createDate}</strong>
+                                  </li>
+                                  <li class="list-group-item"><span>Email</span>
+                                    <strong class="text-danger">${o.account.email}</strong>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div class="card mt-3 border-success">
+                                <div class="card-header">
+                                  <h4 class="w-100 text-center mb-0">THÔNG TIN ĐƠN HÀNG</h4>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">
+                                    <span>Mã đơn hàng</span>
+                                    <strong class="text-danger">${o.id}</strong>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <span>Tạm tính:</span>
+                                    <strong class="text-danger">${o.totalPrice - (o.coupon.discountAmount *
+                                      o.totalPrice)
+                                      }<sup>đ</sup></strong>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <span>Giảm giá:</span>
+                                    <strong class="text-danger">${o.coupon.discountAmount * o.totalPrice}
+                                      <sup>đ</sup></strong>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <span>Thành tiền:</span>
+                                    <strong class="text-danger">${o.totalPrice} <sup>đ</sup></strong>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="col-8">
+                              <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>Ảnh SP</th>
+                                    <th>Tên SP</th>
+                                    <th>Số lượng</th>
+                                    <th class="mx-3">Tổng cộng</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <c:forEach var="orderDetail"
+                                             items="${o.orderDetails}"
+                                             varStatus="loop">
+                                    <tr class="">
+                                      <td>${loop.count}</td>
+                                      <td class="product__cart__item">
+                                        <img src="${pageContext.request.contextPath}/img/product/${orderDetail.product.image}"
+                                             alt=""
+                                             width="35px"
+                                             height="35px"
+                                             class="" />
+                                      </td>
+                                      <td class="product__cart__item">
+                                        <h6 class="">${orderDetail.product.name}</h6>
+                                      </td>
+                                      <td class="quantity__item">
+                                        <div class="quantity">
+                                          <div class="pro-qty-2 text-center">
+                                            <span>${orderDetail.quantity}</span>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td class="cart__price">${orderDetail.price}<sup>đ</sup></td>
+                                    </tr>
+                                  </c:forEach>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Modal -->
+                  <!-- update modal -->
+                  <div class="modal fade"
+                       id="updateModal${o.id}"
+                       tabindex="-1"
+                       role="dialog"
+                       aria-labelledby="modelTitleId"
+                       aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg"
+                         role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Cập nhật trạng thái đơn hàng</h5>
+                          <button type="button"
+                                  class="close"
+                                  data-dismiss="modal"
+                                  aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="/admin/order"
+                                method="post">
+                            <div class="row rounded">
+                              <div class="col-12">
+                                <div class="row mb-3">
+                                  <div class="col-6">
+                                    <span>Mã khách hàng</span>
+                                  </div>
+                                  <div class="col-6">
+                                    <span>${o.account.username}</span>
+                                  </div>
+                                </div>
+                                <div class="row mb-3">
+                                  <div class="col-6">
+                                    <span>Tên khách hàng:</span>
+                                  </div>
+                                  <div class="col-6">
+                                    <span>${o.account.fullname}</span>
+                                  </div>
+                                </div>
+                                <div class="row mb-3">
+                                  <div class="col-6">
+                                    <span>Tổng tiền đặt hàng:</span>
+                                  </div>
+                                  <div class="col-6">
+                                    <span>${o.totalPrice} <sup>đ</sup></span>
+                                  </div>
+                                </div>
+                                <div class="row mb-3">
+                                  <div class="col-6">
+                                    <span>Ngày đặt hàng:</span>
+                                  </div>
+                                  <div class="col-6">
+                                    <span>${o.createDate}</span>
+                                  </div>
+                                </div>
+                                <div class="row mb-3">
+                                  <div class="col-6">
+                                    <span>Trạng thái đơn hàng:</span>
+                                  </div>
+                                  <div class="col-6">
+                                    <div class="input-group">
+                                      <input type="hidden"
+                                             name="id"
+                                             value="${o.id}">
+                                      <select class="custom-select custom-select-sm"
+                                              id="selectStatus"
+                                              name="status">
+                                        <option selected>Chọn trạng thái</option>
+                                        <c:forEach var="s"
+                                                   items="${listStatus}">
+                                          <option onchange="console.log(value)"
+                                                  value="${s.key}"
+                                                  class="text-primary">
+                                            ${s.value}
+                                          </option>
+                                        </c:forEach>
+                                      </select>
+                                    </div>
+                                    <div class="my-2 "
+                                         id="notes">
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Submit Button -->
+                                <div class="form-group col-lg-12 mx-auto mb-4">
+                                  <hr />
+                                  <button class="btn btn-danger float-right w-100">
+                                    <span class="font-weight-bold">Cập nhật</span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- update modal -->
+                </div>
+              </c:forEach>
+            </c:when>
+            <c:when test="${isFilterByStatusEmpty}">
               <div class="alert alert-info text-center mt-5 mx-auto w-75 py-3">Không tìm thấy đơn hàng có trạng thái
                 ${status == 'C' ? 'Đang chờ' : ''}${status == 'XL' ? 'Đang xử lý' : ''} ${status == 'G' ? 'Đang giao' :
                 ''} ${status ==
@@ -934,6 +1246,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 </div>
               </c:forEach>
             </c:when>
+
             <c:when test="${page.isEmpty()}">
               <div class="alert alert-info text-center mt-5 mx-auto w-75 py-3">Không tìm thấy đơn hàng trong ${
                 searchKey == 'date' ? 'Ngày' : 'Tháng'}

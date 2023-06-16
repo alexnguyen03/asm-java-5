@@ -71,7 +71,8 @@
                         <div class="col-8 offset-2 shadow rounded ">
                               <form action="/account/verify"
                                     method="post">
-                                    <div class="${msg !=  null? 'alert' : ''} alert-danger">${msg}</div>
+                                    <div class="${msg !=  null? 'alert' : ''} alert-danger text-center mt-3">${msg}
+                                    </div>
                                     <h2 class="text-center pt-5 mb-5 font-weight-bold">Xác nhận tài khoản email</h2>
                                     <small class="text-center d-block my-2 font-weight-bold ">Vui lòng kiểm tra email
                                           <strong><%= session.getAttribute("signupMail") %></strong> để
