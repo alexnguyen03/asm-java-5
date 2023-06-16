@@ -264,7 +264,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                   </div>
                   <div class="product__item__text">
                     <h6>Tai nghe Samsung Galaxy Buds 2 Pro</h6>
-                    <a href="#"
+                    <a href="/shop/cart-detail/add/1004"
                        class="add-cart">+ Thêm vào giỏ hàng</a>
                     <div class="rating">
                       <i class="fa fa-star-o"></i>

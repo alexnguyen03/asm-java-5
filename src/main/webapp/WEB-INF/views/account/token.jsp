@@ -80,22 +80,30 @@
 
                         <!-- Registeration Form -->
                         <div class="col-md-6 col-lg-6 ml-auto my-3">
-                              <form action="#"
+                              <form action="/account/resetpassword"
+                                    method="post"
                                     class="py-5 bg-white px-4 rounded">
                                     <div class="row   ">
+                                          <div class="col-12">
+                                                <div
+                                                     class="${msg !=  null? 'alert' : ''} alert-danger text-center mt-3">
+                                                      ${msg}
+                                                </div>
+                                          </div>
                                           <div class="col-12">
                                                 <h2 class="text-center d-block w-100 mb-2">Nhập mã xác nhận</h2>
 
                                                 <div class="form-group mt-4">
-                                                      <input type="email"
+                                                      <input type="text"
                                                              class="form-control"
                                                              id="exampleInputEmail1"
+                                                             name="code"
                                                              aria-describedby="emailHelp"
                                                              placeholder="Mã xác nhận">
                                                       <small id="emailHelp"
                                                              class="form-text text-muted">Vui lòng kiểm tra hộp thư đến
                                                             trong email
-                                                            <strong>namnhpc03517@fpt.edu.vn</strong> và điền mã xác nhận
+                                                            <strong>${email}</strong> và điền mã xác nhận
                                                             vào ô bên trên</small>
                                                 </div>
                                           </div>
@@ -103,10 +111,9 @@
 
                                           <!-- Submit Button -->
                                           <div class="form-group col-lg-12 mx-auto mb-0 mt-4">
-                                                <a href="/account/resetpassword"
-                                                   class="btn btn-primary btn-block py-2">
+                                                <button class="btn btn-primary btn-block py-2">
                                                       <span class="font-weight-bold">Đặt lại mật khẩu</span>
-                                                </a>
+                                                </button>
                                           </div>
 
 

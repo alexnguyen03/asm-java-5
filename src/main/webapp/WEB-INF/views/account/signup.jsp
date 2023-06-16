@@ -67,7 +67,7 @@
                  alt=""
                  class="img-fluid">
             <div class="container">
-                  <div class="row py-5 mt-5 align-items-center shadow p-5 rounded ">
+                  <div class="row py-3 mt-3 align-items-center shadow p-5 rounded ">
                         <!-- For Demo Purpose -->
                         <div class="col-md-6 pr-lg-6 mb-5 mb-md-0">
                               <img src="https://bootstrapious.com/i/snippets/sn-registeration/illustration.svg"
@@ -76,13 +76,19 @@
                               <h1 class="text-center pt-3">Tạo tài khoản</h1>
                         </div>
                         <!-- Registeration Form -->
-                        <div class="col-md-6 col-lg-6 ml-auto my-3">
+                        <div class="col-md-6 col-lg-6 ml-auto mt-2">
                               <form:form action="/account/signup"
                                          method="post"
                                          enctype="multipart/form-data"
                                          modelAttribute="account">
                                     <div class="row  py-3 bg rounded ">
-                                          <div class="input-group col-lg-12 my-4">
+                                          <div class="col-12">
+                                                <div
+                                                     class="${msg !=  null? 'alert' : ''} alert-danger text-center mt-3">
+                                                      ${msg}
+                                                </div>
+                                          </div>
+                                          <div class="input-group col-lg-12 mt-2">
                                                 <div class="input-group-prepend">
                                                       <span
                                                             class="input-group-text bg-white px-4 border-md border-right-0">
@@ -95,7 +101,11 @@
                                                             placeholder="Tên đăng nhập"
                                                             cssClass="form-control bg-white border-left-0 border-md" />
                                           </div>
-                                          <div class="input-group col-lg-12 mb-4">
+                                          <div class="ml-4 mt-2 mb-3">
+                                                <form:errors path="username"
+                                                             cssClass="text-danger" />
+                                          </div>
+                                          <div class="input-group col-lg-12">
                                                 <div class="input-group-prepend">
                                                       <span
                                                             class="input-group-text bg-white px-4 border-md border-right-0">
@@ -108,8 +118,12 @@
                                                             placeholder="Họ và tên"
                                                             cssClass="form-control bg-white border-left-0 border-md" />
                                           </div>
+                                          <div class="ml-4 mt-2 mb-3">
+                                                <form:errors path="fullname"
+                                                             cssClass="text-danger" />
+                                          </div>
                                           <!-- Email Address -->
-                                          <div class="input-group col-lg-12 mb-4">
+                                          <div class="input-group col-lg-12">
                                                 <div class="input-group-prepend">
                                                       <span
                                                             class="input-group-text bg-white px-4 border-md border-right-0">
@@ -117,13 +131,17 @@
                                                       </span>
                                                 </div>
                                                 <form:input id="email"
-                                                            type="email"
+                                                            type="text"
                                                             path="email"
                                                             placeholder="Email"
                                                             cssClass="form-control bg-white border-left-0 border-md" />
                                           </div>
+                                          <div class="ml-4 mt-2 mb-3">
+                                                <form:errors path="email"
+                                                             cssClass="text-danger" />
+                                          </div>
                                           <!-- Password -->
-                                          <div class="input-group col-lg-12 mb-4">
+                                          <div class="input-group col-lg-12">
                                                 <div class="input-group-prepend">
                                                       <span
                                                             class="input-group-text bg-white px-4 border-md border-right-0">
@@ -136,7 +154,10 @@
                                                             placeholder="Mật khẩu"
                                                             cssClass="form-control bg-white border-left-0 border-md" />
                                           </div>
-
+                                          <div class="ml-4 mt-2 mb-3">
+                                                <form:errors path="password"
+                                                             cssClass="text-danger" />
+                                          </div>
                                           <!-- activated -->
                                           <form:input id="activated"
                                                       type="hidden"
@@ -154,7 +175,7 @@
                                                       cssClass="form-control bg-white border-left-0 border-md" />
                                           <!-- activated -->
                                           <!-- Password Confirmation -->
-                                          <div class="input-group col-lg-12 mb-4">
+                                          <div class="input-group col-lg-12">
                                                 <div class="input-group-prepend">
                                                       <span
                                                             class="input-group-text bg-white px-4 border-md border-right-0">
@@ -163,11 +184,15 @@
                                                 </div>
                                                 <input id="passwordConfirmation"
                                                        type="password"
-                                                       name="passwordConfirmation"
+                                                       value="${confirmPass}"
+                                                       name="confirmPass"
                                                        placeholder="Xác nhận mật khẩu     "
                                                        class="form-control bg-white border-left-0 border-md">
                                           </div>
-                                          <div class="input-group col-lg-12 mb-4">
+                                          <div class="ml-4 mt-2 mb-3">
+                                                <span class="text-danger">${confirmPassMsg}</span>
+                                          </div>
+                                          <div class="input-group col-lg-12 ">
                                                 <div class="custom-file ">
                                                       <input type="file"
                                                              class="custom-file-input"
@@ -177,6 +202,9 @@
                                                       <div class="invalid-feedback">Vui lòng chọn ảnh đại diện
                                                       </div>
                                                 </div>
+                                          </div>
+                                          <div class="col-12 mb-3 mt-2 ml-2"><span class="text-danger">${ img_msg
+                                                      }</span>
                                           </div>
                                           <!-- Submit Button -->
                                           <div class="form-group col-lg-12 mx-auto mb-0">

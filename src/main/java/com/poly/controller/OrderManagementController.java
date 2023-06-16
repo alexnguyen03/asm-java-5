@@ -40,10 +40,27 @@ public class OrderManagementController {
             @RequestParam("p") Optional<Integer> p, @RequestParam("d") Optional<Boolean> direc) {
         int defaultPage = 0;
         int defaultElementOfPage = 5;
+        List<Order> filterByStatus = null;
         // get param status
         String status = paramService.getString("status", "");
         Pageable pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage));
+        System.out.println(status.isBlank());
         Page<Order> page = orderDAO.findOrderActive(pageable);
+        if (!status.isBlank()) {
+            model.addAttribute("status", status);
+            if (status.equals("All")) {
+                page = orderDAO.findOrderActive(pageable);
+                model.addAttribute("isFilterByStatusEmpty", true);
+            } else {
+                filterByStatus = orderDAO.findByStatus(status);
+                if (filterByStatus.size() > 0) {
+                    model.addAttribute("filterByStatus", filterByStatus);
+                    model.addAttribute("isFilterByStatusEmpty", false);
+                } else {
+                    model.addAttribute("isFilterByStatusEmpty", true);
+                }
+            }
+        }
         // List<Order> orders = orderDAO.findAll();
         // ! dsl
         // List<Order> orders = orderDAO.findOrderActive();
@@ -66,18 +83,9 @@ public class OrderManagementController {
             model.addAttribute("searchVal", searchVal);
             model.addAttribute("searchKey", searchKey);
         }
-        System.out.println(status);
-        List<Order> filterByStatus = null;
-        if (!status.isBlank()) {
-            model.addAttribute("status", status);
-            filterByStatus = orderDAO.findByStatus(status);
-            if (filterByStatus.size() > 0) {
-                model.addAttribute("filterByStatus", filterByStatus);
-            } else if (filterByStatus.size() == 0) {
-                model.addAttribute("filterByStatus", null);
-            }
-
-        }
+        System.out.println(page.getSize());
+        // System.out.println(page.getSize());
+        // System.out.println(filterByStatus.size());
         model.addAttribute("eop", eop.orElse(defaultElementOfPage));
         model.addAttribute("p", p.orElse(defaultPage));
         model.addAttribute("title", "QUẢN LÝ ĐƠN HÀNG");
