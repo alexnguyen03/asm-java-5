@@ -91,10 +91,11 @@
 							<div class="col-lg-3 col-sm-6">
 								<div class="card">
 									<div class="card-body">
-										<h6 class="card-title">Số người ghé xem trang</h6>
-										<h4 class="card-text font-weight-bold">423</h4>
-										<span class="fond-weight-bold" style="color: #dc3545"><i
-											class='bx bx-trending-up'></i> 22% </span>
+										<h6 class="card-title">Đơn chờ xử lí</h6>
+										<h4 class="card-text font-weight-bold">${orderXLCount}</h4>
+										<span class="fond-weight-bold" style="color: #dc3545"><a
+											class="btn btn-outline-dark" href="/admin/order?status=C">Xem
+												ngay</a> </span>
 									</div>
 								</div>
 							</div>
