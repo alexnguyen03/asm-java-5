@@ -67,27 +67,35 @@ public class ShopController {
     }
 
     @GetMapping("cart-detail")
-    public String getCartDetailView(Model m) {
+    public String getCartDetailView(Model model) {
+
         // ! mockup get client form session
         Account account = sessionService.get("account");
+        model.addAttribute("pageActive", "shop");
+
         // * get client form session
         Cart cart = cartDAO.findByUserName(account.getUsername());
         List<CartDetail> cartDetails = cart.getCartDetails();
-        int totalQuantity = 0;
         Double totalPrice = 0.0;
+        int totalQuantity = 0;
         for (CartDetail cartDetail : cartDetails) {
             totalPrice += (cartDetail.getProduct().getPrice() * cartDetail.getQuantity());
             totalQuantity += cartDetail.getQuantity();
         }
         sessionService.set("totalCart", totalQuantity);
-        m.addAttribute("cartDetails", cartDetails);
-        m.addAttribute("totalPrice", totalPrice);
-        m.addAttribute("cart", cart);
+        model.addAttribute("cartDetails", cartDetails);
+        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("cart", cart);
         return "/client/cart-detail";
     }
 
     @GetMapping("/cart-detail/add/{productId}")
-    public String addCartDetail(@PathVariable("productId") Integer productId) {
+    public String addCartDetail(@PathVariable("productId") Integer productId, Model model, RedirectAttributes rdAtr) {
+        if (session.get("username") == null) {
+            session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
+            rdAtr.addAttribute("isMessageShop", true);
+            return "redirect:/account/login";
+        }
         // mock client form session
         Account account = sessionService.get("account");
         Cart cart = cartDAO.findByUserName(account.getUsername());
@@ -108,13 +116,21 @@ public class ShopController {
         cartDetail.setCart(cart);
         cartDetailDAO.save(cartDetail);
         sessionService.set("totalCart", totalQuantity);
+        model.addAttribute("pageActive", "shop");
+
         sessionService.set("isUpdated", true);
         return "redirect:/shop";
     }
 
     @PostMapping("/cart-detail/add")
-    public String addCartDetailFromProductDetail(@RequestParam("productId") Integer productId,
+    public String addCartDetailFromProductDetail(@RequestParam("productId") Integer productId, RedirectAttributes rdAtr,
             @RequestParam("quantity") Integer quantity) {
+        if (session.get("username") == null) {
+            session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
+            rdAtr.addAttribute("isMessageShop", true);
+            return "redirect:/account/login";
+        }
+
         // mock client form session
         Account account = sessionService.get("account");
         Cart cart = cartDAO.findByUserName(account.getUsername());
@@ -157,16 +173,16 @@ public class ShopController {
         return "redirect:/shop/cart-detail";
     }
 
-    @GetMapping("add-to-cart")
-    public String AddToCart(Model model, RedirectAttributes rdAtr) {
-        if (session.get("username") == null) {
-            session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
-            rdAtr.addAttribute("isMessageShop", true);
-            return "redirect:/account/login";
-        }
+    // @GetMapping("add-to-cart")
+    // public String AddToCart(Model model, RedirectAttributes rdAtr) {
+    // if (session.get("username") == null) {
+    // session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
+    // rdAtr.addAttribute("isMessageShop", true);
+    // return "redirect:/account/login";
+    // }
 
-        return "redirect:/shop";
-    }
+    // return "redirect:/shop";
+    // }
 
     @RequestMapping("shop-search-product")
     public String searchAndPageProduct(Model model, @RequestParam("keywords") Optional<String> kw,

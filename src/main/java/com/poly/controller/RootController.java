@@ -32,6 +32,12 @@ public class RootController {
 			Account account = accountDAO.findById(session.get("username")).orElse(null);
 			model.addAttribute("isAdmin", account.getAdmin());
 		}
+		// if (session.get("totalCart") == null) {
+		// session.set("totalCart", 0);
+		// } else {
+		// session.set("totalCart", session.get("totalCart"));
+
+		// }
 
 		List<Product> items = productDAO.findTop10BestSellingProducts();
 		model.addAttribute("items", items);

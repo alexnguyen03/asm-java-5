@@ -1,5 +1,7 @@
 package com.poly.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.poly.model.Account;
+import com.poly.model.Cart;
+import com.poly.model.CartDetail;
 import com.poly.repository.AccountDAO;
+import com.poly.repository.CartDAO;
 import com.poly.service.CookieService;
 import com.poly.service.ParamService;
 import com.poly.service.SessionService;
@@ -23,6 +28,8 @@ public class LoginController {
 	CookieService cookieService;
 	@Autowired
 	ParamService paramService;
+	@Autowired
+	CartDAO cartDAO;
 
 	@GetMapping("/login")
 	public String showLoginForm(Model model) {
@@ -62,6 +69,16 @@ public class LoginController {
 		session.set("username", username);
 		Account account = dao.findById(session.get("username")).get();
 		session.set("account", account);
+
+		// Cart cart = cartDAO.findByUserName(account.getUsername());
+		// List<CartDetail> cartDetails = cart.getCartDetails();
+		// int totalQuantity = 0;
+		// for (CartDetail cartDetail : cartDetails) {
+		// totalQuantity += cartDetail.getQuantity();
+		// }
+		// session.set("totalCart", totalQuantity);
+		// System.out.println(totalQuantity);
+		// System.out.println(username);
 		return "redirect:/";
 	}
 }

@@ -15,6 +15,7 @@ public class LogOutController {
 	@RequestMapping("")
 	public String logOut() {
 		session.remove("username");
+		session.remove("account");
 		return "redirect:/";
 	}
 }
