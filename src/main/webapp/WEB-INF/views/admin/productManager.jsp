@@ -163,8 +163,9 @@
 											<div class="form-group">
 												<label for="name" class="font-weight-bold">Tên sản
 													phẩm</label>
-												<form:input path="name" type="text" name="name" class="form-control"
-													id="name" aria-describedby="nameHelp" placeholder="" />
+												<form:input path="name" type="text" name="name"
+													class="form-control" id="name" aria-describedby="nameHelp"
+													placeholder="" />
 												<small id="nameHelp" class="form-text text-muted">${message}</small>
 											</div>
 										</div>
@@ -551,7 +552,9 @@
 							<c:choose>
 								<c:when test="${isPagination == 'index'}">
 									<c:if test="${page.totalPages - 1 > 1 }">
-										<c:forEach var="i" begin="0" end="${page.totalPages - 2}">
+										<c:set var="count" value="${0}"></c:set>
+										<c:forEach var="i" begin="0"
+											end="${page.totalPages - 1 > 3 ? page.totalPages - 3 : page.totalPages - 1}">
 											<a class="${page.number==i?'active':''}"
 												href="/admin/product-manager?p=${i}">${i+1}</a>
 										</c:forEach>

@@ -6,8 +6,8 @@
 
 :root {
 	--app-bg: #fff;
-	--sidebar: #f3f6fd;
-	--app-content-secondary-color: #f3f6fd;
+	--sidebar: #F7f7f7;
+	--app-content-secondary-color: #F7f7f7;
 	--app-content-main-color: #1f1c2e;
 	--sidebar-link: #1f1c2e;
 	--sidebar-hover-link: rgba(195, 207, 244, 0.5);
@@ -18,8 +18,9 @@
 
 .light:root {
 	--app-bg: #fff;
-	--sidebar: #f3f6fd;
-	--app-content-secondary-color: #f3f6fd;
+	--sidebar: #F7f7f7;
+	/* 	#f3f6fd */
+	--app-content-secondary-color: #F7f7f7;
 	--app-content-main-color: #1f1c2e;
 	--sidebar-link: #1f1c2e;
 	--sidebar-hover-link: rgba(195, 207, 244, 0.5);
