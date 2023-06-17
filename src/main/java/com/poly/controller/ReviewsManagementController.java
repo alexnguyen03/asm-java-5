@@ -54,6 +54,7 @@ public class ReviewsManagementController {
 		String defaultField = "dateReview";
 		String keyword = paramService.getString("keyword", " ");
 		String search = paramService.getString("search", " ");
+		model.addAttribute("isPageActive", "review");
 
 		// asending is default
 		Pageable pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),
@@ -90,7 +91,7 @@ public class ReviewsManagementController {
 				model.addAttribute("reviews", reviews);
 				model.addAttribute("success", "Đã tìm thấy tên sản phẩm có chứa : " + keyword);
 				model.addAttribute("isNameSP", true);
-			}else {
+			} else {
 				model.addAttribute("success", "Không tìm thấy sản phẩm có tên " + keyword);
 			}
 		} else if (search.equals("countS")) {
@@ -118,10 +119,10 @@ public class ReviewsManagementController {
 				model.addAttribute("reviews", reviews);
 				model.addAttribute("success", "Đã tìm thấy đánh giá có " + keyword + " sao");
 				model.addAttribute("iscountS", true);
-			}else {
+			} else {
 				model.addAttribute("success", "Không tìm thấy đánh giá có " + keyword + " sao");
 			}
-		}else if (search.equals("nameKH")) {
+		} else if (search.equals("nameKH")) {
 			if (keyword.equals("")) {
 				model.addAttribute("success", "Vui lòng nhập dữ liệu trước khi tìm !!! ");
 				model.addAttribute("isnameKH", true);
@@ -146,7 +147,7 @@ public class ReviewsManagementController {
 				model.addAttribute("reviews", reviews);
 				model.addAttribute("success", "Đã tìm thấy tên khách hàng có chứa : " + keyword);
 				model.addAttribute("isnameKH", true);
-			}else {
+			} else {
 				model.addAttribute("success", "Không tìm thấy khách hàng có tên " + keyword);
 			}
 		}
@@ -185,7 +186,7 @@ public class ReviewsManagementController {
 	@GetMapping("delete/{id}")
 	public String create(@PathVariable("id") Integer id) {
 		dao.deleteById(id);
-		
+
 		return "redirect:/admin/review/index";
 	}
 

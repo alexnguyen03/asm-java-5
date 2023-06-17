@@ -40,6 +40,8 @@ public class UserManagementController {
             @RequestParam("eop") Optional<Integer> eop,
             @RequestParam("showAdmin") Optional<Boolean> showAdmin,
             @RequestParam("p") Optional<Integer> p, @RequestParam("d") Optional<Boolean> direc) {
+        model.addAttribute("isPageActive", "user");
+
         int defaultPage = 0;
         int defaultElementOfPage = 5;
         String defaultField = "username";

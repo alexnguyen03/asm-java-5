@@ -72,7 +72,10 @@
 			<!-- Content -->
 			<div class="app-content">
 				<!-- Top content -->
-				<jsp:include page="top-content.jsp" />
+				<jsp:include page="top-content.jsp">
+					<jsp:param name="title"
+							   value="${title}" />
+				</jsp:include>
 				<!-- -------------------------------------------------------- -->
 				<!-- Modal -->
 				<!-- Add Product -->

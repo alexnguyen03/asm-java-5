@@ -44,10 +44,10 @@
       </a>
     </li>
     <li class="sidebar-list-item ${isPageActive == 'order'?'active':''}">
-      <a href="/admin/order"> <i class='bx bx-package mr-2'></i> <span>Đặt hàng</span>
+      <a href="/admin/order"> <i class='bx bx-package mr-2'></i> <span>Đơn hàng</span>
       </a>
     </li>
-    <li class="sidebar-list-item ${isPageActive == 'preview'?'active':''}">
+    <li class="sidebar-list-item ${isPageActive == 'review'?'active':''}">
       <a href="/admin/review"> <i class='bx bx-message-dots mr-2'></i> <span>Đánh giá</span>
       </a>
     </li>
@@ -59,31 +59,29 @@
   </ul>
   <div class="account-info">
     <div class="account-info-picture">
-      <img src="https://images.unsplash.com/photo-1527736947477-2790e28f3443?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTE2fHx3b21hbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
-           alt="Account" />
+      <img src="${pageContext.request.contextPath}/img/user-management/${u.photo}"
+           alt="!" />
     </div>
-    <div class="account-info-name">AlexNguyeen</div>
+    <div class="account-info-name"><%= session.getAttribute("username") %></div>
+    <div class="btn-group dropup">
+      <button class="btn dropdown-toggle"
+              style="outline: none;"
+              type="button"
+              data-toggle="dropdown"
+              aria-expanded="false">
+
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item"
+           href="#">Đăng xuất</a>
+        <a class="dropdown-item"
+           href="#">Đổi mật khẩu</a>
+        <a class="dropdown-item"
+           href="#">Cập nhật tài khoản</a>
+      </div>
+    </div>
     <button class="account-info-more">
-      <svg xmlns="http://www.w3.org/2000/svg"
-           width="24"
-           height="24"
-           viewBox="0 0 24 24"
-           fill="none"
-           stroke="currentColor"
-           stroke-width="2"
-           stroke-linecap="round"
-           stroke-linejoin="round"
-           class="feather feather-more-horizontal">
-        <circle cx="12"
-                cy="12"
-                r="1" />
-        <circle cx="19"
-                cy="12"
-                r="1" />
-        <circle cx="5"
-                cy="12"
-                r="1" />
-      </svg>
+
     </button>
   </div>
 </div>

@@ -44,6 +44,7 @@ public class CouponsManagementController {
 		String defaultField = "expirationDate";
 		String keyword = paramService.getString("keyword", " ");
 		String search = paramService.getString("search", " ");
+		model.addAttribute("isPageActive", "coupon");
 
 		// asending is default
 		Pageable pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),

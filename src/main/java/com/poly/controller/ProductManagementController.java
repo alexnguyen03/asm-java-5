@@ -57,13 +57,13 @@ public class ProductManagementController {
 		model.addAttribute("page", page);
 		model.addAttribute("isPagination", "index");
 
-//		Title 
-		model.addAttribute("isPage", "Product Manager");
+		// Title
+		model.addAttribute("title", "QUẢN LÝ SẢN PHẨM");
 
-//		Remove a kwordk search session
+		// Remove a kwordk search session
 		session.remove("isAvaiable");
 
-//		Sidebar Active
+		// Sidebar Active
 		model.addAttribute("isPageActive", "product");
 
 		List<Category> category = categoryDAO.findAll();
@@ -107,7 +107,7 @@ public class ProductManagementController {
 		if (name.equals("")) {
 			model.addAttribute("message", "Không để trống tên sản phẩm");
 			return "admin/productManager";
-		}else if(price == 0) {
+		} else if (price == 0) {
 			model.addAttribute("message", "Không để trống giá sản phẩm");
 			return "admin/productManager";
 		}
@@ -146,7 +146,7 @@ public class ProductManagementController {
 		Product item = new Product();
 		model.addAttribute("item", item);
 
-//		Remove a kwordk search session
+		// Remove a kwordk search session
 		session.remove("isAvaiable");
 
 		String kwords = kw.orElse(session.get("keywords"));
@@ -155,7 +155,7 @@ public class ProductManagementController {
 		Page<Product> page = productDAO.findByNameLike("%" + kwords + "%", pageable);
 		model.addAttribute("page", page);
 
-//		Lst Category
+		// Lst Category
 		List<Category> category = categoryDAO.findAll();
 		model.addAttribute("lst_category", category);
 
@@ -166,11 +166,11 @@ public class ProductManagementController {
 	public String FilterAvailableAndPageProduct(Model model,
 			@RequestParam(value = "available", required = false) Boolean isAvailable,
 			@RequestParam("p") Optional<Integer> p) {
-//		Init Product
+		// Init Product
 		Product item = new Product();
 		model.addAttribute("item", item);
 
-//		Remove a kwordk search session
+		// Remove a kwordk search session
 		session.remove("keywords");
 
 		session.set("isAvaiable", "true");
@@ -185,7 +185,7 @@ public class ProductManagementController {
 		Page<Product> page = productDAO.findProductsByAvailability(isAvailable, pageable);
 		model.addAttribute("page", page);
 
-//		Lst Category
+		// Lst Category
 		List<Category> category = categoryDAO.findAll();
 		model.addAttribute("lst_category", category);
 
@@ -195,14 +195,14 @@ public class ProductManagementController {
 	@RequestMapping("filter-product-by-category")
 	public String FilterCategoryAndPageProduct(Model model, @RequestParam("category.id") String categoryId,
 			@RequestParam("p") Optional<Integer> p) {
-//		Init Product
+		// Init Product
 		Product item = new Product();
 		model.addAttribute("item", item);
 
-//		Remove a kwordk search session
+		// Remove a kwordk search session
 		session.remove("isAvaiable");
 
-//		Remove a kwordk search session
+		// Remove a kwordk search session
 		session.remove("keywords");
 
 		Category category_kw = categoryDAO.findById(categoryId).get();
@@ -212,7 +212,7 @@ public class ProductManagementController {
 		Page<Product> page = productDAO.findByCategoryNameLike("%" + category_kw.getName() + "%", pageable);
 		model.addAttribute("page", page);
 
-//		Lst Category
+		// Lst Category
 		List<Category> category = categoryDAO.findAll();
 		model.addAttribute("lst_category", category);
 

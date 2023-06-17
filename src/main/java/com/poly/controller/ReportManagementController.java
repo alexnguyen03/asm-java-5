@@ -2,11 +2,11 @@ package com.poly.controller;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.poly.model.Category;
 import com.poly.model.ReportTop10;
 import com.poly.repository.CategoryDAO;
+import com.poly.repository.OrderDAO;
 import com.poly.repository.OrderDetailDAO;
 import com.poly.service.ParamService;
 
@@ -26,6 +28,8 @@ import com.poly.service.ParamService;
 public class ReportManagementController {
     @Autowired
     OrderDetailDAO orderDetailDAO;
+    @Autowired
+    OrderDAO orderlDAO;
     @Autowired
     CategoryDAO categoryDAO;
     @Autowired
@@ -36,7 +40,9 @@ public class ReportManagementController {
 
         model.addAttribute("reports", orderDetailDAO.getInventoryTop());
         model.addAttribute("categories", categoryDAO.findAll());
+        model.addAttribute("isPageActive", "statistic");
         return "/admin/report";
+
     }
 
     @PostMapping("/report")
@@ -61,6 +67,8 @@ public class ReportManagementController {
         }
         model.addAttribute("reports", orderDetailDAO.getInventoryTop());
         model.addAttribute("categories", categoryDAO.findAll());
+        model.addAttribute("isPageActive", "statistic");
+
         return "/admin/report";
     }
 
@@ -72,23 +80,29 @@ public class ReportManagementController {
 
     @GetMapping("/report/report-by-category")
     public String reportByCategoryView(Model model) {
+        model.addAttribute("reports", orderDetailDAO.getReportByCategories());
         return "/admin/report-by-category";
     }
 
     @GetMapping("/report/report-by-product")
     public String reportByProductView(Model model) {
+        model.addAttribute("reports", orderDetailDAO.getReportByProducts());
+
         return "/admin/report-by-product";
     }
 
     @GetMapping("/report/report-by-user")
     public String reportByUserView(Model model) {
+        model.addAttribute("reports", orderDetailDAO.getReportByUsers());
         return "/admin/report-by-user";
     }
 
-    @GetMapping("")
-    public String getAdminHome(Model model) {
-        return "/admin/index";
-    }
+    // @GetMapping("")
+    // public String getAdminHome(Model model) {
+    // // don can xu ly
+    // model.addAttribute("orderXLCount", orderlDAO.findByStatus("C").size());
+    // return "/admin/index";
+    // }
 
     @ModelAttribute("listCategory")
     public Map<String, String> getListCategory() {

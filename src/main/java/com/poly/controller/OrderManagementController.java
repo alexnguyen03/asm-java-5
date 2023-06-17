@@ -92,11 +92,12 @@ public class OrderManagementController {
         model.addAttribute("pageActive", "order");
         model.addAttribute("page", page);
         model.addAttribute("orderCanceleds", orderCanceleds);
-        model.addAttribute("pageActive", "order");
+        model.addAttribute("isPageActive", "order");
         if (sessionService.get("isUpdated") != null) {
             model.addAttribute("isUpdated", true);
             sessionService.remove("isUpdated");
         }
+        System.out.println(page.getSize());
         return "/admin/order";
     }
 

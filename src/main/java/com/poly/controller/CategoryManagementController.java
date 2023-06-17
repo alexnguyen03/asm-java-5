@@ -36,10 +36,11 @@ public class CategoryManagementController {
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Category> page = categoryDAO.findAll(pageable);
 		model.addAttribute("page", page);
-		
-//		Sidebar Active
+
+		// Sidebar Active
 		model.addAttribute("isPageActive", "category");
-		
+		model.addAttribute("title", "QUẢN LÝ DANH MỤC");
+
 		return "admin/category";
 	}
 
