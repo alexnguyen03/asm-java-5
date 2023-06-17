@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -46,13 +47,11 @@
 	function saveAjaxData() {
 		var couponId = document.getElementById("couponId").value;
 		$.ajax({
-			url : "/shop/checkout/save",
+			url : `/shop/checkout/save/${couponId}`,
 			type : "GET",
-			data : {
-				"CouPonId" : couponId
-			},
-			success : function(data, textStatus, jqXHR) {
-
+			
+			success : function(data) {
+				console.log(data)
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 
@@ -155,24 +154,27 @@
 										Lượng: ${list.quantity}</span>
 								</div>
 								<div class="col-lg-4">
-									<h4 class="mt-3 text-danger font-weight-bold">${list.product.price * list.quantity}
-										<sup>đ</sup></h4>
+									<h4 class="mt-3 text-danger font-weight-bold">
+										<fmt:formatNumber type="number" maxFractionDigits="3"
+											value="${list.product.price * list.quantity}" />
+										<sup>đ</sup>
+									</h4>
 								</div>
 							</c:forEach>
 							<div class="col-lg-12">
 								<hr />
 							</div>
-							<form action="/shop/checkout" method="get"
-								class="d-flex justify-content-center w-100">
-								<div class="col-lg-9">
-									<input type="text" class="form-control"
-										placeholder="Mã giảm giá" name="couponId" id="couponId" />
-								</div>
-								<div class="col-lg-3">
-									<button type="submit" class="btn btn-primary w-100"
-										>Sử dụng</button>
-								</div>
-							</form>
+							<!-- 							<form action="/shop/checkout" method="get" -->
+							<!-- 								class="d-flex justify-content-center w-100"> -->
+							<div class="col-lg-9">
+								<input type="text" class="form-control"
+									placeholder="Mã giảm giá" name="couponId" id="couponId" />
+							</div>
+							<div class="col-lg-3">
+								<button type="submit" class="btn btn-primary w-100"
+									onclick="saveAjaxData();">Sử dụng</button>
+							</div>
+							<!-- 							</form> -->
 							<div class="col-lg-12">
 								<hr />
 							</div>
@@ -181,8 +183,16 @@
 								<p>Giảm giá</p>
 							</div>
 							<div class="col-lg-6 text-right">
-								<h4 class="font-weight-bold">${provisional}<sup>đ</sup></h4>
-								<h4 class="font-weight-bold mt-2">${ provisional * discountAmount }<sup>đ</sup></h4>
+								<h4 class="font-weight-bold">
+									<fmt:formatNumber type="number" maxFractionDigits="3"
+										value="${provisional}" />
+									<sup>đ</sup>
+								</h4>
+								<h4 class="font-weight-bold mt-2">
+									<fmt:formatNumber type="number" maxFractionDigits="3"
+										value="${ provisional * discountAmount }" />
+									<sup>đ</sup>
+								</h4>
 							</div>
 							<div class="col-lg-12">
 								<hr />
@@ -191,8 +201,11 @@
 								<h3 class="font-weight-bold">Tổng cộng</h3>
 							</div>
 							<div class="col-lg-6 text-right">
-								<h3 class="font-weight-bold">${provisional - (discountAmount * provisional)}
-									<sup>đ</sup></h3>
+								<h3 class="font-weight-bold">
+									<fmt:formatNumber type="number" maxFractionDigits="3"
+										value="${provisional - (discountAmount * provisional)}" />
+									<sup>đ</sup>
+								</h3>
 							</div>
 						</div>
 					</div>
