@@ -2,10 +2,13 @@ package com.poly.controller;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,13 +55,8 @@ public class CheckOutController {
 
 	@GetMapping("")
 	public String index(Model model) {
-		// Cart cart = cartDAO.findById(1).get();
-		// sessionService.set("cart", cart.getCartDetails());
-		//
-		// Account account = accountDAO.findById("hoainam").get();
-		// sessionService.set("account", account);
-		// lấy coupon và kiểm tra có trong database không
 		String couponId = paramService.getString("couponId", "");
+//		// lấy coupon và kiểm tra có trong database không
 		try {
 			Coupon coupon = couponDAO.findById(couponId).get();
 			sessionService.set("coupon", coupon);
@@ -139,16 +137,10 @@ public class CheckOutController {
 		}
 		return "redirect:/shop/checkout";
 	}
-	// @PostMapping("/coupon")
-	// public String getCoupon() {
-	// String couponId = paramService.getString("couponId", "");
-	// try {
-	// Coupon coupon = couponDAO.findById(couponId).get();
-	// sessionService.set("coupon", coupon);
-	// } catch (Exception e) {
-	// System.out.println("Không có coupon");
-	// sessionService.remove("coupon");
-	// }
-	// return "redirect:/shop/checkout";
-	// }
+
+//	@GetMapping("save")
+//	public String save(Model model) {
+//		String couponId = paramService.getString("CouPonId", "");
+//		return "redirect:/shop/checkout?action=checkout&couponId=" + couponId;
+//	}
 }

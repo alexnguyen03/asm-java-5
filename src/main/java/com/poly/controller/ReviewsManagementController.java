@@ -32,7 +32,10 @@ import com.poly.model.Review;
 import com.poly.repository.AccountDAO;
 import com.poly.repository.ProductDAO;
 import com.poly.repository.ReviewDAO;
+import com.poly.service.EmailServiceImpl;
 import com.poly.service.ParamService;
+import com.poly.service.SessionService;
+import com.poly.utils.EmailDetail;
 
 @Controller
 @RequestMapping("/admin/review")
@@ -45,6 +48,10 @@ public class ReviewsManagementController {
 	AccountDAO acdao;
 	@Autowired
 	ProductDAO productDao;
+	@Autowired
+	EmailServiceImpl emailServiceImpl;
+	@Autowired
+	SessionService sessionService;
 
 	@GetMapping("")
 	public String index(Model model, @RequestParam("p") Optional<Integer> p, @RequestParam("eop") Optional<Integer> eop,
@@ -90,7 +97,7 @@ public class ReviewsManagementController {
 				model.addAttribute("reviews", reviews);
 				model.addAttribute("success", "Đã tìm thấy tên sản phẩm có chứa : " + keyword);
 				model.addAttribute("isNameSP", true);
-			}else {
+			} else {
 				model.addAttribute("success", "Không tìm thấy sản phẩm có tên " + keyword);
 			}
 		} else if (search.equals("countS")) {
@@ -118,10 +125,10 @@ public class ReviewsManagementController {
 				model.addAttribute("reviews", reviews);
 				model.addAttribute("success", "Đã tìm thấy đánh giá có " + keyword + " sao");
 				model.addAttribute("iscountS", true);
-			}else {
+			} else {
 				model.addAttribute("success", "Không tìm thấy đánh giá có " + keyword + " sao");
 			}
-		}else if (search.equals("nameKH")) {
+		} else if (search.equals("nameKH")) {
 			if (keyword.equals("")) {
 				model.addAttribute("success", "Vui lòng nhập dữ liệu trước khi tìm !!! ");
 				model.addAttribute("isnameKH", true);
@@ -146,7 +153,7 @@ public class ReviewsManagementController {
 				model.addAttribute("reviews", reviews);
 				model.addAttribute("success", "Đã tìm thấy tên khách hàng có chứa : " + keyword);
 				model.addAttribute("isnameKH", true);
-			}else {
+			} else {
 				model.addAttribute("success", "Không tìm thấy khách hàng có tên " + keyword);
 			}
 		}
@@ -170,7 +177,8 @@ public class ReviewsManagementController {
 		int rating = Integer.parseInt(paramService.getString("rating", ""));
 		String text = paramService.getString("textReview", "");
 		// lấy user từ session
-		Account account = acdao.findById("hoainam").get();
+		Account account_Session = sessionService.get("account");
+		Account account = acdao.findById(account_Session.getUsername()).get();
 		Product product = productDao.findById(productId).get();
 		Review review = new Review();
 		review.setAccount(account);
@@ -179,14 +187,21 @@ public class ReviewsManagementController {
 		review.setTextReview(text);
 		review.setRating(rating);
 		dao.save(review);
-		return "redirect:/shop/product-detail";
+		return "redirect:/shop/product-detail?id="+product.getId();
 	}
 
 	@GetMapping("delete/{id}")
 	public String create(@PathVariable("id") Integer id) {
+		Review review = dao.findById(id).get();
+		EmailDetail details = new EmailDetail();
+		details.setRecipient(review.getAccount().getEmail());
+		details.setSubject("Quy phạm về quy tắc đánh giá của 3MEMS ");
+		details.setMsgBody("Chào bạn " + review.getAccount().getFullname() + ", bạn đã đánh giá về sản phẩm "
+				+ review.getProduct().getName() + " với nội dung " + review.getTextReview()
+				+ ". Nội dung đó đã quy phạm về quy tắc của chúng tôi nên chúng tôi đã xóa đánh giá của bạn !!!. Cám ơn bạn.");
+		String status = emailServiceImpl.sendSimpleMail(details);
 		dao.deleteById(id);
-		
-		return "redirect:/admin/review/index";
+		return "redirect:/admin/review";
 	}
 
 	@GetMapping("report")

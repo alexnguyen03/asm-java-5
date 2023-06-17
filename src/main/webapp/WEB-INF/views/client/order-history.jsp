@@ -197,9 +197,9 @@
 										<th class="pt-4">${ order.id }</th>
 										<td class="pt-4">${ order.createDate }</td>
 										<td class="pt-4"><fmt:formatNumber type="number"
-												 maxFractionDigits = "3" value="${ order.totalPrice}" /><sup>đ</sup></td>
+												maxFractionDigits="3" value="${ order.totalPrice}" /><sup>đ</sup></td>
 										<td class="pt-4"><fmt:formatNumber type="number"
-												 maxFractionDigits = "3"
+												maxFractionDigits="3"
 												value="${(order.totalPrice / (1 - order.coupon.discountAmount)) * 0.1}" />
 											<sup>đ</sup></td>
 										<td class="pt-4">${ order.address }</td>
@@ -281,11 +281,13 @@
 										<td class="pt-4">
 											<p>${ orderdetail.product.name }</p>
 										</td>
-										<td class="pt-4">${ orderdetail.product.price }<sup>đ</sup></td>
+										<td class="pt-4"><fmt:formatNumber
+												value="${ orderdetail.product.price }" type="currency"
+												currencySymbol="" /><sup>đ</sup></td>
 										<td class="pt-4">${ orderdetail.quantity }</td>
-										<td class="pt-4">${ orderdetail.product.price  * orderdetail.quantity }
-											<sup>đ</sup>
-										</td>
+										<td class="pt-4"><fmt:formatNumber
+												value="${ orderdetail.product.price  * orderdetail.quantity }"
+												type="currency" currencySymbol="" /> <sup>đ</sup></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -306,7 +308,8 @@
 									var="detail" items="${order.orderDetails}">
 									<c:set var="total"
 										value="${total + (detail.product.price  * detail.quantity)}" />
-								</c:forEach>${ total } đ</strong>
+								</c:forEach><fmt:formatNumber value="${ total }"
+												type="currency" currencySymbol="" /><sup>đ</sup></strong>
 						</h4>
 					</div>
 				</div>
