@@ -123,11 +123,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                         : ''
                         }
                         value="DG">Đã giao</option>
-                <option ${status=='All'
-                        ? 'selected'
-                        : ''
-                        }
-                        value="All">Tất cả</option>
               </select>
             </form>
             <!-- * select row to display -->
@@ -214,7 +209,12 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                             <td>${loop.count}</td>
                             <td>${oc.id}</td>
                             <td>${oc.account.username}</td>
-                            <td>${oc.totalPrice}</td>
+                            <td>
+                              <fmt:formatNumber value="${oc.totalPrice}"
+                                                type="currency"
+                                                currencySymbol="" />
+                              <sup>đ</sup>
+                            </td>
                             <td>${oc.createDate}</td>
                             <td>${oc.notes}</td>
                           </tr>
@@ -324,7 +324,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                 value="${searchVal}" />!
               </div>
             </c:when>
-            <c:when test="${!page.isEmpty() && isFilterByStatusEmpty }">
+            <c:when test="${!page.isEmpty() && isFilterByStatusEmpty == null }">
               <c:forEach var="o"
                          items="${ page.content }"
                          varStatus="loop">
@@ -358,7 +358,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                     <span>${o.account.fullname}</span>
                   </div>
                   <div class="product-cell category">
-                    <span class="cell-label">Tổng tiền</span>${o.totalPrice}<sup>đ</sup>
+                    <span class="cell-label">Tổng tiền</span>
+                    <fmt:formatNumber value="${o.totalPrice}"
+                                      type="currency"
+                                      currencySymbol="" />
+                    <sup>đ</sup>
                   </div>
                   <div class="product-cell status-cell">
                     <span class="cell-label">Trạng thái</span>
@@ -465,18 +469,30 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                   </li>
                                   <li class="list-group-item">
                                     <span>Tạm tính:</span>
-                                    <strong class="text-danger">${o.totalPrice - (o.coupon.discountAmount *
-                                      o.totalPrice)
-                                      }<sup>đ</sup></strong>
+                                    <strong class="text-danger">
+                                      <fmt:formatNumber value=" ${o.totalPrice - (o.coupon.discountAmount * o.totalPrice)}"
+                                                        type="currency"
+                                                        currencySymbol="" />
+                                      <sup>đ</sup>
+                                    </strong>
                                   </li>
                                   <li class="list-group-item">
                                     <span>Giảm giá:</span>
-                                    <strong class="text-danger">${o.coupon.discountAmount * o.totalPrice}
-                                      <sup>đ</sup></strong>
+                                    <strong class="text-danger">
+                                      <fmt:formatNumber value="${ o.totalPrice / (1- o.coupon.discountAmount ) * o.coupon.discountAmount }"
+                                                        type="currency"
+                                                        currencySymbol="" />
+                                      <sup>đ</sup>
+                                    </strong>
                                   </li>
                                   <li class="list-group-item">
                                     <span>Thành tiền:</span>
-                                    <strong class="text-danger">${o.totalPrice} <sup>đ</sup></strong>
+                                    <strong class="text-danger">
+                                      <fmt:formatNumber value="${o.totalPrice} "
+                                                        type="currency"
+                                                        currencySymbol="" />
+                                      <sup>đ</sup>
+                                    </strong>
                                   </li>
                                 </ul>
                               </div>
@@ -776,12 +792,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                   </li>
                                   <li class="list-group-item">
                                     <span>Giảm giá:</span>
-                                    <strong class="text-danger">${o.coupon.discountAmount * o.totalPrice}
-                                      <sup>đ</sup></strong>
+                                    <strong class="text-danger">
+                                      <fmt:formatNumber value="${ o.totalPrice / (1- o.coupon.discountAmount ) * o.coupon.discountAmount }"
+                                                        type="currency"
+                                                        currencySymbol="" />
+                                      <sup>đ</sup>
+                                    </strong>
                                   </li>
                                   <li class="list-group-item">
                                     <span>Thành tiền:</span>
-                                    <strong class="text-danger">${o.totalPrice} <sup>đ</sup></strong>
+                                    <strong class="text-danger">
+                                      <fmt:formatNumber value="${o.totalPrice} "
+                                                        type="currency"
+                                                        currencySymbol="" /><sup>đ</sup>
+                                    </strong>
                                   </li>
                                 </ul>
                               </div>
@@ -1088,12 +1112,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                   </li>
                                   <li class="list-group-item">
                                     <span>Giảm giá:</span>
-                                    <strong class="text-danger">${o.coupon.discountAmount * o.totalPrice}
-                                      <sup>đ</sup></strong>
+                                    <strong class="text-danger">
+                                      <fmt:formatNumber value="${ o.totalPrice / (1- o.coupon.discountAmount ) * o.coupon.discountAmount }"
+                                                        type="currency"
+                                                        currencySymbol="" />
+                                      <sup>đ</sup>
+                                    </strong>
                                   </li>
                                   <li class="list-group-item">
                                     <span>Thành tiền:</span>
-                                    <strong class="text-danger">${o.totalPrice} <sup>đ</sup></strong>
+                                    <strong class="text-danger">
+                                      <fmt:formatNumber value="${o.totalPrice} "
+                                                        type="currency"
+                                                        currencySymbol="" /><sup>đ</sup>
+                                    </strong>
                                   </li>
                                 </ul>
                               </div>
@@ -1246,7 +1278,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 </div>
               </c:forEach>
             </c:when>
-
             <c:when test="${page.isEmpty()}">
               <div class="alert alert-info text-center mt-5 mx-auto w-75 py-3">Không tìm thấy đơn hàng trong ${
                 searchKey == 'date' ? 'Ngày' : 'Tháng'}
@@ -1254,7 +1285,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                 value="${searchVal}" />!
               </div>
             </c:when>
-
           </c:choose>
         </div>
       </div>

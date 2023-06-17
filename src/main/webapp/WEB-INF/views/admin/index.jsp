@@ -4,33 +4,28 @@ uri="http://www.springframework.org/tags/form" prefix="form" %> <%@ taglib
 prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
 
-    <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}/css/style-admin.css"
-    />
-    <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}/css/font-awesome.min.css"
-      type="text/css"
-    />
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/style-admin.css" />
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/font-awesome.min.css"
+          type="text/css" />
     <style>
       .glassmorphism {
         max-width: 23rem;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.1),
-          rgba(255, 255, 255, 0)
-        );
+        background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0));
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border-radius: 10px;
@@ -40,11 +35,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
       .glassmorphismFullWidth {
         max-width: 100%;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.1),
-          rgba(255, 255, 255, 0)
-        );
+        background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0));
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border-radius: 10px;
@@ -53,6 +46,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       }
     </style>
   </head>
+
   <body>
     <div class="app-container">
       <!-- Sidebar -->
@@ -66,8 +60,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <div class="card glassmorphism">
               <div class="card-body text-dark text-center">
                 <h4 class="font-weight-bold">ĐƠN CHỜ XỬ LÝ</h4>
-                <h5 class="font-weight-normal">32 đơn</h5>
-                <a href="#" class="card-link btn btn-dark w-50"> Xử lý ngay</a>
+                <h5 class="font-weight-normal">${orderXLCount} đơn</h5>
+                <a href="/admin/order?status=C"
+                   class="card-link btn btn-dark w-50"> Xử lý ngay</a>
               </div>
             </div>
             <div class="card glassmorphism">
@@ -98,11 +93,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               </div>
             </div>
             <div class="card glassmorphism">
-              <div
-                class="card-body text-center d-flex flex-column align-items-center justify-content-center"
-              >
+              <div class="card-body text-center d-flex flex-column align-items-center justify-content-center">
                 <h4 class="font-weight-bold">SẢN PHẨM ĐƯỢC ĐÁNH GIÁ 5 *</h4>
-                <a href="#" class="dard-link btn btn-dark w-50">Xem ngay</a>
+                <a href="#"
+                   class="dard-link btn btn-dark w-50">Xem ngay</a>
               </div>
             </div>
           </div>
@@ -132,4 +126,5 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
   </body>
+
 </html>

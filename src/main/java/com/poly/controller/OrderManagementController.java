@@ -97,6 +97,7 @@ public class OrderManagementController {
             model.addAttribute("isUpdated", true);
             sessionService.remove("isUpdated");
         }
+        System.out.println(page.getSize());
         return "/admin/order";
     }
 

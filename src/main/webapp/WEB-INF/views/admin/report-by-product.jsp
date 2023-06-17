@@ -26,10 +26,10 @@
     <div class="app-container ">
       <!-- Sidebar -->
       <jsp:include page="sidebar.jsp" />
-      
+
       <div class="app-content  h-100">
-       <!-- Top content -->
-       <jsp:include page="top-content.jsp" />
+        <!-- Top content -->
+        <jsp:include page="top-content.jsp" />
 
         <div class="app-content-actions">
           <a href="/admin/report"
@@ -41,82 +41,7 @@
           <a href="/admin/report/report-by-user"
              class="btn btn-outline-info">Người dùng</a>
         </div>
-        <!-- <div class=" px-3 mt-4">
-          <div class="">
-            <form action=""
-                  class="d-flex mb-3">
-              <div class=" input-group input-group-sm w-25 mr-3">
-                <div class="input-group-prepend"> <button type="button"
-                          class="btn btn-outline-secondary">Thống kê theo ngày</button> <button type="button"
-                          class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"> <span class="sr-only">Toggle Dropdown</span> </button>
-                  <div class="dropdown-menu"> <a class="dropdown-item"
-                       href="#">Thống kê theo tuần</a>
-                    <a class="dropdown-item"
-                       href="#">Thống kê theo tháng</a>
-                    <a class="dropdown-item"
-                       href="#">Thống kê theo năm</a>
-                  </div>
-                </div> <input type="week"
-                       class="form-control"
-                       aria-label="Text input with segmented dropdown button">
-              </div>
-              <div class="input-group input-group-sm w-25 mr-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text"
-                         for="inputGroupSelect01">Số lượng</label>
-                </div>
-                <select class="custom-select"
-                        id="inputGroupSelect01">
-                  <option selected>Chọn số lượng</option>
-                  <option value="1">Dưới 100 sản phẩm</option>
-                  <option value="1">Từ 100 - 200 sản phẩm</option>
-                  <option value="1">Từ 200 - 300 sản phẩm</option>
-                </select>
-              </div>
-              <div class="input-group input-group-sm w-25 mr-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text"
-                         for="inputGroupSelect01">Danh thu/sản phẩm</label>
-                </div>
-                <select class="custom-select"
-                        id="inputGroupSelect01">
-                  <option selected>Chọn doanh thu sản phẩm</option>
-                  <option value="1">Dưới 2.000.000 <sup>đ</sup></option>
-                  <option value="1">Từ 2.000.000 <sup>đ</sup> - Dưới 3.000.000 <sup>đ</sup>
-                  <option value="1">Trên 3.000.000 <sup>đ</sup>
-                    <sup>đ</sup>
-                  </option>
-                </select>
-              </div>
-              <button class="btn btn-info btn-sm px-3">Xem</button>
 
-            </form>
-            <table class="table text-white">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Tên sản phẩm</th>
-                  <th scope="col">Loại sản phẩm</th>
-                  <th scope="col">Số lượng bán</th>
-                  <th scope="col">Tổng doanh thu</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Tai nghe airpod 3 Pro</td>
-                  <td>Tai nghe không dây</td>
-                  <td>100</td>
-                  <td>250.000.000 <sup>đ</sup></td>
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
-        </div> -->
         <div class="mb-3">
           <div class="app-content-actions-wrapper mb-3">
             <div class="filter-button-wrapper d-flex justify-content-betwwen">
@@ -264,13 +189,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Tai nghe airpod 3 Pro</td>
-                <td>Tai nghe không dây</td>
-                <td>100</td>
-                <td>250.000.000 <sup>đ</sup></td>
-              </tr>
+              <c:forEach items="${reports}"
+                         var="report"
+                         varStatus="loop">
+                <tr>
+                  <th scope="row">${loop.count}</th>
+                  <td>${report.product}</td>
+                  <td>${report.category}</td>
+                  <td>${report.quantity}</td>
+                  <td>${report.totalPrice}</td>
+                </tr>
+              </c:forEach>
 
             </tbody>
           </table>
