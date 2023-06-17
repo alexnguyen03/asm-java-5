@@ -38,6 +38,28 @@
 	type="text/css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css" type="text/css" />
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+	function saveAjaxData() {
+		var couponId = document.getElementById("couponId").value;
+		$.ajax({
+			url : "/shop/checkout/save",
+			type : "GET",
+			data : {
+				"CouPonId" : couponId
+			},
+			success : function(data, textStatus, jqXHR) {
+
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+
+			}
+		});
+	}
+</script>
 </head>
 
 <body>
@@ -134,21 +156,21 @@
 								</div>
 								<div class="col-lg-4">
 									<h4 class="mt-3 text-danger font-weight-bold">${list.product.price * list.quantity}
-										₫</h4>
+										<sup>đ</sup></h4>
 								</div>
 							</c:forEach>
 							<div class="col-lg-12">
 								<hr />
 							</div>
-							<form action="/shop/checkout"
+							<form action="/shop/checkout" method="get"
 								class="d-flex justify-content-center w-100">
 								<div class="col-lg-9">
 									<input type="text" class="form-control"
 										placeholder="Mã giảm giá" name="couponId" id="couponId" />
 								</div>
 								<div class="col-lg-3">
-									<button type="submit" class="btn btn-primary w-100">Sử
-										dụng</button>
+									<button type="submit" class="btn btn-primary w-100"
+										>Sử dụng</button>
 								</div>
 							</form>
 							<div class="col-lg-12">
@@ -159,9 +181,8 @@
 								<p>Giảm giá</p>
 							</div>
 							<div class="col-lg-6 text-right">
-								<h4 class="font-weight-bold">${provisional}₫</h4>
-								<h4 class="font-weight-bold mt-2">${ discountAmount * provisional }
-									₫</h4>
+								<h4 class="font-weight-bold">${provisional}<sup>đ</sup></h4>
+								<h4 class="font-weight-bold mt-2">${ provisional * discountAmount }<sup>đ</sup></h4>
 							</div>
 							<div class="col-lg-12">
 								<hr />
@@ -171,7 +192,7 @@
 							</div>
 							<div class="col-lg-6 text-right">
 								<h3 class="font-weight-bold">${provisional - (discountAmount * provisional)}
-									₫</h3>
+									<sup>đ</sup></h3>
 							</div>
 						</div>
 					</div>

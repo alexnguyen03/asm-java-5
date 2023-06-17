@@ -36,7 +36,7 @@ public class ShopDetailController {
 	public String index(Model model, @RequestParam("id") Integer productId) {
 		Product product = productDao.findById(productId).get();
 		List<Review> reviews = product.getReviews();
-		List<Product> product_similars = productDao.findByProductCategogy(product.getCategory().getId());
+		List<Product> product_similars = productDao.findByProductCategogy(product.getCategory().getId(), product.getId());
 		float sum_Rating = 0;
 		for (Review review : reviews) {
 			sum_Rating += review.getRating();
