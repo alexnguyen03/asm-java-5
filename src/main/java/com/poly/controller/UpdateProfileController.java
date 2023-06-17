@@ -35,7 +35,8 @@ public class UpdateProfileController {
 
 	@GetMapping("update-account")
 	public String index(Model model, Account account) {
-		account = dao.findById("minhduong").get();
+		Account account_session = sessionService.get("account");
+		account = dao.findById(account_session.getUsername()).get();
 		model.addAttribute("account", account);
 		return "/account/update_account";
 	}
@@ -47,6 +48,8 @@ public class UpdateProfileController {
 			model.addAttribute("success", "Vui lòng sửa các lỗi sau !!!");
 		}else {
 			if (img.isEmpty()) {
+				account.setActivated(true);
+				account.setAdmin(true);
 				dao.save(account);
 				model.addAttribute("success", "Cập nhật tài khoản thành công");
 			} else {
