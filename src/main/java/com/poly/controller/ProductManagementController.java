@@ -50,6 +50,9 @@ public class ProductManagementController {
 
 	@GetMapping("")
 	private String getProductManager(Model model, @RequestParam("p") Optional<Integer> p) {
+		
+		session.set("stateAdmin", "adminRole");
+
 		Product item = new Product();
 		model.addAttribute("item", item);
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);

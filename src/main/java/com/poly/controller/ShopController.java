@@ -56,7 +56,7 @@ public class ShopController {
             Account account = accountDAO.findById(session.get("username")).orElse(null);
             model.addAttribute("isAdmin", account.getAdmin());
         }
-        Pageable pageable = PageRequest.of(p.orElse(0), 5);
+        Pageable pageable = PageRequest.of(p.orElse(0), 6);
         Page<Product> page = productDAO.findAll(pageable);
         model.addAttribute("page", page);
         model.addAttribute("pageActive", "shop");
@@ -69,7 +69,7 @@ public class ShopController {
     @GetMapping("cart-detail")
     public String getCartDetailView(Model model, RedirectAttributes rdAtr) {
         if (session.get("username") == null) {
-            session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
+            session.set("messageShop", "Đăng nhập trước khi xem giỏ hàng");
             rdAtr.addAttribute("isMessageShop", true);
             return "redirect:/account/login";
         }

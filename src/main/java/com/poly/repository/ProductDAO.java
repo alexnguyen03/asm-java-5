@@ -1,5 +1,6 @@
 package com.poly.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -9,14 +10,22 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.poly.model.Category;
+import com.poly.model.Order;
 import com.poly.model.Product;
 
 public interface ProductDAO extends JpaRepository<Product, Integer> {
+	// ******************** select AREA ********************
 	// Select Top 10 product
 	@Query("SELECT p " + "FROM Product p " + "JOIN OrderDetail od ON p.id = od.product.id " + "GROUP BY p "
 			+ "ORDER BY COUNT(od.id) DESC LIMIT 10")
 	List<Product> findTop10BestSellingProducts();
 
+	// SELECT TOP 10 lastest
+	List<Product> findTop10ByOrderByCreateDateDesc();
+	
+	//	SELECT count TOP PRODUCT LASTER
+	List<Product> findByCreateDateBetween(Date start, Date end);
+	
 	// Select by price between
 	Page<Product> findByPriceBetween(double minPrice, double maxPrice, Pageable pageable);
 

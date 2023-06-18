@@ -37,4 +37,20 @@ public class RootController {
 		model.addAttribute("pageActive", "index");
 		return "/client/index";
 	}
+
+	@GetMapping("/top-lastest")
+	public String topTenLastest(Model model) {
+		if (session.get("username") != null) {
+			Account account = accountDAO.findById(session.get("username")).orElse(null);
+			// model.addAttribute("isAdmin", account.getAdmin());
+			session.set("isAdmin", account.getAdmin());
+		}
+		if (session.get("account") == null) {
+			session.set("totalCart", 0);
+		}
+		List<Product> items = productDAO.findTop10ByOrderByCreateDateDesc();
+		model.addAttribute("items", items);
+		model.addAttribute("pageActive", "index");
+		return "/client/index";
+	}
 }

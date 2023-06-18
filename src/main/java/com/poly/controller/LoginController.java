@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.poly.model.Account;
 import com.poly.model.Cart;
 import com.poly.model.CartDetail;
@@ -37,9 +39,14 @@ public class LoginController {
 		if (username != null) {
 			model.addAttribute("username", username);
 		}
-		if (username != null) {
-			model.addAttribute("username", username);
-		}
+
+		// if (rdAtr.getAttribute("isMessageShop").equals("HaveMessage")
+		// 		&& rdAtr.getAttribute("isProduct").equals("product")) {
+		// 	session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
+		// } else {
+		// 	session.remove("messageShop");
+		// }
+
 		return "/account/login";
 	}
 
@@ -69,6 +76,10 @@ public class LoginController {
 		session.set("username", username);
 		Account account = dao.findById(session.get("username")).get();
 		session.set("account", account);
+
+		if (account.getAdmin()) {
+			return "redirect:/admin";
+		}
 
 		Cart cart = cartDAO.findByUserName(account.getUsername());
 		List<CartDetail> cartDetails = cart.getCartDetails();
