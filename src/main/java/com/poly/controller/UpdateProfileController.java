@@ -48,8 +48,6 @@ public class UpdateProfileController {
 			model.addAttribute("success", "Vui lòng sửa các lỗi sau !!!");
 		}else {
 			if (img.isEmpty()) {
-				account.setActivated(true);
-				account.setAdmin(true);
 				dao.save(account);
 				model.addAttribute("success", "Cập nhật tài khoản thành công");
 			} else {

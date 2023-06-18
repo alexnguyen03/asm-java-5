@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -127,12 +127,10 @@
 									<div class="col-lg-3">
 										<div class="input-group mb-3">
 											<i class="fa fa-minus border p-2 text-dark decrease"
-											   aria-hidden="true"></i> <input type="number"
+											   aria-hidden="true"></i> <input type=text
 												   class="form-control text-center"
-												   value="${ productQuanity != null ? productQuanity : 1}"
+												   value="1"
 												   id="quantity"
-												   min="0"
-												   max="${ product.quantity }"
 												   name="quantity" /> <i
 											   class="fa fa-plus text-dark border p-2 increase"
 											   aria-hidden="true"></i>
@@ -144,7 +142,7 @@
 								   name="productId"
 								   value="${ product.id }">
 							<input hidden=""
-								   name="maxQuantity"
+								   id="maxQuantity"
 								   value="${ product.quantity }">
 							<button type="submit"
 									class="border bg-dark text-white p-3 font-weight-bold float-right">THÊM
@@ -168,11 +166,16 @@
 					<div class="col-lg-12">
 						<div class="container">
 							<div class="row">
-								<div class="col-lg-12 bg-light mb-3">
+								<div class="col-lg-12 bg-light mb-3"
+									 ${
+									 isLogin
+									 ? ''
+									 : 'hidden'
+									 }>
 									<form action="/admin/review/create"
 										  method="post">
 										<div class="rating-wrap">
-											<h5>Đánh giá sao</h5>
+											<h5 class="mt-2">Đánh giá sao ???</h5>
 											<fieldset class="rating mt-2">
 												<input type="radio"
 													   id="star5"
@@ -234,7 +237,12 @@
 											 height="70px" />
 									</div>
 									<div class="col-lg-11 mb-3">
-										<strong>${ review.account.fullname }</strong> <span> ${ review.dateReview}
+										<strong>${ review.account.fullname }</strong> <span>
+											<fmt:formatDate type="both"
+															dateStyle="short"
+															timeStyle="short"
+															value="${ review.dateReview}"
+															pattern="dd-MM-yyyy hh:mm:ss" />
 										</span><br />
 										<c:forEach begin="1"
 												   end="${ review.rating }">
@@ -302,64 +310,63 @@
 							<a href="#"><img src="${pageContext.request.contextPath }/img/payment.png"
 									 alt="" /></a>
 						</div>
-					</div>
-					<div class="col-lg-2 offset-lg-1 col-md-2 col-sm-6">
-						<div class="footer__widget">
-							<h6>Sản phẩm</h6>
-							<ul>
-								<li><a href="/shop">Tai nghe</a></li>
-								<li><a href="/shop">Đồng hồ</a></li>
-								<li><a href="/shop">Phụ kiện</a></li>
-								<li><a href="/shop">Túi xách</a></li>
-							</ul>
+						<div class="col-lg-2 offset-lg-1 col-md-2 col-sm-6">
+							<div class="footer__widget">
+								<h6>Sản phẩm</h6>
+								<ul>
+									<li><a href="/shop">Tai nghe</a></li>
+									<li><a href="/shop">Đồng hồ</a></li>
+									<li><a href="/shop">Phụ kiện</a></li>
+									<li><a href="/shop">Túi xách</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-2 col-md-3 col-sm-6">
+							<div class="footer__widget">
+								<h6>Thông tin</h6>
+								<ul>
+									<li><a href="#">Liên hệ chúng tôi</a></li>
+									<li><a href="#">Hình thức thanh toán</a></li>
+									<li><a href="#">Vận chuyển</a></li>
+									<li><a href="#">Trả lại và trao đổi</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+							<div class="footer__widget">
+								<h6>Phản hồi</h6>
+								<div class="footer__newslatter">
+									<p>Mọi thắc mắc về các dịch vụ trên trang web vui lòng gửi
+										qua Email</p>
+									<form action="#">
+										<input type="text"
+											   placeholder="Email của bạn" />
+										<button type="submit">
+											<span class="icon_mail_alt"></span>
+										</button>
+									</form>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="col-lg-2 col-md-3 col-sm-6">
-						<div class="footer__widget">
-							<h6>Thông tin</h6>
-							<ul>
-								<li><a href="#">Liên hệ chúng tôi</a></li>
-								<li><a href="#">Hình thức thanh toán</a></li>
-								<li><a href="#">Vận chuyển</a></li>
-								<li><a href="#">Trả lại và trao đổi</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-						<div class="footer__widget">
-							<h6>Phản hồi</h6>
-							<div class="footer__newslatter">
-								<p>Mọi thắc mắc về các dịch vụ trên trang web vui lòng gửi
-									qua Email</p>
-								<form action="#">
-									<input type="text"
-										   placeholder="Email của bạn" />
-									<button type="submit">
-										<span class="icon_mail_alt"></span>
-									</button>
-								</form>
+					<div class="row">
+						<div class="col-lg-12 text-center">
+							<div class="footer__copyright__text">
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								<p>Copyright &copy; & Edited by 3MEMS Team</p>
+								<p>
+									<script>
+										document.write(new Date().getFullYear());
+									</script>
+									2022 All rights reserved
+
+								</p>
+								<p>@Copyright &copy; & Edited 2023 by 3MEMS Team</p>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-lg-12 text-center">
-						<div class="footer__copyright__text">
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							<p>Copyright &copy; & Edited by 3MEMS Team</p>
-							<p>
-								<script>
-									document.write(new Date().getFullYear());
-								</script>
-								2022 All rights reserved
-
-							</p>
-							<p>@Copyright &copy; & Edited 2023 by 3MEMS Team</p>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						</div>
-					</div>
-				</div>
-			</div>
 		</footer>
 		<!-- Footer end -->
 

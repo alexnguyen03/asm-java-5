@@ -257,7 +257,7 @@
 											<td class="pt-4">
 												<fmt:formatNumber type="number"
 																  maxFractionDigits="3"
-																  value="${(order.totalPrice / (1 - order.coupon.discountAmount)) * order.coupon.discountAmount}" />
+																  value="${(order.totalPrice / (1 - order.coupon.discountAmount / 100)) * (order.coupon.discountAmount / 100)}" />
 												<sup>đ</sup>
 											</td>
 											<td class="pt-4">${ order.address }</td>

@@ -33,7 +33,7 @@ public class Coupon implements Serializable {
     @Column(name = "discount_amount")
     @NotNull(message = "{NotNull.coupon.discountAmount")
     @Min(value = 0, message = "{Min.coupon.discountAmount}")
-    @Max(value = 1, message = "{Max.coupon.discountAmount}")
+    @Max(value = 100, message = "{Max.coupon.discountAmount}")
     Double discountAmount;
 
     @Temporal(TemporalType.DATE)

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -216,7 +217,7 @@
 							<span>${ coupon.couponCode }</span>
 						</div>
 						<div class="product-cell status-cell">
-							<span>${ coupon.discountAmount }</span>
+							<span>${Math.round(coupon.discountAmount)}</span>
 						</div>
 						<div class="product-cell sales">
 							<span class="cell-label">Sales:</span> ${ coupon.expirationDate }
