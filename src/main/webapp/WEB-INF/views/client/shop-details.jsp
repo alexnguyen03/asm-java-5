@@ -86,11 +86,17 @@
 				<div class="col-lg-7">
 					<h2 class="name-product d-flex justify-content-start mb-3">${ product.name }</h2>
 					<div class="rating d-flex justify-content-start mb-2">
-						<c:if test="${ count_rating > 0}">
-							<c:forEach begin="1" end="${ count_rating }">
-								<i class="fa fa-star text-warning"></i>
-							</c:forEach>
-						</c:if>
+						<c:forEach begin="1" end="5">
+							<c:choose>
+								<c:when test="${count_rating >= 1}">
+									<i class="fa fa-star text-warning" style="font-size: 20px;"></i>
+									<c:set var="count_rating" value="${count_rating - 1}" />
+								</c:when>
+								<c:otherwise>
+									<i class="fa fa-star-o text-warning" style="font-size: 20px;"></i>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
 					</div>
 					<br>
 					<h5 class="mt-2 mb-2 d-flex justify-content-start">
@@ -124,6 +130,7 @@
 							</div>
 						</div>
 						<input hidden="" name="productId" value="${ product.id }">
+						<input hidden=""  name="maxQuantity" value="${ product.quantity }">
 						<button type="submit"
 							class="border bg-dark text-white p-3 font-weight-bold float-right">THÊM
 							VÀO GIỎ HÀNG</button>
@@ -138,7 +145,9 @@
 		<div class="container mt-5 mb-5 p-0">
 			<div class="row">
 				<div class="col-lg-12">
-					<h2>ĐÁNH GIÁ SẢN PHẨM <sup>(${ reviews.size()})</sup> </h2>
+					<h2>
+						ĐÁNH GIÁ SẢN PHẨM <sup>(${ reviews.size()})</sup>
+					</h2>
 					<hr />
 				</div>
 				<div class="col-lg-12">
@@ -159,8 +168,8 @@
 											<input type="radio" id="star1" name="ratting" value="1" /><label
 												for="star1" class="full"></label>
 										</fieldset>
-										<input id="rating-value" class="mt-3" name="rating" hidden value="0"
-											readonly></input> <input name="productId" hidden
+										<input id="rating-value" class="mt-3" name="rating" hidden
+											value="0" readonly></input> <input name="productId" hidden
 											value="${ product.id }">
 									</div>
 									<br> <br>

@@ -55,20 +55,6 @@ public class CheckOutController {
 
 	@GetMapping("")
 	public String index(Model model) {
-		
-//		String couponId = paramService.getString("couponId", "");
-//		// lấy coupon và kiểm tra có trong database không
-//		try {
-//			Coupon coupon = couponDAO.findById(couponId).get();
-//			sessionService.set("coupon", coupon);
-//			model.addAttribute("discountAmount", coupon.getDiscountAmount());
-//			model.addAttribute("success", "Áp dụng Giảm giá thành công");
-//		} catch (Exception e) {
-//			System.out.println("Không có coupon");
-//			sessionService.remove("coupon");
-//			model.addAttribute("discountAmount", 0);
-//			model.addAttribute("success", "Không tìm thấy giảm giá nào có mã " + couponId);
-//		}
 		// lấy account
 		Account account = sessionService.get("account");
 		Cart cart = cartDAO.findByUserName(account.getUsername());
@@ -136,15 +122,6 @@ public class CheckOutController {
 			model.addAttribute("success", "Số điện thoại không hợp lệ !!!");
 			return "/client/checkout";
 		}
-		return "redirect:/shop/checkout";
-	}
-
-	@ResponseBody
-	@GetMapping("save/{id}")
-	public Coupon save(@PathVariable("id") String id) {
-//		String couponId = paramService.getString("CouPonId", "");
-//		System.out.println(couponId);
-		Coupon coupon = couponDAO.findById(id).get();
-		return coupon;
+		return "redirect:/shop/order-history";
 	}
 }

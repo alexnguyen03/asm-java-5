@@ -61,6 +61,7 @@
 		quantityInput.value = value;
 	});
 
+
 	/*------------------
 		  Background Set
 	  --------------------*/

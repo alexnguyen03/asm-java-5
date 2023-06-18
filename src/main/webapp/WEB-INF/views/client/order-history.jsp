@@ -239,8 +239,8 @@
 										<th scope="col">Địa Chỉ</th>
 										<th scope="col">Số Điện Thoại</th>
 										<th scope="col">Trạng Thái</th>
-										<th scope="col">Ghi chú</th>
-										<th scope="col">Hành Động</th>
+										<th scope="col">Ghi Chú</th>
+										<th scope="col"> Chi Tiết</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -257,7 +257,7 @@
 											<td class="pt-4">
 												<fmt:formatNumber type="number"
 																  maxFractionDigits="3"
-																  value="${(order.totalPrice / (1 - order.coupon.discountAmount)) * 0.1}" />
+																  value="${(order.totalPrice / (1 - order.coupon.discountAmount)) * order.coupon.discountAmount}" />
 												<sup>đ</sup>
 											</td>
 											<td class="pt-4">${ order.address }</td>

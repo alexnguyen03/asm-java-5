@@ -43,22 +43,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-<script type="text/javascript">
-	function saveAjaxData() {
-		var couponId = document.getElementById("couponId").value;
-		$.ajax({
-			url : `/shop/checkout/save/${couponId}`,
-			type : "GET",
-			
-			success : function(data) {
-				console.log(data)
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-
-			}
-		});
-	}
-</script>
 </head>
 
 <body>
@@ -171,8 +155,8 @@
 									placeholder="Mã giảm giá" name="couponId" id="couponId" />
 							</div>
 							<div class="col-lg-3">
-								<button type="submit" class="btn btn-primary w-100"
-									onclick="saveAjaxData();">Sử dụng</button>
+								<button type="button" class="btn btn-primary w-100"
+									onclick="saveAjaxData()">Sử dụng</button>
 							</div>
 							<!-- 							</form> -->
 							<div class="col-lg-12">
@@ -183,15 +167,14 @@
 								<p>Giảm giá</p>
 							</div>
 							<div class="col-lg-6 text-right">
-								<h4 class="font-weight-bold">
+								<h4 class="font-weight-bold" id="provisional">
 									<fmt:formatNumber type="number" maxFractionDigits="3"
 										value="${provisional}" />
 									<sup>đ</sup>
 								</h4>
-								<h4 class="font-weight-bold mt-2">
-									<fmt:formatNumber type="number" maxFractionDigits="3"
-										value="${ provisional * discountAmount }" />
-									<sup>đ</sup>
+								<h4 class="font-weight-bold mt-2" id="discount">0 <sup>đ</sup>
+									<%-- 									<fmt:formatNumber type="number" maxFractionDigits="3" --%>
+									<%-- 										value="${ provisional * discountAmount }" /> --%>
 								</h4>
 							</div>
 							<div class="col-lg-12">
@@ -201,7 +184,7 @@
 								<h3 class="font-weight-bold">Tổng cộng</h3>
 							</div>
 							<div class="col-lg-6 text-right">
-								<h3 class="font-weight-bold">
+								<h3 class="font-weight-bold" id="total">
 									<fmt:formatNumber type="number" maxFractionDigits="3"
 										value="${provisional - (discountAmount * provisional)}" />
 									<sup>đ</sup>
@@ -283,6 +266,49 @@
 					</div>
 				</div>
 			</div>
+
+			<script type="text/javascript">
+				function saveAjaxData() {
+					// Lấy mã giảm giá từ input field
+					var couponId = document.getElementById("couponId").value;
+
+					// Gửi yêu cầu đến server sử dụng Ajax
+					var xhttp = new XMLHttpRequest();
+					xhttp.onreadystatechange = function() {
+						if (this.status === 200) {
+							// Nhận kết quả trả về từ server
+							var response = JSON.parse(this.responseText);
+							// Cập nhật các thông tin trên trang web của bạn sử dụng kết quả nhận được
+							var provisional = document.getElementById("provisional").innerText;
+							var total = document.getElementById("total");
+							var discount = document.getElementById("discount");
+
+							var discountValue = parseFloat(response.discount);
+							var provisionaltValue = parseFloat(provisional);
+							
+// 							alert(provisionaltValue);
+
+							discount.innerHTML = formatNumber(discountValue
+									* provisionaltValue) + " <sup>đ</sup>";
+							total.innerHTML = formatNumber(provisionaltValue
+									- (provisionaltValue * discountValue)) + " <sup>đ</sup>";
+
+						}
+					};
+					xhttp.open("GET", "/apply-discount/" + couponId, true);
+					xhttp.send();
+				}
+				function formatNumber(number) {
+					  const formattedNumber = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+					  // Kiểm tra xem nếu không có dấu chấm nào trong chuỗi số thì thêm .000 vào cuối
+					  if (!formattedNumber.includes('.')) {
+					    return formattedNumber + ".000";
+					  }
+
+					  return formattedNumber;
+					}
+			</script>
 
 			<!-- Js Plugins -->
 			<script
