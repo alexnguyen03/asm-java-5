@@ -55,6 +55,7 @@ public class ProductManagementController {
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 		Page<Product> page = productDAO.findAll(pageable);
 		model.addAttribute("page", page);
+
 		model.addAttribute("isPagination", "index");
 
 //		Title 
@@ -107,7 +108,7 @@ public class ProductManagementController {
 		if (name.equals("")) {
 			model.addAttribute("message", "Không để trống tên sản phẩm");
 			return "admin/productManager";
-		}else if(price == 0) {
+		} else if (price == 0) {
 			model.addAttribute("message", "Không để trống giá sản phẩm");
 			return "admin/productManager";
 		}
@@ -148,6 +149,8 @@ public class ProductManagementController {
 
 //		Remove a kwordk search session
 		session.remove("isAvaiable");
+
+		model.addAttribute("isPagination", "search");
 
 		String kwords = kw.orElse(session.get("keywords"));
 		session.set("keywords", kwords);

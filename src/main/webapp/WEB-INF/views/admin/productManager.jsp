@@ -565,6 +565,18 @@
 										</c:if>
 									</c:if>
 								</c:when>
+								<c:when test="${isPagination == 'search' }">
+									<c:forEach var="i" begin="0"
+										end="${page.totalPages - 1 > 3 ? page.totalPages - 3 : page.totalPages - 1}">
+										<a class="${page.number==i?'active':''}"
+											href="/admin/product-manager/search-product?p=${i}">${i+1}</a>
+									</c:forEach>
+									<c:if test="${page.totalPages -1 > 2}">
+										<span>...</span>
+										<a href="/admin/product-manager/search-product?p=${page.totalPages - 1}"
+											class="${page.number == page.totalPages - 1?'active':''}">${page.totalPages}</a>
+									</c:if>
+								</c:when>
 								<c:otherwise>
 									<c:if test="${page.totalPages - 1 > 1 }">
 										<c:forEach var="i" begin="0" end="${page.totalPages - 2}">

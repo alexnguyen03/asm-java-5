@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -210,8 +211,9 @@
 										<a href="/shop/add-to-cart" class="add-cart">+ Thêm vào
 											giỏ hàng</a>
 										<h5>
-											${item.price} <span class="text-danger"
-												style="text-decoration: underline;">đ</span>
+											<fmt:formatNumber value="${item.price}" type="currency"
+												currencySymbol="" />
+											<span class="text-danger" style="text-decoration: underline;">đ</span>
 										</h5>
 									</div>
 								</div>
@@ -238,7 +240,8 @@
 						<div class="col-lg-12">
 							<div class="product__pagination">
 								<c:if test="${page.totalPages > 1}">
-									<c:forEach var="i" begin="0" end="${page.totalPages - 2}">
+									<c:forEach var="i" begin="0"
+										end="${page.totalPages - 1 > 3 ?page.totalPages - 3 : page.totalPages -1}">
 										<a class="${page.number==i?'active':''}" href="/shop?p=${i}">${i+1}</a>
 									</c:forEach>
 									<span>...</span>
