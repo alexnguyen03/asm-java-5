@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -120,9 +120,9 @@
 								<div class="col-lg-3">
 									<div class="input-group mb-3">
 										<i class="fa fa-minus border p-2 text-dark decrease"
-											aria-hidden="true"></i> <input type="text"
+											aria-hidden="true"></i> <input type=text
 											class="form-control text-center" value="1" id="quantity"
-											name="quantity" /> <i
+											name="quantity"/> <i
 											class="fa fa-plus text-dark border p-2 increase"
 											aria-hidden="true"></i>
 									</div>
@@ -130,7 +130,7 @@
 							</div>
 						</div>
 						<input hidden="" name="productId" value="${ product.id }">
-						<input hidden=""  name="maxQuantity" value="${ product.quantity }">
+						<input hidden="" id="maxQuantity" value="${ product.quantity }">
 						<button type="submit"
 							class="border bg-dark text-white p-3 font-weight-bold float-right">THÊM
 							VÀO GIỎ HÀNG</button>
@@ -153,10 +153,10 @@
 				<div class="col-lg-12">
 					<div class="container">
 						<div class="row">
-							<div class="col-lg-12 bg-light mb-3">
+							<div class="col-lg-12 bg-light mb-3" ${ isLogin ? '' : 'hidden' }>
 								<form action="/admin/review/create" method="post">
 									<div class="rating-wrap">
-										<h5>Đánh giá sao</h5>
+										<h5 class="mt-2">Đánh giá sao ???</h5>
 										<fieldset class="rating mt-2">
 											<input type="radio" id="star5" name="ratting" value="5" /><label
 												for="star5" class="full" title="Awesome"></label> <input
@@ -193,7 +193,9 @@
 										class="rounded-circle border" width="80px" height="70px" />
 								</div>
 								<div class="col-lg-11 mb-3">
-									<strong>${ review.account.fullname }</strong> <span> ${ review.dateReview}
+									<strong>${ review.account.fullname }</strong> <span> <fmt:formatDate
+											type="both" dateStyle="short" timeStyle="short"
+											value="${ review.dateReview}" pattern="dd-MM-yyyy hh:mm:ss"/>
 									</span><br />
 									<c:forEach begin="1" end="${ review.rating }">
 										<i class="fa fa-star text-warning"></i>

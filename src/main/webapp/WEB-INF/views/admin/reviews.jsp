@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +39,7 @@
               <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
             </svg>
 				</button>
-				<a href="" class="btn btn-secondary btn-lg active" role="button"
+				<a href="/admin/review/report" class="btn btn-secondary btn-lg active" role="button"
 					aria-pressed="true">THỐNG KÊ</a>
 			</div>
 			<form action="/admin/review/search">
@@ -122,8 +123,7 @@
 			<div class="products-area-wrapper tableView">
 				<div class="products-header">
 					<div class="product-cell stt">
-						Mã đánh giá
-						<a
+						Mã đánh giá <a
 							href="/admin/review?field=id&p=${p}&eop=${eop}&d=${!d}"
 							class="sort-button ${field == 'id' ? 'text-primary' : '' }">
 							${field == 'id' &&
@@ -133,8 +133,7 @@
 						</a>
 					</div>
 					<div class="product-cell customer-name">
-						Tên khách hàng
-						<a
+						Tên khách hàng <a
 							href="/admin/review?field=account.fullname&p=${p}&eop=${eop}&d=${!d}"
 							class="sort-button ${field == 'account.fullname' ? 'text-primary' : '' }">
 							${field == 'account.fullname' &&
@@ -144,8 +143,7 @@
 						</a>
 					</div>
 					<div class="product-cell product-name">
-						Tên sản phẩm
-						<a
+						Tên sản phẩm <a
 							href="/admin/review?field=product.name&p=${p}&eop=${eop}&d=${!d}"
 							class="sort-button ${field == 'product.name' ? 'text-primary' : '' }">
 							${field == 'product.name' &&
@@ -165,8 +163,7 @@
 						</a>
 					</div>
 					<div class="product-cell review">
-						Bình luận
-						<a
+						Bình luận <a
 							href="/admin/review?field=textReview&p=${p}&eop=${eop}&d=${!d}"
 							class="sort-button ${field == 'textReview' ? 'text-primary' : '' }">
 							${field == 'textReview' &&
@@ -218,7 +215,9 @@
 							<span>${ review.textReview }</span>
 						</div>
 						<div class="product-cell time">
-							<span>${ review.dateReview }</span>
+							<span><fmt:formatDate type="both" dateStyle="short"
+									timeStyle="short" value="${ review.dateReview}"
+									pattern="dd-MM-yyyy hh:mm" /></span>
 						</div>
 						<div class="product-cell view">
 							<span class="cell-label">Xóa:</span>
@@ -233,8 +232,10 @@
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h6>Bạn có chắc muốn xóa đánh giá của <strong>${ review.account.fullname }</strong>
-												?</h6>
+											<h6>
+												Bạn có chắc muốn xóa đánh giá của <strong>${ review.account.fullname }</strong>
+												?
+											</h6>
 											<button type="button" class="close" data-dismiss="modal"
 												aria-label="Close">
 												<span aria-hidden="true">&times;</span>

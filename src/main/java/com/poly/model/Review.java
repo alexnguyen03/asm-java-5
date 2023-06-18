@@ -37,7 +37,7 @@ public class Review implements Serializable {
     private int rating;
     @Column(name = "review_text")
     private String textReview;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(name = "date_review")
     private Date dateReview = new Date();
