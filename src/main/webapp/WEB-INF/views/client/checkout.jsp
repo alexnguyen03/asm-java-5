@@ -158,6 +158,7 @@
 								<button type="button" class="btn btn-primary w-100"
 									onclick="saveAjaxData()">Sử dụng</button>
 							</div>
+							<h5 id="thongbao" class="ml-3 mt-2 text-success"></h5>
 							<!-- 							</form> -->
 							<div class="col-lg-12">
 								<hr />
@@ -172,7 +173,8 @@
 										value="${provisional}" />
 									<sup>đ</sup>
 								</h4>
-								<h4 class="font-weight-bold mt-2" id="discount">0 <sup>đ</sup>
+								<h4 class="font-weight-bold mt-2" id="discount">
+									0 <sup>đ</sup>
 									<%-- 									<fmt:formatNumber type="number" maxFractionDigits="3" --%>
 									<%-- 										value="${ provisional * discountAmount }" /> --%>
 								</h4>
@@ -279,35 +281,48 @@
 							// Nhận kết quả trả về từ server
 							var response = JSON.parse(this.responseText);
 							// Cập nhật các thông tin trên trang web của bạn sử dụng kết quả nhận được
-							var provisional = document.getElementById("provisional").innerText;
+							var provisional = document
+									.getElementById("provisional").innerText;
 							var total = document.getElementById("total");
 							var discount = document.getElementById("discount");
+							var thongbao = document.getElementById("thongbao");
 
 							var discountValue = parseFloat(response.discount);
 							var provisionaltValue = parseFloat(provisional);
-							
-// 							alert(provisionaltValue);
 
-							discount.innerHTML = formatNumber(discountValue
-									* provisionaltValue) + " <sup>đ</sup>";
+							// 							alert(provisionaltValue);
+
+							discount.innerHTML = formatNumber((discountValue / 100)
+									* provisionaltValue)
+									+ " <sup>đ</sup>";
 							total.innerHTML = formatNumber(provisionaltValue
-									- (provisionaltValue * discountValue)) + " <sup>đ</sup>";
+									- (provisionaltValue * (discountValue / 100)))
+									+ " <sup>đ</sup>";
+							
+							thongbao.innerHTML = "Áp dụng giảm giá thành công";
 
+						}else{
+							var response = JSON.parse(this.responseText);
+							var thongbao = document.getElementById("thongbao");
+							var discount = document.getElementById("discount");
+							thongbao.innerHTML = "Không tìm thấy giảm giá !!!";
+							discount.innerHTML = "0 <sup>đ</sup>";
 						}
 					};
 					xhttp.open("GET", "/apply-discount/" + couponId, true);
 					xhttp.send();
 				}
 				function formatNumber(number) {
-					  const formattedNumber = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+					const formattedNumber = number.toString().replace(
+							/\B(?=(\d{3})+(?!\d))/g, ".");
 
-					  // Kiểm tra xem nếu không có dấu chấm nào trong chuỗi số thì thêm .000 vào cuối
-					  if (!formattedNumber.includes('.')) {
-					    return formattedNumber + ".000";
-					  }
-
-					  return formattedNumber;
+					// Kiểm tra xem nếu không có dấu chấm nào trong chuỗi số thì thêm .000 vào cuối
+					if (!formattedNumber.includes('.')) {
+						return formattedNumber + ".000";
 					}
+
+					return formattedNumber;
+				}
 			</script>
 
 			<!-- Js Plugins -->

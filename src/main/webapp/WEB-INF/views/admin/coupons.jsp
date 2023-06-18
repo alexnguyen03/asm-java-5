@@ -217,7 +217,7 @@
 							<span>${ coupon.couponCode }</span>
 						</div>
 						<div class="product-cell status-cell">
-							<span>${ coupon.discountAmount }</span>
+							<span>${Math.round(coupon.discountAmount)}</span>
 						</div>
 						<div class="product-cell sales">
 							<span class="cell-label">Sales:</span> ${ coupon.expirationDate }

@@ -58,8 +58,8 @@
 							</div>
 							<div class="col-lg-6 mt-3">
 								<div class="form-group">
-									<label for="reduced_price" class="form-label fw-bold">Phần
-										trăm giảm</label>
+									<label for="reduced_price" class="form-label fw-bold">
+										Phần trăm giảm</label>
 									<form:input path="discountAmount" id="reduced_price"
 										cssClass="form-control" />
 									<form:errors path="discountAmount" cssClass="msg_errols"></form:errors>
