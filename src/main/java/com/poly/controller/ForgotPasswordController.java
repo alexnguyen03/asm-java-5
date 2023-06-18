@@ -39,14 +39,21 @@ public class ForgotPasswordController {
     @PostMapping("forgotpassword")
     public String checkUser(Model model, Account account) {
         // mock account form session
-        sessionService.set("account", accountDAO.findById("Alex2").get());
-        Account accountInsession = (Account) sessionService.get("account");
+        // sessionService.set("account", accountDAO.findById("Alex2").get());
+        System.out.println(account.getUsername());
+        Boolean existAcc = accountDAO.findById(account.getUsername()).isPresent();
         if (account.getUsername().isBlank() || account.getEmail().isBlank()) {
+            model.addAttribute("username", account.getUsername());
+            model.addAttribute("email", account.getEmail());
+            if (!existAcc) {
+                model.addAttribute("msg", "Tên đăng nhập không chính xác, vui lòng thử lại !");
+                return "/account/forgotpassword";
+            }
             model.addAttribute("msg", "Vui lòng nhập đầy đủ thông tin để tạo tài khoản !");
             return "/account/forgotpassword";
-        } else if (!account.getUsername().equals(accountInsession.getUsername())) {
-
+        } else if (!existAcc) {
             model.addAttribute("msg", "Tên đăng nhập không chính xác, vui lòng thử lại !");
+            model.addAttribute("username", account.getUsername());
             return "/account/forgotpassword";
         } else {
             sessionService.set("email", account.getEmail());
@@ -99,7 +106,7 @@ public class ForgotPasswordController {
             account.setPassword(newPass);
             accountDAO.save(account);
             System.out.println("reset pass successfully !");
-            return "redirect:/login";
+            return "redirect:/account/login";
         }
     }
 }

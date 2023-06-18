@@ -41,6 +41,8 @@ public class OrderHistoryController {
 		Account account = sessionService.get("account");
 		List<Order> orders = orderDao.findByAccountName(account.getUsername());
 		model.addAttribute("orders", orders);
+		model.addAttribute("pageActive", "order-history");
+
 		return "/client/order-history";
 	}
 
@@ -73,6 +75,8 @@ public class OrderHistoryController {
 				model.addAttribute("success", "Mã đơn hàng phải là số nguyên !!! ");
 			}
 		}
+		model.addAttribute("pageActive", "order-history");
+
 		return "/client/order-history";
 	}
 
@@ -97,6 +101,8 @@ public class OrderHistoryController {
 		} else if (status.equals("select")) {
 			model.addAttribute("success", "Bạn chưa chọn trạng thái !!! ");
 		}
+		model.addAttribute("pageActive", "order-history");
+
 		return "/client/order-history";
 	}
 }

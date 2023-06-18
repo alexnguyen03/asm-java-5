@@ -26,60 +26,14 @@
     <div class="app-container ">
       <!-- Sidebar -->
       <jsp:include page="sidebar.jsp" />
-
       <div class="app-content  h-100">
         <!-- Top content -->
-        <jsp:include page="top-content.jsp" />
-
+        <jsp:include page="top-content.jsp">
+          <jsp:param name="title"
+                     value="${title}" />
+        </jsp:include>
         <div class="app-content-actions">
-          <!-- <form action="">
-            <input class="search-bar"
-                   placeholder="Tìm kiếm..."
-                   type="text"
-                   list="user"> -->
-          <!-- <input list="user"
-              value=""
-              type="text"
-              class="col-sm-6 custom-select custom-select-sm"> -->
-          <!-- <datalist id="user">
-              <option value="Nguyễn Hoài Nam"></option>
-              <option value="Trần Trong Hiến"></option>
-              <option value="Lê Minh Dương">John Le</option>
-            </datalist>
-          </form>
-          <div class="w-100 d-flex justify-content-center">
-            <div class="product-cell status-cell d-flex flex-column justify-content-center">
-            </div> -->
-          <!-- <nav aria-label="Page navigation example"
-                 class="mt-3 ml-4">
-              <ul class="pagination justify-content-center pagination-sm align-self-center">
-                <li class="page-item disabled">
-                  <a class="page-link"
-                     href="#"
-                     tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link"
-                     href="#">1</a></li>
-                <li class="page-item"><a class="page-link"
-                     href="#">2</a></li>
-                <li class="page-item"><a class="page-link"
-                     href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link"
-                     href="#">Next</a>
-                </li>
-              </ul>
-            </nav> -->
-          <!-- <div class="text-primary px-3 border">Hiển thị 15 / 20 người dùng</div> -->
-          <a href="/admin/report"
-             class="btn btn-outline-primary">Top 10 sản phẩm bán chạy</a>
-          <a href="/admin/report-by-category"
-             class="btn btn-warning">Doanh thu theo loại</a>
-          <a href="/admin/report/report-by-product"
-             class="btn btn-outline-secondary">Doanh thu theo sản phẩm</a>
-          <a href="/admin/report/report-by-user"
-             class="btn btn-outline-info">Người dùng</a>
-
+          <jsp:include page="report-navbar.jsp" />
         </div>
         <div class="mb-3">
           <div class="app-content-actions-wrapper mb-3">
@@ -99,7 +53,6 @@
                 </svg>
               </button>
               <div class="filter-menu">
-
                 <form action=""
                       class=" mb-3">
                   <div class=" input-group input-group-sm mb-3">
@@ -140,7 +93,6 @@
                       <option value="1">Tai nghe có dây</option>
                     </select>
                   </div>
-
                   <div class="filter-menu-buttons">
                     <button class="filter-button reset">Làm mới</button>
                     <button class="filter-button apply">Thay đổi</button>
@@ -241,7 +193,6 @@
           </table>
         </div>
       </div>
-
       <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
               integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
               crossorigin="anonymous"></script>

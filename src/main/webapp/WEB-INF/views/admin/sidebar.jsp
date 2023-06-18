@@ -54,15 +54,17 @@
     <li class="sidebar-list-item ${isPageActive == 'statistic'?'active':''}">
       <a href="/admin/report"> <i class="fa fa-bar-chart mr-2"
            aria-hidden="true"></i> <span>Thống kê</span>
+
       </a>
     </li>
   </ul>
   <div class="account-info">
     <div class="account-info-picture">
-      <img src="${pageContext.request.contextPath}/img/user-management/${u.photo}"
+      <img src="${pageContext.request.contextPath}/img/user-management/<%= session.getAttribute("adminImg") %>"
            alt="!" />
     </div>
-    <div class="account-info-name"><%= session.getAttribute("username") %></div>
+    <div class="account-info-name"><%= session.getAttribute("username") %>
+    </div>
     <div class="btn-group dropup">
       <button class="btn dropdown-toggle"
               style="outline: none;"
@@ -73,11 +75,11 @@
       </button>
       <div class="dropdown-menu">
         <a class="dropdown-item"
-           href="#">Đăng xuất</a>
+           href="/log-out">Đăng xuất</a>
         <a class="dropdown-item"
-           href="#">Đổi mật khẩu</a>
+           href="/account/change-password">Đổi mật khẩu</a>
         <a class="dropdown-item"
-           href="#">Cập nhật tài khoản</a>
+           href="/account/update-account">Cập nhật tài khoản</a>
       </div>
     </div>
     <button class="account-info-more">

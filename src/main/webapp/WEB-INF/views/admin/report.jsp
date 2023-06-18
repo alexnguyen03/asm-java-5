@@ -32,23 +32,18 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       <jsp:include page="sidebar.jsp" />
       <div class="app-content h-100">
         <!-- Top content -->
-        <jsp:include page="top-content.jsp" />
+        <jsp:include page="top-content.jsp">
+          <jsp:param name="title"
+                     value="${title}" />
+        </jsp:include>
         <div class="app-content-actions">
-          <a href="/admin/report"
-             class="btn btn-primary">Top 10 sản phẩm bán chạy</a>
-          <a href="/admin/report/report-by-category"
-             class="btn btn-outline-warning">Doanh thu theo loại</a>
-          <a href="/admin/report/report-by-product"
-             class="btn btn-outline-secondary">Doanh thu theo sản phẩm</a>
-          <a href="/admin/report/report-by-user"
-             class="btn btn-outline-info">Người dùng</a>
+          <jsp:include page="report-navbar.jsp" />
         </div>
         <div class="mb-3">
           <div class="app-content-actions-wrapper">
             <form action="/admin/report"
                   class="w-50 d-flex justify-content-betwwen"
                   method="post">
-
               <div class="">
                 <select class="custom-select"
                         name="searchKey"
@@ -71,48 +66,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               <button class="btn btn-primary">Xem thống kê</button>
             </form>
 
-            <div class="filter-button-wrapper d-flex justify-content-betwwen">
-              <button class="action-button filter jsFilter mx-3">
-                <span>Lọc</span><svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="2"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                     class="feather feather-filter">
-                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-                </svg>
-              </button>
-              <div class="filter-menu">
-                <form action="/admin/report"
-                      method="get"
-                      class="mb-3">
-
-                  <div class="input-group input-group-sm mr-3">
-                    <label>Lọc theo danh mục</label>
-                    <select class=""
-                            name="category"
-                            id="inputGroupSelect01">
-                      <option selected>Chọn theo danh mục</option>
-                      <c:forEach items="${categories}"
-                                 var="category">
-                        <option value="${category.id}">${category.name}</option>
-                      </c:forEach>
-                    </select>
-                  </div>
-
-                  <div class="filter-menu-buttons">
-                    <button type="reset"
-                            class="btn btn-sm btn-secondary">Làm mới</button>
-                    <button type="submit"
-                            class="btn btn-sm btn-primary">Thay đổi</button>
-                  </div>
-                </form>
-              </div>
-            </div>
             <button class="action-button list active d-none"
                     title="List View">
               <svg xmlns="http://www.w3.org/2000/svg"
@@ -186,10 +139,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="mb-3">
           <div class="btn btn-primary"
                id="btnChart"
-               onclick="fetchData();">Xem dạng biểu đồ</div>
+               onclick="fetchData();">Xem tổng quan dạng biểu đồ</div>
           <div class="btn btn-primary d-none"
                onclick="tableView();"
-               id="btnTable">Xem dạng bảng</div>
+               id="btnTable">Trở lại</div>
         </div>
         <div class=""
              id="table">
@@ -218,7 +171,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </tbody>
           </table>
         </div>
-        <div class="w-50">
+        <div class="w-75 d-flex justify-content-center">
           <canvas id="myChart"></canvas>
         </div>
       </div>
@@ -348,7 +301,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           myChart.destroy();
         }
         try {
-          const response = await fetch('http://localhost:8080/admin/report/chart');
+          const response = await fetch(`http://localhost:8080/admin/report/chart`);
           const dataJson = await response.json();
           const names = dataJson.map(item => item.name);
           const quantities = dataJson.map(item => item.quantity);
@@ -383,7 +336,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         table.classList.remove('d-none')
         ctx.style.display = 'none'
       }
-
       // change input type form select 
       var searchKey = document.getElementById('searchKey')
       var filterByDate = document.getElementById('filterByDate')
@@ -415,12 +367,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         } else if (e.target.value === 'year') {
           filterByDate.type = 'date'
           filterByDate.pattern = 'yy'
-
-
-
         }
       })
-
     </script>
   </body>
 

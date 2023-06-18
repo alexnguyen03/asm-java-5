@@ -29,17 +29,13 @@
 
       <div class="app-content  h-100">
         <!-- Top content -->
-        <jsp:include page="top-content.jsp" />
-
+        <jsp:include page="top-content.jsp">
+          <jsp:param name="title"
+                     value="${title}" />
+        </jsp:include>
         <div class="app-content-actions">
-          <a href="/admin/report"
-             class="btn btn-outline-primary">Top 10 sản phẩm bán chạy</a>
-          <a href="/admin/report/report-by-category"
-             class="btn btn-outline-warning">Doanh thu theo loại</a>
-          <a href="/admin/report/report-by-product"
-             class="btn btn-secondary">Doanh thu theo sản phẩm</a>
-          <a href="/admin/report/report-by-user"
-             class="btn btn-outline-info">Người dùng</a>
+          <jsp:include page="report-navbar.jsp" />
+
         </div>
 
         <div class="mb-3">

@@ -36,7 +36,8 @@ public class ShopDetailController {
 	public String index(Model model, @RequestParam("id") Integer productId) {
 		Product product = productDao.findById(productId).get();
 		List<Review> reviews = product.getReviews();
-		List<Product> product_similars = productDao.findByProductCategogy(product.getCategory().getId(), product.getId());
+		List<Product> product_similars = productDao.findByProductCategogy(product.getCategory().getId(),
+				product.getId());
 		float sum_Rating = 0;
 		for (Review review : reviews) {
 			sum_Rating += review.getRating();
@@ -44,9 +45,13 @@ public class ShopDetailController {
 		float count_Rating = sum_Rating / reviews.size();
 		float rounded_rating = Math.round(count_Rating);
 		model.addAttribute("product", product);
+		model.addAttribute("productQuanity", sessionService.get("selectedQuantity"));
+		sessionService.remove("selectedQuantity");
 		model.addAttribute("count_rating", rounded_rating);
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("product_similars", product_similars);
+		model.addAttribute("pageActive", "shop");
+
 		return "/client/shop-details";
 	}
 }

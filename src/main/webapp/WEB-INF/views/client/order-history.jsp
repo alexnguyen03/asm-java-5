@@ -109,7 +109,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 m-auto mt-4">
-						<h4>Lịch Sử Đặt Hàng</h4>
+						<!-- <h4>Lịch Sử Đặt Hàng</h4> -->
 						<c:if test="${not empty success}">
 							<div class="alert alert-success alert-dismissible fade show"
 								 role="alert">

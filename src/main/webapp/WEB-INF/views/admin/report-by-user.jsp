@@ -26,25 +26,17 @@
     <div class="app-container ">
       <!-- Sidebar -->
       <jsp:include page="sidebar.jsp" />
-
       <div class="app-content  h-100">
         <!-- Top content -->
-        <jsp:include page="top-content.jsp" />
-
+        <jsp:include page="top-content.jsp">
+          <jsp:param name="title"
+                     value="${title}" />
+        </jsp:include>
         <div class="app-content-actions">
-
-          <a href="/admin/report"
-             class="btn btn-outline-primary">Top 10 sản phẩm bán chạy</a>
-          <a href="/admin/report/report-by-category"
-             class="btn btn-outline-warning">Doanh thu theo loại</a>
-          <a href="/admin/report/report-by-product"
-             class="btn btn-outline-secondary">Doanh thu theo sản phẩm</a>
-          <a href="/admin/report/report-by-user"
-             class="btn btn-info">Người dùng</a>
+          <jsp:include page="report-navbar.jsp" />
         </div>
         <div class="mb-3">
           <div class="app-content-actions-wrapper mb-3">
-
             <div class="filter-button-wrapper d-flex justify-content-betwwen">
               <button class="action-button filter jsFilter mx-3">
                 <span>Lọc</span><svg xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +53,6 @@
                 </svg>
               </button>
               <div class="filter-menu">
-
                 <form action=""
                       class=" mb-3">
                   <div class=" input-group input-group-sm mb-3">
@@ -102,7 +93,6 @@
                       <option value="1">Tai nghe có dây</option>
                     </select>
                   </div>
-
                   <div class="filter-menu-buttons">
                     <button class="filter-button reset">Làm mới</button>
                     <button class="filter-button apply">Thay đổi</button>
@@ -201,12 +191,10 @@
                   <td>${report.totalPrice}</td>
                 </tr>
               </c:forEach>
-
             </tbody>
           </table>
         </div>
       </div>
-
       <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
               integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
               crossorigin="anonymous"></script>

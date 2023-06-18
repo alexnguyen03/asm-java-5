@@ -14,19 +14,21 @@
 			  content="width=device-width, initial-scale=1.0" />
 		<title>Product Manager</title>
 		<link rel="stylesheet"
-			  href="${pageContext.request.contextPath}/css/style-admin.css" />
-
-		<!-- Bootstrap 4.4.1 -->
-		<link rel="stylesheet"
 			  href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
-
+		<link rel="stylesheet"
+			  href="${pageContext.request.contextPath}/css/style-admin.css" />
+		<link rel="stylesheet"
+			  href="${pageContext.request.contextPath}/css/font-awesome.min.css"
+			  type="text/css" />
+		<script src="https://kit.fontawesome.com/c0f581682c.js"
+				crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/c0f581682c.js"
 				crossorigin="anonymous"></script>
 
-		<!-- Bootstrap 4.4.1 -->
+		<!-- Bootstrap 4.4.1
 		<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-		<script src="${pageContext.request.contextPath}/js/script.js"></script>
+		<script src="${pageContext.request.contextPath}/js/script.js"></script> -->
 
 		<style>
 			.video-edit-preview {
@@ -729,11 +731,21 @@
 			</div>
 		</div>
 
-		<!-- Bootstrap 4.4.1 -->
+		<!-- Bootstrap 4.4.1
 		<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-		<script src="${pageContext.request.contextPath}/js/script.js"></script>
+		<script src="${pageContext.request.contextPath}/js/script.js"></script> -->
 
+
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+				integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+				crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+				integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+				crossorigin="anonymous"></script>
+		<!-- Js Plugins -->
+		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/script.js"></script>
 		<script>
 			const addForm = document.getElementById('addForm');
 			addForm.addEventListener('submit', function (event) {

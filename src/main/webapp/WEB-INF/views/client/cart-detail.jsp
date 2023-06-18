@@ -88,6 +88,15 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                   </tr>
                 </thead>
                 <tbody>
+                  <tr>
+                    <td colspan="3">
+                      <c:if test="${cartDetails.size() == 0}">
+                        <div class="alert alert-info text-center">
+                          Chưa có sản phẩm nào trong giỏ hàng của bạn !
+                        </div>
+                      </c:if>
+                    </td>
+                  </tr>
                   <c:forEach var="cd"
                              items="${cartDetails}"
                              varStatus="loop">

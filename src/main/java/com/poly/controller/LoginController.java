@@ -70,15 +70,19 @@ public class LoginController {
 		Account account = dao.findById(session.get("username")).get();
 		session.set("account", account);
 
-		// Cart cart = cartDAO.findByUserName(account.getUsername());
-		// List<CartDetail> cartDetails = cart.getCartDetails();
-		// int totalQuantity = 0;
-		// for (CartDetail cartDetail : cartDetails) {
-		// totalQuantity += cartDetail.getQuantity();
-		// }
-		// session.set("totalCart", totalQuantity);
-		// System.out.println(totalQuantity);
-		// System.out.println(username);
+		Cart cart = cartDAO.findByUserName(account.getUsername());
+		List<CartDetail> cartDetails = cart.getCartDetails();
+		int totalQuantity = 0;
+		for (CartDetail cartDetail : cartDetails) {
+			totalQuantity += cartDetail.getQuantity();
+		}
+		session.set("totalCart", totalQuantity);
+		session.set("adminImg", account.getPhoto());
+		// redirect to ...
+		if (session.get("state").equals("productDetail")) {
+			Integer selectedProductId = session.get("selectedProductId");
+			return "redirect:/shop/product-detail?id=" + selectedProductId;
+		}
 		return "redirect:/";
 	}
 }

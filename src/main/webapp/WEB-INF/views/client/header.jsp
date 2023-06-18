@@ -22,15 +22,13 @@
 						<li class="${pageActive=='shop'?'active':''}"><a href="/shop">Sản
 								phẩm</a></li>
 						<li class="${pageActive=='order-history'?'active':''}"><a href="/shop/order-history">Đơn
-								hàng</a></li>
+								hàng </a></li>
 					</ul>
 				</nav>
 			</div>
 			<div class="col-lg-4 col-md-4">
 				<div class="header__nav__option">
-					<a href="#"
-					   class="search-switch"><img src="img/icon/search.png"
-							 alt="" /></a> <a href="/shop/cart-detail"
+					<a href="/shop/cart-detail"
 					   title="Giỏ hàng"
 					   class="position-relative pr-3"><img src="${pageContext.request.contextPath }/img/icon/cart.png"
 							 alt=""
@@ -48,7 +46,7 @@
 									   aria-hidden="true"></i>
 								</div>
 								<div class="dropdown-menu">
-									<c:if test="${isAdmin}">
+									<c:if test="${sessionScope.isAdmin}">
 										<a class="dropdown-item font-weight-bold"
 										   href="/admin"><img
 												 src="${pageContext.request.contextPath}/img/administrator.png"

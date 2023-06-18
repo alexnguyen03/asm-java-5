@@ -67,8 +67,12 @@ public class ShopController {
     }
 
     @GetMapping("cart-detail")
-    public String getCartDetailView(Model model) {
-
+    public String getCartDetailView(Model model, RedirectAttributes rdAtr) {
+        if (session.get("username") == null) {
+            session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
+            rdAtr.addAttribute("isMessageShop", true);
+            return "redirect:/account/login";
+        }
         // ! mockup get client form session
         Account account = sessionService.get("account");
         model.addAttribute("pageActive", "shop");
@@ -125,7 +129,11 @@ public class ShopController {
     @PostMapping("/cart-detail/add")
     public String addCartDetailFromProductDetail(@RequestParam("productId") Integer productId, RedirectAttributes rdAtr,
             @RequestParam("quantity") Integer quantity) {
+
         if (session.get("username") == null) {
+            session.set("selectedProductId", productId);
+            session.set("selectedQuantity", quantity);
+            session.set("state", "productDetail");
             session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
             rdAtr.addAttribute("isMessageShop", true);
             return "redirect:/account/login";

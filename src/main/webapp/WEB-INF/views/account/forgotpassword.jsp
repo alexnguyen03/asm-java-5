@@ -98,14 +98,13 @@
                                                 <input id="username"
                                                        type="text"
                                                        name="username"
+                                                       value="${username}"
                                                        placeholder="Tên đăng nhập"
                                                        class="form-control bg-white border-left-0 border-md">
                                           </div>
-                                          <div class="ml-4 mt-2 mb-3">
-                                                <span>loi</span>
-                                          </div>
+
                                           <!-- Email Address -->
-                                          <div class="input-group col-lg-12">
+                                          <div class="input-group col-lg-12  mt-4">
                                                 <div class="input-group-prepend">
                                                       <span
                                                             class="input-group-text bg-white px-4 border-md border-right-0">
@@ -115,12 +114,11 @@
                                                 <input id="email"
                                                        type="email"
                                                        name="email"
+                                                       value="${email}"
                                                        placeholder="Email"
                                                        class="form-control bg-white border-left-0 border-md">
                                           </div>
-                                          <div class="ml-4 mt-2 mb-3">
-                                                <span>loi</span>
-                                          </div>
+
                                           <!-- Submit Button -->
                                           <div class="form-group col-lg-12 mx-auto mb-0 mt-4">
                                                 <button type="submit"
