@@ -39,15 +39,9 @@ public class OrderHistoryController {
 	@GetMapping("")
 	public String index(Model model) {
 		if (sessionService.get("account") == null) {
-<<<<<<< Updated upstream
             sessionService.set("messageShop", "Đăng nhập trước khi xem đơn hàng");
             return "redirect:/account/login";
         }
-=======
-			sessionService.set("messageShop", "Đăng nhập trước khi xem giỏ hàng");
-			return "redirect:/account/login";
-		}
->>>>>>> Stashed changes
 
 		Account account = sessionService.get("account");
 		List<Order> orders = orderDao.findByAccountName(account.getUsername());
