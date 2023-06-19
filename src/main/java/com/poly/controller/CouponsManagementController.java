@@ -60,9 +60,11 @@ public class CouponsManagementController {
 		if (search.equals("ed")) {
 			Date date = null;
 			try {
-				date = paramService.getDate(keyword, "yyyy-MM-dd");
+				date = paramService.getDate2(keyword, "yyyy-MM-dd");
 			} catch (Exception e) {
 				model.addAttribute("success", "Không đúng định dạng năm - tháng - ngày !!!");
+				model.addAttribute("isEd", true);
+				return "/admin/coupons";
 			}
 			coupons = dao.findByExpirationDate(date, pageable);
 			if (coupons.getTotalPages() > 0) {
@@ -88,13 +90,6 @@ public class CouponsManagementController {
 				return "/admin/coupons";
 			} catch (Exception e) {
 			}
-			Date date = null;
-			try {
-				date = paramService.getDate(keyword, "yyyy-MM-dd");
-				model.addAttribute("success", "Tên giảm giá phải là ký tự !!! ");
-				model.addAttribute("isName", true);
-			} catch (Exception e) {
-			}
 			coupons = dao.findByCouponName("%" + keyword + "%", pageable);
 			if (coupons.getTotalPages() > 0) {
 				model.addAttribute("coupons", coupons);
@@ -109,10 +104,11 @@ public class CouponsManagementController {
 		} else if (search.equals("cd")) {
 			Date date = null;
 			try {
-				date = paramService.getDate(keyword, "yyyy-MM-dd");
+				date = paramService.getDate2(keyword, "yyyy-MM-dd");
 			} catch (Exception e) {
 				model.addAttribute("success", "Không đúng định dạng năm - tháng - ngày !!!");
 				model.addAttribute("isCd", true);
+				return "/admin/coupons";
 			}
 			coupons = dao.findByCreatedDate(date, pageable);
 			if (coupons.getTotalPages() > 0) {
@@ -148,8 +144,17 @@ public class CouponsManagementController {
 	public String update(Model model, @Validated @ModelAttribute("coupon") Coupon coupon, BindingResult result) {
 		if (result.hasErrors()) {
 			return "/admin/coupons-update";
-		} else if (coupon.getExpirationDate().before(new Date())) {
-			model.addAttribute("sussces", "Ngày hết hạn phải trước ngày hiện tại !!!");
+		} else if (coupon.getExpirationDate().before(coupon.getCreatedDate())) {
+			model.addAttribute("sussces2", "Ngày hết hạn phải trước hơn ngày bắt đầu !!!");
+			return "/admin/coupons-update";
+		}else if (coupon.getCreatedDate().after(coupon.getExpirationDate())) {
+			model.addAttribute("sussces2", "Ngày bắt đầu không được trước ngày hết hạn !!!");
+			return "/admin/coupons-update";
+		}else if (coupon.getExpirationDate().after(coupon.getCreatedDate())) {
+			model.addAttribute("sussces2", "Ngày bắt đầu không thể trước ngày hết hạn !!!");
+			return "/admin/coupons-update";
+		}else if (coupon.getExpirationDate().before(new Date())) {
+			model.addAttribute("sussces", "Ngày hết hạn phải nhỏ ngày hiện tại !!!");
 			return "/admin/coupons-update";
 		} else {
 			dao.save(coupon);
@@ -163,8 +168,11 @@ public class CouponsManagementController {
 	public String create(Model model, @Validated @ModelAttribute("coupon") Coupon coupon, BindingResult result) {
 		if (result.hasErrors()) {
 			return "/admin/coupons-add";
-		} else if (coupon.getExpirationDate().before(new Date())) {
-			model.addAttribute("sussces", "Ngày hết hạn phải trước ngày hiện tại !!!");
+		} else if (coupon.getExpirationDate().before(coupon.getCreatedDate())) {
+			model.addAttribute("sussces", "Ngày hết hạn phải lớn hơn ngày bắt đầu !!!");
+			return "/admin/coupons-add";
+		}else if (coupon.getExpirationDate().before(new Date())) {
+			model.addAttribute("sussces", "Ngày hết hạn phải nhỏ ngày hiện tại !!!");
 			return "/admin/coupons-add";
 		} else {
 			dao.save(coupon);

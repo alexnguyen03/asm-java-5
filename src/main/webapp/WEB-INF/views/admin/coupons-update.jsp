@@ -67,22 +67,31 @@
 							<div class="col-lg-6 mt-3">
 								<div class="form-group">
 									<label for="reduced_date" class="form-label fw-bold">Ngày
+										bắt đầu</label> <input type="date" name="startDate"
+										class="form-control" id="reduced_date" value="${ coupon.startDate }">
+									<form:errors path="startDate" cssClass="msg_errols"></form:errors>
+									<p class="msg_errols">${ sussces2 }</p>
+								</div>
+							</div>
+							<div class="col-lg-6 mt-3">
+								<div class="form-group">
+									<label for="reduced_date" class="form-label fw-bold">Ngày
 										hết hạn</label> <input type="date" name="expirationDate"
 										class="form-control" id="reduced_date" value="${ coupon.expirationDate }">
 									<form:errors path="expirationDate" cssClass="msg_errols"></form:errors>
 									<p class="msg_errols">${ sussces }</p>
 								</div>
 							</div>
-							<div class="col-lg-12 mt-3">
+							<div class="col-lg-6 mt-4">
 								<label>Trạng thái</label><br>
 								<div class="form-check-inline">
 									<input class="form-check-input" type="radio" name="activated"
-										id="hoatdong" value="true" checked> <label
+										id="hoatdong" value="true" ${ coupon.activated ? 'checked' : '' }> <label
 										class="form-check-label" for="hoatdong"> Hoạt động </label>
 								</div>
 								<div class="form-check-inline">
 									<input class="form-check-input" type="radio" name="activated"
-										id="khonghoatdong" value="false"> <label
+										id="khonghoatdong" value="false"  ${ coupon.activated ? '' : 'checked' }> <label
 										class="form-check-label" for="khonghoatdong"> Không
 										hoạt động </label>
 								</div>

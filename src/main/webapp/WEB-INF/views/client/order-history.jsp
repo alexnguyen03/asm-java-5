@@ -173,34 +173,41 @@
 									<select class="custom-select mr-2" id="inputGroupSelect01"
 										name="status" style="height: 40px;">
 										<option value="select">Chọn trạng thái</option>
-										<option value="c"
+										<option value="C"
 											${
 													isC
 													? 'selected'
 													: ''
 													}>Đang
 											chờ</option>
-										<option value="xl"
+										<option value="XL"
 											${
 													isXl
 													? 'selected'
 													: ''
 													}>Đang
 											xử lý</option>
-										<option value="g"
+										<option value="G"
 											${
 													isG
 													? 'selected'
 													: ''
 													}>Đang
 											giao</option>
-										<option value="dg"
+										<option value="DG"
 											${
 													isDg
 													? 'selected'
 													: ''
 													}>Đã
 											giao</option>
+											<option value="H"
+											${
+													isH
+													? 'selected'
+													: ''
+													}>Đã
+											hủy</option>
 									</select>
 								</div>
 								<button type="submit" class="btn btn-primary"
