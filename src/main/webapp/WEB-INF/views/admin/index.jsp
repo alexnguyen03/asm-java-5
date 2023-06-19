@@ -39,10 +39,53 @@
 	border: none;
 	border-radius: 8px;
 }
+
+.toast {
+	position: absolute;
+	top: 0;
+	right: 1.5rem;
+	transform: translateX(100%);
+	z-index: 100;
+	top: 3.5rem;
+	transition: all 0.5s;
+}
+
+.toast.show {
+	transform: translateX(0);
+}
 </style>
 </head>
 
 <body>
+
+	<c:if test="${successChangePW == true}">
+		<!-- toast msg  -->
+		<div class="toast show" role="alert" aria-live="assertive"
+			aria-atomic="true" data-delay="3000">
+			<div class="toast-header bg-dark">
+				<strong class="mr-auto font-weight-bold text-white text-center">
+					<i class='bx bxs-right-arrow mr-2'></i> 3MEMS Shop
+				</strong>
+				<button type="button" class="ml-2 mb-1 close text-white"
+					data-dismiss="toast" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="toast-body font-weight-bold">
+				<p class="m-0 p-0">${messageShop}</p>
+			</div>
+		</div>
+		<!-- toast msg  -->
+
+		<script>
+        setTimeout(() => {
+          const toast = document.querySelector(".toast");
+          toast.classList.remove("show");
+        }, 5000);
+      </script>
+	</c:if>
+
+
 	<div class="app-container">
 		<!-- Sidebar -->
 		<jsp:include page="sidebar.jsp" />
@@ -61,7 +104,7 @@
 							<div class="col-lg-3 col-sm-6">
 								<div class="card">
 									<div class="card-body">
-										<h5 class="card-title font-weight-bold">
+										<h5 class="card-title">
 											<i class='bx bxs-right-arrow mr-2'></i>Cập nhật
 										</h5>
 										<h6 class="card-text font-weight-bold">
@@ -75,7 +118,7 @@
 							<div class="col-lg-3 col-sm-6">
 								<div class="card">
 									<div class="card-body">
-										<h5 class="card-title font-weight-bold">
+										<h5 class="card-title">
 											<i class='bx bxs-right-arrow mr-2'></i>Tổng doanh thu
 										</h5>
 										<h4 class="card-text font-weight-bold">
@@ -91,12 +134,12 @@
 							<div class="col-lg-3 col-sm-6">
 								<div class="card">
 									<div class="card-body">
-										<h5 class="card-title font-weight-bold">
+										<h5 class="card-title">
 											<i class='bx bxs-right-arrow mr-2'></i>Doanh thu tháng
 										</h5>
 										<h4 class="card-text font-weight-bold">
-											<fmt:formatNumber value="${totalRevenueMonthPast}"
-												type="currency" currencySymbol="" />
+											<%-- 											<fmt:formatNumber value="${totalRevenueMonthPast}" --%>
+											<%-- 												type="currency" currencySymbol="" /> --%>
 											<span style="color: #dc3545">đ</span>
 										</h4>
 									</div>
@@ -106,7 +149,7 @@
 							<div class="col-lg-3 col-sm-6">
 								<div class="card">
 									<div class="card-body">
-										<h5 class="card-title font-weight-bold">
+										<h5 class="card-title">
 											<i class='bx bxs-right-arrow mr-2'></i>Đơn chờ xử lí
 										</h5>
 										<h4 class="card-text font-weight-bold">${orderXLCount}</h4>
@@ -154,30 +197,27 @@
 												<i class='bx bxs-right-arrow mr-2'></i>Giao dịch
 											</h5>
 											<div class="row">
-<%-- 												<c:forEach var="l" items="${latestOrders}"> --%>
-<!-- 													Item -->
-<!-- 													<div class="col-12"> -->
-<!-- 														<div -->
-<!-- 															class="d-flex justify-content-between align-items-center flex-wrap"> -->
-<!-- 															<div -->
-<!-- 																class="p-2 d-flex justify-content-center align-items-center" -->
-<!-- 																style="background: #dc3545;; width: 35px; height: 35px; border-radius: 50%;"> -->
-<!-- 																<i class='bx bx-headphone' style="color: #fff;"></i> -->
-<!-- 															</div> -->
-<!-- 															<div class="font-weight-bold d-flex flex-column"> -->
-<%-- 																<h6 class="text-truncate" style="max-width: 250px">${l.name}</h6> --%>
-<%-- 																<p class="text-muted">${l.createDate}</p> --%>
-<!-- 															</div> -->
-<%-- 															<c:forEach var="o" items="${l.orderDetails}"> --%>
-
-<!-- 																<div class="font-weight-bold d-flex flex-column"> -->
-<%-- 																	<h6 style="color: #dc3545">${o.order.status}</h6> --%>
-<%-- 																	<p class="text-muted">${o.order.id}</p> --%>
-<!-- 																</div> -->
-<%-- 															</c:forEach> --%>
-<!-- 														</div> -->
-<!-- 													</div> -->
-<%-- 												</c:forEach> --%>
+												<c:forEach var="l" items="${top10SoldToday}">
+													Item
+													<div class="col-12">
+														<div
+															class="d-flex justify-content-between align-items-center flex-wrap">
+															<div
+																class="p-2 d-flex justify-content-center align-items-center"
+																style="background: #dc3545;; width: 35px; height: 35px; border-radius: 50%;">
+																<i class='bx bx-headphone' style="color: #fff;"></i>
+															</div>
+															<div class="font-weight-bold d-flex flex-column">
+																<h6 class="text-truncate" style="max-width: 250px">${l.product.name}</h6>
+																<p class="text-muted">${l.product.createDate}</p>
+															</div>
+															<div class="font-weight-bold d-flex flex-column">
+																<h6 style="color: #dc3545">${l.order.status}</h6>
+																<p class="text-muted">${l.order.id}</p>
+															</div>
+														</div>
+													</div>
+												</c:forEach>
 
 											</div>
 											<!-- Item -->

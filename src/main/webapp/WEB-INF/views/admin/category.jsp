@@ -346,6 +346,7 @@
 						</div>
 					</c:forEach>
 
+					<!-- Pagination -->
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="product__pagination">
@@ -354,9 +355,7 @@
 										   end="${page.totalPages - 1}">
 									<a class="${page.number==i?'active':''}"
 									   href="/admin/category-manager?p=${i}">${i+1}</a>
-								</c:forEach>
-								<span>...</span> <a
-								   href="/admin/category-manager?p=${page.totalPages - 1}">${page.totalPages}</a>
+								</c:forEach>			
 							</div>
 						</div>
 					</div>

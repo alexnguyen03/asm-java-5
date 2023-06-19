@@ -50,9 +50,6 @@ public class ProductManagementController {
 
 	@GetMapping("")
 	private String getProductManager(Model model, @RequestParam("p") Optional<Integer> p) {
-		
-		session.set("stateAdmin", "adminRole");
-
 		Product item = new Product();
 		model.addAttribute("item", item);
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
@@ -94,7 +91,7 @@ public class ProductManagementController {
 		if (success) {
 			session.set("messageProductManager", "Cập nhật sản phẩm thành công");
 		} else {
-			session.set("messageProductManager", "Cập nhật phẩm thành công");
+			session.set("messageProductManager", "Cập nhật sản phẩm thất bại");
 			return "redirect:/admin/product-manager";
 		}
 
@@ -166,27 +163,32 @@ public class ProductManagementController {
 	}
 
 	@RequestMapping("filter-product-by-available")
-	public String FilterAvailableAndPageProduct(Model model,
-			@RequestParam(value = "available", required = false) Boolean isAvailable,
+	public String FilterAvailableAndPageProduct(Model model, @RequestParam(value = "available") String available,
 			@RequestParam("p") Optional<Integer> p) {
 		// Init Product
 		Product item = new Product();
 		model.addAttribute("item", item);
 
+//		Pagination
+		Pageable pageable = PageRequest.of(p.orElse(0), 5);
+
 		// Remove a kwordk search session
 		session.remove("keywords");
+		Boolean avaiAbleStore = true;
 
-		session.set("isAvaiable", "true");
-
-		if (session.get("isAvaiable") != null) {
-			isAvailable = true;
+		if (available.equals("all")) {
+			Page<Product> page = productDAO.findAll(pageable);
+			model.addAttribute("page", page);
+		} else {
+			if (available.equals("1")) {
+				avaiAbleStore = true;
+			} else {
+				avaiAbleStore = false;
+			}
+			Page<Product> page = productDAO.findProductsByAvailability(avaiAbleStore, pageable);
+			model.addAttribute("page", page);
 		}
-
-		System.out.println(isAvailable);
-
-		Pageable pageable = PageRequest.of(p.orElse(0), 5);
-		Page<Product> page = productDAO.findProductsByAvailability(isAvailable, pageable);
-		model.addAttribute("page", page);
+		System.out.println(available);
 
 		// Lst Category
 		List<Category> category = categoryDAO.findAll();

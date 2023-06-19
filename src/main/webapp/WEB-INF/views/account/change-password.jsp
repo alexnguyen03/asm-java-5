@@ -93,12 +93,9 @@ body {
 				</form>
 
 				<p class="text-left mt-3">
-					<a href="${not empty sessionScope.stateAdmin ?'/admin':'/' }"
-						class="font-weight-bold"
+					<a href="/" class="font-weight-bold"
 						style="color: #0c2b4b; text-decoration: underline;">Trở về</a>
-					<%-- <%=session.removeAttribute("stateAdmin")%> --%>
 				</p>
-
 			</div>
 		</div>
 	</div>

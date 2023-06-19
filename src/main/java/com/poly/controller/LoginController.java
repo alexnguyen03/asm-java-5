@@ -41,10 +41,10 @@ public class LoginController {
 		}
 
 		// if (rdAtr.getAttribute("isMessageShop").equals("HaveMessage")
-		// 		&& rdAtr.getAttribute("isProduct").equals("product")) {
-		// 	session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
+		// && rdAtr.getAttribute("isProduct").equals("product")) {
+		// session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
 		// } else {
-		// 	session.remove("messageShop");
+		// session.remove("messageShop");
 		// }
 
 		return "/account/login";
@@ -90,7 +90,7 @@ public class LoginController {
 		session.set("totalCart", totalQuantity);
 		session.set("adminImg", account.getPhoto());
 		// redirect to ...
-		if (session.get("state").equals("productDetail")) {
+		if (session.get("state") != null && session.get("state").equals("productDetail")) {
 			Integer selectedProductId = session.get("selectedProductId");
 			return "redirect:/shop/product-detail?id=" + selectedProductId;
 		}

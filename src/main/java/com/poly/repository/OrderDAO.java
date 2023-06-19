@@ -48,7 +48,7 @@ public interface OrderDAO extends JpaRepository<Order, Long> {
 	Double getTotalRevenue();
 
 	// SELECT revenue of 1 month past
-	@Query("SELECT SUM(o.totalPrice) FROM Order o WHERE o.createDate BETWEEN :startDate AND :endDate")
+	@Query("SELECT SUM(c.totalPrice) FROM Order c WHERE c.createDate BETWEEN :startDate AND :endDate")
 	Double getTotalRevenueByMonth(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
 	// SELECT ALL PRODUCT SOLD IN DAY

@@ -39,7 +39,7 @@ public class OrderHistoryController {
 	@GetMapping("")
 	public String index(Model model) {
 		if (sessionService.get("account") == null) {
-            sessionService.set("messageShop", "Đăng nhập trước khi xem giỏ hàng");
+            sessionService.set("messageShop", "Đăng nhập trước khi xem đơn hàng");
             return "redirect:/account/login";
         }
 

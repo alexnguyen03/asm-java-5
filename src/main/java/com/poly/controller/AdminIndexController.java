@@ -15,8 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poly.model.Order;
+import com.poly.model.OrderDetail;
 import com.poly.model.Product;
+import com.poly.model.ReportByProduct;
 import com.poly.repository.OrderDAO;
+import com.poly.repository.OrderDetailDAO;
 import com.poly.repository.ProductDAO;
 import com.poly.service.SessionService;
 
@@ -31,6 +34,9 @@ public class AdminIndexController {
 
 	@Autowired
 	OrderDAO orderDAO;
+
+	@Autowired
+	OrderDetailDAO orderDetailDAO;
 
 	@Autowired
 	SessionService session;
@@ -51,20 +57,26 @@ public class AdminIndexController {
 
 //        SELECT All REvenue
 		Double totalRevenue = orderDAO.getTotalRevenue();
+		if (totalRevenue == null) {
+			totalRevenue = 0.0;
+		}
 		model.addAttribute("totalRevenue", totalRevenue);
 
 //        SELECT Revenue from 1 month past
-		LocalDate endDate = LocalDate.now(); // Ngày hiện tại
-		LocalDate startDate = endDate.minusMonths(1); // 1 tháng trước
-		Date startMonthPast = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-		Date endMonthPast = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//		LocalDate endDate = LocalDate.now(); // Ngày hiện tại
+//		LocalDate startDate = endDate.minusMonths(1); // 1 tháng trước
+//		Date startMonthPast = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//		Date endMonthPast = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 //		System.out.println(startMonthPast);
 //		System.out.println(endMonthPast);
-		Double totalRevenueMonthPast = orderDAO.getTotalRevenueByMonth(startMonthPast, endMonthPast);
-		if (totalRevenueMonthPast == null) {
-			totalRevenueMonthPast = 0.0;
-		}
-		model.addAttribute("totalRevenueMonthPast", totalRevenueMonthPast);
+		LocalDate localDate = LocalDate.now();
+		int month = 0;
+		int year = 0;
+		month = localDate.getMonthValue();
+		year = localDate.getYear();
+
+		List<ReportByProduct> reports = orderDetailDAO.getReportByProductsByMonth(month, year);
+		model.addAttribute("totalRevenueMonthPast", reports);
 
 //		SELECT ALL SOLD PRODUCT IN DAY
 		LocalDate today = LocalDate.now();
@@ -75,9 +87,9 @@ public class AdminIndexController {
 		model.addAttribute("totalProductsSoldToday", totalProductsSoldToday);
 
 //		Lastest Order 
-//		List<Product> latestOrders = orderDAO.findLastestOrder(PageRequest.of(0, 10));
-//		System.out.println(latestOrders);
-//		model.addAttribute("latestOrders", latestOrders);
+//		List<OrderDetail> topOrderDetails = orderDetailDAO.findTop10ByOrderByCreateDateDesc();
+//		model.addAttribute("top10SoldToday", topOrderDetails);
+//		 
 		return "/admin/index";
 	}
 }

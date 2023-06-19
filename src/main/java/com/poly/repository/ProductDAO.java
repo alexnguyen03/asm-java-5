@@ -18,6 +18,9 @@ import jakarta.transaction.Transactional;
 
 public interface ProductDAO extends JpaRepository<Product, Integer> {
 	// ******************** select AREA ********************
+	//	SELECT ALL WHERE AVAIABLE == true
+	Page<Product> findByAvailable(Boolean available,Pageable pageable);
+
 	// Select Top 10 product
 	@Query("SELECT p " + "FROM Product p " + "JOIN OrderDetail od ON p.id = od.product.id " + "GROUP BY p "
 			+ "ORDER BY COUNT(od.id) DESC LIMIT 10")
@@ -25,10 +28,10 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 
 	// SELECT TOP 10 lastest
 	List<Product> findTop10ByOrderByCreateDateDesc();
-	
-	//	SELECT count TOP PRODUCT LASTER
+
+	// SELECT count TOP PRODUCT LASTER
 	List<Product> findByCreateDateBetween(Date start, Date end);
-	
+
 	// Select by price between
 	Page<Product> findByPriceBetween(double minPrice, double maxPrice, Pageable pageable);
 
@@ -59,7 +62,7 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 
 	@Query("SELECT c FROM Product c WHERE c.category.id = ?1 AND c.id != ?2")
 	List<Product> findByProductCategogy(String id, Integer idProduct);
-	
+
 	// cập nhật lại số lượng sản phẩm khi nhấn thanh toán
 	@Modifying
 	@Transactional

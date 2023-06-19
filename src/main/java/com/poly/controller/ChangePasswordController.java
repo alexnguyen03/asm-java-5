@@ -64,4 +64,4 @@ public class ChangePasswordController {
 
 		return "/account/change-password";
 	}
-}
+} 
