@@ -40,140 +40,44 @@
 
         <div class="mb-3">
           <div class="app-content-actions-wrapper mb-3">
-            <div class="filter-button-wrapper d-flex justify-content-betwwen">
-              <button class="action-button filter jsFilter mx-3">
-                <span>Lọc</span><svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="2"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                     class="feather feather-filter">
-                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-                </svg>
-              </button>
-              <div class="filter-menu">
-
-                <form action=""
-                      class=" mb-3">
-                  <div class=" input-group input-group-sm mb-3">
-                    <div class="input-group-prepend"> <button type="button"
-                              class="btn btn-outline-secondary">Ngày</button> <button type="button"
-                              class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"> <span class="sr-only">Toggle Dropdown</span> </button>
-                      <div class="dropdown-menu"> <a class="dropdown-item"
-                           href="#">Thống kê theo tuần</a>
-                        <a class="dropdown-item"
-                           href="#">Thống kê theo tháng</a>
-                        <a class="dropdown-item"
-                           href="#">Thống kê theo năm</a>
-                      </div>
-                    </div>
-                    <input type="week"
-                           class="form-control"
-                           aria-label="Text input with segmented dropdown button">
-                  </div>
-                  <div class="input-group input-group-sm mr-3">
-                    <label>Số lượng bán</label>
-                    <select class=""
-                            id="inputGroupSelect01">
-                      <option selected>Chọn số lượng</option>
-                      <option value="1">Dưới 100 sản phẩm</option>
-                      <option value="1">Từ 100 - 200 sản phẩm</option>
-                      <option value="1">Từ 200 - 300 sản phẩm</option>
-                    </select>
-                  </div>
-                  <div class="input-group input-group-sm mr-3">
-                    <label>Loại sản phẩm</label>
-                    <select class=""
-                            id="inputGroupSelect01">
-                      <option selected>Chọn loại</option>
-                      <option value="1">Tai nghe không dây</option>
-                      <option value="1">Tai nghe có dây</option>
-                    </select>
-                  </div>
-
-                  <div class="filter-menu-buttons">
-                    <button class="filter-button reset">Làm mới</button>
-                    <button class="filter-button apply">Thay đổi</button>
-                  </div>
-                </form>
+            <form action="/admin/report/report-by-product"
+                  class="d-flex justify-content-betwwen"
+                  method="post">
+              <div class="">
+                <select class="custom-select"
+                        name="searchKey"
+                        id="searchKey">
+                  <option disabled
+                          selected
+                          value="defaultVal">Chọn tiêu chí hiển thị thống kê</option>
+                  <option value="date">Thống kê theo ngày</option>
+                  <option value="week">Thống kê theo tuần</option>
+                  <option value="month">Thống kê theo tháng</option>
+                  <option value="year">Thống kê theo năm</option>
+                </select>
               </div>
-            </div>
-            <button class="action-button list active d-none"
-                    title="List View">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="16"
-                   height="16"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-list">
-                <line x1="8"
-                      y1="6"
-                      x2="21"
-                      y2="6" />
-                <line x1="8"
-                      y1="12"
-                      x2="21"
-                      y2="12" />
-                <line x1="8"
-                      y1="18"
-                      x2="21"
-                      y2="18" />
-                <line x1="3"
-                      y1="6"
-                      x2="3.01"
-                      y2="6" />
-                <line x1="3"
-                      y1="12"
-                      x2="3.01"
-                      y2="12" />
-                <line x1="3"
-                      y1="18"
-                      x2="3.01"
-                      y2="18" />
-              </svg>
-            </button>
-            <button class="action-button grid d-none"
-                    title="Grid View">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="16"
-                   height="16"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-grid">
-                <rect x="3"
-                      y="3"
-                      width="7"
-                      height="7" />
-                <rect x="14"
-                      y="3"
-                      width="7"
-                      height="7" />
-                <rect x="14"
-                      y="14"
-                      width="7"
-                      height="7" />
-                <rect x="3"
-                      y="14"
-                      width="7"
-                      height="7" />
-              </svg>
-            </button>
+              <div class="">
+                <input type="date"
+                       class="form-control"
+                       name="searchVal"
+                       id="filterByDate">
+              </div>
+              <button class="btn btn-primary ml-2">Xem thống kê</button>
+            </form>
+            <a href="/admin/report/report-by-product"
+               class="ml-3 btn btn-sm btn-outline-primary "
+               title="Làm mới">Làm mới <i class="fa fa-refresh"
+                 aria-hidden="true"></i></a>
           </div>
+          <c:if test="${searchKey != null}">
+            <div class="alert alert-info w-50">Bạn đang xem thống kê trong ${searchKey != 'date' ?( searchKey != 'month'
+              ?
+              (searchKey != 'week' ? (searchKey == 'year' ? 'Năm' : '') : 'Tuần'): 'Tháng'): 'Ngày' } ${searchVal}
+            </div>
+          </c:if>
+          <c:if test="${msg != null}">
+            <div class="alert alert-warning">${msg}</div>
+          </c:if>
           <table class="table ">
             <thead>
               <tr>
@@ -185,6 +89,13 @@
               </tr>
             </thead>
             <tbody>
+              <c:if test="${reports.size() == 0 }">
+                <tr>
+                  <td colspan="5">
+                    <div class="alert alert-info text-center">Không có thông tin cần thống kê</div>
+                  </td>
+                </tr>
+              </c:if>
               <c:forEach items="${reports}"
                          var="report"
                          varStatus="loop">
@@ -286,31 +197,39 @@
       <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
       <script src="${pageContext.request.contextPath}/js/script.js"></script>
       <script>
-        $('#deleteModal').on('show.bs.modal', event => {
-          var button = $(event.relatedTarget);
-          var modal = $(this);
-          // Use above variables to manipulate the DOM
-        });
-        $(document).ready(function () {
-          // Gets the video src from the data-src on each button
-          var $imageSrc;
-          console.log($('.image>img'));
-          $('.image img').click(function () {
-            $imageSrc = $(this).data('bigimage');
-          });
-          console.log($imageSrc);
-          // when the modal is opened autoplay it  
-          $('#prevImg').on('shown.bs.modal', function (e) {
-            // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
-            $("#image").attr('src', $imageSrc);
-          })
-          // reset the modal image
-          $('#prevImg').on('hide.bs.modal', function (e) {
-            // a poor man's stop video
-            $("#image").attr('src', '');
-          })
-          // document ready  
-        });
+        // change input type form select 
+        var searchKey = document.getElementById('searchKey')
+        var filterByDate = document.getElementById('filterByDate')
+        window.onload = function (e) {
+          if (searchKey.value === 'defaultVal') {
+            filterByDate.readOnly = true
+          }
+          if (searchKey.value === 'date') {
+            filterByDate.type = 'date'
+          }
+          if (searchKey.value === 'week') {
+            filterByDate.type = 'week'
+          }
+          if (searchKey.value === 'month') {
+            filterByDate.type = 'month'
+          }
+          if (searchKey.value === 'year') {
+            filterByDate.type = 'year'
+          }
+        }
+        searchKey.addEventListener('change', function handleSearchChange(e) {
+          filterByDate.readOnly = false
+          if (e.target.value === 'date') {
+            filterByDate.type = 'date'
+          } else if (e.target.value === 'week') {
+            filterByDate.type = 'week'
+          } else if (e.target.value === 'month') {
+            filterByDate.type = 'month'
+          } else if (e.target.value === 'year') {
+            filterByDate.type = 'date'
+            filterByDate.pattern = 'yy'
+          }
+        })
       </script>
   </body>
 

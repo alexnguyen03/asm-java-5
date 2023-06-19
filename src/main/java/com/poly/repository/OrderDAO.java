@@ -1,5 +1,6 @@
 package com.poly.repository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -58,4 +59,14 @@ public interface OrderDAO extends JpaRepository<Order, Long> {
 	@Query("SELECT DISTINCT p FROM Product p JOIN FETCH p.orderDetails od "
 			+ "JOIN FETCH od.order ORDER BY od.order.createDate DESC")
 	List<Product> findLastestOrder(PageRequest of);
+
+	// get turnover
+	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE o.createDate = ?1")
+	Double getTurnoverByDay(Date today);
+
+	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE MONTH(o.createDate) = MONTH(?1) AND YEAR(o.createDate) = YEAR(?1)")
+	Double getTurnoverByMonth(Date today);
+
+	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE YEAR(o.createDate) = YEAR(?1)")
+	Double getTurnoverByYear(Date today);
 }
