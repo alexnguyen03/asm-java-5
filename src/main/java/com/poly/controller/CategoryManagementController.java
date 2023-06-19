@@ -29,6 +29,9 @@ public class CategoryManagementController {
 
 	@GetMapping("")
 	public String getCategoryManager(Model model, @RequestParam("p") Optional<Integer> p) {
+//		Set AdminState
+		session.set("stateAdmin", "admin");
+		
 		// init category
 		Category item = new Category();
 		model.addAttribute("item", item);

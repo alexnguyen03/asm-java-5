@@ -20,8 +20,6 @@
 	type="text/css" />
 <script src="https://kit.fontawesome.com/c0f581682c.js"
 	crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/c0f581682c.js"
-	crossorigin="anonymous"></script>
 
 <!-- Bootstrap 4.4.1
 		<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
@@ -246,14 +244,14 @@
 
 					<form action="/admin/product-manager/filter-product-by-category"
 						method="POST" class="d-flex ml-3">
-						<select id="category" name="category.id" class="form-control"
+						<select id="category" name="category" class="form-control"
 							onchange="this.form.submit()">
-							<option value="">Lọc theo danh mục</option>
+							<option disabled="disabled">Lọc theo danh mục</option>
 							<c:forEach items="${lst_category}" var="category">
 								<option value="${category.id}"
-									${product.category.id==category.id
-											? "selected"
-											: ""
+									${categoryId == category.id
+											? 'selected'
+											: ''
 											}>${category.name}</option>
 							</c:forEach>
 						</select>
@@ -265,10 +263,10 @@
 				<!-- App action bar -->
 				<div class="app-content-actions-wrapper">
 					<div class="filter-button-wrapper d-flex justify-content-betwwen">
-						<a href="/admin/product-manager" class="btn btn-outline-dark mr-3">Rest
-							Page</a>
-						<button type="button" class="btn btn-dark" data-toggle="modal"
-							data-target="#AddProductModal">Thêm sản phẩm</button>
+						<a href="/admin/product-manager" class="btn btn-outline-dark mr-3"><i
+							class="fa fa-refresh" aria-hidden="true"></i></a> <a
+							href="/admin/product-manager/add" class="btn btn-dark">Thêm
+							sản phẩm</a>
 					</div>
 				</div>
 			</div>
@@ -277,95 +275,81 @@
 			<div class="products-area-wrapper tableView overflow-auto">
 				<!-- Product header -->
 				<div class="products-header">
-					<div class="product-cell image">
-						ID
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-									<path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-								</svg>
-						</button>
+					<div class="product-cell category">
+						ID<a
+							href="/admin/product-manager?field=id&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button  ${field == 'id' ? 'text-primary' : '' }">
+							${field == 'id' && d == true
+                ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
 					<div class="product-cell category">
-						Tên sản phẩm
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-									<path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-								</svg>
-						</button>
+						Tên sản phẩm<a
+							href="/admin/product-manager?field=name&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button  ${field == 'name' ? 'text-primary' : '' }">
+							${field == 'name' && d == true
+                ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
 					<div class="product-cell status-cell">
 						Hình ảnh
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-									<path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-								</svg>
-						</button>
 					</div>
-					<div class="product-cell sales">
-						Giá thành
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-									<path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-								</svg>
-						</button>
+					<div class="product-cell category">
+						Giá sản phẩm<a
+							href="/admin/product-manager?field=price&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button  ${field == 'price' ? 'text-primary' : '' }">
+							${field == 'price' && d == true
+                ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
-					<div class="product-cell stock">
-						Ngày tạo
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-									<path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-								</svg>
-						</button>
+					<div class="product-cell category">
+						Ngày tạo<a
+							href="/admin/product-manager?field=createDate&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button  ${field == 'createDate' ? 'text-primary' : '' }">
+							${field == 'createDate' && d == true
+                ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
-					<div class="product-cell price">
-						Trạng thái
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-									<path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-								</svg>
-						</button>
+					<div class="product-cell category">
+						Trạng thái<a
+							href="/admin/product-manager?field=available&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button  ${field == 'available' ? 'text-primary' : '' }">
+							${field == 'available' && d == true
+                ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
-					<div class="product-cell category_id">
-						Mã danh mục
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-									<path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-								</svg>
-						</button>
+					<div class="product-cell category">
+						Tên danh mục<a
+							href="/admin/product-manager?field=category&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button  ${field == 'category' ? 'text-primary' : '' }">
+							${field == 'category' && d == true
+                ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
-					<div class="product-cell category_id">
-						Số lượng
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-									<path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-								</svg>
-						</button>
+					<div class="product-cell category">
+						Số lượng<a
+							href="/admin/product-manager?field=quantity&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button  ${field == 'quantity' ? 'text-primary' : '' }">
+							${field == 'quantity' && d == true
+                ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
 					</div>
 					<div class="product-cell category_id">
-						Thao tác
-						<button class="sort-button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								viewBox="0 0 512 512">
-									<path fill="currentColor"
-									d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-								</svg>
-						</button>
+						Thao tác					
 					</div>
 				</div>
 
@@ -404,8 +388,8 @@
 							<span class="status ${product.available?'active':'disabled'}">${product.available?'Hiển thị':'Ẩn'}</span>
 						</div>
 						<div class="product-cell sales">
-							<span class="cell-label">Mã danh mục:</span>
-							${product.category.id}
+							<span class="cell-label">Tên danh mục:</span>
+							${product.category.name}
 						</div>
 						<div class="product-cell stock">
 							<span class="cell-label">Số lượng:</span>${product.quantity}
@@ -413,145 +397,9 @@
 						<div class="product-cell action">
 							<div class="row">
 								<div class="col-6">
-									<button data-toggle="modal"
-										data-target="#UpdateProductModal${product.id}"
+									<a href="/admin/product-manager/edit/${product.id}"
 										class="btn btn-outline-primary font-weight-bold"
-										style="min-width: 120px">Cập nhật</button>
-								</div>
-							</div>
-						</div>
-
-						<!-- Update Product -->
-						<div class="modal fade" id="UpdateProductModal${product.id}"
-							tabindex="-1" role="dialog"
-							aria-labelledby="UpdateProductModalLabel${product.id}"
-							aria-hidden="true">
-							<div class="modal-dialog modal-xl" role="document">
-								<div class="modal-content">
-									<div class="modal-body container-fluid">
-										<div class="mb-5 d-flex jusitfy-content-between">
-											<h5 class="modal-title container-fluid font-italic"
-												id="UpdateProductModalLabel${product.id}">
-												<i class="fa-regular fa-pen-to-square"></i> Cập nhật sản
-												phẩm
-											</h5>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-
-										<!-- Form -->
-										<form action="/admin/product-manager/update" class="row"
-											method="POST" enctype="multipart/form-data">
-											<!-- Left form -->
-											<div class="col-4">
-												<!-- Img-priview -->
-												<div class="col-12">
-													<div class="mb-3">
-														<label for="" class="font-weight-bold">Hình ảnh
-															sản phẩm</label><label for="Video-edit-myPicture"
-															class="video-edit-preview"> <img
-															src="${pageContext.request.contextPath}/img/product/${product.image}"
-															alt="${product.name}" />
-														</label> <input name="image" value="${product.image}"
-															hidden="hidden" /> <input type="file" name="photo_file"
-															hidden="hidden" id="Video-edit-myPicture" /> <span
-															class="error"></span>
-													</div>
-												</div>
-											</div>
-
-											<!-- Right form -->
-											<div class="col-8">
-												<div class="row">
-													<div class="col-12">
-														<div class="form-group">
-															<input name="id" type="hidden" placeholder="Id"
-																value="${product.id}" /> <label for="id"
-																class="font-weight-bold">Mã sản phẩm</label> <input
-																name="id" type="text" class="form-control" id="name"
-																value="${product.id}" aria-describedby="nameHelp"
-																placeholder="" disabled="disabled" /> <small
-																id="nameHelp" class="form-text text-muted"></small>
-														</div>
-													</div>
-													<div class="col-12">
-														<div class="form-group">
-															<label for="name" class="font-weight-bold">Tên
-																sản phẩm</label> <input name="name" type="text"
-																class="form-control" id="name" value="${product.name}"
-																aria-describedby="nameHelp" placeholder="" /> <small
-																id="nameHelp" class="form-text text-muted"></small>
-														</div>
-													</div>
-													<div class="col-6">
-														<div class="form-group">
-															<label for="price" class="font-weight-bold">Giá
-																sản phẩm</label> <input name="price" type="text"
-																class="form-control" id="exampleInputEmail1"
-																value="${product.price}" aria-describedby="priceHelp"
-																placeholder="" /> <small id="priceHelp"
-																class="form-text text-muted"></small>
-														</div>
-													</div>
-													<div class="col-6">
-														<label for="avaiable" class="font-weight-bold">Trạng
-															thái</label> <br />
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="available" id="inlineRadio1"
-																${product.available==true?'checked':''} value="true">
-															<label class="form-check-label" for="inlineRadio1">Còn
-																hàng</label>
-														</div>
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="radio"
-																name="available" id="inlineRadio2"
-																${!product.available==true?'checked':''} value="false">
-															<label class="form-check-label" for="inlineRadio2">Hết
-																hàng</label>
-														</div>
-													</div>
-													<div class="col-6">
-														<div class="form-group">
-															<label for="category" class="font-weight-bold">Mã
-																danh mục</label> <select id="category" name="category.id"
-																class="form-control" required>
-																<option value="">-- Chọn danh mục --</option>
-																<c:forEach items="${lst_category}" var="category">
-																	<option value="${category.id}"
-																		${product.category.id==category.id
-																				? "selected"
-																				: ""
-																				}>${category.name}</option>
-																</c:forEach>
-															</select>
-														</div>
-													</div>
-													<div class="col-6">
-														<div class="form-group">
-															<label for="quantity" class="font-weight-bold">Số
-																lượng</label> <input name="quantity" value="${product.quantity}"
-																type="text" name="quantity" class="form-control"
-																id="quantity" aria-describedby="quantityHelp"
-																placeholder="" /> <small id="quantityHelp"
-																class="form-text text-muted"></small>
-														</div>
-													</div>
-												</div>
-											</div>
-
-											<!-- Button form -->
-											<div class="col-12 mt-5 d-flex justify-content-end">
-												<button class="btn btn-outline-dark font-weight-bold mr-3"
-													style="width: 200px;" data-dismiss="modal"
-													aria-label="Close">Trở về</button>
-												<button class="btn btn-dark font-weight-bold"
-													style="width: 200px;">Cập nhật sản phẩm</button>
-											</div>
-										</form>
-									</div>
+										style="min-width: 120px">Cập nhật</a>
 								</div>
 							</div>
 						</div>
@@ -562,13 +410,34 @@
 				<!-- Pagination -->
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="product__pagination">
-							<c:if test="${page.totalPages - 1 > 1}">
-								<c:forEach var="i" begin="0" end="${page.totalPages - 1}">
-								<a class="${page.number==i?'active':''}"
-									href="/admin/category-manager?p=${i}">${i+1}</a>
-							</c:forEach>
-							</c:if>
+						<div class="product__pagination d-flex justify-content-center">
+							<!--* paging start  -->
+							<c:choose>
+								<c:when test="${page.content.size() > 1}">
+									<nav aria-label="Page navigation example">
+										<ul class="pagination pagination-sm mb-0 py-1 ml-3">
+											<li class="page-item ${ p  == 0 ?'d-none'  : '' } "><a
+												class="page-link"
+												href="/admin/product-manager?field=${field}&p=0&eop=${eop}&d=${d}">First</a></li>
+											<c:forEach begin="0" end="${page.totalPages  - 1 }"
+												varStatus="loop">
+												<li
+													class="page-item ${ loop.index == page.number ? 'active': ''} ">
+													<a class="page-link"
+													href="/admin/product-manager?field=${field}&p=${loop.index}&eop=${eop}&d=${d}">
+														${loop.count} </a>
+												</li>
+											</c:forEach>
+											<li
+												class="page-item  ${ p  == page.totalPages - 1  ?'d-none'  : '' }"><a
+												class="page-link"
+												href="/admin/product-manager?field=${field}&p=${page.totalPages - 1 }&eop=${eop}&d=${d}">Last</a>
+											</li>
+										</ul>
+									</nav>
+								</c:when>
+							</c:choose>
+							<!--* paging end -->
 						</div>
 					</div>
 				</div>
@@ -592,24 +461,6 @@
 	<!-- Js Plugins -->
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/script.js"></script>
-	<script>
-			const addForm = document.getElementById('addForm');
-			addForm.addEventListener('submit', function (event) {
-				// Store the modal state in local storage
-				localStorage.setItem('modalOpen', 'true');
-
-				// Check if the modal state is stored in local storage
-				if (localStorage.getItem('modalOpen') === 'true') {
-					// Open the modal
-					$('#AddProductModal').modal('show');
-				}
-
-				// When the modal is closed, remove the modal state from local storage
-				$('#AddProductModal').on('hidden.bs.modal', function () {
-					localStorage.removeItem('modalOpen');
-				});
-			});
-		</script>
 </body>
 
 </html>

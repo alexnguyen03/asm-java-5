@@ -19,6 +19,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/font-awesome.min.css"
 	type="text/css" />
+<script src="https://kit.fontawesome.com/c0f581682c.js"
+	crossorigin="anonymous"></script>
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
 	rel='stylesheet'>
@@ -94,28 +96,14 @@
 			<!-- Top content -->
 			<div class="container-fluid" style="overflow: auto;">
 				<h2 class="overview-title font-weight-bold">Chào mừng trở lại,
-					${sessionScope.account.username}</h2>
+					${sessionScope.account.fullname}</h2>
 				<div class="overview-content mt-4">
 
 					<!-- Top Statistics -->
 					<div class="header-top-statistic">
 						<div class="row">
 							<!-- Item -->
-							<div class="col-lg-3 col-sm-6">
-								<div class="card">
-									<div class="card-body">
-										<h5 class="card-title">
-											<i class='bx bxs-right-arrow mr-2'></i>Cập nhật
-										</h5>
-										<h6 class="card-text font-weight-bold">
-											Tỉ lệ số lượng sản phẩm bán được tăng <span
-												style="color: #dc3545">5%</span> <span>trong 1 tuần.</span>
-										</h6>
-									</div>
-								</div>
-							</div>
-							<!-- Item -->
-							<div class="col-lg-3 col-sm-6">
+							<div class="col-lg-4 col-sm-6">
 								<div class="card">
 									<div class="card-body">
 										<h5 class="card-title">
@@ -131,22 +119,22 @@
 								</div>
 							</div>
 							<!-- Item -->
-							<div class="col-lg-3 col-sm-6">
+							<div class="col-lg-4 col-sm-6">
 								<div class="card">
 									<div class="card-body">
 										<h5 class="card-title">
 											<i class='bx bxs-right-arrow mr-2'></i>Doanh thu tháng
 										</h5>
 										<h4 class="card-text font-weight-bold">
-											<%-- 											<fmt:formatNumber value="${totalRevenueMonthPast}" --%>
-											<%-- 												type="currency" currencySymbol="" /> --%>
+											<fmt:formatNumber value="${totalRevenueMonthPast}"
+												type="currency" currencySymbol="" />
 											<span style="color: #dc3545">đ</span>
 										</h4>
 									</div>
 								</div>
 							</div>
 							<!-- Item -->
-							<div class="col-lg-3 col-sm-6">
+							<div class="col-lg-4 col-sm-6">
 								<div class="card">
 									<div class="card-body">
 										<h5 class="card-title">
@@ -263,8 +251,16 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<!-- Js Plugins -->
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<script src="js/script.js"></script>
+	<script src="${pageContext.request.contextPath}/js/script.js"></script>
 </body>
 
 </html>

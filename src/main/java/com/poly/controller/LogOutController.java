@@ -16,6 +16,7 @@ public class LogOutController {
 	public String logOut() {
 		session.remove("username");
 		session.remove("account");
+		session.remove("stateAdmin");
 		return "redirect:/";
 	}
 }

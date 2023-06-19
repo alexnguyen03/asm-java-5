@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.poly.model.Account;
 import com.poly.model.Category;
 import com.poly.model.Product;
 import com.poly.repository.CategoryDAO;
@@ -29,6 +32,7 @@ import com.poly.service.ParamService;
 import com.poly.service.SessionService;
 
 import jakarta.servlet.ServletContext;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/admin/product-manager")
@@ -49,18 +53,40 @@ public class ProductManagementController {
 	ParamService param;
 
 	@GetMapping("")
-	private String getProductManager(Model model, @RequestParam("p") Optional<Integer> p) {
+	private String getProductManager(Model model, @RequestParam("p") Optional<Integer> p,
+			@RequestParam("field") Optional<String> field, @RequestParam("eop") Optional<Integer> eop,
+			@RequestParam("d") Optional<Boolean> direc) {
 		Product item = new Product();
 		model.addAttribute("item", item);
-		Pageable pageable = PageRequest.of(p.orElse(0), 5);
+
+		int defaultPage = 0;
+		int defaultElementOfPage = 5;
+		String defaultField = "price";
+		
+		// asending is default
+		Pageable pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),
+				Sort.by(field.orElse(defaultField)).ascending());
+
+		if (direc.isPresent() && !direc.get().booleanValue()) {
+			pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),
+					Sort.by(field.orElse(defaultField)).descending());
+
+		}
+
 		Page<Product> page = productDAO.findAll(pageable);
 		model.addAttribute("page", page);
-		model.addAttribute("isPagination", "index");
+
+		model.addAttribute("field", field.orElse(defaultField));
+		model.addAttribute("eop", eop.orElse(defaultElementOfPage));
+		model.addAttribute("p", p.orElse(defaultPage));
+		model.addAttribute("d", direc.orElse(true));
+
+		session.set("stateAdmin", "admin");
 
 		// Title
 		model.addAttribute("title", "QUẢN LÝ SẢN PHẨM");
 
-		// Remove a kwordk search session
+		// Remove a kwords search session
 		session.remove("isAvaiable");
 
 		// Sidebar Active
@@ -68,62 +94,78 @@ public class ProductManagementController {
 
 		List<Category> category = categoryDAO.findAll();
 		model.addAttribute("lst_category", category);
+		for (Category c : category) {
+			System.out.println(c.getName());
+		}
 
 		return "admin/productManager";
 	}
 
+	@GetMapping("/edit/{id}")
+	public String editProduct(@ModelAttribute("product") Product product, @PathVariable("id") Integer id, Model model) {
+		product = productDAO.findById(id).get();
+		model.addAttribute("product", product);
+		System.out.println(product.getName());
+		return "/admin/product-update";
+	}
+
 	@PostMapping("/update")
-	public String editProduct(@ModelAttribute("product") Product product,
-			@RequestParam("photo_file") MultipartFile file, RedirectAttributes redirectAttributes) {
+	public String updateProduct(@ModelAttribute("product") Product product, BindingResult binding,
+			@RequestParam("photo_file") MultipartFile img, Model model) {
 
-		String oldImg = product.getImage();
+		if (binding.hasErrors()) {
+			return "/admin/product-update";
+		}
 
-		if (file != null && !file.isEmpty()) {
-			File file2 = param.save(file, "/img/product/");
+		String oldImg = param.getString("oldImage", "");
+		System.out.println(oldImg + "Ảnh củ");
+
+		if (!img.isEmpty()) {
+			File file2 = param.save(img, "/img/product");
 			product.setImage(file2.getName());
 		} else {
 			product.setImage(oldImg);
 		}
 
-		productDAO.save(product);
+		Product pd = productDAO.save(product);
 
-		boolean success = productDAO.save(product) != null;
-		if (success) {
+		if (pd != null) {
 			session.set("messageProductManager", "Cập nhật sản phẩm thành công");
 		} else {
 			session.set("messageProductManager", "Cập nhật sản phẩm thất bại");
-			return "redirect:/admin/product-manager";
 		}
 
 		return "redirect:/admin/product-manager";
 	}
 
+	@GetMapping("/add")
+	private String add(@ModelAttribute("product") Product product, Model model) {
+		List<Category> category = categoryDAO.findAll();
+		model.addAttribute("lst_category", category);
+		return "/admin/product-add";
+	}
+
 	@PostMapping("/create")
-	private String createProduct(@ModelAttribute("item") Product item, @RequestParam("photo_file") MultipartFile img,
-			Model model) {
-		String name = param.getString("name", "");
-		double price = param.getDouble("price", 0);
-		System.out.println(name);
-		if (name.equals("")) {
-			model.addAttribute("message", "Không để trống tên sản phẩm");
-			return "admin/productManager";
-		} else if (price == 0) {
-			model.addAttribute("message", "Không để trống giá sản phẩm");
-			return "admin/productManager";
+	private String createProduct(@Valid @ModelAttribute("product") Product product, BindingResult binding,
+			@RequestParam("photo_file") MultipartFile img, Model model) {
+
+		if (binding.hasErrors() || img.isEmpty()) {
+			if (img.isEmpty()) {
+				model.addAttribute("message", "Vui lòng chọn ảnh sản phẩm");
+			}
+			return "/admin/product-add";
 		}
 
+		System.out.println(product.getName());
 		File file = null;
-
 		if (!img.isEmpty()) {
-			file = param.save(img, "/img/product/");
+			file = param.save(img, "/img/product");
+			product.setImage(file.getName());
+			product.setAvailable(true);
 		}
-
-		item.setImage(file.getName());
-		item.setAvailable(true);
 
 		session.set("messageProductManager", "Thêm sản phẩm thành công");
-
-		productDAO.save(item);
+		productDAO.save(product);
 
 		return "redirect:/admin/product-manager";
 	}
@@ -198,8 +240,11 @@ public class ProductManagementController {
 	}
 
 	@RequestMapping("filter-product-by-category")
-	public String FilterCategoryAndPageProduct(Model model, @RequestParam("category.id") String categoryId,
+	public String FilterCategoryAndPageProduct(Model model, @RequestParam("category") String categoryId,
 			@RequestParam("p") Optional<Integer> p) {
+		System.out.println(categoryId+"Category");
+		model.addAttribute("categoryId", categoryId);
+		
 		// Init Product
 		Product item = new Product();
 		model.addAttribute("item", item);

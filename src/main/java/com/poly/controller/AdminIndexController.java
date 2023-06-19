@@ -43,8 +43,8 @@ public class AdminIndexController {
 
 	@RequestMapping("")
 	public String index(Model model) {
-
-		session.set("stateAdmin", "adminRole");
+//		Set AdminState
+		session.set("stateAdmin", "admin");
 
 		model.addAttribute("isPageActive", "index");
 		model.addAttribute("orderXLCount", orderlDAO.findByStatus("C").size());
@@ -62,21 +62,9 @@ public class AdminIndexController {
 		}
 		model.addAttribute("totalRevenue", totalRevenue);
 
-//        SELECT Revenue from 1 month past
-//		LocalDate endDate = LocalDate.now(); // Ngày hiện tại
-//		LocalDate startDate = endDate.minusMonths(1); // 1 tháng trước
-//		Date startMonthPast = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-//		Date endMonthPast = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-//		System.out.println(startMonthPast);
-//		System.out.println(endMonthPast);
-		LocalDate localDate = LocalDate.now();
-		int month = 0;
-		int year = 0;
-		month = localDate.getMonthValue();
-		year = localDate.getYear();
-
-		List<ReportByProduct> reports = orderDetailDAO.getReportByProductsByMonth(month, year);
-		model.addAttribute("totalRevenueMonthPast", reports);
+//      SELECT Revenue from 1 month past
+		
+		
 
 //		SELECT ALL SOLD PRODUCT IN DAY
 		LocalDate today = LocalDate.now();

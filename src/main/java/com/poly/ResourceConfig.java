@@ -10,7 +10,7 @@ public class ResourceConfig {
     @Bean("messageSource")
     public MessageSource getMessageSource() {
         ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
-        ms.setBasenames("classpath:messages/account", "classpath:messages/coupon");
+        ms.setBasenames("classpath:messages/account", "classpath:messages/coupon","classpath:messages/product");
         ms.setDefaultEncoding("utf-8");
         return ms;
     }

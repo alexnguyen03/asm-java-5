@@ -93,8 +93,18 @@ body {
 				</form>
 
 				<p class="text-left mt-3">
-					<a href="/" class="font-weight-bold"
-						style="color: #0c2b4b; text-decoration: underline;">Trở về</a>
+					<c:choose>
+						<c:when test="${not empty sessionScope.stateAdmin}">
+							<a href="/admin" class="font-weight-bold"
+							style="color: #0c2b4b; text-decoration: underline;">Trở về</a>
+						</c:when>
+						<c:otherwise>
+							<a href="/" class="font-weight-bold"
+							style="color: #0c2b4b; text-decoration: underline;">Trở về</a>
+						</c:otherwise>
+					</c:choose>
+					
+
 				</p>
 			</div>
 		</div>

@@ -76,6 +76,6 @@ public interface OrderDetailDAO extends JpaRepository<OrderDetail, Long> {
 	@Query("SELECT  new ReportByUser( o.account.fullname ,  o.address, count(o.account.username), sum(o.totalPrice)) FROM Order o  WHERE YEAR(o.createDate) = ?1 AND o.status = 'DG' GROUP BY   o.account.fullname ,  o.address ORDER BY sum(o.totalPrice) DESC")
 	public List<ReportByUser> getReportByUsersByYear(int year);
 
-	@Query("SELECT od FROM OrderDetail od JOIN od.product p ORDER BY p.createDate DESC")
-	List<OrderDetail> findTop10ByOrderByCreateDateDesc();
+//	@Query("SELECT od FROM OrderDetail ORDER BY p.product.createDate DESC")
+//	List<OrderDetail> findTop10ByOrderByCreateDateDesc();
 }

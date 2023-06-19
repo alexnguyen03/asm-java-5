@@ -15,6 +15,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -29,16 +33,22 @@ public class Product implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotBlank(message = "{NotBlank.product.name}")
 	private String name;
 	private String image;
+	@NotNull(message = "{NotNull.product.price}")
+	@Min(value = 0, message = "{Min.product.price}")
 	private Double price;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "create_date")
 	private Date createDate = new Date();
 	private Boolean available;
-	private int quantity;
+	@NotNull(message = "{NotNull.product.quantity}")
+	@Min(value = 0, message = "{Min.product.quantity}")
+	private Integer quantity;
 	@ManyToOne
 	@JoinColumn(name = "category_id")
+	@NotNull(message = "{NotNull.product.category}")
 	private Category category;
 	@OneToMany(mappedBy = "product")
 	private List<OrderDetail> orderDetails;
