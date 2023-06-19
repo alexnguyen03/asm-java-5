@@ -69,7 +69,8 @@ public class UserManagementController {
             model.addAttribute("isPageEmpty", false);
             model.addAttribute("page", page);
         }
-
+        Account account = sessionService.get("account");
+        model.addAttribute("username", account.getUsername());
         model.addAttribute("keyword", keyword);
         model.addAttribute("field", field.orElse(defaultField));
         model.addAttribute("eop", eop.orElse(defaultElementOfPage));

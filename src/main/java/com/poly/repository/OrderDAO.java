@@ -61,12 +61,12 @@ public interface OrderDAO extends JpaRepository<Order, Long> {
 	List<Product> findLastestOrder(PageRequest of);
 
 	// get turnover
-	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE o.createDate = ?1")
+	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE o.createDate = ?1 AND o.status = 'DG'")
 	Double getTurnoverByDay(Date today);
 
-	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE MONTH(o.createDate) = MONTH(?1) AND YEAR(o.createDate) = YEAR(?1)")
+	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE MONTH(o.createDate) = MONTH(?1) AND YEAR(o.createDate) = YEAR(?1)  AND o.status = 'DG'")
 	Double getTurnoverByMonth(Date today);
 
-	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE YEAR(o.createDate) = YEAR(?1)")
+	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE YEAR(o.createDate) = YEAR(?1)  AND o.status = 'DG'")
 	Double getTurnoverByYear(Date today);
 }

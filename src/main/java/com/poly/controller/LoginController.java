@@ -41,10 +41,10 @@ public class LoginController {
 		}
 
 		// if (rdAtr.getAttribute("isMessageShop").equals("HaveMessage")
-		// 		&& rdAtr.getAttribute("isProduct").equals("product")) {
-		// 	session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
+		// && rdAtr.getAttribute("isProduct").equals("product")) {
+		// session.set("messageShop", "Đăng nhập trước khi thêm sản phẩm vào giỏ hàng");
 		// } else {
-		// 	session.remove("messageShop");
+		// session.remove("messageShop");
 		// }
 
 		return "/account/login";
@@ -78,6 +78,8 @@ public class LoginController {
 		session.set("account", account);
 
 		if (account.getAdmin()) {
+			session.set("adminImg", account.getPhoto());
+
 			return "redirect:/admin";
 		}
 

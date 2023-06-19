@@ -19,16 +19,30 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.poly.model.Account;
 import com.poly.model.Order;
+import com.poly.model.OrderDetail;
+import com.poly.model.Product;
 import com.poly.repository.OrderDAO;
+import com.poly.repository.OrderDetailDAO;
+import com.poly.repository.ProductDAO;
+import com.poly.service.EmailServiceImpl;
 import com.poly.service.ParamService;
 import com.poly.service.SessionService;
+import com.poly.utils.EmailDetail;
 
 @Controller
 @RequestMapping("/admin")
 public class OrderManagementController {
     @Autowired
+    OrderDetailDAO orderDetailDAO;
+    @Autowired
+    ProductDAO productDAO;
+    @Autowired
     OrderDAO orderDAO;
+    @Autowired
+    EmailServiceImpl emailServiceImpl;
     @Autowired
     SessionService sessionService;
     @Autowired
@@ -108,6 +122,30 @@ public class OrderManagementController {
         Order order = orderDAO.findById(id).get();
         if (status.equals("H")) {
             order.setNotes(notes.get());
+            // gui mail sau khi huy don hang
+            Account account = (Account) sessionService.get("account");
+            EmailDetail details = new EmailDetail();
+            details.setRecipient(account.getEmail());
+            details.setSubject("3MEMS - Thông báo hủy đơn hàng");
+            details.setMsgBody(
+                    "Thông tin đơn hàng của bạn\n"
+                            + "Mã đơn hàng: " + id +
+                            "\nTổng tiền đơn hàng: " + order.getTotalPrice() + " đ" +
+                            "\nNgày đặt hàng: " + order.getCreateDate() +
+                            "\nLý do đơn hàng bị hủy: " + notes +
+                            "\n3MEMS thành thật xin lỗi quý khách vì đơn hàng đã bị hủy.\nMong quý khách luôn tin tưởng và ủng hộ 3MEMS trong thời gian sắp tới ! ");
+            String sts = emailServiceImpl.sendSimpleMail(details);
+            List<OrderDetail> ls = order.getOrderDetails();
+
+            for (OrderDetail orderDetail : ls) {
+                Product prod = orderDetail.getProduct();
+
+                System.out.println("oldProd" + orderDetail.getProduct().getQuantity());
+                System.out.println("orderDetail " + orderDetail.getQuantity());
+                prod.setQuantity(prod.getQuantity() + orderDetail.getQuantity());
+                System.out.println("new Prod " + prod.getQuantity());
+                productDAO.save(prod);
+            }
         }
         order.setStatus(status);
         orderDAO.save(order);

@@ -90,7 +90,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
           </form>
           <div class="filter-button-wrapper d-flex justify-content-betwwen">
-            <a href="/admin/order?p=${p}&eop=${eop}"
+            <a href="/admin/order"
                class="ml-3 btn btn-sm btn-outline-primary "
                title="Làm mới">Làm mới <i class="fa fa-refresh"
                  aria-hidden="true"></i></a>
@@ -226,79 +226,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
               </div>
             </div>
             <!-- Modal -->
-            <button class="action-button list active d-none"
-                    title="List View">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="16"
-                   height="16"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-list">
-                <line x1="8"
-                      y1="6"
-                      x2="21"
-                      y2="6" />
-                <line x1="8"
-                      y1="12"
-                      x2="21"
-                      y2="12" />
-                <line x1="8"
-                      y1="18"
-                      x2="21"
-                      y2="18" />
-                <line x1="3"
-                      y1="6"
-                      x2="3.01"
-                      y2="6" />
-                <line x1="3"
-                      y1="12"
-                      x2="3.01"
-                      y2="12" />
-                <line x1="3"
-                      y1="18"
-                      x2="3.01"
-                      y2="18" />
-              </svg>
-            </button>
-            <button class="action-button grid d-none"
-                    title="Grid View">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="16"
-                   height="16"
-                   viewBox="0 0 24 24"
-                   fill="none"
-                   stroke="currentColor"
-                   stroke-width="2"
-                   stroke-linecap="round"
-                   stroke-linejoin="round"
-                   class="feather feather-grid">
-                <rect x="3"
-                      y="3"
-                      width="7"
-                      height="7" />
-                <rect x="14"
-                      y="3"
-                      width="7"
-                      height="7" />
-                <rect x="14"
-                      y="14"
-                      width="7"
-                      height="7" />
-                <rect x="3"
-                      y="14"
-                      width="7"
-                      height="7" />
-              </svg>
-            </button>
           </div>
         </div>
         <div class="products-area-wrapper tableView">
           <div class="products-header">
-            <div class=" mx-3">STT</div>
+            <div class=" mx-3">#</div>
             <div class="product-cell image">
               Họ tên khách hàng
             </div>
@@ -607,23 +539,48 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                     <div class="input-group">
                                       <input type="hidden"
                                              name="id"
+                                             class="id"
                                              value="${o.id}">
-                                      <select class="custom-select custom-select-sm"
-                                              id="selectStatus"
+                                      <select class="custom-select custom-select-sm selectStatus"
+                                              id=""
                                               name="status">
                                         <option selected>Chọn trạng thái</option>
-                                        <c:forEach var="s"
-                                                   items="${listStatus}">
+                                        <c:choose>
+                                          <c:when test="${o.status == 'C'}">
+                                            <option onchange="console.log(value)"
+                                                    value="XL"
+                                                    class="text-primary">
+                                              Đang xử lý
+                                            </option>
+                                          </c:when>
+                                          <c:when test="${o.status == 'XL'}">
+                                            <option onchange="console.log(value)"
+                                                    value="G"
+                                                    class="text-primary">
+                                              Đang giao
+                                            </option>
+                                          </c:when>
+                                          <c:when test="${o.status == 'G'}">
+                                            <option onchange="console.log(value)"
+                                                    value="DG"
+                                                    class="text-primary">
+                                              Đã giao
+                                            </option>
+                                          </c:when>
+
+
+                                        </c:choose>
+                                        <c:if test="${o.status != 'DG'}">
                                           <option onchange="console.log(value)"
-                                                  value="${s.key}"
+                                                  value="H"
                                                   class="text-primary">
-                                            ${s.value}
+                                            Hủy
                                           </option>
-                                        </c:forEach>
+                                        </c:if>
                                       </select>
                                     </div>
-                                    <div class="my-2 "
-                                         id="notes">
+                                    <div class="my-2 notes "
+                                         id="">
                                     </div>
                                   </div>
                                 </div>
@@ -921,8 +878,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                       <input type="hidden"
                                              name="id"
                                              value="${o.id}">
-                                      <select class="custom-select custom-select-sm"
-                                              id="selectStatus"
+                                      <select class="custom-select custom-select-sm selectStatus"
+                                              id=""
                                               name="status">
                                         <option selected>Chọn trạng thái</option>
                                         <c:forEach var="s"
@@ -935,8 +892,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                         </c:forEach>
                                       </select>
                                     </div>
-                                    <div class="my-2 "
-                                         id="notes">
+                                    <div class="my-2 notes "
+                                         id="">
                                     </div>
                                   </div>
                                 </div>
@@ -1241,8 +1198,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                       <input type="hidden"
                                              name="id"
                                              value="${o.id}">
-                                      <select class="custom-select custom-select-sm"
-                                              id="selectStatus"
+                                      <select class="custom-select custom-select-sm selectStatus"
+                                              id=""
                                               name="status">
                                         <option selected>Chọn trạng thái</option>
                                         <c:forEach var="s"
@@ -1255,8 +1212,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                         </c:forEach>
                                       </select>
                                     </div>
-                                    <div class="my-2 "
-                                         id="notes">
+                                    <div class="my-2 notes"
+                                         id="">
                                     </div>
                                   </div>
                                 </div>
@@ -1304,24 +1261,30 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         var modal = $(this);
         // Use above variables to manipulate the DOM
       });
-      const select = document.getElementById('selectStatus');
-      var notes = document.getElementById("notes")
+      const selects = document.querySelectorAll('.selectStatus');
+      var notes = document.querySelectorAll(".notes")
       let label = document.createElement('label')
       let txt = document.createElement('textarea')
       let br = document.createElement('br')
       label.append("Lý do hủy đơn hàng")
-      select.addEventListener('change', function handleChange(event) {
-        if (event.target.value === 'H') {
-          notes.append(label)
-          notes.append(br)
-          notes.append(txt)
-        } else {
-          notes.removeChild(txt)
-          txt.value = ''
-          notes.removeChild(br)
-          notes.removeChild(label)
-        }
-      });
+      for (let i = 0; i < selects.length; i++) {
+        selects[i].addEventListener('change', function handleChange(event) {
+          if (event.target.value === 'H') {
+            notes[i].append(label)
+            notes[i].append(br)
+            notes[i].append(txt)
+            txt.name = 'notes'
+          } else {
+            notes[i].removeChild(txt)
+            txt.value = ''
+            notes[i].removeChild(br)
+            notes[i].removeChild(label)
+          }
+        });
+
+      }
+
+
       var searchKey = document.getElementById('searchKey')
       var filterByDate = document.getElementById('filterByDate')
       window.onload = function (e) {

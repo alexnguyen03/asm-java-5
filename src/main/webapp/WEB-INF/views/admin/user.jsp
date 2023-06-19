@@ -301,10 +301,16 @@
                           class="status ${u.admin == true ? 'bg-primary' : 'bg-secondary'}  text-white ">
                       ${u.admin == true ? 'Quản trị viên' : 'Khách hàng'}</span></div>
                   <div class="product-cell price"><span class="cell-label"></span>
-                    <div class="btn btn-sm btn-${u.activated == true ? 'danger' : 'secondary'}"
-                         data-toggle="modal"
-                         data-target="#deleteModal${u.username}">
-                      ${u.activated == true ? 'Vô hiệu hóa' : 'Khôi phục'}</div>
+                    <c:if test="${username != u.username}">
+                      <div class="btn btn-sm btn-${u.activated == true ? 'danger' : 'secondary'}"
+                           data-toggle="modal"
+                           data-target="#deleteModal${u.username}">
+                        ${u.activated == true ? 'Vô hiệu hóa' : 'Khôi phục'}</div>
+                    </c:if>
+                    <c:if test="${username == u.username}">
+                      <div class="btn btn-sm btn-success">
+                        Bạn</div>
+                    </c:if>
                   </div>
                 </div>
                 <!-- * Start Modal -->

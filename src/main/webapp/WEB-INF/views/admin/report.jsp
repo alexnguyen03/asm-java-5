@@ -128,10 +128,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                         <%= df.format(new java.util.Date()) %>
                                     </h2>
                                     <h1 class="card-text">
-                                        ${ reportByDate != null ? '
-                                        <fmt:formatNumber value="${reportByDate}"
-                                                          type="currency"
-                                                          currencySymbol="" />' : 0 }
+                                        ${ reportByDate != null ? reportByDate : 0 }
                                         <sup>đ</sup>
                                     </h1>
                                 </div>
@@ -162,7 +159,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                                     <h2 class="card-title">Tổng doanh thu từ trước đến nay
                                     </h2>
                                     <h1 class="card-text">
-                                        ${reportByYear}
+                                        ${ reportByYear != null ? reportByMonth : 0 }
                                         <sup>đ</sup>
                                     </h1>
                                 </div>
