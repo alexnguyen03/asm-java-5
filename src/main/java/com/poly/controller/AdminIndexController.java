@@ -75,6 +75,11 @@ public class AdminIndexController {
 
 		List<OrderDetail> getPageTopTenOrderDetails = orderDetailDAO.getTop10OrderDetail(PageRequest.of(0, 10));
 		model.addAttribute("getPageTopTenOrderDetails", getPageTopTenOrderDetails);
+
+//		SELECT TOP 10 PRODUCT BEST SELLING
+		List<Product> bestSellingProduct = productDAO.findTop10BestSellingProducts();
+		model.addAttribute("bestSellingProduct", bestSellingProduct);
+
 		return "/admin/index";
 	}
 }

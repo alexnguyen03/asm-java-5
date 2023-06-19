@@ -190,7 +190,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                     </button>
                   </div>
                   <div class="modal-body">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-striped">
                       <thead class="thead-inverse">
                         <tr>
                           <th>#</th>
@@ -430,7 +430,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                               </div>
                             </div>
                             <div class="col-8">
-                              <table class="table table-hover">
+                              <table class="table table-hover table-striped">
                                 <thead>
                                   <tr>
                                     <th>#</th>
@@ -768,7 +768,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                               </div>
                             </div>
                             <div class="col-8">
-                              <table class="table table-hover">
+                              <table class="table table-hover table-striped">
                                 <thead>
                                   <tr>
                                     <th>#</th>
@@ -1088,7 +1088,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                               </div>
                             </div>
                             <div class="col-8">
-                              <table class="table table-hover">
+                              <table class="table table-hover table-striped">
                                 <thead>
                                   <tr>
                                     <th>#</th>

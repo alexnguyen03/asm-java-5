@@ -7,11 +7,12 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 
 @Configuration
 public class ResourceConfig {
-    @Bean("messageSource")
-    public MessageSource getMessageSource() {
-        ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
-        ms.setBasenames("classpath:messages/account", "classpath:messages/coupon","classpath:messages/product");
-        ms.setDefaultEncoding("utf-8");
-        return ms;
-    }
+	@Bean("messageSource")
+	public MessageSource getMessageSource() {
+		ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
+		ms.setBasenames("classpath:messages/account", "classpath:messages/coupon", "classpath:messages/product",
+				"classpath:messages/category");
+		ms.setDefaultEncoding("utf-8");
+		return ms;
+	}
 }

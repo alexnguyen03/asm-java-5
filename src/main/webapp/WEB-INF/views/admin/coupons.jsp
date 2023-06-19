@@ -208,8 +208,8 @@
 					</div>
 					<div class="product-cell price">Thao tác</div>
 				</div>
-				<c:forEach var="coupon" items="${ coupons.content }">
-					<div class="products-row">
+				<c:forEach var="coupon" items="${ coupons.content }" varStatus="loop">
+					<div class="products-row ${loop.index % 2 != 0 ? 'product-row-even':''}">
 						<button class="cell-more-button">
 							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
 								viewBox="0 0 24 24" fill="none" stroke="currentColor"

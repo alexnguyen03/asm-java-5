@@ -201,7 +201,7 @@
 				</div>
 				<c:forEach var="review" items="${ reviews.content }"
 					varStatus="status">
-					<div class="products-row">
+					<div class="products-row ${status.index % 2 != 0 ? 'product-row-even':''}">
 						<button class="cell-more-button">
 							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
 								viewBox="0 0 24 24" fill="none" stroke="currentColor"

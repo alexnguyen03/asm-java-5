@@ -75,7 +75,7 @@
           <c:if test="${msg != null}">
             <div class="alert alert-warning">${msg}</div>
           </c:if>
-          <table class="table ">
+          <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">#</th>

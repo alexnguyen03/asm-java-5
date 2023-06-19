@@ -275,7 +275,7 @@
               <c:forEach var="u"
                          items="${ page.content }"
                          varStatus="loop">
-                <div class="products-row">
+                <div class="products-row ${loop.index % 2 != 0 ? 'product-row-even':''}">
                   <div class="product-cell "
                        style="max-width: 50px;"><span class="cell-label">STT</span>${loop.count}</div>
                   <div class="product-cell category"><span class="cell-label">Họ và tên</span>${u.fullname}</div>
