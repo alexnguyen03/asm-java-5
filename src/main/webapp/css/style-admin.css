@@ -413,6 +413,11 @@ body {
 	align-items: center;
 	border-radius: 4px;
 }
+
+.tableView .product-row-even{
+	background: var(--app-content-secondary-color);
+}
+
 .tableView .products-row:hover {
 	box-shadow: var(--filter-shadow);
 	background-color: var(--app-content-secondary-color);

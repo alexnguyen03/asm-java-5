@@ -2,6 +2,7 @@ package com.poly.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -46,6 +47,18 @@ public class ParamService {
 		Date date = null;
 		try {
 			date = formatter.parse(request.getParameter(name));
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Pattern is invalid !!");
+		}
+		return date;
+	}
+
+	public Date getDate2(String name, String pattern) {
+		SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+		Date date = null;
+		try {
+			date = formatter.parse(name);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("Pattern is invalid !!");

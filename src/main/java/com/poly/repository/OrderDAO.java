@@ -40,15 +40,18 @@ public interface OrderDAO extends JpaRepository<Order, Long> {
 	@Query("SELECT c FROM Order c WHERE c.id LIKE ?1")
 	List<Order> findByID(Long id);
 
+	@Query("SELECT c FROM Order c WHERE c.status = ?1 AND c.account.username = ?2")
+	List<Order> findByStatusAndUser(String status, String username);
+
 	@Query("SELECT c FROM Order c WHERE c.status = ?1")
 	List<Order> findByStatus(String status);
-
+	
 	// SELECT All Doanh thu
 	@Query("SELECT SUM(c.totalPrice) FROM Order c")
 	Double getTotalRevenue();
 
 	// SELECT revenue of 1 month past
-	@Query("SELECT SUM(o.totalPrice) FROM Order o WHERE o.createDate BETWEEN :startDate AND :endDate")
+	@Query("SELECT SUM(c.totalPrice) FROM Order c WHERE c.createDate BETWEEN :startDate AND :endDate")
 	Double getTotalRevenueByMonth(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
 	// SELECT ALL PRODUCT SOLD IN DAY

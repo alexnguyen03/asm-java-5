@@ -245,8 +245,8 @@
 					easing: 'swing',
 					step: function (now) {
 						$(this).text(Math.ceil(now));
-					},
-				},
+					}
+				}
 			);
 	});
 })(jQuery);

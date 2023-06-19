@@ -281,10 +281,20 @@
 							<select class="custom-select form-control"
 									name="available"
 									onchange="this.form.submit()">
-								<option selected
-										value="null">Lọc theo trạng thái</option>
-								<option value="true">Còn hàng</option>
-								<option value="false">Hết hàng</option>
+								<option ${available=='all'
+										? 'selected'
+										:''}
+										value="all">Hiển
+									thị tất cả trạng thái</option>
+								<option ${available=='1'
+										? 'selected'
+										:''}
+										value="1">Hiển
+									thị</option>
+								<option ${available=='0'
+										? 'selected'
+										:''}
+										value="0">Ẩn</option>
 							</select>
 						</form>
 
@@ -440,8 +450,9 @@
 
 					<!-- Product rendering -->
 					<c:forEach var="product"
-							   items="${page.content}">
-						<div class="products-row">
+							   items="${page.content}"
+							   varStatus="loop">
+						<div class="products-row ${loop.index % 2 != 0 ? 'product-row-even':''}">
 							<button class="cell-more-button">
 								<svg xmlns="http://www.w3.org/2000/svg"
 									 width="18"
@@ -473,6 +484,10 @@
 							<div class="product-cell image">
 								<img src="${pageContext.request.contextPath}/img/product/${product.image}"
 									 class="img-fluid"
+									 data-bigimage="${pageContext.request.contextPath}/img/product/${product.image}"
+									 style="z-index: 1000;"
+									 data-toggle="modal"
+									 data-target="#prevImg${product.id}"
 									 alt="${product.name}" />
 							</div>
 							<div class="product-cell price">
@@ -482,8 +497,8 @@
 								<span class="cell-label">Ngày tạo:</span> ${product.createDate}
 							</div>
 							<div class="product-cell status-cell">
-								<span class="status ${product.available?'active':'disabled'}">${product.available?'Còn
-									hàng':'Hết hàng'}</span>
+								<span class="status ${product.available?'active':'disabled'}">${product.available?'Hiển
+									thị':'Ẩn'}</span>
 							</div>
 							<div class="product-cell sales">
 								<span class="cell-label">Mã danh mục:</span>
@@ -502,6 +517,37 @@
 									</div>
 								</div>
 							</div>
+
+
+							<!-- show product photo on click -->
+							<!-- Modal -->
+							<div class="modal fade"
+								 id="prevImg${product.id}"
+								 tabindex="-1"
+								 role="dialog"
+								 aria-labelledby="exampleModalLabel"
+								 aria-hidden="true">
+								<div class="modal-dialog"
+									 role="document">
+									<div class="modal-content">
+										<div class="modal-body">
+											<button type="button"
+													class="close"
+													data-dismiss="modal"
+													aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											<div class="alert alert-success text-center">
+												${product.name}</div>
+											<img src="${pageContext.request.contextPath}/img/product/${product.image}"
+												 alt=""
+												 id="image"
+												 class="img-fluid">
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- show product photo on click -->
 
 							<!-- Update Product -->
 							<div class="modal fade"
@@ -691,42 +737,17 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="product__pagination">
-								<c:choose>
-									<c:when test="${isPagination == 'index'}">
-										<c:if test="${page.totalPages - 1 > 1 }">
-											<c:set var="count"
-												   value="${0}"></c:set>
-											<c:forEach var="i"
-													   begin="0"
-													   end="${page.totalPages - 1 > 3 ? page.totalPages - 3 : page.totalPages - 1}">
-												<a class="${page.number==i?'active':''}"
-												   href="/admin/product-manager?p=${i}">${i+1}</a>
-											</c:forEach>
-											<c:if test="${page.totalPages -1 > 2}">
-												<span>...</span>
-												<a href="/admin/product-manager?p=${page.totalPages - 1}"
-												   class="${page.number == page.totalPages - 1?'active':''}">${page.totalPages}</a>
-											</c:if>
-										</c:if>
-									</c:when>
-									<c:otherwise>
-										<c:if test="${page.totalPages - 1 > 1 }">
-											<c:forEach var="i"
-													   begin="0"
-													   end="${page.totalPages - 2}">
-												<a class="${page.number==i?'active':''}"
-												   href="/admin/product-manager/filter-product-by-available?p=${i}">${i+1}</a>
-											</c:forEach>
-											<span>...</span>
-											<a
-											   href="/admin/product-manager/filter-product-by-available?p=${page.totalPages - 1}">${page.totalPages}</a>
-										</c:if>
-									</c:otherwise>
-								</c:choose>
+								<c:if test="${page.totalPages - 1 > 1}">
+									<c:forEach var="i"
+											   begin="0"
+											   end="${page.totalPages - 1}">
+										<a class="${page.number==i?'active':''}"
+										   href="/admin/category-manager?p=${i}">${i+1}</a>
+									</c:forEach>
+								</c:if>
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -762,6 +783,26 @@
 				$('#AddProductModal').on('hidden.bs.modal', function () {
 					localStorage.removeItem('modalOpen');
 				});
+			});
+			$(document).ready(function () {
+				// Gets the video src from the data-src on each button
+				var $imageSrc;
+				console.log($('.image>img'));
+				$('.image img').click(function () {
+					$imageSrc = $(this).data('bigimage');
+				});
+				console.log($imageSrc);
+				// when the modal is opened autoplay it  
+				$('#prevImg').on('shown.bs.modal', function (e) {
+					// set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+					$("#image").attr('src', $imageSrc);
+				})
+				// reset the modal image
+				$('#prevImg').on('hide.bs.modal', function (e) {
+					// a poor man's stop video
+					$("#image").attr('src', '');
+				})
+				// document ready  
 			});
 		</script>
 	</body>

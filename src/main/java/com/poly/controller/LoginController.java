@@ -92,7 +92,7 @@ public class LoginController {
 		session.set("totalCart", totalQuantity);
 		session.set("adminImg", account.getPhoto());
 		// redirect to ...
-		if (session.get("state").equals("productDetail")) {
+		if (session.get("state") != null && session.get("state").equals("productDetail")) {
 			Integer selectedProductId = session.get("selectedProductId");
 			return "redirect:/shop/product-detail?id=" + selectedProductId;
 		}

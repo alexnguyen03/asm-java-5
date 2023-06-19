@@ -111,6 +111,13 @@
 							class="btn btn-info font-weight-bold mt-2 float-right w-50">Thanh
 							toán</button>
 					</form>
+					<form method="post" action="/pay">
+						<input hidden name="total" value="${ provisional }"> <input hidden
+							name="sdt" id="sdt"> <input hidden name="dc" id="dc">
+						<button type="submit"
+							class="btn btn-info font-weight-bold mt-2 float-right w-50">Thanh
+							toán Paypal</button>
+					</form>
 					<c:if test="${not empty success}">
 						<div class="alert alert-success alert-dismissible fade show mt-4"
 							role="alert">
@@ -270,6 +277,16 @@
 			</div>
 
 			<script type="text/javascript">
+				var phoneInput = document.getElementById("phone"); // tìm ô nhập liệu fullname bằng id
+				var addressInput = document.getElementById("address"); // tìm ô nhập liệu address bằng id
+				phoneInput.addEventListener("input", function() { // thêm sự kiện "input" cho ô nhập liệu fullname
+					var sdtInput = document.getElementById("sdt");
+					sdtInput.value = phoneInput.value;
+				});
+				addressInput.addEventListener("input", function() { // thêm sự kiện "input" cho ô nhập liệu fullname
+					var dcInput = document.getElementById("dc");
+					dcInput.value = addressInput.value;
+				});
 				function saveAjaxData() {
 					// Lấy mã giảm giá từ input field
 					var couponId = document.getElementById("couponId").value;
@@ -298,10 +315,10 @@
 							total.innerHTML = formatNumber(provisionaltValue
 									- (provisionaltValue * (discountValue / 100)))
 									+ " <sup>đ</sup>";
-							
+
 							thongbao.innerHTML = "Áp dụng giảm giá thành công";
 
-						}else{
+						} else {
 							var response = JSON.parse(this.responseText);
 							var thongbao = document.getElementById("thongbao");
 							var discount = document.getElementById("discount");

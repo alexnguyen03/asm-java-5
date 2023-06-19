@@ -157,10 +157,20 @@
 						</a>
 					</div>
 					<div class="product-cell status-cell">
-						Phần trăm giảm <a
+						Phần trăm <a
 							href="/admin/coupon?field=discountAmount&p=${p}&eop=${eop}&d=${!d}"
 							class="sort-button ${field == 'discountAmount' ? 'text-primary' : '' }">
 							${field == 'discountAmount' &&
+                d == true ? '<i class="fa fa-chevron-up"
+                   aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
+                   aria-hidden="true"></i>'}
+						</a>
+					</div>
+					<div class="product-cell sales">
+						Ngày bắt đầu <a
+							href="/admin/coupon?field=startDate&p=${p}&eop=${eop}&d=${!d}"
+							class="sort-button ${field == 'startDate' ? 'text-primary' : '' }">
+							${field == 'startDate' &&
                 d == true ? '<i class="fa fa-chevron-up"
                    aria-hidden="true"></i>' : '<i class="fa fa-chevron-down"
                    aria-hidden="true"></i>'}
@@ -218,6 +228,9 @@
 						</div>
 						<div class="product-cell status-cell">
 							<span>${Math.round(coupon.discountAmount)}</span>
+						</div>
+						<div class="product-cell sales">
+							<span class="cell-label">Sales:</span> ${ coupon.startDate }
 						</div>
 						<div class="product-cell sales">
 							<span class="cell-label">Sales:</span> ${ coupon.expirationDate }

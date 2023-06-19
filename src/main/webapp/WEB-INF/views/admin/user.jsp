@@ -371,31 +371,7 @@
         </div>
       </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade"
-         id="prevImg"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-      <div class="modal-dialog"
-           role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-            <button type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <img src="//media.tenor.com/images/556e9ff845b7dd0c62dcdbbb00babb4b/tenor.gif"
-                 alt=""
-                 id="image"
-                 class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </div>
+
     <!-- Js Plugins -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -412,26 +388,7 @@
         var modal = $(this);
         // Use above variables to manipulate the DOM
       });
-      $(document).ready(function () {
-        // Gets the video src from the data-src on each button
-        var $imageSrc;
-        console.log($('.image>img'));
-        $('.image img').click(function () {
-          $imageSrc = $(this).data('bigimage');
-        });
-        console.log($imageSrc);
-        // when the modal is opened autoplay it  
-        $('#prevImg').on('shown.bs.modal', function (e) {
-          // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
-          $("#image").attr('src', $imageSrc);
-        })
-        // reset the modal image
-        $('#prevImg').on('hide.bs.modal', function (e) {
-          // a poor man's stop video
-          $("#image").attr('src', '');
-        })
-        // document ready  
-      });
+
     </script>
   </body>
 
