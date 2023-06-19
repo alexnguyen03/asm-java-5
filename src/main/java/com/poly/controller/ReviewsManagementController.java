@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poly.model.Account;
 import com.poly.model.Coupon;
@@ -173,12 +174,18 @@ public class ReviewsManagementController {
 	}
 
 	@PostMapping("create")
-	public String create() {
+	public String create(RedirectAttributes rdAtr) {
 		int productId = Integer.parseInt(paramService.getString("productId", ""));
 		int rating = Integer.parseInt(paramService.getString("rating", ""));
 		String text = paramService.getString("textReview", "");
 		// lấy user từ session
 		Account account_Session = sessionService.get("account");
+		// kiểm tra có đăng nhập hay chưa
+		if (account_Session == null) {
+			sessionService.set("messageShop", "Đăng nhập để được đánh giá sản phẩm");
+			rdAtr.addAttribute("isMessageShop", true);
+			return "redirect:/account/login";
+		}
 		Account account = acdao.findById(account_Session.getUsername()).get();
 		Product product = productDao.findById(productId).get();
 		Review review = new Review();

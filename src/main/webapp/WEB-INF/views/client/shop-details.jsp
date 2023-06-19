@@ -116,7 +116,8 @@
 							năng chơi nhạc và chống ồn vô cùng ấn tượng, hứa hẹn sẽ là đối thủ
 							nặng ký của những chiếc tai nghe chống ồn đầu bảng hiện tại.</p>
 						<h5 class="float-left mr-4 mt-2">Giá:</h5>
-						<h3 class="text-danger">${ product.price }₫</h3>
+						<h3 class="text-danger"><fmt:formatNumber value="${ product.price }" type="currency"
+												currencySymbol="" />₫</h3>
 						<form action="/shop/cart-detail/add"
 							  method="post">
 							<div class="container p-0 mb-3 float-left">
@@ -166,12 +167,7 @@
 					<div class="col-lg-12">
 						<div class="container">
 							<div class="row">
-								<div class="col-lg-12 bg-light mb-3"
-									 ${
-									 isLogin
-									 ? ''
-									 : 'hidden'
-									 }>
+								<div class="col-lg-12 bg-light mb-3">
 									<form action="/admin/review/create"
 										  method="post">
 										<div class="rating-wrap">

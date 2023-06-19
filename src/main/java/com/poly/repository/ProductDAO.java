@@ -6,12 +6,15 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.poly.model.Category;
 import com.poly.model.Order;
 import com.poly.model.Product;
+
+import jakarta.transaction.Transactional;
 
 public interface ProductDAO extends JpaRepository<Product, Integer> {
 	// ******************** select AREA ********************
@@ -56,4 +59,10 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 
 	@Query("SELECT c FROM Product c WHERE c.category.id = ?1 AND c.id != ?2")
 	List<Product> findByProductCategogy(String id, Integer idProduct);
+	
+	// cập nhật lại số lượng sản phẩm khi nhấn thanh toán
+	@Modifying
+	@Transactional
+	@Query("UPDATE Product SET quantity = quantity - ?1 WHERE id = ?2")
+	void updateQuantityProduct(Integer sl, Integer idProduct);
 }
