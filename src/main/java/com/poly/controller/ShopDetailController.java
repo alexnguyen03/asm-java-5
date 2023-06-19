@@ -34,9 +34,6 @@ public class ShopDetailController {
 
 	@GetMapping("")
 	public String index(Model model, @RequestParam("id") Integer productId) {
-		if(sessionService.get("username") == null) {
-			model.addAttribute("isLogin", false);
-		}
 		Product product = productDao.findById(productId).get();
 		List<Review> reviews = product.getReviews();
 		List<Product> product_similars = productDao.findByProductCategogy(product.getCategory().getId(),

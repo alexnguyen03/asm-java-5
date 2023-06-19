@@ -29,6 +29,7 @@ import com.poly.repository.CartDetailDAO;
 import com.poly.repository.CouponDAO;
 import com.poly.repository.OrderDAO;
 import com.poly.repository.OrderDetailDAO;
+import com.poly.repository.ProductDAO;
 import com.poly.service.ParamService;
 import com.poly.service.PhoneNumberValidator;
 import com.poly.service.SessionService;
@@ -52,6 +53,8 @@ public class CheckOutController {
 	CartDetailDAO cartDetailDAO;
 	@Autowired
 	CartDAO cartDAO;
+	@Autowired
+	ProductDAO productDAO;
 
 	@GetMapping("")
 	public String index(Model model) {
@@ -109,8 +112,11 @@ public class CheckOutController {
 				orderDetail.setPrice(od.getProduct().getPrice());
 				orderDetail.setQuantity(od.getQuantity());
 				orderDetailDAO.save(orderDetail);
+				// xóa sản phẩm của cartdetail
 				int productId = od.getProduct().getId();
 				cartDetailDAO.deleteByProductId(productId);
+				// cập nhật lại số lượng của sản phẩm
+				productDAO.updateQuantityProduct(od.getQuantity(), productId);
 			}
 		} else if (phone.equals("")) {
 			model.addAttribute("success", "Bạn chưa nhập số điện thoại !!!");
