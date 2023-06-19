@@ -41,6 +41,12 @@ public class Coupon implements Serializable {
     @Column(name = "expiration_date")
     @NotNull(message = "{NotNull.coupon.expirationDate}")
     Date expirationDate;
+    
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "start_date")
+    @NotNull(message = "{NotNull.coupon.startDate}")
+    Date startDate;
 
     Boolean activated;
 

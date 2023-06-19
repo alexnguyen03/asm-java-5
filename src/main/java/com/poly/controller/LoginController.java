@@ -78,6 +78,8 @@ public class LoginController {
 		session.set("account", account);
 
 		if (account.getAdmin()) {
+			session.set("adminImg", account.getPhoto());
+
 			return "redirect:/admin";
 		}
 

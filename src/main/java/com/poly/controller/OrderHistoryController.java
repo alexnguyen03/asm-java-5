@@ -58,11 +58,15 @@ public class OrderHistoryController {
 		} else if (search.equals("date")) {
 			Date date = null;
 			try {
-				date = paramService.getDate(keyword, "yyyy-MM-dd");
+				date = paramService.getDate2(keyword, "yyyy-MM-dd");
 				List<Order> orders = orderDao.findByCreatedDate(date);
-				model.addAttribute("success", "Đã tìm thấy ngày đặt hàng: " + keyword);
-				model.addAttribute("orders", orders);
-				model.addAttribute("isCreateDate", true);
+				if (orders.size() > 0) {
+					model.addAttribute("success", "Đã tìm thấy ngày đặt hàng là : " + keyword);
+					model.addAttribute("orders", orders);
+					model.addAttribute("isCreateDate", true);
+				}else {
+					model.addAttribute("success", "Không tìm thấy ngày đặt hàng là : " + keyword);
+				}
 			} catch (Exception e) {
 				model.addAttribute("success", "Không đúng định dạng năm - tháng - ngày !!!");
 			}
@@ -87,22 +91,54 @@ public class OrderHistoryController {
 
 	@PostMapping("filter")
 	public String search(Model model, @RequestParam("status") String status) {
-		if (status.equals("c")) {
-			List<Order> orders = orderDao.findByStatus(status);
-			model.addAttribute("orders", orders);
-			model.addAttribute("isC", true);
-		} else if (status.equals("xl")) {
-			List<Order> orders = orderDao.findByStatus(status);
-			model.addAttribute("orders", orders);
-			model.addAttribute("isXl", true);
-		} else if (status.equals("g")) {
-			List<Order> orders = orderDao.findByStatus(status);
-			model.addAttribute("orders", orders);
-			model.addAttribute("isG", true);
-		} else if (status.equals("dg")) {
-			List<Order> orders = orderDao.findByStatus(status);
-			model.addAttribute("orders", orders);
-			model.addAttribute("isDg", true);
+		Account account = sessionService.get("account");
+		if (status.equals("C")) {
+			List<Order> orders = orderDao.findByStatusAndUser(status, account.getUsername());
+			if (orders.size() > 0) {
+				model.addAttribute("orders", orders);
+				model.addAttribute("isC", true);
+				model.addAttribute("success", "Đã tìm thấy đơn hàng có trạng thái là Đang chờ");
+			} else {
+				model.addAttribute("success", "Không tìm thấy đơn hàng có trạng thái là Đang chờ");
+			}
+		} else if (status.equals("XL")) {
+			List<Order> orders = orderDao.findByStatusAndUser(status, account.getUsername());
+			if (orders.size() > 0) {
+				model.addAttribute("orders", orders);
+				model.addAttribute("isXl", true);
+				model.addAttribute("success", "Đã tìm thấy đơn hàng có trạng thái là Đang xử lý");
+			} else {
+				model.addAttribute("success", "Không tìm thấy đơn hàng có trạng thái là Đang xử lý");
+			}
+		} else if (status.equals("G")) {
+			List<Order> orders = orderDao.findByStatusAndUser(status, account.getUsername());
+			if (orders.size() > 0) {
+				model.addAttribute("orders", orders);
+				model.addAttribute("isG", true);
+				model.addAttribute("success", "Đã tìm thấy đơn hàng có trạng thái là Đang giao");
+			} else {
+				model.addAttribute("success", "Không tìm thấy đơn hàng có trạng thái là Đang giao");
+			}
+		} else if (status.equals("DG")) {
+			List<Order> orders = orderDao.findByStatusAndUser(status, account.getUsername());
+			if (orders.size() > 0) {
+				model.addAttribute("orders", orders);
+				model.addAttribute("isDg", true);
+				model.addAttribute("success", "Đã tìm thấy đơn hàng có trạng thái là Đã giao");
+			} else {
+				model.addAttribute("success", "Không tìm thấy đơn hàng có trạng thái là Đã giao");
+			}
+
+		} else if (status.equals("H")) {
+			List<Order> orders = orderDao.findByStatusAndUser(status, account.getUsername());
+			if (orders.size() > 0) {
+				model.addAttribute("orders", orders);
+				model.addAttribute("isH", true);
+				model.addAttribute("success", "Đã tìm thấy đơn hàng có trạng thái là Đã hủy");
+			} else {
+				model.addAttribute("success", "Không tìm thấy đơn hàng có trạng thái là Đã hủy");
+			}
+
 		} else if (status.equals("select")) {
 			model.addAttribute("success", "Bạn chưa chọn trạng thái !!! ");
 		}

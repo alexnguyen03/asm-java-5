@@ -40,6 +40,9 @@ public interface OrderDAO extends JpaRepository<Order, Long> {
 	@Query("SELECT c FROM Order c WHERE c.id LIKE ?1")
 	List<Order> findByID(Long id);
 
+	@Query("SELECT c FROM Order c WHERE c.status = ?1 AND c.account.username = ?2")
+	List<Order> findByStatusAndUser(String status, String username);
+
 	@Query("SELECT c FROM Order c WHERE c.status = ?1")
 	List<Order> findByStatus(String status);
 
@@ -61,12 +64,12 @@ public interface OrderDAO extends JpaRepository<Order, Long> {
 	List<Product> findLastestOrder(PageRequest of);
 
 	// get turnover
-	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE o.createDate = ?1")
+	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE o.createDate = ?1 AND o.status = 'DG'")
 	Double getTurnoverByDay(Date today);
 
-	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE MONTH(o.createDate) = MONTH(?1) AND YEAR(o.createDate) = YEAR(?1)")
+	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE MONTH(o.createDate) = MONTH(?1) AND YEAR(o.createDate) = YEAR(?1)  AND o.status = 'DG'")
 	Double getTurnoverByMonth(Date today);
 
-	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE YEAR(o.createDate) = YEAR(?1)")
+	@Query("SELECT sum(o.totalPrice) FROM Order o WHERE YEAR(o.createDate) = YEAR(?1)  AND o.status = 'DG'")
 	Double getTurnoverByYear(Date today);
 }

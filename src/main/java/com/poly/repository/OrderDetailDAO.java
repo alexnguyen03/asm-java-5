@@ -1,10 +1,10 @@
 package com.poly.repository;
 
 import java.util.List;
-
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
 import com.poly.model.OrderDetail;
 import com.poly.model.ReportByCategory;
 import com.poly.model.ReportByProduct;
@@ -12,7 +12,6 @@ import com.poly.model.ReportByUser;
 import com.poly.model.ReportTop10;
 
 public interface OrderDetailDAO extends JpaRepository<OrderDetail, Long> {
-
 	@Query("SELECT   new ReportTop10( o.product.name, o.product.category.name , sum(o.price * o.quantity), sum(o.quantity)) FROM OrderDetail o WHERE o.order.status = 'DG' GROUP BY o.product.name, o.product.category.name")
 	public List<ReportTop10> getTopProduct();
 
@@ -61,7 +60,7 @@ public interface OrderDetailDAO extends JpaRepository<OrderDetail, Long> {
 	public List<ReportByProduct> getReportByProductsByYear(int year);
 
 	// getReportByUsers
-	@Query("SELECT  new ReportByUser( o.account.fullname ,  o.address, sum(o.id), sum(o.totalPrice)) FROM Order o WHERE o.status = 'DG' GROUP BY    o.account.fullname ,  o.address ORDER BY sum(o.totalPrice)")
+	@Query("SELECT  new ReportByUser( o.account.fullname ,  o.address, count(o.id), sum(o.totalPrice)) FROM Order o WHERE o.status = 'DG' GROUP BY    o.account.fullname ,  o.address ORDER BY sum(o.totalPrice)")
 	public List<ReportByUser> getReportByUsers();
 
 	@Query("SELECT  new ReportByUser( o.account.fullname ,  o.address, count(o.account.username), sum(o.totalPrice)) FROM Order o WHERE DAY(o.createDate) = ?1 and  MONTH(o.createDate) = ?2 and YEAR(o.createDate) = ?3 AND  o.status = 'DG' GROUP BY   o.account.fullname ,  o.address ORDER BY sum(o.totalPrice) DESC")
@@ -78,4 +77,11 @@ public interface OrderDetailDAO extends JpaRepository<OrderDetail, Long> {
 
 //	@Query("SELECT od FROM OrderDetail ORDER BY p.product.createDate DESC")
 //	List<OrderDetail> findTop10ByOrderByCreateDateDesc();
+	// @Query("SELECT od FROM OrderDetail od JOIN od.product p ORDER BY p.createDate
+	// DESC")
+	// List<OrderDetail> findTop10ByOrderByCreateDateDesc();
+
+	// get transaction
+	@Query("SELECT o FROM OrderDetail o WHERE o.order.status != 'H' ORDER BY o.order.createDate DESC")
+	List<OrderDetail> getTop10OrderDetail(Pageable pageable);
 }

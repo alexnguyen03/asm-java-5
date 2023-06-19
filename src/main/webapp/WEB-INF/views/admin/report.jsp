@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %> <%@ taglib
-uri="http://www.springframework.org/tags/form" prefix="form" %> <%@ taglib
-prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -123,15 +123,18 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                             <div class="card shadow border-0"
                                  style="height: 300px;">
                                 <div class="card-body flex-column d-flex mx-auto justify-content-center">
-                                    <h2 class="card-title">Tổng doanh thu ngày
-                                        <%java.text.DateFormat df = new java.text.SimpleDateFormat("dd-MM-yyyy"); %>
-                                        <%= df.format(new java.util.Date()) %>
+                                    <h2 class="card-title">
+                                        Tổng doanh thu ngày
+                                        <%
+								java.text.DateFormat df = new java.text.SimpleDateFormat("dd-MM-yyyy");
+								%>
+                                        <%=df.format(new java.util.Date())%>
                                     </h2>
                                     <h1 class="card-text">
-                                        ${ reportByDate != null ? '
-                                        <fmt:formatNumber value="${reportByDate}"
-                                                          type="currency"
-                                                          currencySymbol="" />' : 0 }
+                                        <fmt:formatNumber type="number"
+                                                          maxFractionDigits="3"
+                                                          value="${ reportByDate != null ? 
+                                       reportByDate : 0 }" />
                                         <sup>đ</sup>
                                     </h1>
                                 </div>
@@ -141,12 +144,17 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                             <div class="card shadow border-0"
                                  style="height: 300px;">
                                 <div class="card-body flex-column d-flex mx-auto justify-content-center">
-                                    <h2 class="card-title">Tổng doanh thu tháng
-                                        <%java.text.DateFormat dfd = new java.text.SimpleDateFormat("MM-yyyy"); %>
-                                        <%= dfd.format(new java.util.Date()) %>
+                                    <h2 class="card-title">
+                                        Tổng doanh thu tháng
+                                        <%
+								java.text.DateFormat dfd = new java.text.SimpleDateFormat("MM-yyyy");
+								%>
+                                        <%=dfd.format(new java.util.Date())%>
                                     </h2>
                                     <h1 class="card-text">
-                                        ${ reportByMonth != null ? reportByMonth : 0 }
+                                        <fmt:formatNumber type="number"
+                                                          maxFractionDigits="3"
+                                                          value="${ reportByMonth != null ? reportByMonth : 0 }" />
                                         <sup>đ</sup>
                                     </h1>
                                 </div>
@@ -154,15 +162,15 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                         </div>
                     </div>
                     <div class="row mt-5">
-
                         <div class="col-12">
                             <div class="card shadow border-0"
                                  style="height: 300px;">
                                 <div class="card-body flex-column d-flex mx-auto justify-content-center">
-                                    <h2 class="card-title">Tổng doanh thu từ trước đến nay
-                                    </h2>
+                                    <h2 class="card-title">Tổng doanh thu từ trước đến nay</h2>
                                     <h1 class="card-text">
-                                        ${reportByYear}
+                                        <fmt:formatNumber type="number"
+                                                          maxFractionDigits="3"
+                                                          value="${ reportByYear != null ? reportByYear : 0 }" />
                                         <sup>đ</sup>
                                     </h1>
                                 </div>

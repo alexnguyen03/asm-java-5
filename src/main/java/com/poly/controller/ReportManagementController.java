@@ -311,7 +311,6 @@ public class ReportManagementController {
         // System.out.println(orderDAO.getTurnoverByDay(new Date()));
         model.addAttribute("reportByMonth", orderDAO.getTurnoverByMonth(new Date()));
         model.addAttribute("reportByYear", orderDAO.getTurnoverByYear(new Date()));
-        System.out.println(orderDAO.getTurnoverByYear(new Date()));
         model.addAttribute("reportByDate", orderDAO.getTurnoverByDay(new Date()));
         model.addAttribute("reportPage", "total");
         model.addAttribute("isPageActive", "statistic");
