@@ -74,7 +74,7 @@ public class CouponsManagementController {
 			coupons = dao.findByExpirationDate(date, pageable);
 			if (coupons.getTotalPages() > 0) {
 				model.addAttribute("coupons", coupons);
-				model.addAttribute("success", "Đã tìm thấy ngày hết hạn: " +keyword);
+				model.addAttribute("success", "Đã tìm thấy ngày hết hạn: " + keyword);
 				model.addAttribute("isEd", true);
 				model.addAttribute("isSuscess", true);
 			} else {
@@ -199,28 +199,28 @@ public class CouponsManagementController {
 		LocalDate now = LocalDate.now();
 
 		if (result.hasErrors()) {
-			return "/admin/coupons-update";
+			return "/admin/coupons-add";
 		}
 		if (startDate.isAfter(endDate)) {
 			//
 			model.addAttribute("sussces2", "Ngày bắt đầu trước Ngày hết hạn !!!");
 			model.addAttribute("expirationDate", endDate);
 			model.addAttribute("startDate", startDate);
-			return "/admin/coupons-update";
+			return "/admin/coupons-add";
 		}
 		if (endDate.isBefore(startDate)) {
 			//
 			model.addAttribute("sussces", "Ngày hết hạn sau ngày bắt đầu !!!");
 			model.addAttribute("startDate", startDate);
 			model.addAttribute("expirationDate", endDate);
-			return "/admin/coupons-update";
+			return "/admin/coupons-add";
 		}
 		if (endDate.isBefore(now)) {
 			// Ngày kết thúc đã qua ngày hiện tại
 			model.addAttribute("sussces", "Ngày hết hạn nhỏ hơn Ngày hiện tại !!!");
 			model.addAttribute("startDate", startDate);
 			model.addAttribute("expirationDate", endDate);
-			return "/admin/coupons-update";
+			return "/admin/coupons-add";
 		}
 		dao.save(coupon);
 		model.addAttribute("success", "Thêm giảm giá thành công");

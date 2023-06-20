@@ -30,7 +30,7 @@
       </a>
     </li>
     <li class="sidebar-list-item ${isPageActive == 'coupon'?'active':''}">
-      <a href="/admin/coupon"> <i class='bx bxs-coupon mr-2'></i> <span>Khuyến mãi</span>
+      <a href="/admin/coupon"> <i class='bx bxs-coupon mr-2'></i> <span>Giảm giá</span>
       </a>
     </li>
     <li class="sidebar-list-item ${isPageActive == 'product'?'active':''}">

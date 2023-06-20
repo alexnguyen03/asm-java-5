@@ -116,8 +116,11 @@
 							năng chơi nhạc và chống ồn vô cùng ấn tượng, hứa hẹn sẽ là đối thủ
 							nặng ký của những chiếc tai nghe chống ồn đầu bảng hiện tại.</p>
 						<h5 class="float-left mr-4 mt-2">Giá:</h5>
-						<h3 class="text-danger"><fmt:formatNumber value="${ product.price }" type="currency"
-												currencySymbol="" />₫</h3>
+						<h3 class="text-danger">
+							<fmt:formatNumber value="${ product.price }"
+											  type="currency"
+											  currencySymbol="" />₫
+						</h3>
 						<form action="/shop/cart-detail/add"
 							  method="post">
 							<div class="container p-0 mb-3 float-left">
@@ -274,7 +277,7 @@
 								</div>
 								<div class="product__item__text">
 									<h6>${ product_similar.name }</h6>
-									<a href="#"
+									<a href="/shop/cart-detail/add/${product_similar.id}"
 									   class="add-cart">+ Thêm vào giỏ hàng</a>
 									<!-- 								<div class="rating mr-3"> -->
 									<!-- 									<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i -->
@@ -306,66 +309,65 @@
 							<a href="#"><img src="${pageContext.request.contextPath }/img/payment.png"
 									 alt="" /></a>
 						</div>
-						<div class="col-lg-2 offset-lg-1 col-md-2 col-sm-6">
-							<div class="footer__widget">
-								<h6>Sản phẩm</h6>
-								<ul>
-									<li><a href="/shop">Tai nghe</a></li>
-									<li><a href="/shop">Đồng hồ</a></li>
-									<li><a href="/shop">Phụ kiện</a></li>
-									<li><a href="/shop">Túi xách</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-3 col-sm-6">
-							<div class="footer__widget">
-								<h6>Thông tin</h6>
-								<ul>
-									<li><a href="#">Liên hệ chúng tôi</a></li>
-									<li><a href="#">Hình thức thanh toán</a></li>
-									<li><a href="#">Vận chuyển</a></li>
-									<li><a href="#">Trả lại và trao đổi</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-							<div class="footer__widget">
-								<h6>Phản hồi</h6>
-								<div class="footer__newslatter">
-									<p>Mọi thắc mắc về các dịch vụ trên trang web vui lòng gửi
-										qua Email</p>
-									<form action="#">
-										<input type="text"
-											   placeholder="Email của bạn" />
-										<button type="submit">
-											<span class="icon_mail_alt"></span>
-										</button>
-									</form>
-								</div>
-							</div>
+					</div>
+					<div class="col-lg-2 offset-lg-1 col-md-2 col-sm-6">
+						<div class="footer__widget">
+							<h6>Sản phẩm</h6>
+							<ul>
+								<li><a href="#">Tai nghe</a></li>
+								<li><a href="#">Đồng hồ</a></li>
+								<li><a href="#">Phụ kiện</a></li>
+								<li><a href="#">Túi xách</a></li>
+							</ul>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-lg-12 text-center">
-							<div class="footer__copyright__text">
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								<p>Copyright &copy; & Edited by 3MEMS Team</p>
-								<p>
-									<script>
-										document.write(new Date().getFullYear());
-									</script>
-									2022 All rights reserved
-
-								</p>
-								<p>@Copyright &copy; & Edited 2023 by 3MEMS Team</p>
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					<div class="col-lg-2 col-md-3 col-sm-6">
+						<div class="footer__widget">
+							<h6>Thông tin</h6>
+							<ul>
+								<li><a href="#">Liên hệ chúng tôi</a></li>
+								<li><a href="#">Hình thức thanh toán</a></li>
+								<li><a href="#">Vận chuyển</a></li>
+								<li><a href="#">Trả lại và trao đổi</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+						<div class="footer__widget">
+							<h6>Phản hồi</h6>
+							<div class="footer__newslatter">
+								<p>Mọi thắc mắc về các dịch vụ trên trang web vui lòng gửi
+									qua Email</p>
+								<form action="#">
+									<input type="text"
+										   placeholder="Email của bạn" />
+									<button type="submit">
+										<span class="icon_mail_alt"></span>
+									</button>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="footer__copyright__text">
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							<p>Copyright &copy; & Edited by 3MEMS Team</p>
+							<p>
+								<script>
+									document.write(new Date().getFullYear());
+								</script>
+								2022 All rights reserved
+							</p>
+
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</div>
+					</div>
+				</div>
+			</div>
 		</footer>
 		<!-- Footer end -->
-
 		<!-- Search Begin -->
 		<div class="search-model">
 			<div class="h-100 d-flex align-items-center justify-content-center">
