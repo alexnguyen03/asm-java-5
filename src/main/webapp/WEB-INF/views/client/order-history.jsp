@@ -127,7 +127,7 @@
 											theo</label>
 									</div>
 									<select class="custom-select" id="inputGroupSelect01"
-										name="search">
+										name="search" onchange="handleSearchChange()">
 										<option value="select">Chọn</option>
 										<option value="id"
 											${
@@ -147,9 +147,9 @@
 								</div>
 							</div>
 							<div class="pl-2">
-								<input class="search-bar bg-white text-dark form-control"
+								<input class="search-bar bg-white text-dark form-control" ${ isSuscess ? 'disabled' : '' }
 									placeholder="Search..." type="text" style="height: 40px;"
-									name="keyword">
+									id="searchInput" name="keyword">
 							</div>
 							<div class="mr-auto pl-2">
 								<button type="submit" class="btn btn-primary"
@@ -201,7 +201,7 @@
 													: ''
 													}>Đã
 											giao</option>
-											<option value="H"
+										<option value="H"
 											${
 													isH
 													? 'selected'
@@ -469,6 +469,20 @@
 			</div>
 		</div>
 	</footer>
+
+	<script>
+		function handleSearchChange() {
+			const searchInput = document.getElementById("searchInput");
+			const searchOption = document.getElementById("inputGroupSelect01").value;
+			if (searchOption === "date") {
+				searchInput.setAttribute("type", "date");
+			}
+			if (searchOption === "id") {
+				searchInput.setAttribute("type", "text");
+			}
+		}
+	</script>
+
 	<!-- Js Plugins -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

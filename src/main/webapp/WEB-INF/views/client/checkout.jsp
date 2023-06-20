@@ -115,7 +115,7 @@
 						<input hidden name="total" value="${ provisional }"> <input hidden
 							name="sdt" id="sdt"> <input hidden name="dc" id="dc">
 						<button type="submit"
-							class="btn btn-info font-weight-bold mt-2 float-right w-50">Thanh
+							class="btn btn-success font-weight-bold mt-2 float-right w-50">Thanh
 							toán Paypal</button>
 					</form>
 					<c:if test="${not empty success}">

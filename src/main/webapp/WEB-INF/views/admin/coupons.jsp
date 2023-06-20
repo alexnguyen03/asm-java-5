@@ -44,7 +44,7 @@
 								theo</label>
 						</div>
 						<select class="custom-select" id="inputGroupSelect01"
-							name="search">
+							onchange="handleSearchChange()" name="search">
 							<option value="select">Chọn</option>
 							<option ${ isEd ? 'selected' : '' } value="ed">Ngày hết
 								hạn</option>
@@ -54,7 +54,7 @@
 						</select>
 					</div>
 					<input class="search-bar ml-2" placeholder="Search..." type="text"
-						style="height: 40px;" name="keyword">
+						id="searchInput" style="height: 40px;" name="keyword" ${ isSuscess ? 'disabled' : '' }>
 					<button type="submit" class="btn btn-primary ml-2">Tìm</button>
 				</form>
 				<form action="/admin/coupon/filter" method="post"
@@ -208,8 +208,10 @@
 					</div>
 					<div class="product-cell price">Thao tác</div>
 				</div>
-				<c:forEach var="coupon" items="${ coupons.content }" varStatus="loop">
-					<div class="products-row ${loop.index % 2 != 0 ? 'product-row-even':''}">
+				<c:forEach var="coupon" items="${ coupons.content }"
+					varStatus="loop">
+					<div
+						class="products-row ${loop.index % 2 != 0 ? 'product-row-even':''}">
 						<button class="cell-more-button">
 							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
 								viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -230,13 +232,13 @@
 							<span>${Math.round(coupon.discountAmount)}</span>
 						</div>
 						<div class="product-cell sales">
-							<span class="cell-label">Sales:</span> ${ coupon.startDate }
+							<span class="cell-label">Sales:</span> <fmt:formatDate value="${ coupon.startDate }" pattern="dd/MM/yyyy" />
 						</div>
 						<div class="product-cell sales">
-							<span class="cell-label">Sales:</span> ${ coupon.expirationDate }
+							<span class="cell-label">Sales:</span> <fmt:formatDate value="${coupon.expirationDate}" pattern="dd/MM/yyyy" />
 						</div>
 						<div class="product-cell sales">
-							<span class="cell-label">Sales:</span> ${ coupon.createdDate }
+							<span class="cell-label">Sales:</span> <fmt:formatDate value="${ coupon.createdDate }" pattern="dd/MM/yyyy" />
 						</div>
 						<div class="product-cell stock">
 							<span class="cell-label">Stock:</span> ${ coupon.activated ? 'Hoạt động' : 'Không hoạt động' }
@@ -245,8 +247,9 @@
 							<span class="cell-label">Price:</span>
 							<!-- 							<button type="button" class="btn btn-primary" data-toggle="modal" -->
 							<%-- 								data-target="#updateCoupon${coupon.couponCode}">Sửa</button> --%>
-							<a href="/admin/coupon/edit/${ coupon.couponCode }" class="btn btn-dark"
-								role="button" aria-pressed="true" style="height: 40px;">Edit</a>
+							<a href="/admin/coupon/edit/${ coupon.couponCode }"
+								class="btn btn-dark" role="button" aria-pressed="true"
+								style="height: 40px;">Edit</a>
 						</div>
 					</div>
 					<!-- The Modal -->
@@ -437,6 +440,22 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+		function handleSearchChange() {
+			const searchInput = document.getElementById("searchInput");
+			const searchOption = document.getElementById("inputGroupSelect01").value;
+			if (searchOption === "ed") {
+				searchInput.setAttribute("type", "date");
+			}
+			if (searchOption === "cd") {
+				searchInput.setAttribute("type", "date");
+			}
+			if (searchOption === "name") {
+				searchInput.setAttribute("type", "text");
+			}
+		}
+	</script>
 
 	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>

@@ -64,11 +64,14 @@ public class OrderHistoryController {
 					model.addAttribute("success", "Đã tìm thấy ngày đặt hàng là : " + keyword);
 					model.addAttribute("orders", orders);
 					model.addAttribute("isCreateDate", true);
+					model.addAttribute("isSuscess", true);
 				}else {
 					model.addAttribute("success", "Không tìm thấy ngày đặt hàng là : " + keyword);
+					model.addAttribute("isSuscess", true);
 				}
 			} catch (Exception e) {
-				model.addAttribute("success", "Không đúng định dạng năm - tháng - ngày !!!");
+				model.addAttribute("success", "Bạn chưa chọn ngày đặt !!!");
+				model.addAttribute("isSuscess", true);
 			}
 		} else if (search.equals("id")) {
 			try {

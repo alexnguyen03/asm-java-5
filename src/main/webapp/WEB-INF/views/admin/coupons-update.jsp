@@ -68,7 +68,7 @@
 								<div class="form-group">
 									<label for="reduced_date" class="form-label fw-bold">Ngày
 										bắt đầu</label> <input type="date" name="startDate"
-										class="form-control" id="reduced_date" value="${ coupon.startDate }">
+										class="form-control" id="reduced_date" value="${ startDate != null ? startDate : coupon.startDate}">
 									<form:errors path="startDate" cssClass="msg_errols"></form:errors>
 									<p class="msg_errols">${ sussces2 }</p>
 								</div>
@@ -77,9 +77,10 @@
 								<div class="form-group">
 									<label for="reduced_date" class="form-label fw-bold">Ngày
 										hết hạn</label> <input type="date" name="expirationDate"
-										class="form-control" id="reduced_date" value="${ coupon.expirationDate }">
+										class="form-control" id="reduced_date" value="${ expirationDate != null ? expirationDate : coupon.expirationDate}">
 									<form:errors path="expirationDate" cssClass="msg_errols"></form:errors>
 									<p class="msg_errols">${ sussces }</p>
+									<input hidden name="createdDate" value="${ coupon.createdDate }">
 								</div>
 							</div>
 							<div class="col-lg-6 mt-4">

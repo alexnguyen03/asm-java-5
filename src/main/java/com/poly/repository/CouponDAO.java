@@ -23,6 +23,6 @@ public interface CouponDAO extends JpaRepository<Coupon, String>{
 	@Query("SELECT c FROM Coupon c WHERE c.activated = ?1")
 	Page<Coupon> findByActivated(Boolean trangthai, Pageable pageable);
 	
-	@Query("SELECT c FROM Coupon c WHERE c.couponCode = ?1 AND c.activated = true")
+	@Query("SELECT c FROM Coupon c WHERE c.couponCode = ?1 AND c.activated = true AND c.expirationDate > CURRENT_DATE AND c.startDate < CURRENT_DATE")
 	Coupon findByIdActivated(String code);
 }
