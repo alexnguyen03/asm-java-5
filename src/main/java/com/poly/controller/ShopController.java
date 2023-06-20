@@ -112,14 +112,16 @@ public class ShopController {
 		} else {
 			cartDetail = testCarDetail;
 			cartDetail.setQuantity(cartDetail.getQuantity() + 1);
+			
 		}
 		for (CartDetail cd : cart.getCartDetails()) {
 			totalQuantity += cd.getQuantity();
 		}
 		cart.setQuantity(totalQuantity);
 		cartDetail.setCart(cart);
+		cartDAO.save(cart);
 		cartDetailDAO.save(cartDetail);
-		sessionService.set("totalCart", totalQuantity);
+		sessionService.set("totalCart", cart.getQuantity());
 		model.addAttribute("pageActive", "shop");
 
 		sessionService.set("isUpdated", true);
@@ -158,8 +160,9 @@ public class ShopController {
 		}
 		cart.setQuantity(totalQuantity);
 		cartDetail.setCart(cart);
+		cartDAO.save(cart);
 		cartDetailDAO.save(cartDetail);
-		sessionService.set("totalCart", totalQuantity);
+		sessionService.set("totalCart", cart.getQuantity());
 		sessionService.set("isUpdated", true);
 		return "redirect:/shop";
 	}
