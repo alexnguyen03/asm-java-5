@@ -121,11 +121,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                               ${cd.product.name}
                             </a>
                           </h6>
-                          <h5>
-                            <fmt:formatNumber type="number"
-                                              maxFractionDigits="3"
-                                              value="${cd.product.price} " /><sup>đ</sup>
-                          </h5>
+                          <h5> ${cd.product.price} <sup>đ</sup></h5>
                         </div>
                       </td>
                       <td class="quantity__item">
@@ -151,9 +147,8 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                         </form>
                       </td>
                       <td class="cart__price${cd.id}">
-                        <fmt:formatNumber type="number"
-                                          maxFractionDigits="3"
-                                          value=" ${cd.product.price * cd.quantity}" /><sup>đ</sup>
+                        ${cd.product.price * cd.quantity}
+                        <sup>đ</sup>
                       </td>
                       <input type="text"
                              id="price${cd.id}"
@@ -202,10 +197,10 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                 </li>
                 <li>
                   Tổng tiền <span>
-
-                    <fmt:formatNumber type="number"
-                                      maxFractionDigits="3"
-                                      value="${totalPrice}" /><sup>đ</sup>
+                    <fmt:formatNumber value="${totalPrice}"
+                                      type="currency"
+                                      currencySymbol="" />
+                    <sup>đ</sup>
                   </span>
                 </li>
               </ul>

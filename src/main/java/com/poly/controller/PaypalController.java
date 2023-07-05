@@ -109,7 +109,7 @@ public class PaypalController {
 				order.setPhone(phone);
 				order.setAddress(address);
 				order.setTotalPrice(toTal_Price - (toTal_Price * (discountAmount / 100)));
-				order.setStatus("C");
+				order.setStatus("DG");
 
 				orderDAO.save(order);
 				sessionService.remove("coupon");

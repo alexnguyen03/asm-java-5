@@ -54,12 +54,11 @@ public class SignupController {
             // model.addAttribute("alertType", "danger");
             return "account/signup";
         } else {
-            // Account existAccount = accountDAO.findById(account.getUsername()).get();
-            // if (existAccount != null) {
-            // model.addAttribute("msg", "Tên đăng nhập đã tồn tại, vui lòng chọn tên khác
-            // !");
-            // return "account/signup";
-            // }
+            Account existAccount = accountDAO.findById(account.getUsername()).get();
+            if (existAccount != null) {
+                model.addAttribute("msg", "Tên đăng nhập đã tồn tại, vui lòng chọn tên khác !");
+                return "account/signup";
+            }
             File newFile = paramService.save(file, "/img/user-management");
             account.setPhoto(newFile.getName());
             sessionService.set("signupMail", account.getEmail());

@@ -61,15 +61,15 @@ public class ProductManagementController {
 
 		int defaultPage = 0;
 		int defaultElementOfPage = 5;
-		String defaultField = "id";
-
+		String defaultField = "price";
+		
 		// asending is default
 		Pageable pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),
-				Sort.by(field.orElse(defaultField)).descending());
+				Sort.by(field.orElse(defaultField)).ascending());
 
 		if (direc.isPresent() && !direc.get().booleanValue()) {
 			pageable = PageRequest.of(p.orElse(defaultPage), eop.orElse(defaultElementOfPage),
-					Sort.by(field.orElse(defaultField)).ascending());
+					Sort.by(field.orElse(defaultField)).descending());
 
 		}
 
@@ -211,7 +211,7 @@ public class ProductManagementController {
 		Product item = new Product();
 		model.addAttribute("item", item);
 
-		// Pagination
+//		Pagination
 		Pageable pageable = PageRequest.of(p.orElse(0), 5);
 
 		// Remove a kwordk search session
@@ -242,9 +242,9 @@ public class ProductManagementController {
 	@RequestMapping("filter-product-by-category")
 	public String FilterCategoryAndPageProduct(Model model, @RequestParam("category") String categoryId,
 			@RequestParam("p") Optional<Integer> p) {
-		System.out.println(categoryId + "Category");
+		System.out.println(categoryId+"Category");
 		model.addAttribute("categoryId", categoryId);
-
+		
 		// Init Product
 		Product item = new Product();
 		model.addAttribute("item", item);
