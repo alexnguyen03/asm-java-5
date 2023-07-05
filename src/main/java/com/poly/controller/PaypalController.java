@@ -108,7 +108,7 @@ public class PaypalController {
 				order.setAccount(account);
 				order.setPhone(phone);
 				order.setAddress(address);
-				order.setTotalPrice(toTal_Price - (toTal_Price * (discountAmount / 100)));
+				order.setTotalPrice(toTal_Price - (toTal_Price * discountAmount));
 				order.setStatus("DG");
 
 				orderDAO.save(order);
